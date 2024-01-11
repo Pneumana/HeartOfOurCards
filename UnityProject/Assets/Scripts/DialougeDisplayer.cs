@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -31,16 +32,38 @@ public class DialougeDisplayer : MonoBehaviour
 
     //maybe use for mouse wheel down do it doesnt go past stuff you haven't seen before.
     int farthestIntoConvo;
+    //also use this to stop! animating sprites and positions
+    //scrolling up acts as a history system
+    //picked choices should be displayed with a different color
+    //you cant change your choice after scrolling up
 
     public struct CharData
     {
         //keeps track of the game objects, rect transform stuff, color, yadda yadd for each Character in the Conversation
+        GameObject go;
+        Vector2 targetPos;
+        float speed;
+        int sortOrder;//use CharacterScene.childcount - 1 as the clamp. 
 
+        //sort int
     }
 
     //for multiplayer, this can be synced to whoever is in the conversation;
+    /*
+        {ActionNumber} //line starts with no whitespace == ActionStep
+            [charID] //folliwing lines use this character id as their effector;
+                [command]// line starts with two whitespace == COMMAND
 
+    the command text should be read, then the sort of list system we have right now should be populated with the data from
+    the command text, discovered using the regex patterns below
 
+        to check for charID, use 
+        ^\W\d
+        to check command lines use
+        @..*
+        to check for action number look for
+        ^\w.*
+    */
     // Start is called before the first frame update
     void Start()
     {
@@ -165,6 +188,11 @@ public class DialougeDisplayer : MonoBehaviour
         else if (Regex.IsMatch(command, "^@SCA"))
         {
             Debug.Log("command is Scale");
+            return;
+        }
+        else if (Regex.IsMatch(command, "^@ORD"))
+        {
+            Debug.Log("command is Order");
             return;
         }
         //DISPLAY
