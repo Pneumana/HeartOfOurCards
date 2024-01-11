@@ -26,26 +26,55 @@ public class DialougeDisplayer : MonoBehaviour
     public List<Vector2> positions = new List<Vector2>();
 
     public List<float> speeds = new List<float>();
+
+    public bool displayingChoice;
+
+    //maybe use for mouse wheel down do it doesnt go past stuff you haven't seen before.
+    int farthestIntoConvo;
+
+    public struct CharData
+    {
+        //keeps track of the game objects, rect transform stuff, color, yadda yadd for each Character in the Conversation
+
+    }
+
+    //for multiplayer, this can be synced to whoever is in the conversation;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        Debug.LogWarning("screen size is " + Screen.width + ", " + Screen.height);
         //create player talk sprite
-        var playerSprite = Instantiate(new GameObject("PlayerTalkSprite"));
+        var playerSprite = new GameObject();
+        playerSprite.name = "PlayerTalkSprite";
         playerSprite.transform.SetParent(GameObject.Find("Canvas").transform);
         playerSprite.AddComponent<Image>();
         playerSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/PlayerDefault");
+        playerSprite.transform.SetParent(GameObject.Find("CharacterScene").transform);
+        playerSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+        playerSprite.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
+        playerSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
+        playerSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);
         sprites.Add(playerSprite);
         positions.Add(new Vector2(0, 0));
-        speeds.Add(1);
+
+        speeds.Add(1000);
         foreach (Character cha in currentConvo.characters)
         {
-            var charTalkSprite = Instantiate(new GameObject(cha.Name + "TalkSprite"));
+            var charTalkSprite = new GameObject();
+            charTalkSprite.name = cha.Name + "TalkSprite";
             charTalkSprite.transform.SetParent(GameObject.Find("Canvas").transform);
             charTalkSprite.AddComponent<Image>();
             charTalkSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + cha.Name + "Default");
+            charTalkSprite.transform.SetParent(GameObject.Find("CharacterScene").transform);
+            charTalkSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);
             sprites.Add(charTalkSprite);
             positions.Add(new Vector2(0, 0));
-            speeds.Add(1);
+            speeds.Add(1000);
         }
         DisplayConvoAction();
     }
@@ -53,12 +82,21 @@ public class DialougeDisplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 1; i < sprites.Count; i++)
+        for(int i = 0; i < sprites.Count; i++)
         {
             //something about converting como
             var currentRectTransform = sprites[i].GetComponent<RectTransform>();
-            currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, positions[i], Time.deltaTime * speeds[i]);
 
+            var LerpX = Screen.width * positions[i].x;
+            var LerpY = Screen.height * positions[i].y;
+
+            //Debug.Log(Screen.width * positions[i].x + " by ")
+            //currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, new Vector2(LerpX, LerpY), Time.deltaTime * speeds[i]);
+            //var runningCommand = currentConvo.actionSteps[convoActionIndex]._commands[i];
+
+            var actorName = sprites[i].name;
+            //Debug.Log(actorName + " has a position var of " + currentRectTransform.anchoredPosition + " with a target of " + positions[i]);
+            currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, new Vector2(LerpX, LerpY), Time.deltaTime * speeds[i]);
         }
     }
 
@@ -133,6 +171,13 @@ public class DialougeDisplayer : MonoBehaviour
         else if(Regex.IsMatch(command, "^@DIS"))
         {
             Debug.Log("command is Display");
+            Regex regex = new Regex("^@DIS");
+            var commandSettings = regex.Replace(command, "");
+            Regex ihateSpaces = new Regex(" ");
+            var trimSpaces = ihateSpaces.Replace(commandSettings, "");
+            var charID = currentConvo.actionSteps[convoActionIndex]._commands[actionIndexInStep]._characterID;
+            Debug.Log("trying to display " + trimSpaces);
+            sprites[charID].GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + trimSpaces);
             return;
         }
         //CHOICE
@@ -155,6 +200,7 @@ public class DialougeDisplayer : MonoBehaviour
                 }
                 //An INT should be passed from the dialouge that skips the convoActionIndex
                 CreateChoiceOptions(options);
+                displayingChoice = true;
             }
 
             return;
@@ -182,12 +228,28 @@ public class DialougeDisplayer : MonoBehaviour
             button.GetComponent<ForceConversationStep>().skipTo = options.Values[];
         }*/
     }
-    public void SkipTo(int index)
+    public void SkipTo(int index, bool triggeredByChoice)
     {
+        if (triggeredByChoice)
+        {
+            displayingChoice = false;
+            DestroyAllChoices();
+        }
+
         if (index >= 0)
             convoActionIndex = index;
         else
             convoActionIndex++;
+        //DestroyAllButtons
+        DisplayConvoAction();
+    }
+    public void GobackOne()
+    {
+        if (convoActionIndex <= 0)
+            return;
+        displayingChoice = false;
+        DestroyAllChoices();
+        convoActionIndex--;
         //DestroyAllButtons
         DisplayConvoAction();
     }
@@ -197,4 +259,13 @@ public class DialougeDisplayer : MonoBehaviour
         speeds[index] = speed;
         //positions.Values.ElementAt(index) = pos;
     }
+    public void DestroyAllChoices()
+    {
+        foreach(Transform child in GameObject.Find("MultipleChoice").transform.GetComponentInChildren<Transform>())
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    //for a conversation to end, all characters need to finish their movements. and the current action index thingy needs to be at the end.
 }

@@ -20,14 +20,39 @@ MonoBehaviour:
       _characterID: 0
     - _commandData: '@DIS PlayerHappy'
       _characterID: 0
-    - _commandData: '@CHO @OP I''m gaming&&-1% @OP That''s not true.&&-1% @OP Can
-        you repeat that?&&0%'
+    - _commandData: '@POS 0.33, 0, 1000'
       _characterID: 0
   - _commands:
-    - _commandData: '@POS 0.25, 0.5, 5 '
-      _characterID: 0
-  - _commands:
+    - _commandData: '@POS 0.66, 0, 5000'
+      _characterID: 1
     - _commandData: '@SAY And I''m Joe!'
       _characterID: 1
     - _commandData: '@DIS JoeHappy'
       _characterID: 1
+  - _commands:
+    - _commandData: '@SAY Nice to meet you!'
+      _characterID: 1
+  - _commands:
+    - _commandData: '@DIS JoeDefault'
+      _characterID: 1
+    - _commandData: '@SAY BLAH BLAH BLAb bla bal bla bla bla'
+      _characterID: 0
+    - _commandData: '@DIS PlayerHappy'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@SAY GRUH BLAH BLAH BLAb bla bal bla bla bla'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@SAY FILLER BLAH BLAb bla bal bla bla bla'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@CHO @OP Do that again!&&3% @OP Stop.&&-1%'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@SAY Okay :('
+      _characterID: 0
+    - _commandData: '@DIS PlayerDefault'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@POS -1,0,100'
+      _characterID: 0
