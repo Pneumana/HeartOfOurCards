@@ -24,7 +24,7 @@ MonoBehaviour:
         you repeat that?&&0%'
       _characterID: 0
   - _commands:
-    - _commandData: '@POS 0.25 0.5'
+    - _commandData: '@POS 0.25, 0.5, 5 '
       _characterID: 0
   - _commands:
     - _commandData: '@SAY And I''m Joe!'

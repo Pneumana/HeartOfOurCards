@@ -22,6 +22,10 @@ public class DialougeDisplayer : MonoBehaviour
     public GameObject optionPrefab;
 
     public List<GameObject> sprites = new List<GameObject>();
+    //target screen position normalized, speed
+    public List<Vector2> positions = new List<Vector2>();
+
+    public List<float> speeds = new List<float>();
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +35,8 @@ public class DialougeDisplayer : MonoBehaviour
         playerSprite.AddComponent<Image>();
         playerSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/PlayerDefault");
         sprites.Add(playerSprite);
-
+        positions.Add(new Vector2(0, 0));
+        speeds.Add(1);
         foreach (Character cha in currentConvo.characters)
         {
             var charTalkSprite = Instantiate(new GameObject(cha.Name + "TalkSprite"));
@@ -39,7 +44,8 @@ public class DialougeDisplayer : MonoBehaviour
             charTalkSprite.AddComponent<Image>();
             charTalkSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + cha.Name + "Default");
             sprites.Add(charTalkSprite);
-
+            positions.Add(new Vector2(0, 0));
+            speeds.Add(1);
         }
         DisplayConvoAction();
     }
@@ -47,7 +53,13 @@ public class DialougeDisplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for(int i = 1; i < sprites.Count; i++)
+        {
+            //something about converting como
+            var currentRectTransform = sprites[i].GetComponent<RectTransform>();
+            currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, positions[i], Time.deltaTime * speeds[i]);
+
+        }
     }
 
     void DisplayConvoAction()
@@ -93,6 +105,15 @@ public class DialougeDisplayer : MonoBehaviour
             Debug.Log("command is MOVE");
             Vector2 targetPos;
             targetPos = new Vector2();
+            Regex regex = new Regex("^@POS");
+            var commandSettings = regex.Replace(command, "");
+            var split = Regex.Split(commandSettings, ",");
+            Debug.Log(split[0]);
+            Debug.Log(split[1]);
+            Debug.Log(split[2]);
+            var charID = currentConvo.actionSteps[convoActionIndex]._commands[actionIndexInStep]._characterID;
+            ChangePosition(charID, new Vector2(float.Parse(split[0]), float.Parse(split[1])), float.Parse(split[2]));
+
             Debug.Log(targetPos);
             return;
         }
@@ -140,6 +161,7 @@ public class DialougeDisplayer : MonoBehaviour
         }
         Debug.LogWarning("no command identified @ " + actionIndexInStep + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
     }
+    //stat checks?
     public void CreateChoiceOptions(List<string> options)
     {
         for(int i = 0; i< options.Count; i++)
@@ -168,5 +190,11 @@ public class DialougeDisplayer : MonoBehaviour
             convoActionIndex++;
         //DestroyAllButtons
         DisplayConvoAction();
+    }
+    public void ChangePosition(int index, Vector2 pos, float speed = 5)
+    {
+        positions[index] = pos;
+        speeds[index] = speed;
+        //positions.Values.ElementAt(index) = pos;
     }
 }
