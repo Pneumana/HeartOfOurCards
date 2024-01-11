@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a1c4f671895934b81e63a1bfcfa001, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: bed4b6c962bd2454c84902640181383f, type: 2}
+  actionSteps:
+  - _commands:
+    - _commandData: '@SAY Hi, I''m the player!'
+      _characterID: 0
+    - _commandData: '@DIS PlayerHappy'
+      _characterID: 0
+    - _commandData: '@CHO @OP I''m gaming&&-1% @OP That''s not true.&&-1% @OP Can
+        you repeat that?&&0%'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@POS 0.25 0.5'
+      _characterID: 0
+  - _commands:
+    - _commandData: '@SAY And I''m Joe!'
+      _characterID: 1
+    - _commandData: '@DIS JoeHappy'
+      _characterID: 1
