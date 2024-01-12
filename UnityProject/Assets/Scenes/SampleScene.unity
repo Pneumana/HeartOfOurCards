@@ -229,6 +229,7 @@ MonoBehaviour:
   textBody: {fileID: 531180593}
   convoActionIndex: 0
   currentConvo: {fileID: 11400000, guid: dd46cf60bd977c145b3f374a7a29c78a, type: 2}
+  textFieldConvo: {fileID: 11400000, guid: bd5d47209724be24193f7a425ccc2f74, type: 2}
   optionPrefab: {fileID: 5502359447542862431, guid: d33a566bd6ad99445be38e99b1dd0bba, type: 3}
   sprites: []
   positions: []

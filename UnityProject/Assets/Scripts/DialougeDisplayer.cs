@@ -20,6 +20,8 @@ public class DialougeDisplayer : MonoBehaviour
 
     public Conversation currentConvo;
 
+    public TextFieldConversation textFieldConvo;
+
     public GameObject optionPrefab;
 
     public List<GameObject> sprites = new List<GameObject>();
@@ -47,7 +49,6 @@ public class DialougeDisplayer : MonoBehaviour
 
         //sort int
     }
-
     //for multiplayer, this can be synced to whoever is in the conversation;
     /*
         {ActionNumber} //line starts with no whitespace == ActionStep
@@ -67,6 +68,95 @@ public class DialougeDisplayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadConvo();
+    }
+    void SplitTextFieldConvo()
+    {
+
+        List<Dictionary<int, List<string>>> convoActions = new List<Dictionary<int, List<string>>>();
+        //check for 
+        //MatchCollection actionLabels = Regex.Matches(textFieldConvo.commandScript, @"(?<=\w\s)(.|\w\s)*(?=;)");//find all actions
+        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?<=.*\n)(:|.|\S\s)*(?<=;)");//find all actions
+
+        if (actions.Count > 0)
+        {
+            
+            Debug.Log("found " + actions.Count + " commands");
+            for(int i =0; i<actions.Count; i++ )
+            {
+                Dictionary<int, List<string>> commandsPerCharacterID = new Dictionary<int, List<string>>();
+                /*                if (actions[i].ToString() == "")
+                                    continue;*/
+                //convoActions.Add();
+                //(?= !.*\s)(.|\w\s)*(?=:|;)
+                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=!.*\s)(.|\w\s)*(?=:|;)");
+                Debug.Log("found " + ids.Count + " characterIDs in " + actions[i]);
+                if (ids.Count > 0)
+                {
+                    //Dictionary<int, List<string>> _commandForCharacter = new Dictionary<int, List<string>>();
+                    List<string> _command = new List<string>();
+                    for(int x = 0; x < ids.Count; x++)
+                    {
+                        //Find the commands in these lines?
+                        //Regex commands = new Regex(@"^@");
+                        MatchCollection commandsOnID = Regex.Matches(ids[x].ToString(), @"^@.*", RegexOptions.Multiline);
+                        //split from any line starting with @
+                        if (commandsOnID.Count > 0)
+                        {
+                            for (int y = 0; y < commandsOnID.Count; y++)
+                            {
+                                Debug.Log("isolated command:\n" + commandsOnID[y]);
+                                _command.Add(commandsOnID[y].ToString());
+
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("no commands found");
+                        }
+                        var isolateIDNumber = Regex.Match(ids[x].ToString(), @"(?<=^!)(\d)*");
+                        Debug.Log("id = " + isolateIDNumber);
+                        Debug.Log("discoveredCommand for id " + ids[x]);
+                        //characterID, commandList
+                        //x should actually be a number computed from the !# line that defines a characterID
+
+                        commandsPerCharacterID.Add(Int32.Parse(isolateIDNumber.ToString()), _command);
+                    }
+                    //
+
+                }
+                else
+                {
+                    Debug.LogWarning("No id was found for action " + actions[i]);
+                    //act on the player?
+            }
+                convoActions.Add(commandsPerCharacterID);
+                //action one 
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No matches found for any actions in conversation " + textFieldConvo.name + "! Did you forget to remove an empty line?");
+        }
+        //each action needs to ^\d.*
+        //to find character ids
+        //List<string> commands = new List<string>();
+        //List<List<string>> charInstructions = new List<List<string>>();
+
+        //Action->CharInstructions->COMMAND
+
+        //convoActions.Add() adds an action
+        //convoActions[0].Add() adds a character id
+        //convoActions[0][0].Add("blargle") adds a command line
+
+        //Dictionary with charID, command
+        //Actions are a list of those^
+        
+    }
+    void LoadConvo()
+    {
+        //split textFieldConvo
+        SplitTextFieldConvo();
         Debug.LogWarning("screen size is " + Screen.width + ", " + Screen.height);
         //create player talk sprite
         var playerSprite = new GameObject();
@@ -101,7 +191,6 @@ public class DialougeDisplayer : MonoBehaviour
         }
         DisplayConvoAction();
     }
-
     // Update is called once per frame
     void Update()
     {

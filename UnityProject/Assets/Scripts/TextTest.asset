@@ -14,30 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: bed4b6c962bd2454c84902640181383f, type: 2}
-  commandScript: 'B
+  commandScript: 'Start
 
-    B
+    !0
 
-    B
+    @SAY Hi, I''m the player!
 
-    B
+    @DIS PlayerHappy
 
-    B
+    @POS
+    0.33, 0, 1000
 
-    B
+    ;
 
-    B
+    Action2
 
-    B
+    !1
 
-    B
+    @SAY And I''m Joe!
 
-    B
+    @POS 0.66,
+    0, 1000
 
-    B
+    ;
 
-    B
+    Action3
 
-    B
+    !0
 
-'
+    @SAY Worlds
+
+    :
+
+    !1
+
+    @POS
+
+    ;'
