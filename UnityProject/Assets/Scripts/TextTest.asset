@@ -36,15 +36,50 @@ MonoBehaviour:
     @POS 0.66,
     0, 1000
 
+    :
+
+    !0
+
+    @POS 0, 0, 1000
+
     ;
 
     Action3
 
     !1
 
-    @POS 0.75,0,1000
+    @POS
+    0.75, 0, 1000
 
-    @SAY Worlds of
-    words can be put in these text boxes
+    @SAY Worlds of words can be put in these text boxes
+
+    ;
+
+    Action4
+
+    !0
+
+    @SAY
+    For example, you can put several lines of text here!
+
+    ;
+
+    Action5
+
+    !1
+
+    @SAY
+    Yessir, we can have a proper back and forth!
+
+    ;
+
+    Action6
+
+    !0
+
+    @SAY
+    What about you? You get the picture yet?
+
+    @CHO @OP Nope.&&1% @OP Yep.&&-1%
 
     ;'

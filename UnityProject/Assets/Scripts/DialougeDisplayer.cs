@@ -39,6 +39,7 @@ public class DialougeDisplayer : MonoBehaviour
     //picked choices should be displayed with a different color
     //you cant change your choice after scrolling up
     List<Dictionary<int, List<string>>> convoActions = new List<Dictionary<int, List<string>>>();
+
     public struct CharData
     {
         //keeps track of the game objects, rect transform stuff, color, yadda yadd for each Character in the Conversation
@@ -89,38 +90,48 @@ public class DialougeDisplayer : MonoBehaviour
                                     continue;*/
                 //convoActions.Add();
                 //(?= !.*\s)(.|\w\s)*(?=:|;)
-                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=!.*\s)(.|\w\s|!\s)*(?=;|:)");
+                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=^!.*\s)(.|\w\s|!\s)*(?=;|:)", RegexOptions.Multiline);
                 Debug.Log("found " + ids.Count + " characterIDs in " + actions[i]);
                 if (ids.Count > 0)
                 {
-                    //Dictionary<int, List<string>> _commandForCharacter = new Dictionary<int, List<string>>();
-                    List<string> _command = new List<string>();
-                    for(int x = 0; x < ids.Count; x++)
+
+                    //foreach characterID found in the current action
+                    for (int x = 0; x < ids.Count; x++)
                     {
+                        var isolateIDNumber = Regex.Match(ids[x].ToString(), @"(?<=^!)(\d)*");
+                        Regex iHateSpaces = new Regex(@"\s");
+                        var spaceless = iHateSpaces.Replace(isolateIDNumber.ToString(), "");
+                        Debug.Log("discoveredCommand for id " + ids[x]);
                         //Find the commands in these lines?
                         //Regex commands = new Regex(@"^@");
                         MatchCollection commandsOnID = Regex.Matches(ids[x].ToString(), @"^@.*", RegexOptions.Multiline);
                         //split from any line starting with @
                         if (commandsOnID.Count > 0)
                         {
+                            List<string> _command = new List<string>();
                             for (int y = 0; y < commandsOnID.Count; y++)
                             {
-                                Debug.Log("isolated command:\n" + commandsOnID[y]);
+                                Debug.Log("isolated command for id " + spaceless + ":\n" + commandsOnID[y]);
                                 _command.Add(commandsOnID[y].ToString());
-
+                                
                             }
+                            commandsPerCharacterID.Add(Int32.Parse(spaceless.ToString()), _command);
                         }
                         else
                         {
                             Debug.Log("no commands found");
                         }
-                        var isolateIDNumber = Regex.Match(ids[x].ToString(), @"(?<=^!)(\d)*");
-                        Debug.Log("id = " + isolateIDNumber);
-                        Debug.Log("discoveredCommand for id " + ids[x]);
+
                         //characterID, commandList
                         //x should actually be a number computed from the !# line that defines a characterID
+                        
 
-                        commandsPerCharacterID.Add(Int32.Parse(isolateIDNumber.ToString()), _command);
+                        //Debug.Log(spaceless);
+                        //Debug.Log("character id " + Int32.Parse(spaceless.ToString()) + " has recieved new commands");
+
+                        //it's adding each action to any ids. this is not how it should be working!
+
+                        //_command.Clear();
                     }
                     //
 
@@ -249,11 +260,19 @@ public class DialougeDisplayer : MonoBehaviour
 
         //convoActions[i][charID] this is the commands for this one character
         Debug.Log("convoActionIndex is " + convoActionIndex);
+        for(int charIndex = 0; charIndex < convoActions[convoActionIndex].Count; charIndex++)
+        {
+            int charID = convoActions[convoActionIndex].Keys.ElementAt(charIndex);
+            Debug.LogWarning("Looping though characters on action. this is character id = " +charID);
+            Debug.LogWarning(convoActions[convoActionIndex][charID][0]);
+        }
+
+
         for(int charLoopIndex = 0; charLoopIndex < convoActions[convoActionIndex].Count; charLoopIndex++)
         {
             int charID = convoActions[convoActionIndex].Keys.ElementAt(charLoopIndex);
             Debug.Log(charID + " is the character ID for the current convoActionIndex");
-            
+            Debug.Log("there have been " + charLoopIndex + "/" + convoActions[convoActionIndex].Count + " characters processed this action before this one");
             if (charID <= 0)
             {
                     Debug.Log("character " + player.Name + " has the following commands @ step " + convoActionIndex + ":");
@@ -265,10 +284,11 @@ public class DialougeDisplayer : MonoBehaviour
 
             //Debug.Log("character " + textFieldConvo.characters[charID].Name + " has the following commands:");
             List<string> commands = convoActions[convoActionIndex][charID];
-            for(int joe = 0; joe < commands.Count; joe++)
+            for (int commandIndex = 0; commandIndex < commands.Count; commandIndex++)
             {
-                    Debug.Log("running command:\n" + commands[joe]);
-                    CheckActionType(commands[joe], charID);
+                    Debug.Log("running command for character "+ charID +":\n" + commands[commandIndex]);
+                    CheckActionType(commands[commandIndex], charID);
+
             }
         }
     }
@@ -277,7 +297,7 @@ public class DialougeDisplayer : MonoBehaviour
         //SAY
         if (Regex.IsMatch(command, "^@SAY"))
         {
-            Debug.Log("command is SAY");
+            //Debug.Log("command is SAY");
             var regex = new Regex("^@SAY");
             var commandRemoved = regex.Replace(command, "");
             textBody.text = commandRemoved.ToString();
@@ -295,6 +315,7 @@ public class DialougeDisplayer : MonoBehaviour
                 actorColor = textFieldConvo.characters[actorCharID - 1].Color;
             }
             speaker.text = "<color=#" + ColorUtility.ToHtmlStringRGB(actorColor) + ">" + actorName + "</color>";
+            Debug.Log("updated speaker to " + speaker.text);
             return;
         }
         //POSITION
@@ -302,17 +323,20 @@ public class DialougeDisplayer : MonoBehaviour
         {
             Debug.Log("command is MOVE");
             Vector2 targetPos;
-            targetPos = new Vector2();
+            //targetPos = new Vector2();
             Regex regex = new Regex("^@POS");
+            Regex iHateSpaces = new Regex(@"\s");
             var commandSettings = regex.Replace(command, "");
-            var split = Regex.Split(commandSettings, ",");
-/*            Debug.Log(split[0]);
+            var spaceless = iHateSpaces.Replace(commandSettings, "");
+            var split = Regex.Split(spaceless, ",");
+            Debug.Log(commandSettings);
+            Debug.Log(split[0]);
             Debug.Log(split[1]);
-            Debug.Log(split[2]);*/
+            Debug.Log(split[2]);
             var charID = actorCharID;
-            ChangePosition(charID, new Vector2(float.Parse(split[0]), float.Parse(split[1])), float.Parse(split[2]));
-
-            Debug.Log("character id " + charID + " has new targetpos: " + targetPos);
+            ChangePosition(charID, new Vector2(float.Parse(split[0], System.Globalization.NumberStyles.AllowDecimalPoint), float.Parse(split[1], System.Globalization.NumberStyles.AllowDecimalPoint)), float.Parse(split[2], System.Globalization.NumberStyles.AllowDecimalPoint));
+            targetPos = new Vector2(float.Parse(split[0], System.Globalization.NumberStyles.AllowDecimalPoint), float.Parse(split[1], System.Globalization.NumberStyles.AllowDecimalPoint));
+            Debug.Log("@POS character id " + charID + " has new targetpos: " + targetPos + "\nrecieved from command " + command);
             return;
         }
         //ROTATION
