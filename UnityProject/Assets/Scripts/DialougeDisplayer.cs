@@ -90,7 +90,7 @@ public class DialougeDisplayer : MonoBehaviour
                                     continue;*/
                 //convoActions.Add();
                 //(?= !.*\s)(.|\w\s)*(?=:|;)
-                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=^!.*\s)(.|\w\s|!\s)*(?=;|:)", RegexOptions.Multiline);
+                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=^!.*\s)(.|\w\s|!\s|\?\s|\.\s|&&\s|%\s)*(?=;|:)", RegexOptions.Multiline);
                 Debug.Log("found " + ids.Count + " characterIDs in " + actions[i]);
                 if (ids.Count > 0)
                 {

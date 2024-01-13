@@ -87,6 +87,15 @@ MonoBehaviour:
     !1
 
     @POS
-    1, -0.2, 100
+    1, 0.2, 100
+
+    ;
+
+    Ending
+
+    !0
+
+    @SAY Aight it''s over. That''s the
+    end of this dialouge tree.
 
     ;'
