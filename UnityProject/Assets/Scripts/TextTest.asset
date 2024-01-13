@@ -80,6 +80,13 @@ MonoBehaviour:
     @SAY
     What about you? You get the picture yet?
 
-    @CHO @OP Nope.&&1% @OP Yep.&&-1%
+    @CHO @OP What?&&1% @OP Glorper.&&-1%
+
+    :
+
+    !1
+
+    @POS
+    1, -0.2, 100
 
     ;'

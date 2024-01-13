@@ -94,7 +94,6 @@ public class DialougeDisplayer : MonoBehaviour
                 Debug.Log("found " + ids.Count + " characterIDs in " + actions[i]);
                 if (ids.Count > 0)
                 {
-
                     //foreach characterID found in the current action
                     for (int x = 0; x < ids.Count; x++)
                     {
