@@ -38,7 +38,7 @@ public class DialougeDisplayer : MonoBehaviour
     //scrolling up acts as a history system
     //picked choices should be displayed with a different color
     //you cant change your choice after scrolling up
-
+    List<Dictionary<int, List<string>>> convoActions = new List<Dictionary<int, List<string>>>();
     public struct CharData
     {
         //keeps track of the game objects, rect transform stuff, color, yadda yadd for each Character in the Conversation
@@ -73,7 +73,7 @@ public class DialougeDisplayer : MonoBehaviour
     void SplitTextFieldConvo()
     {
 
-        List<Dictionary<int, List<string>>> convoActions = new List<Dictionary<int, List<string>>>();
+
         //check for 
         //MatchCollection actionLabels = Regex.Matches(textFieldConvo.commandScript, @"(?<=\w\s)(.|\w\s)*(?=;)");//find all actions
         MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?<=.*\n)(:|.|\S\s)*(?<=;)");//find all actions
@@ -89,7 +89,7 @@ public class DialougeDisplayer : MonoBehaviour
                                     continue;*/
                 //convoActions.Add();
                 //(?= !.*\s)(.|\w\s)*(?=:|;)
-                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=!.*\s)(.|\w\s)*(?=:|;)");
+                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=!.*\s)(.|\w\s|!\s)*(?=;|:)");
                 Debug.Log("found " + ids.Count + " characterIDs in " + actions[i]);
                 if (ids.Count > 0)
                 {
@@ -214,14 +214,14 @@ public class DialougeDisplayer : MonoBehaviour
 
     void DisplayConvoAction()
     {
-        if (currentConvo.actionSteps.Count - 1 < convoActionIndex)
+        /*if (currentConvo.actionSteps.Count - 1 < convoActionIndex)
             return;
         for(int i = 0; i< currentConvo.actionSteps[convoActionIndex]._commands.Count; i++)
         {
             var runningCommand = currentConvo.actionSteps[convoActionIndex]._commands[i];
             //var command = runningCommand._commandData;
 
-            CheckActionType(runningCommand._commandData, i);
+            //CheckActionType(runningCommand._commandData, i);
             string actorName = "Null";
             Color actorColor = Color.white;
             if(runningCommand._characterID <= 0)
@@ -236,9 +236,43 @@ public class DialougeDisplayer : MonoBehaviour
             }
             Debug.Log(actorName);
             speaker.text = "<color=#" + ColorUtility.ToHtmlStringRGB(actorColor) + ">" + actorName + "</color>";
+        }*/
+        if (convoActions.Count - 1 < convoActionIndex)
+            return;
+
+        //convoActions.Count is the number of actions in the conversation.
+
+        /*        for (int i = 0; i < convoActions.Count; i++)
+                {*/
+        //if the 
+        //convoActions[i] this is the current action
+
+        //convoActions[i][charID] this is the commands for this one character
+        Debug.Log("convoActionIndex is " + convoActionIndex);
+        for(int charLoopIndex = 0; charLoopIndex < convoActions[convoActionIndex].Count; charLoopIndex++)
+        {
+            int charID = convoActions[convoActionIndex].Keys.ElementAt(charLoopIndex);
+            Debug.Log(charID + " is the character ID for the current convoActionIndex");
+            
+            if (charID <= 0)
+            {
+                    Debug.Log("character " + player.Name + " has the following commands @ step " + convoActionIndex + ":");
+            }
+            else
+            {
+                    Debug.Log("character " + textFieldConvo.characters[charID - 1].Name + " has the following commands @ step " + convoActionIndex + ":");
+            }
+
+            //Debug.Log("character " + textFieldConvo.characters[charID].Name + " has the following commands:");
+            List<string> commands = convoActions[convoActionIndex][charID];
+            for(int joe = 0; joe < commands.Count; joe++)
+            {
+                    Debug.Log("running command:\n" + commands[joe]);
+                    CheckActionType(commands[joe], charID);
+            }
         }
     }
-    void CheckActionType(string command, int actionIndexInStep)
+    void CheckActionType(string command, int actorCharID)
     {
         //SAY
         if (Regex.IsMatch(command, "^@SAY"))
@@ -247,6 +281,20 @@ public class DialougeDisplayer : MonoBehaviour
             var regex = new Regex("^@SAY");
             var commandRemoved = regex.Replace(command, "");
             textBody.text = commandRemoved.ToString();
+            string actorName = "Null";
+            Color actorColor = Color.white;
+
+            if (actorCharID <= 0)
+            {
+                actorName = player.Name;
+                actorColor = player.Color;
+            }
+            else
+            {
+                actorName = textFieldConvo.characters[actorCharID - 1].Name;
+                actorColor = textFieldConvo.characters[actorCharID - 1].Color;
+            }
+            speaker.text = "<color=#" + ColorUtility.ToHtmlStringRGB(actorColor) + ">" + actorName + "</color>";
             return;
         }
         //POSITION
@@ -258,13 +306,13 @@ public class DialougeDisplayer : MonoBehaviour
             Regex regex = new Regex("^@POS");
             var commandSettings = regex.Replace(command, "");
             var split = Regex.Split(commandSettings, ",");
-            Debug.Log(split[0]);
+/*            Debug.Log(split[0]);
             Debug.Log(split[1]);
-            Debug.Log(split[2]);
-            var charID = currentConvo.actionSteps[convoActionIndex]._commands[actionIndexInStep]._characterID;
+            Debug.Log(split[2]);*/
+            var charID = actorCharID;
             ChangePosition(charID, new Vector2(float.Parse(split[0]), float.Parse(split[1])), float.Parse(split[2]));
 
-            Debug.Log(targetPos);
+            Debug.Log("character id " + charID + " has new targetpos: " + targetPos);
             return;
         }
         //ROTATION
@@ -292,7 +340,7 @@ public class DialougeDisplayer : MonoBehaviour
             var commandSettings = regex.Replace(command, "");
             Regex ihateSpaces = new Regex(" ");
             var trimSpaces = ihateSpaces.Replace(commandSettings, "");
-            var charID = currentConvo.actionSteps[convoActionIndex]._commands[actionIndexInStep]._characterID;
+            var charID = actorCharID;
             Debug.Log("trying to display " + trimSpaces);
             sprites[charID].GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + trimSpaces);
             return;
@@ -322,7 +370,7 @@ public class DialougeDisplayer : MonoBehaviour
 
             return;
         }
-        Debug.LogWarning("no command identified @ " + actionIndexInStep + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
+        Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
     }
     //stat checks?
     public void CreateChoiceOptions(List<string> options)

@@ -12,7 +12,8 @@ public class TextFieldConversation : ScriptableObject
         "\nwhile using a !0 will use the player character." +
         "\n\n<b>General Don'ts</b> " +
         "\nDouble Spaces anywhere will brick the command compiler.\nSo just dont put any and all will be fine" +
-        "\nPlease put all actions a character does under one number.\nThe compiler will not recognize if you use the same number multiple times")]
+        "\nPlease put all actions a character does under one number.\nThe compiler will not recognize if you use the same number multiple times" +
+        "\nMultiple SAY commands will not work. \nThe game will use the one called last and display that.")]
     [TextArea(20, 20)]
     public string commandScript;
 

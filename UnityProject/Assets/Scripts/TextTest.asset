@@ -40,14 +40,11 @@ MonoBehaviour:
 
     Action3
 
-    !0
-
-    @SAY Worlds
-
-    :
-
     !1
 
-    @POS
+    @POS 0.75,0,1000
+
+    @SAY Worlds of
+    words can be put in these text boxes
 
     ;'
