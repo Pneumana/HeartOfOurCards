@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CardTexture:
+        m_Texture: {fileID: 2800000, guid: c44c62855a1e57a42aea441034c8d294, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _FoilColor:
         m_Texture: {fileID: 2800000, guid: 08d186ed904deb94faba2657ffff8bf2, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -54,7 +58,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HighlightThreshold: 0.12
+    - _HighlightThreshold: 1.34
     - _NoiseIntensity: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
