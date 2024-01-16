@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rainbow_gradient_0: -8544825828797098480
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
