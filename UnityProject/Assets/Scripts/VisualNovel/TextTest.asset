@@ -18,7 +18,7 @@ MonoBehaviour:
 
     !0
 
-    @SAY Hi, I''m the player!
+    @SAY Hi, I''m name0 !
 
     @DIS PlayerHappy
 
@@ -31,16 +31,17 @@ MonoBehaviour:
 
     !1
 
-    @SAY And I''m Joe!
+    @SAY And I''m Joe! name0 ''s kinda
+    a silly guy. pnd0 is just a goober.
 
-    @POS 0.66,
-    0, 1000
+    @POS 0.66, 0, 1000
 
     :
 
     !0
 
-    @POS 0, 0, 1000
+    @POS
+    0, 0, 1000
 
     ;
 
@@ -48,10 +49,10 @@ MonoBehaviour:
 
     !1
 
-    @POS
-    0.75, 0, 1000
+    @POS 0.75, 0, 1000
 
-    @SAY Worlds of words can be put in these text boxes
+    @SAY Worlds
+    of words can be put in these text boxes
 
     ;
 
@@ -87,7 +88,24 @@ MonoBehaviour:
     !1
 
     @POS
-    1, 0.2, 100
+    1, 0, 100
+
+    ;
+
+    OrderTest
+
+    !0
+
+    @POS 0.5,0,1000
+
+    @ORD 0
+
+    :
+
+    !1
+
+    @POS
+    0.5,0,1000
 
     ;
 

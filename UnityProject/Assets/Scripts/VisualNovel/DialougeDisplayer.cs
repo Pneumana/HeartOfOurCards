@@ -425,6 +425,15 @@ public class DialougeDisplayer : MonoBehaviour
         else if (Regex.IsMatch(command, "^@ORD"))
         {
             Debug.Log("command is Order");
+            //remove command
+            //set player object to be Count of the scene object's children - the command value, clamped to 0 and the number of children
+            Regex regex = new Regex("^@ORD");
+            var commandSettings = regex.Replace(command, "");
+            Regex ihateSpaces = new Regex(" ");
+            var trimSpaces = ihateSpaces.Replace(commandSettings, "");
+            int number = Int32.Parse(trimSpaces.ToString());
+            number = Mathf.Clamp(number, 0, GameObject.Find("CharacterScene").transform.childCount);
+            sprites[actorCharID].transform.SetSiblingIndex(number);
             return;
         }
         //DISPLAY
