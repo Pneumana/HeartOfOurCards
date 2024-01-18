@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Joe
   m_EditorClassIdentifier: 
   Name: Joe
+  pss: him
+  pnd: he
   Color: {r: 0.7735849, g: 0.19339623, b: 0.19339623, a: 0}

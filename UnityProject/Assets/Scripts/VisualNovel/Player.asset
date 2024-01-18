@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   Name: Player
+  pss: him
+  pnd: he
   Color: {r: 0.25854397, g: 0.40021113, b: 0.6603774, a: 0}

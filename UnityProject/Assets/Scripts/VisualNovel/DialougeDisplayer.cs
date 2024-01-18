@@ -32,6 +32,8 @@ public class DialougeDisplayer : MonoBehaviour
 
     public bool displayingChoice;
 
+    public static DialougeDisplayer instance;
+
     //maybe use for mouse wheel down do it doesnt go past stuff you haven't seen before.
     int farthestIntoConvo;
     //also use this to stop! animating sprites and positions
@@ -50,6 +52,8 @@ public class DialougeDisplayer : MonoBehaviour
 
         //sort int
     }
+    [TextArea(20, 20)]
+    public string commandsFromConvo;
     //for multiplayer, this can be synced to whoever is in the conversation;
     /*
         {ActionNumber} //line starts with no whitespace == ActionStep
@@ -69,6 +73,8 @@ public class DialougeDisplayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(instance==null)
+            instance = this;
         LoadConvo();
     }
     void SplitTextFieldConvo()
@@ -78,7 +84,7 @@ public class DialougeDisplayer : MonoBehaviour
         //check for 
         //MatchCollection actionLabels = Regex.Matches(textFieldConvo.commandScript, @"(?<=\w\s)(.|\w\s)*(?=;)");//find all actions
         MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?<=.*\n)(:|.|\S\s)*(?<=;)");//find all actions
-
+        commandsFromConvo = textFieldConvo.commandScript;
         if (actions.Count > 0)
         {
             
@@ -163,7 +169,7 @@ public class DialougeDisplayer : MonoBehaviour
         //Actions are a list of those^
         
     }
-    void LoadConvo()
+    public void LoadConvo()
     {
         //split textFieldConvo
         SplitTextFieldConvo();
@@ -183,7 +189,7 @@ public class DialougeDisplayer : MonoBehaviour
         positions.Add(new Vector2(0, 0));
 
         speeds.Add(1000);
-        foreach (Character cha in currentConvo.characters)
+        foreach (Character cha in textFieldConvo.characters)
         {
             var charTalkSprite = new GameObject();
             charTalkSprite.name = cha.Name + "TalkSprite";
@@ -299,9 +305,75 @@ public class DialougeDisplayer : MonoBehaviour
             //Debug.Log("command is SAY");
             var regex = new Regex("^@SAY");
             var commandRemoved = regex.Replace(command, "");
-            textBody.text = commandRemoved.ToString();
+
             string actorName = "Null";
             Color actorColor = Color.white;
+
+            MatchCollection secondPersonPronouns = Regex.Matches(commandRemoved, @"\spnd\d\s");
+            MatchCollection possessivePronouns = Regex.Matches(commandRemoved, @"\spss\d\s");
+            MatchCollection characterNames = Regex.Matches(commandRemoved, @"\sname\d\s");
+
+            for(int i = 0; i<characterNames.Count; i++)
+            {
+                Regex currentname = new Regex(characterNames[i].ToString());
+                Regex currentCharID = new Regex(@"\sname");
+                var intSplit = currentCharID.Replace(characterNames[i].ToString(), "");
+                Debug.Log(intSplit);
+                int real = Int32.Parse(intSplit.ToString());
+                Debug.Log("found character id " + intSplit[i] + " name mention");
+                if (real==0)
+                {
+                    commandRemoved = currentname.Replace(commandRemoved, " " + player.Name + " ");
+                    Debug.Log(player.Name);
+                }
+                else
+                {
+                    commandRemoved = currentname.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real-1].Name + " ");
+                    Debug.Log(textFieldConvo.characters[real - 1].Name);
+                }
+                
+            }
+            for (int i = 0; i < possessivePronouns.Count; i++)
+            {
+                Regex currentpronoun = new Regex(possessivePronouns[i].ToString());
+                Regex currentCharID = new Regex(@"\spss");
+                var intSplit = currentCharID.Replace(possessivePronouns[i].ToString(), "");
+                Debug.Log(intSplit);
+                int real = Int32.Parse(intSplit.ToString());
+                Debug.Log("found character id " + intSplit[i] + " name mention");
+                if (real == 0)
+                {
+                    commandRemoved = currentpronoun.Replace(commandRemoved, " " + player.pss + " ");
+                    Debug.Log(player.pss);
+                }
+                else
+                {
+                    commandRemoved = currentpronoun.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real - 1].pss + " ");
+                    Debug.Log(textFieldConvo.characters[real - 1].pss);
+                }
+
+            }
+            for (int i = 0; i < secondPersonPronouns.Count; i++)
+            {
+                Regex currentpronoun = new Regex(secondPersonPronouns[i].ToString());
+                Regex currentCharID = new Regex(@"\spnd");
+                var intSplit = currentCharID.Replace(secondPersonPronouns[i].ToString(), "");
+                Debug.Log(intSplit);
+                int real = Int32.Parse(intSplit.ToString());
+                Debug.Log("found character id " + intSplit[i] + " name mention");
+                if (real == 0)
+                {
+                    commandRemoved = currentpronoun.Replace(commandRemoved, " " + player.pnd + " ");
+                    Debug.Log(player.pnd);
+                }
+                else
+                {
+                    commandRemoved = currentpronoun.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real - 1].pnd + " ");
+                    Debug.Log(textFieldConvo.characters[real - 1].pnd);
+                }
+            }
+                textBody.text = commandRemoved.ToString();
+            //replace pronoun second person pnd1 with he and pronoun possessive pss1 with the pronoun fetched from the character with id X's pronouns
 
             if (actorCharID <= 0)
             {
@@ -393,6 +465,14 @@ public class DialougeDisplayer : MonoBehaviour
 
             return;
         }
+        else if(Regex.IsMatch(command, "^@CHE"))
+        {
+            //check command, checks a player stat
+        }
+        else if(Regex.IsMatch(command, "^@STAT")) 
+        {
+            //@STAT 
+        }
         Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
     }
     //stat checks?
@@ -453,6 +533,33 @@ public class DialougeDisplayer : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void LoadNew(TextFieldConversation convo)
+    {
+        //lalalala
+        //need to reset all of the data and then LoadConvo
+        while (sprites.Count > 0)
+        {
+            Destroy(sprites[0]);
+            sprites.RemoveAt(0);
+        }
+        while(positions.Count > 0)
+        {
+            positions.RemoveAt(0);
+        }
+        while (speeds.Count > 0)
+        {
+            speeds.RemoveAt(0);
+        }
+        while (convoActions.Count > 0)
+        {
+            convoActions.RemoveAt(0);
+        }
+        textFieldConvo = convo;
+        convoActionIndex=0;
+        LoadConvo();
+        DisplayConvoAction();
     }
 
     //for a conversation to end, all characters need to finish their movements. and the current action index thingy needs to be at the end.

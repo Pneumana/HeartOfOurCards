@@ -195,6 +195,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56842633}
   m_CullTransparentMesh: 1
+--- !u!1 &406991187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406991189}
+  - component: {fileID: 406991188}
+  m_Layer: 0
+  m_Name: LoadCovo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &406991188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406991187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a02eeec0420a6847954cd2f1374d1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversation: {fileID: 11400000, guid: 706084f655e0569429869372faf17e36, type: 2}
+--- !u!4 &406991189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406991187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 475.6124, y: 224.76602, z: -3.11343}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &492098574
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,13 +273,14 @@ MonoBehaviour:
   speaker: {fileID: 1279610420}
   textBody: {fileID: 531180593}
   convoActionIndex: 0
-  currentConvo: {fileID: 11400000, guid: dd46cf60bd977c145b3f374a7a29c78a, type: 2}
+  currentConvo: {fileID: 0}
   textFieldConvo: {fileID: 11400000, guid: bd5d47209724be24193f7a425ccc2f74, type: 2}
   optionPrefab: {fileID: 5502359447542862431, guid: d33a566bd6ad99445be38e99b1dd0bba, type: 3}
   sprites: []
   positions: []
   speeds: []
   displayingChoice: 0
+  commandsFromConvo: 
 --- !u!4 &492098576
 Transform:
   m_ObjectHideFlags: 0
@@ -1038,3 +1084,4 @@ SceneRoots:
   - {fileID: 492098576}
   - {fileID: 1146405860}
   - {fileID: 1486596700}
+  - {fileID: 406991189}
