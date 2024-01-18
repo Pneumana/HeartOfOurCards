@@ -256,7 +256,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -705,10 +705,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02f00c9ea664c4182bfdea5ae6513d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 20
-  gridSize: {x: 5, y: 5}
+  size: 50
+  gridSize: {x: 20, y: 20}
   mapPositions: []
   placedRooms: []
+  icon: {fileID: 429056563, guid: f155de584dfc2cd41928dcc305efd084, type: 3}
 --- !u!4 &916584266
 Transform:
   m_ObjectHideFlags: 0
