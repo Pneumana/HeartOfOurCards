@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: bed4b6c962bd2454c84902640181383f, type: 2}
+  - {fileID: 11400000, guid: f566ba0ab217ec84bbd6dee64165ced6, type: 2}
   commandScript: 'Start
 
     !0
@@ -23,7 +24,9 @@ MonoBehaviour:
     @DIS PlayerHappy
 
     @POS
-    0.33, 0, 1000
+    0.33, 0, 1000;
+
+    @STAT INT, 1
 
     ;
 
@@ -31,8 +34,8 @@ MonoBehaviour:
 
     !1
 
-    @SAY And I''m Joe! name0 ''s kinda
-    a silly guy. pnd0 is just a goober.
+    @SAY And I''m
+    Joe! name0 ''s kinda a silly guy. pnd0 is just a goober.
 
     @POS 0.66, 0, 1000
 
@@ -96,7 +99,7 @@ MonoBehaviour:
 
     !0
 
-    @POS 0.5,0,1000
+    @POS 0.25,0,1000
 
     @ORD 0
 
@@ -105,7 +108,7 @@ MonoBehaviour:
     !1
 
     @POS
-    0.5,0,1000
+    0.75,0,1000
 
     ;
 
@@ -116,4 +119,40 @@ MonoBehaviour:
     @SAY Aight it''s over. That''s the
     end of this dialouge tree.
 
-    ;'
+    ;
+
+    Kitsune
+
+    !2
+
+    @POS 0.5,0,1000
+
+    @SAY
+    Hey guys!
+
+    ;
+
+    Kitsune
+
+    !2
+
+    @SAY I''m here too!
+
+    @DIS KitsuneHappy
+
+    :
+
+    !0
+
+    @DIS
+    PlayerHappy
+
+    :
+
+    !1
+
+    @DIS JoeHappy
+
+    ;
+
+'

@@ -13,4 +13,5 @@ public class Character : ScriptableObject
     public string pnd;
     [Header("Character Display name Color")]
     public Color Color;
+
 }

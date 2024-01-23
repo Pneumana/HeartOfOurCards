@@ -186,7 +186,7 @@ public class DialougeDisplayer : MonoBehaviour
         playerSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
         playerSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);
         sprites.Add(playerSprite);
-        positions.Add(new Vector2(0, 0));
+        positions.Add(new Vector2(-0.5f, 0));
 
         speeds.Add(1000);
         foreach (Character cha in textFieldConvo.characters)
@@ -202,7 +202,7 @@ public class DialougeDisplayer : MonoBehaviour
             charTalkSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
             charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);
             sprites.Add(charTalkSprite);
-            positions.Add(new Vector2(0, 0));
+            positions.Add(new Vector2(-0.5f, 0));
             speeds.Add(1000);
         }
         DisplayConvoAction();
@@ -214,9 +214,9 @@ public class DialougeDisplayer : MonoBehaviour
         {
             //something about converting como
             var currentRectTransform = sprites[i].GetComponent<RectTransform>();
-
-            var LerpX = Screen.width * positions[i].x;
-            var LerpY = Screen.height * positions[i].y;
+            var canvas = GameObject.Find("Canvas").GetComponent<CanvasScaler>().referenceResolution;
+            var LerpX = canvas.x * positions[i].x;
+            var LerpY = canvas.y * positions[i].y;
 
             //Debug.Log(Screen.width * positions[i].x + " by ")
             //currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, new Vector2(LerpX, LerpY), Time.deltaTime * speeds[i]);
@@ -225,6 +225,7 @@ public class DialougeDisplayer : MonoBehaviour
             var actorName = sprites[i].name;
             //Debug.Log(actorName + " has a position var of " + currentRectTransform.anchoredPosition + " with a target of " + positions[i]);
             currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, new Vector2(LerpX, LerpY), Time.deltaTime * speeds[i]);
+
         }
     }
 
@@ -481,6 +482,36 @@ public class DialougeDisplayer : MonoBehaviour
         else if(Regex.IsMatch(command, "^@STAT")) 
         {
             //@STAT 
+            //formatting is STAT, Number
+            Regex regex = new Regex("^@STAT");
+            Regex iHateSpaces = new Regex(@"\s");
+            var commandSettings = regex.Replace(command, "");
+            var spaceless = iHateSpaces.Replace(commandSettings, "");
+            var split = Regex.Split(spaceless, ",");
+            if (split[1].ToString() == "")
+            {
+                Debug.LogError("No value supplied for stat check command");
+                return;
+            }
+            switch (split[0].ToString())
+            {
+                case "INT":
+                    break;
+                case "CON":
+                    break;
+                case "NRG":
+                    break;
+                case "DMG":
+                    break;
+                default:
+                    Debug.LogError("No stat detected for stat command!");
+                    return;
+            }
+
+        }
+        else if(Regex.IsMatch(command, "^@JUMP"))
+        {
+
         }
         Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
     }
