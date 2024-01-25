@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Toxic
   m_EditorClassIdentifier: 
   cardName: Toxic
+  attackPrefab: {fileID: 3754645896937297717, guid: 967e0e5de5dbeed41ae7df4fe9819d4e, type: 3}

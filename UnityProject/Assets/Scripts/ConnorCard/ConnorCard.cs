@@ -6,6 +6,7 @@ using UnityEngine;
 public class ConnorCard :ScriptableObject
 {
     public string cardName;
+    public GameObject attackPrefab;
     //card stats go here or something.
 
     //OnPlay Modifiers

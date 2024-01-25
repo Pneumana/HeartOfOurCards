@@ -25,14 +25,14 @@ public class TwinStickController : MonoBehaviour
         var mouseX = Input.GetAxis("Mouse X");
         var mouseY = Input.GetAxis("Mouse Y");
 
-        if (Gamepad.current.rightStickButton.isPressed)
+/*        if (Gamepad.current.rightStickButton.isPressed)
         {
             Debug.Log("right stick pressed");
-        }
-        if(mouseX==0)
+        }*/
+        /*if(mouseX==0)
             mouseX = Gamepad.current.rightStick.value.x;
         if(mouseY==0)
-            mouseY = Gamepad.current.rightStick.value.y;
+            mouseY = Gamepad.current.rightStick.value.y;*/
         /*        var ctrlX = Input.GetAxis("HorizontalCTRL");
                 var ctrlY = Input.GetAxis("VerticalCTRL");*/
 
