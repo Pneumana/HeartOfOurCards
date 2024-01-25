@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 namespace CardActions
 {
-    public class AttackAction: CardActionBase
+    public class AttackAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.Attack;
         public override void DoAction(CardActionParameters actionParameters)
@@ -118,13 +118,25 @@ namespace CardActions
 
     public class FrostAction : CardActionBase
     {
-        public override CardActionType ActionType => CardActionType.Burn;
+        public override CardActionType ActionType => CardActionType.Frost;
         public override void DoAction(CardActionParameters actionParameters)
         {
             //if (!actionParameters.TargetCharacter) return;
 
             //var value = actionParameters.Value;
             //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Frost, Mathf.RoundToInt(value));
+        }
+    }
+
+    public class TokenCardAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.SpawnCards;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //if (CollectionManager != null)
+            //    CollectionManager.AddCards(Mathf.RoundToInt(actionParameters.Value));
+            //else
+            //    Debug.LogError("There is no CollectionManager");
         }
     }
 }
