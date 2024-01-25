@@ -32,7 +32,9 @@ namespace Enums
         Stun,
         IncreaseStrength,
         Exhaust,
-        Burn
+        Burn,
+        Frost,
+        SpawnCards
     }
 
     public enum CharacterType
@@ -86,4 +88,10 @@ namespace Enums
         Vulnerable
     }
 
+    public enum CardType
+    {
+        Physical,
+        Magical,
+        Neutral
+    }
 }

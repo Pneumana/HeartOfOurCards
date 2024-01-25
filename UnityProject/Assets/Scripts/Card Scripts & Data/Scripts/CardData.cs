@@ -15,6 +15,7 @@ namespace DeckData
         [SerializeField] private string cardName;
         [SerializeField] private int energyCost;
         [SerializeField] private Sprite cardSprite;
+        [SerializeField] private List<CardType> cardType;
 
         [Header("Action Settings")]
         [SerializeField] private bool usableWithoutTarget;
@@ -34,6 +35,7 @@ namespace DeckData
         public List<SpecialKeywords> KeywordsList => specialKeywordsList;
         public string MyDescription { get; set; }
         public bool ExhaustAfterPlay => exhaustAfterPlay;
+        public List<CardType> CardType => cardType;
 
         public void UpdateDescription()
         {
