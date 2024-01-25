@@ -32,7 +32,8 @@ namespace Enums
         Stun,
         IncreaseStrength,
         Exhaust,
-        Burn
+        Burn,
+        Frost
     }
 
     public enum CharacterType

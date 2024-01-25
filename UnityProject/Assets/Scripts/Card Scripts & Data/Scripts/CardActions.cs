@@ -115,4 +115,16 @@ namespace CardActions
             //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Burn, Mathf.RoundToInt(value));
         }
     }
+
+    public class FrostAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.Burn;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //if (!actionParameters.TargetCharacter) return;
+
+            //var value = actionParameters.Value;
+            //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Frost, Mathf.RoundToInt(value));
+        }
+    }
 }
