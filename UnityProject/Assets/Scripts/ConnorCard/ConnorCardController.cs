@@ -6,6 +6,7 @@ using UnityEngine;
 public class ConnorCardController : MonoBehaviour
 {
     public TextMeshPro label;
+    public TextMeshPro energyCost;
     //public Canvas myUI;
 
     public ConnorCard card;
@@ -15,6 +16,7 @@ public class ConnorCardController : MonoBehaviour
     {
         //myUI.worldCamera = Camera.main;
         label.text = card.cardName;
+        energyCost.text = "Energy Cost: " + card.energyCost;
     }
 
     // Update is called once per frame

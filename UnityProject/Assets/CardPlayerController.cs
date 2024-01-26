@@ -10,10 +10,12 @@ public class CardPlayerController : MonoBehaviour
     public bool TurnEnded;
     GenericBody body;
     public CardDeck deck;
+    public ReadEnergyFromPlayer energydisplay;
     //network stuff
 
     private void Start()
     {
+        currentEnergy = maxEnergy;
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //load from run manager?

@@ -1831,6 +1831,7 @@ MonoBehaviour:
   maxEnergy: 2
   TurnEnded: 0
   deck: {fileID: 0}
+  energydisplay: {fileID: 248793986}
 --- !u!114 &883898588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4229,6 +4230,7 @@ MonoBehaviour:
   maxEnergy: 2
   TurnEnded: 0
   deck: {fileID: 0}
+  energydisplay: {fileID: 165801957}
 --- !u!114 &1916377750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4904,18 +4906,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1290637462734903388, guid: 17e9480ca6b47ac4ea2b12069f1b0bed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4651348264175572674}
-    - targetCorrespondingSourceObject: {fileID: 4798954371098901840, guid: 17e9480ca6b47ac4ea2b12069f1b0bed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4207415961304043139, guid: 17e9480ca6b47ac4ea2b12069f1b0bed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 575306319884251116, guid: 17e9480ca6b47ac4ea2b12069f1b0bed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 677254441831081900, guid: 17e9480ca6b47ac4ea2b12069f1b0bed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 17e9480ca6b47ac4ea2b12069f1b0bed, type: 3}
 --- !u!1 &4651348264175572673 stripped
 GameObject:

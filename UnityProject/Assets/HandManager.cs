@@ -89,9 +89,18 @@ public class HandManager : MonoBehaviour
                             }
                         }
                         previewLine.GetComponent<PointToTarget>().Hide();
-                        player.deck.PlayCard(hit.collider.gameObject.transform.position,playedCardIndex);
-                        RefreshHand();
-                        playedCard = null;
+                        if (renderedHand[playedCardIndex].energyCost <= player.currentEnergy)
+                        {
+                            player.currentEnergy -= renderedHand[playedCardIndex].energyCost;
+                            player.deck.PlayCard(hit.collider.gameObject.transform.position, playedCardIndex);
+                            RefreshHand();
+                            playedCard = null;
+                        }
+                        else
+                        {
+                            player.energydisplay.OOM();
+                            Debug.Log("not enough energy");
+                        }
                     }
                 }
                 else

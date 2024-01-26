@@ -18,11 +18,12 @@ public class ReadEnergyFromPlayer : MonoBehaviour
     void Update()
     {
         tmp.text = playerController.currentEnergy + "/" + playerController.maxEnergy;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(!animating)
+        
+    }
+    public void OOM()
+    {
+            if (!animating)
                 StartCoroutine(FlashRed());
-        }
     }
     IEnumerator FlashRed()
     {

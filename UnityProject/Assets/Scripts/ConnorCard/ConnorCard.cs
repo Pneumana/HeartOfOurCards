@@ -7,6 +7,7 @@ public class ConnorCard :ScriptableObject
 {
     public string cardName;
     public List<GameObject> attackPrefab = new List<GameObject>();
+    public int energyCost;
     //card stats go here or something.
 
     //OnPlay Modifiers
