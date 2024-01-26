@@ -17,13 +17,15 @@ public class CardPlayerController : MonoBehaviour
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //load from run manager?
+
+        deck.DrawCard(4);
     }
     public void StartTurn()
     {
         deck.DrawCard();
         TurnEnded = false;
         currentEnergy = maxEnergy;
-        deck.DrawCard();
+        GetComponent<HandManager>().RefreshHand();
         //have some script read the hand and create the cards
     }
     public void EndTurn()

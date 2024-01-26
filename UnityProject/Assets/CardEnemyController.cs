@@ -50,6 +50,7 @@ public class CardEnemyController : MonoBehaviour
     public void TakeTurn()
     {
         //play picked card
+        deck.PlayCard();
         EndTurn();
         PickCard();
         //pick a new card to play. 
@@ -57,12 +58,17 @@ public class CardEnemyController : MonoBehaviour
     void PickCard()
     {
         deck.DrawCard();
-        var pickedCard = deck.hand[Random.Range(0, deck.hand.Count - 1)];
+        ConnorCard pickedCard = null;
+        if(deck.hand.Count > 0)
+            pickedCard = deck.hand[Random.Range(0, deck.hand.Count - 1)];
         if(currentDisplay!=null)
             Destroy(currentDisplay);
-        currentDisplay = Instantiate(displayCardPrefab);
-        currentDisplay.transform.position = transform.position + Vector3.up + (transform.forward * 1.5f);
-        currentDisplay.GetComponent<ConnorCardController>().card = pickedCard;
-        currentDisplay.transform.LookAt(Camera.main.transform.position);
+        if (pickedCard != null)
+        {
+            currentDisplay = Instantiate(displayCardPrefab);
+            currentDisplay.transform.position = transform.position + (Vector3.up * 2) + (transform.forward * 1.5f);
+            currentDisplay.GetComponent<ConnorCardController>().card = pickedCard;
+            currentDisplay.transform.LookAt(Camera.main.transform.position);
+        }
     }
 }

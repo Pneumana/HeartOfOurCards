@@ -28,47 +28,61 @@ public class CardDeck : MonoBehaviour
             PlayCard();
         }
     }
-    public void DrawCard()
+    public void DrawCard(int drawcount = 1)
     {
-        if (deck.Count == 0)
+        while(drawcount > 0)
         {
-            if (discardPile.Count > 0)
+            if (deck.Count == 0)
             {
-                var hold = discardPile.Count;
-                //deck = hold;
-                for(int i = 0; i < hold; i++)
+                if (discardPile.Count > 0)
                 {
-                    deck.Add(discardPile[i]);
+                    var hold = discardPile.Count;
+                    //deck = hold;
+                    for (int i = 0; i < hold; i++)
+                    {
+                        deck.Add(discardPile[i]);
+                    }
+                    //discardPile.Clear();
+                    Debug.Log("shuffling deck");
+                    discardPile.Clear();
                 }
-                //discardPile.Clear();
-                Debug.Log("shuffling deck");
-                discardPile.Clear();
+                else
+                {
+                    Debug.Log("deck is empty");
+                    return;
+                }
             }
             else
             {
-                Debug.Log("deck is empty");
-                return;
+                var drawnCard = Random.Range(0, deck.Count - 1);
+                hand.Add(deck[drawnCard]);
+                deck.Remove(deck[drawnCard]);
+                Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
             }
+            drawcount--;
         }
-        else
-        {
-            var drawnCard = Random.Range(0, deck.Count - 1);
-            hand.Add(deck[drawnCard]);
-            deck.Remove(deck[drawnCard]);
-            Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
-        }
+        
 
     }
-    public void PlayCard()
+    public void PlayCard(int playedCard = -1)
     {
+        //if it doesn't meet the energy requirment, uhh yeah
         if (hand.Count == 0)
         {
             Debug.Log("hand is empty");
             return;
         }
-        var playedCard = Random.Range(0, hand.Count - 1);
+        if(playedCard==-1)
+            playedCard = Random.Range(0, hand.Count - 1);
+        foreach(GameObject proj in hand[playedCard].attackPrefab)
+        {
+            var attack = Instantiate(proj);
+            attack.transform.position = transform.position + (transform.forward * 2);
+            attack.GetComponent<Rigidbody>().AddForce(transform.forward * 10,ForceMode.Impulse);
+        }
         discardPile.Add(hand[playedCard]);
         Debug.Log("Played card " + hand[playedCard].cardName);
         hand.Remove(hand[playedCard]);
+
     }
 }

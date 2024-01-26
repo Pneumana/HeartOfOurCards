@@ -15,6 +15,15 @@ public class GenericBody : MonoBehaviour
     //replace gameobject with netID
     public void TakeDamage(int damageRecieved, GenericBody damageSource)
     {
+        var damageToTake = damageRecieved;
+        var shieldThisTurn = shield;
+        //shield damage block
+        while (shieldThisTurn > 0 && damageToTake > 0) 
+        {
+            shieldThisTurn--;
+            damageToTake--;
+        }
+        health-=damageToTake;
 
     }
     
