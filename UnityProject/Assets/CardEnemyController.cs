@@ -50,7 +50,7 @@ public class CardEnemyController : MonoBehaviour
     public void TakeTurn()
     {
         //play picked card
-        deck.PlayCard();
+        deck.PlayCard(transform.forward);
         EndTurn();
         PickCard();
         //pick a new card to play. 

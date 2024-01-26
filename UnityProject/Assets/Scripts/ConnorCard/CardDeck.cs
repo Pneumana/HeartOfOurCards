@@ -25,7 +25,7 @@ public class CardDeck : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            PlayCard();
+            PlayCard(transform.forward);
         }
     }
     public void DrawCard(int drawcount = 1)
@@ -64,7 +64,7 @@ public class CardDeck : MonoBehaviour
         
 
     }
-    public void PlayCard(int playedCard = -1)
+    public void PlayCard(Vector3 target, int playedCard = -1)
     {
         //if it doesn't meet the energy requirment, uhh yeah
         if (hand.Count == 0)
@@ -78,7 +78,8 @@ public class CardDeck : MonoBehaviour
         {
             var attack = Instantiate(proj);
             attack.transform.position = transform.position + (transform.forward * 2);
-            attack.GetComponent<Rigidbody>().AddForce(transform.forward * 10,ForceMode.Impulse);
+            attack.transform.forward = new Vector3(target.x, attack.transform.position.y, target.z) - attack.transform.position;
+            attack.GetComponent<Rigidbody>().AddForce(attack.transform.forward * 10,ForceMode.Impulse);
         }
         discardPile.Add(hand[playedCard]);
         Debug.Log("Played card " + hand[playedCard].cardName);
