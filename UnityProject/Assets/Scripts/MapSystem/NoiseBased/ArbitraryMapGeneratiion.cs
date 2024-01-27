@@ -9,29 +9,56 @@ using static UnityEditor.PlayerSettings;
 
 public class ArbitraryMapGeneratiion : MonoBehaviour
 {
-    public int size;
-    public Vector2 gridSize = new Vector2(5, 5);
+
     int placeAttempts;
 
+
+
     public List<Vector3Int> mapPositions = new List<Vector3Int>();
+
+    //remove from this list when a room gets it's special type
     public List<Vector3Int> placedRooms = new List<Vector3Int>();
 
-    //available neighboring rooms
+    //available neighboring rooms to spawn rooms
     public List<Vector3Int> openList = new List<Vector3Int>();
-
+    //rooms the player can see
+    public List<Vector3Int> explorableRooms = new List<Vector3Int>();
+    public List<Vector3Int> completedRooms = new List<Vector3Int>();
 
     public List<List<Vector3Int>> adjacantRooms = new List<List<Vector3Int>>();
 
     public Sprite icon;
 
     public Tilemap world;
+    public Tilemap fogOfWar;
     public Tile tile;
     public Tile endpoint;
     public Tile startpoint;
+    public Tile fogBorder;
+    public Tile fog;
+
+    public Tile romance;
+    public Tile encounter;
+    public Tile shop;
+
+    [Header("Generator Settings")]
+    public int size;
+    public Vector2 gridSize = new Vector2(5, 5);
+    [Header("Leave blank for random")]
+    public int seed;
+    [Header("Number of special tiles the generator will attempt to spawn, in order")]
+    public int romancesToSpawn;
+    public int encountersToSpawn;
+    public int shopsToSpawn;
+    public float allowedRepeatDistance;
+
     //need a list of adjacant positions for each placed room, excluding positions that are already used
     public List<Vector3Int> firstadjacents = new List<Vector3Int>();
     private void Start()
     {
+        if(seed ==0)
+            seed = Random.Range(int.MinValue, int.MaxValue);
+        Random.InitState(seed);
         for(int x = 0; x< gridSize.x; x++)
         {
             for(int y = 0; y < gridSize.y; y++)
@@ -41,7 +68,14 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         }
         placeAttempts = size;
         Vector3Int center = new Vector3Int(Mathf.FloorToInt(gridSize.x / 2), Mathf.FloorToInt(gridSize.y / 2));
-        AddNeighborsAt(center.x,center.y);
+        var startneighbors = GetNeighborsAt(center.x,center.y);
+        foreach (Vector3Int neighbor in startneighbors)
+        {
+            if (!placedRooms.Contains(neighbor))
+            {
+                openList.Add(neighbor);
+            }
+        }
         placedRooms.Add(center);
         while (placeAttempts > 0)
         {
@@ -67,10 +101,17 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             Debug.Log("removed " + pick);
             var a = pick.x;
             var b = pick.y;
-            AddNeighborsAt((int)a,(int)b);
-            var worldPos = world.CellToWorld(pick);
+            var neighbors = GetNeighborsAt((int)a,(int)b);
+            foreach (Vector3Int neighbor in neighbors)
+            {
+                    if (!placedRooms.Contains(neighbor))
+                    {
+                        openList.Add(neighbor);
+                    }
+            }
+/*            var worldPos = world.CellToWorld(pick);
             Debug.DrawLine(worldPos + new Vector3(0.5f, -0.5f), worldPos + new Vector3(-0.5f, 0.5f), Color.red, 5);
-            Debug.DrawLine(worldPos + new Vector3(-0.5f, -0.5f), worldPos + new Vector3(0.5f, 0.5f), Color.red, 5);
+            Debug.DrawLine(worldPos + new Vector3(-0.5f, -0.5f), worldPos + new Vector3(0.5f, 0.5f), Color.red, 5);*/
             //find a random neighbor room
             //add to placed rooms
             //loop trhrough all neighbor lists and remove that position
@@ -165,13 +206,25 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             }
 
         }
+
+        
+
         //Vector3Int fp1Int = new Vector3Int(furthestPair1.x), Mathf.FloorToInt(furthestPair1.y));
         world.SetTile(furthestPair1, startpoint);
         //Vector3Int fp2Int = new Vector3Int(Mathf.FloorToInt(furthestPair2.x), Mathf.FloorToInt(furthestPair2.y));
         world.SetTile(furthestPair2, endpoint);
+
+        foreach (Vector3Int pos in world.cellBounds.allPositionsWithin)
+        {
+            if(world.HasTile(pos))
+                fogOfWar.SetTile(pos, fog);
+        }
+
+        ExploreTile(center.x,center.y);
+        PickSpecialTiles();
         /*Debug.DrawLine(fp1Int + new Vector3(0.5f, -0.5f), fp1Int + new Vector3(-0.5f, 0.5f), Color.green, 10);
         Debug.DrawLine(fp1Int + new Vector3(-0.5f, -0.5f), fp1Int + new Vector3(0.5f, 0.5f), Color.green, 10);
-
+        
         Debug.DrawLine(fp2Int + new Vector3(0.5f, -0.5f), fp2Int + new Vector3(-0.5f, 0.5f), Color.red, 10);
         Debug.DrawLine(fp2Int + new Vector3(-0.5f, -0.5f), fp2Int + new Vector3(0.5f, 0.5f), Color.red, 10);*/
 
@@ -179,10 +232,11 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         Debug.DrawLine(gridSize * new Vector3(1, 0), gridSize * new Vector3(1, 1), Color.cyan, 30);
         Debug.DrawLine(gridSize * new Vector3(0, 1), gridSize * new Vector3(1, 1), Color.cyan, 30);
         Debug.DrawLine(gridSize * new Vector3(0, 0), gridSize * new Vector3(0, 1), Color.cyan, 30);
+
     }
 
     //creates objects in a grid until it runs out of place attempts;
-    void AddNeighborsAt(int x, int y)
+    List<Vector3Int> GetNeighborsAt(int x, int y)
     {
         List<Vector3Int> neighbors = new List<Vector3Int>();
         List<Vector3Int> sides = new List<Vector3Int>();
@@ -247,23 +301,182 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         }
         int guh = 0;
         Color randomColor = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
-        foreach(Vector3Int pos in neighbors)
-        {
-            Debug.DrawLine(world.CellToWorld(pos), world.CellToWorld(center), Color.cyan, 15);
-            if (!placedRooms.Contains(pos))
-            {
-                openList.Add(pos);
-                guh++;
-            }
 
-        }
         Debug.Log("added " + guh + " new adjacants. open list has " + openList.Count + " entries");
+        return neighbors;
     }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftControl))
         {
             SceneManager.LoadSceneAsync("Map", LoadSceneMode.Single);
+        }
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            ClickToExplore();
+        }
+    }
+    public void ExploreTile(int x, int y)
+    {
+        var cell = new Vector3Int(x, y);
+        //fogOfWar.SetTile(cell, null);
+        if (completedRooms.Contains(cell))
+        {
+            Debug.Log("this rooom has been completed");
+            return;
+        }
+        explorableRooms.Remove(cell);
+        completedRooms.Add(cell);
+        var adj = GetNeighborsAt(x, y);
+        foreach(Vector3Int pos in adj)
+        {
+            if (world.HasTile(pos))
+            {
+                if (!completedRooms.Contains(pos))
+                    explorableRooms.Add(pos);
+
+                //fogOfWar.SetTile(pos, fogBorder);
+            }
+        }
+        foreach (Vector3Int pos in explorableRooms)
+        {
+            fogOfWar.SetTile(pos, fogBorder);
+        }
+        foreach (Vector3Int pos in completedRooms)
+        {
+            fogOfWar.SetTile(pos, null);
+        }
+
+    }
+    void ClickToExplore()
+    {
+        var mouseCast = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseCast.z = 0;
+        Vector3Int clickedTile = Vector3Int.zero;
+        bool clicked =  false;
+        foreach(Vector3Int pos in explorableRooms)
+        {
+            if (fogOfWar.HasTile(pos))
+            {
+                if (fogOfWar.GetTile(pos) == fogBorder)
+                {
+                    if(Vector3.Distance(fogOfWar.CellToWorld(pos), mouseCast) < 0.5f)
+                    {
+                        Debug.DrawLine(fogOfWar.CellToWorld(pos), mouseCast, Color.red, 10);
+                        clickedTile = pos;
+                        clicked = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (clicked)
+        {
+            ExploreTile(clickedTile.x, clickedTile.y);
+        }
+    }
+
+    void PickSpecialTiles()
+    {
+        var romances = romancesToSpawn;
+        var encounters = encountersToSpawn;
+        var shops = shopsToSpawn;
+        Vector3Int previousPick = Vector3Int.zero;
+        Vector3Int center = new Vector3Int(Mathf.FloorToInt(gridSize.x / 2), Mathf.FloorToInt(gridSize.y / 2));
+        placedRooms.Remove(center);
+        List<Vector3Int> placedSpecialRooms = new List<Vector3Int>();
+        placedSpecialRooms.Add(Vector3Int.zero);
+        var attempts = 1000;
+        while (romances > 0 && placedRooms.Count > 0)
+        {
+            romances--;
+            var pick = placedRooms[Random.Range(0, placedRooms.Count)];
+            Debug.Log("romance " + romances +" " + Vector3Int.Distance(pick, previousPick));
+            bool placed = true;
+            foreach(Vector3Int pos in placedSpecialRooms)
+            {
+                var test = Vector3Int.Distance(pick, pos);
+                if(test > allowedRepeatDistance){}
+                else
+                {
+                    placed = false;
+                }
+            }
+            if (!placed)
+                romances++;
+            else
+            {
+                placedRooms.Remove(pick);
+                world.SetTile(pick, romance);
+                placedSpecialRooms.Add(pick);
+                Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
+                
+            }
+            if (attempts <= 0)
+                break;
+            attempts--;
+        }
+        attempts = 1000;
+        placedSpecialRooms.Clear();
+        placedSpecialRooms.Add(Vector3Int.zero);
+        while (encounters > 0 && placedRooms.Count > 0)
+        {
+            encounters--;
+            var pick = placedRooms[Random.Range(0, placedRooms.Count)];
+            bool placed = true;
+            foreach (Vector3Int pos in placedSpecialRooms)
+            {
+                var test = Vector3Int.Distance(pick, pos);
+                if (test > allowedRepeatDistance) { }
+                else
+                {
+                    placed = false;
+                }
+            }
+            if (!placed)
+                encounters++;
+            else
+            {
+                placedRooms.Remove(pick);
+                world.SetTile(pick, encounter);
+                placedSpecialRooms.Add(pick);
+                Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
+
+            }
+            if (attempts <= 0)
+                break;
+            attempts--;
+        }
+        attempts = 1000;
+        placedSpecialRooms.Clear();
+        placedSpecialRooms.Add(Vector3Int.zero);
+        while (shops > 0 && placedRooms.Count > 0)
+        {
+            shops--;
+            var pick = placedRooms[Random.Range(0, placedRooms.Count)];
+            bool placed = true;
+            foreach (Vector3Int pos in placedSpecialRooms)
+            {
+                var test = Vector3Int.Distance(pick, pos);
+                if (test > allowedRepeatDistance) { }
+                else
+                {
+                    placed = false;
+                }
+            }
+            if (!placed)
+                shops++;
+            else
+            {
+                placedRooms.Remove(pick);
+                world.SetTile(pick, shop);
+                placedSpecialRooms.Add(pick);
+                Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
+
+            }
+            if (attempts <= 0)
+                break;
+            attempts--;
         }
     }
 }

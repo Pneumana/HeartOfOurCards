@@ -106,7 +106,7 @@ TextureImporter:
       name: hextiles_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -127,7 +127,7 @@ TextureImporter:
       name: hextiles_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 128
         width: 64
         height: 64
@@ -148,7 +148,7 @@ TextureImporter:
       name: hextiles_2
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 64
         width: 64
         height: 64
@@ -169,7 +169,7 @@ TextureImporter:
       name: hextiles_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 64
         width: 64
         height: 64
@@ -190,7 +190,7 @@ TextureImporter:
       name: hextiles_4
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 0
         width: 64
         height: 64
@@ -203,6 +203,69 @@ TextureImporter:
       bones: []
       spriteID: ae9a01bc3260d7148976b379dd0e8e71
       internalID: -2007566964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hextiles_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df1a35e623ccc054f93b8938d4def002
+      internalID: 245612541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hextiles_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf136cc89e7513f4ea2f53e5a70cb4e6
+      internalID: 1541424249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hextiles_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f708da9bd8868a5469d340f23b57ab9a
+      internalID: 777796483
       vertices: []
       indices: 
       edges: []
@@ -223,6 +286,9 @@ TextureImporter:
       hextiles_2: -2054091603
       hextiles_3: -179820483
       hextiles_4: -2007566964
+      hextiles_5: 245612541
+      hextiles_6: 1541424249
+      hextiles_7: 777796483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
