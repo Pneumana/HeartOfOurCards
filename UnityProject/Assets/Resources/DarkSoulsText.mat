@@ -61,7 +61,7 @@ Material:
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _blurFade: 1
-    - _blurScale: 0.36793867
+    - _blurScale: 0.7519013
     - _fade: 0
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
