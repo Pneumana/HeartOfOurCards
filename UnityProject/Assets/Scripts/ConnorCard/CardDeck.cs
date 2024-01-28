@@ -64,6 +64,10 @@ public class CardDeck : MonoBehaviour
         
 
     }
+    public void ServerPlayCard(int netID, Vector3 target, int playedCard = -1)
+    {
+        //run play card on all clients, checking for netID match so the same player uses them
+    }
     public void PlayCard(Vector3 target, int playedCard = -1)
     {
         //if it doesn't meet the energy requirment, uhh yeah

@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,10 @@ public class HandManager : MonoBehaviour
 
     List<ConnorCard> renderedHand = new List<ConnorCard>();
     public List<GameObject> cards = new List<GameObject> ();
+
+    //compare the local player to this number. if they dont match,
+    //any attempted plays will result in "suggest playing card targeting X" with a visual ping
+    public int OwnedBy;
 
     GameObject playedCard;
     GameObject previewLine;
@@ -55,6 +60,7 @@ public class HandManager : MonoBehaviour
         CheckMouseOnEnemy();
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+
             if (playedCard != null)
             {
                 playedCard.transform.position -= playedCard.transform.forward * (player.deck.hand.Count * 0.1f);
@@ -91,6 +97,7 @@ public class HandManager : MonoBehaviour
                         previewLine.GetComponent<PointToTarget>().Hide();
                         if (renderedHand[playedCardIndex].energyCost <= player.currentEnergy)
                         {
+                            //local player check  here
                             player.currentEnergy -= renderedHand[playedCardIndex].energyCost;
                             player.deck.PlayCard(hit.collider.gameObject.transform.position, playedCardIndex);
                             RefreshHand();
