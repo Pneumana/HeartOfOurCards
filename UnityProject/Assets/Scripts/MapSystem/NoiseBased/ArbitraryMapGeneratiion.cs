@@ -1,6 +1,7 @@
 using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 //using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     public List<Vector3Int> openList = new List<Vector3Int>();
     //rooms the player can see
     public List<Vector3Int> explorableRooms = new List<Vector3Int>();
+    public List<Vector3Int> revealedRooms = new List<Vector3Int>();
     public List<Vector3Int> completedRooms = new List<Vector3Int>();
 
     public List<List<Vector3Int>> adjacantRooms = new List<List<Vector3Int>>();
@@ -36,6 +38,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     public Tile startpoint;
     public Tile fogBorder;
     public Tile fog;
+    public Tile fogVisible;
 
     public Tile romance;
     public Tile encounter;
@@ -51,6 +54,8 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     public int encountersToSpawn;
     public int shopsToSpawn;
     public float allowedRepeatDistance;
+
+    public int discoverRadius = 1;
 
     //need a list of adjacant positions for each placed room, excluding positions that are already used
     public List<Vector3Int> firstadjacents = new List<Vector3Int>();
@@ -216,11 +221,28 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
 
         foreach (Vector3Int pos in world.cellBounds.allPositionsWithin)
         {
-            if(world.HasTile(pos))
-                fogOfWar.SetTile(pos, fog);
+            if (world.HasTile(pos))
+            {
+                bool isVisible = false;
+                foreach (Vector3Int ps in completedRooms)
+                {
+                    Debug.Log(Vector3.Distance(world.CellToWorld(ps), world.CellToWorld(pos)));
+                    if (Vector3.Distance(world.CellToWorld(ps), world.CellToWorld(pos)) <= discoverRadius)
+                    {
+                        
+                        isVisible = true;
+                        break;
+                    }
+                }
+                if(!isVisible)
+                    fogOfWar.SetTile(pos, fog);
+                else
+                    fogOfWar.SetTile(pos, fogVisible);
+            }
+
         }
 
-        ExploreTile(center.x,center.y);
+        StartCoroutine(ExploreTile(center.x,center.y));
         PickSpecialTiles();
         /*Debug.DrawLine(fp1Int + new Vector3(0.5f, -0.5f), fp1Int + new Vector3(-0.5f, 0.5f), Color.green, 10);
         Debug.DrawLine(fp1Int + new Vector3(-0.5f, -0.5f), fp1Int + new Vector3(0.5f, 0.5f), Color.green, 10);
@@ -238,6 +260,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     //creates objects in a grid until it runs out of place attempts;
     List<Vector3Int> GetNeighborsAt(int x, int y)
     {
+
         List<Vector3Int> neighbors = new List<Vector3Int>();
         List<Vector3Int> sides = new List<Vector3Int>();
 
@@ -255,26 +278,27 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
 
         var center = new Vector3Int(x, y);
 
-        if(y % 2 == 1)
-        {
-            //odd
-            sides.Add(center + new Vector3Int(1, 0));
-            sides.Add(center + new Vector3Int(1, 1));
-            sides.Add(center + new Vector3Int(0, 1));
-            sides.Add(center + new Vector3Int(-1, 0));
-            sides.Add(center + new Vector3Int(0, -1));
-            sides.Add(center + new Vector3Int(1, -1));
-        }
-        else
-        {
-            //EVEN
-            sides.Add(center + new Vector3Int(1, 0));
-            sides.Add(center + new Vector3Int(0, 1));
-            sides.Add(center + new Vector3Int(-1, 1));
-            sides.Add(center + new Vector3Int(-1, 0));
-            sides.Add(center + new Vector3Int(-1, -1));
-            sides.Add(center + new Vector3Int(0, -1));
-        }
+                if (y % 2 == 1)
+                {
+                    //odd
+                    sides.Add(center + new Vector3Int(1, 0));
+                    sides.Add(center + new Vector3Int(1, 1));
+                    sides.Add(center + new Vector3Int(0, 1));
+                    sides.Add(center + new Vector3Int(-1, 0));
+                    sides.Add(center + new Vector3Int(0, -1));
+                    sides.Add(center + new Vector3Int(1, -1));
+                }
+                else
+                {
+                    //EVEN
+                    sides.Add(center + new Vector3Int(1, 0));
+                    sides.Add(center + new Vector3Int(0, 1));
+                    sides.Add(center + new Vector3Int(-1, 1));
+                    sides.Add(center + new Vector3Int(-1, 0));
+                    sides.Add(center + new Vector3Int(-1, -1));
+                    sides.Add(center + new Vector3Int(0, -1));
+                }
+            
         /*sides.Add(upHex);
         sides.Add(downHex);
         sides.Add(downRightHex);
@@ -316,14 +340,14 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             ClickToExplore();
         }
     }
-    public void ExploreTile(int x, int y)
+    IEnumerator ExploreTile(int x, int y)
     {
         var cell = new Vector3Int(x, y);
         //fogOfWar.SetTile(cell, null);
         if (completedRooms.Contains(cell))
         {
             Debug.Log("this rooom has been completed");
-            return;
+            yield return null;
         }
         explorableRooms.Remove(cell);
         completedRooms.Add(cell);
@@ -338,15 +362,30 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                 //fogOfWar.SetTile(pos, fogBorder);
             }
         }
+        foreach(Vector3Int fogTile in fogOfWar.cellBounds.allPositionsWithin)
+        {
+            if (fogOfWar.HasTile(fogTile) && !revealedRooms.Contains(fogTile))
+            {
+                var dist = Vector3.Distance(fogOfWar.CellToWorld(fogTile), fogOfWar.CellToWorld(cell));
+                if(dist < discoverRadius)
+                {
+                    revealedRooms.Add(fogTile);
+                }
+            }
+        }
+        foreach (Vector3Int pos in revealedRooms)
+        {
+            fogOfWar.SetTile(pos, fogVisible);
+        }
         foreach (Vector3Int pos in explorableRooms)
         {
-            fogOfWar.SetTile(pos, fogBorder);
+                fogOfWar.SetTile(pos, fogBorder);
         }
         foreach (Vector3Int pos in completedRooms)
         {
-            fogOfWar.SetTile(pos, null);
+                fogOfWar.SetTile(pos, null);
         }
-
+        yield return null;
     }
     void ClickToExplore()
     {
@@ -372,7 +411,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         }
         if (clicked)
         {
-            ExploreTile(clickedTile.x, clickedTile.y);
+            StartCoroutine(ExploreTile(clickedTile.x, clickedTile.y));
         }
     }
 

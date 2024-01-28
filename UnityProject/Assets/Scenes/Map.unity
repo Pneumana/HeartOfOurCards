@@ -709,25 +709,28 @@ MonoBehaviour:
   placedRooms: []
   openList: []
   explorableRooms: []
+  revealedRooms: []
   completedRooms: []
   icon: {fileID: 429056563, guid: f155de584dfc2cd41928dcc305efd084, type: 3}
   world: {fileID: 1169159217}
   fogOfWar: {fileID: 2064612877}
-  tile: {fileID: 11400000, guid: 0bf5b683f06c3314985a1e4ce2c5aa09, type: 2}
-  endpoint: {fileID: 11400000, guid: 0955083889983174e991414452d04ca5, type: 2}
-  startpoint: {fileID: 11400000, guid: e9f8831eb28f1ad4fb6ddd5b8a84217e, type: 2}
-  fogBorder: {fileID: 11400000, guid: 9f55ca8bc4798ea42a78e0826d8e23cf, type: 2}
-  fog: {fileID: 11400000, guid: d6d2fc9e926865245b99d247802e8500, type: 2}
-  romance: {fileID: 11400000, guid: 142d1bb513d8e0c41bb4220177c78632, type: 2}
-  encounter: {fileID: 11400000, guid: fe777d571ebc9044d858c763af2ee95c, type: 2}
-  shop: {fileID: 11400000, guid: e8d3ab21f3711ca498c80d4f9dc2651d, type: 2}
-  size: 50
+  tile: {fileID: 11400000, guid: e9f8831eb28f1ad4fb6ddd5b8a84217e, type: 2}
+  endpoint: {fileID: 11400000, guid: e8d3ab21f3711ca498c80d4f9dc2651d, type: 2}
+  startpoint: {fileID: 11400000, guid: d6d2fc9e926865245b99d247802e8500, type: 2}
+  fogBorder: {fileID: 11400000, guid: 142d1bb513d8e0c41bb4220177c78632, type: 2}
+  fog: {fileID: 11400000, guid: 9f55ca8bc4798ea42a78e0826d8e23cf, type: 2}
+  fogVisible: {fileID: 11400000, guid: 9abe1a8721be4da418f91fde3ed77c5b, type: 2}
+  romance: {fileID: 11400000, guid: fe777d571ebc9044d858c763af2ee95c, type: 2}
+  encounter: {fileID: 11400000, guid: 0955083889983174e991414452d04ca5, type: 2}
+  shop: {fileID: 11400000, guid: 0bf5b683f06c3314985a1e4ce2c5aa09, type: 2}
+  size: 100
   gridSize: {x: 25, y: 25}
   seed: 0
   romancesToSpawn: 6
   encountersToSpawn: 6
   shopsToSpawn: 6
-  allowedRepeatDistance: 3
+  allowedRepeatDistance: 2
+  discoverRadius: 2
   firstadjacents: []
 --- !u!4 &916584266
 Transform:
