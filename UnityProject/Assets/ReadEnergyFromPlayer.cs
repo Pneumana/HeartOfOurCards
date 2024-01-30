@@ -17,8 +17,8 @@ public class ReadEnergyFromPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tmp.text = playerController.currentEnergy + "/" + playerController.maxEnergy;
-        
+        if(playerController!=null)
+            tmp.text = playerController.currentEnergy + "/" + playerController.maxEnergy;
     }
     public void OOM()
     {

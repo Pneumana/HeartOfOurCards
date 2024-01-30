@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandManager : MonoBehaviour
+public class HandManager : NetworkBehaviour
 {
     public GameObject cardPrefab;
     public CardPlayerController player;
@@ -54,7 +54,8 @@ public class HandManager : MonoBehaviour
         }
         if (playedCard != null && !player.TurnEnded)
         {
-            previewLine.GetComponent<PointToTarget>().Display();
+            if (previewLine != null)
+                previewLine.GetComponent<PointToTarget>().Display();
         }
         //check for click on enemy
         CheckMouseOnEnemy();
@@ -82,7 +83,8 @@ public class HandManager : MonoBehaviour
             {
                 if (hit.collider.gameObject.GetComponent<CardEnemyController>() != null)
                 {
-                    previewLine.GetComponent<PointToTarget>().Display();
+                    if (previewLine != null)
+                        previewLine.GetComponent<PointToTarget>().Display();
                     if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         int playedCardIndex = 0;
@@ -94,14 +96,23 @@ public class HandManager : MonoBehaviour
                                 break;
                             }
                         }
-                        previewLine.GetComponent<PointToTarget>().Hide();
+                        if (previewLine != null)
+                            previewLine.GetComponent<PointToTarget>().Hide();
                         if (renderedHand[playedCardIndex].energyCost <= player.currentEnergy)
                         {
                             //local player check  here
-                            player.currentEnergy -= renderedHand[playedCardIndex].energyCost;
-                            player.deck.PlayCard(hit.collider.gameObject.transform.position, playedCardIndex);
-                            RefreshHand();
-                            playedCard = null;
+                            if (isLocalPlayer)
+                            {
+                                player.currentEnergy -= renderedHand[playedCardIndex].energyCost;
+                                player.deck.ServerPlayCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
+                                RefreshHand();
+                                playedCard = null;
+                            }
+                            else
+                            {
+                                player.deck.ServerSuggestCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
+                                playedCard = null;
+                            }
                         }
                         else
                         {
@@ -112,7 +123,8 @@ public class HandManager : MonoBehaviour
                 }
                 else
                 {
-                    previewLine.GetComponent<PointToTarget>().Hide();
+                    if (previewLine != null)
+                        previewLine.GetComponent<PointToTarget>().Hide();
                 }
             }
         }
@@ -137,7 +149,8 @@ public class HandManager : MonoBehaviour
                             selectedCard.transform.position -= selectedCard.transform.forward * (player.deck.hand.Count * 0.1f);
                         selectedCard = card;
                         card.transform.position += card.transform.forward * (player.deck.hand.Count * 0.1f);
-                        previewLine.transform.position = transform.position + transform.forward;
+                        if(previewLine!=null)
+                            previewLine.transform.position = transform.position + transform.forward;
                     }
 
                 }

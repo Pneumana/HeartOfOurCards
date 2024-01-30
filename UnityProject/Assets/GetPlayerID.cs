@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.UI;
 using Steamworks;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GetPlayerID : NetworkBehaviour
 {
@@ -17,15 +18,24 @@ public class GetPlayerID : NetworkBehaviour
     public TextMeshProUGUI PlayerNameText;
     public RawImage PlayerIcon;
 
+    public GameObject combatSceneUI;
+    public GameObject combatScene;
+    public GameObject player2combatSceneUI;
+    public GameObject player2combatScene;
+
     bool avatarRecieved;
 
     protected Callback<AvatarImageLoaded_t> ImageLoaded;
 
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
-
+        DontDestroyOnLoad(gameObject);
         ImageLoaded = Callback<AvatarImageLoaded_t>.Create(OnImageLoaded);
-        transform.SetParent(GameObject.Find("PlayerList").transform);
+        StartedScene();
         //StartCoroutine(Startup());
         if (netIdentity.isClientOnly)
         {
@@ -129,10 +139,45 @@ public class GetPlayerID : NetworkBehaviour
     }
     public override void OnStartClient()
     {
-        var nm = GameObject.Find("NetworkManager").GetComponent<AmbidexterousManager>();
-        nm.RenameLobby();
-        nm.UpdateAllPlayers();
+        if(SceneManager.GetActiveScene().name == "MultiplayerTest")
+        {
+            AmbidexterousManager.Instance.PlayerList.Add(this);
+            var nm = GameObject.Find("NetworkManager").GetComponent<AmbidexterousManager>();
+            nm.RenameLobby();
+            nm.UpdateAllPlayers();
+        }
     }
 
+    public void ReadyOfflinePlayer2()
+    {
+        player2combatScene.SetActive(true);
+        player2combatSceneUI.SetActive(true);
+    }
+    public void DisableOfflinePlayer2()
+    {
+        player2combatScene.SetActive(false);
+        player2combatSceneUI.SetActive(false);
+    }
+    public void RecallWorldObjects()
+    {
+        //reparents all objects to this
+        combatSceneUI.transform.SetParent(transform);
+        //DontDestroyOnLoad(gameObject);
+    }
+    public void StartedScene()
+    {
+        if (SceneManager.GetActiveScene().name == "MultiplayerTest")
+        {
+            //transform.SetParent(GameObject.Find("PlayerList").transform);
+        }
+        if (SceneManager.GetActiveScene().name == "ConnorTest")
+        {
 
+            combatScene.SetActive(true);
+            combatScene.transform.position = Vector3.zero + (Vector3.down * 1.89f);
+            combatSceneUI.SetActive(true);
+            combatSceneUI.transform.SetParent(GameObject.Find("Canvas").transform);
+            combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        }
+    }
 }

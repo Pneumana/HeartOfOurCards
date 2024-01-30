@@ -1,9 +1,10 @@
 
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPlayerController : MonoBehaviour
+public class CardPlayerController : NetworkBehaviour
 {
     public int currentEnergy;
     public int maxEnergy;
@@ -33,7 +34,8 @@ public class CardPlayerController : MonoBehaviour
     public void EndTurn()
     {
         TurnEnded = true;
-        GameObject.Find("TurnManager").GetComponent<TurnManager>().PlayerEndTurn(this);
+        Debug.Log("ended turn on client");
+        GameObject.Find("TurnManager").GetComponent<TurnManager>().ServerPlayerEndTurn(netId);
     }
     private void Update()
     {

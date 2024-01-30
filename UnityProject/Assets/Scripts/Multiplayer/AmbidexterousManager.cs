@@ -7,6 +7,7 @@ using kcp2k;
 using Mirror.FizzySteam;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class AmbidexterousManager : NetworkManager
 {
@@ -20,6 +21,11 @@ public class AmbidexterousManager : NetworkManager
     protected Callback<GameLobbyJoinRequested_t> JoinRequested;
     protected Callback<LobbyEnter_t> LobbyEntered;
 
+    public List<GetPlayerID> PlayerList = new List<GetPlayerID>();
+
+    //use a unique prefab for UI
+    public List<GetPlayerID> PlayerLobby = new List<GetPlayerID>();
+    //public List<GetPlayerID> PlayerList = new List<GetPlayerID>();
     //vars
     public ulong CurrentLobbyID;
     private const string HostAddressKey = "HostAddress";
@@ -29,11 +35,20 @@ public class AmbidexterousManager : NetworkManager
 
     public NetworkManagerHUD offlineHud;
     public GameObject onlineHud;
+
+    public bool PlayerObjectCreated = false;
+
+    [SerializeField] public GetPlayerID GamePlayerPrefab;
+
+    //keep track of all players here
+    public static AmbidexterousManager Instance;
+
     //public List<PlayerObjectController> GamePlayers { get; } = new List<PlayerObjectController> { };
     public override void Start()
     {
         base.Start();
-
+        if (Instance == null)
+            Instance = this;
 
 
     }
@@ -75,27 +90,60 @@ public class AmbidexterousManager : NetworkManager
 
         base.Awake();
     }
-
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        base.OnServerAddPlayer(conn);
+        //base.OnServerAddPlayer(conn);
+        if(SceneManager.GetActiveScene().name == "MultiplayerTest")
+        {
+
+/*        if (SceneManager.GetActiveScene().name == "MultiplayerTest")
+        {
+            Debug.Log("Player joined server");
+            //GetPlayerID GamePlayerInstance = Instantiate(GamePlayerPrefab);
+            //GamePlayerInstance.ConnectionID = conn.connectionId;
+            //GamePlayerInstance.PlayerIDNumber = GamePlayers.Count + 1;
+            //GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)SteamLobby.instance.CurrentLobbyID, PlayerList.Count);
+            //if (PlayerList.Count == 0)
+                //hostConnection = conn;
+                //NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
+        }*/
+
+        Debug.Log("added Player");
+        GetPlayerID player = Instantiate(GamePlayerPrefab);
+        NetworkServer.AddPlayerForConnection(conn, player.gameObject);
 
         Debug.Log($"There are {numPlayers} on the server");
-        for (int i = 0; i < NetworkServer.connections.Count; i++)
-        {
-            var player = NetworkServer.connections.ElementAt(i).Value;
-            var playerStartup = player.identity.GetComponent<GetPlayerID>();
-            playerStartup.RenameOnAll(i, player.identity.netId);
-            if (SteamManager.Initialized)
+            for (int i = 0; i < NetworkServer.connections.Count; i++)
             {
-                playerStartup.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CurrentLobbyID, i);
-                //foreach()
-            }
+            //NetworkServer.connections.ElementAt(i).Value
+                
+                
+                var playerStartup = player.GetComponent<GetPlayerID>();
+                
+                if (SteamManager.Initialized)
+                {
+                    playerStartup.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CurrentLobbyID, i);
+                    //foreach()
+                }
 
-            else
-            {
-            }
+                else
+                {
+                }
+                if (NetworkServer.connections.Count == 1)
+                {
+                    //enable Player2
+                    player.GetComponent<GetPlayerID>().ReadyOfflinePlayer2();
+                }
+                else
+                {
+                    player.GetComponent<GetPlayerID>().DisableOfflinePlayer2();
+                }
+
+            playerStartup.RenameOnAll(i, player.GetComponent<NetworkIdentity>().netId);
         }
+        }
+        
+
     }
     //Steam specific functions
     private void OnLobbyCreated(LobbyCreated_t callback)
@@ -127,7 +175,7 @@ public class AmbidexterousManager : NetworkManager
             //CurrentLobbyID = manager.GetComponent<SteamLobby>().CurrentLobbyID;
             LobbyText.text = SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "name");
         }
-            
+
         else
         {
             LobbyText.text = "Local Lobby";
@@ -139,7 +187,8 @@ public class AmbidexterousManager : NetworkManager
         for (int i = 0; i < NetworkServer.connections.Count; i++)
         {
             var player = NetworkServer.connections.ElementAt(i).Value;
-            player.identity.GetComponent<GetPlayerID>().SetPlayerValues();
+            if (player != null)
+                player.identity.GetComponent<GetPlayerID>().SetPlayerValues();
         }
     }
     public void CreateLobby()
@@ -150,4 +199,72 @@ public class AmbidexterousManager : NetworkManager
     public void CloseLobby()
     {
     }
+    public void StartGame()
+    {
+        /*        for (int i = 0; i < NetworkServer.connections.Count; i++)
+                {
+                    var player = NetworkServer.connections.ElementAt(i).Value;
+                    player.identity.GetComponent<GetPlayerID>().RecallWorldObjects();
+                }*/
+        ServerChangeScene("ConnorTest");
+    }
+    public override void OnServerChangeScene(string newSceneName)
+    {
+        base.OnServerChangeScene(newSceneName);
+        for (int i = 0; i < NetworkServer.connections.Count; i++)
+        {
+            var player = NetworkServer.connections.ElementAt(i).Value;
+            //player.identity.GetComponent<GetPlayerID>().StartedScene();
+        }
+    }
+
+    void UpdatePlayerList()
+    {
+
+        Debug.Log("updating player list");
+        if (!PlayerObjectCreated) { CreateHostPlayerItem(); } //Host
+        if (PlayerLobby.Count < PlayerList.Count) { CreateClientPlayerItem(); }
+        if (PlayerLobby.Count > PlayerList.Count) { RemovePlayerItem(); }
+        if (PlayerLobby.Count == PlayerList.Count) { UpdatePlayerItem(); }
+    }
+
+    void CreateHostPlayerItem()
+    {
+        Debug.Log("creating host player");
+        foreach (GetPlayerID player in PlayerList)
+        {
+            GameObject newPlayerItem = Instantiate(GamePlayerPrefab).gameObject;
+            GetPlayerID NewPlayerItemScript = newPlayerItem.GetComponent<GetPlayerID>();
+
+            NewPlayerItemScript.PlayerName = player.PlayerName;
+            //NewPlayerItemScript.ConnectionID = player.ConnectionID;
+            NewPlayerItemScript.PlayerSteamID = player.PlayerSteamID;
+            //NewPlayerItemScript.ready = player.PlayerReady;
+            NewPlayerItemScript.SetPlayerValues();
+
+            //newPlayerItem.transform.SetParent(PlayerListViewContent.transform);
+            newPlayerItem.transform.localScale = Vector3.one;
+            //newPlayerItem.name = "LocalPlayer";
+
+            PlayerLobby.Add(NewPlayerItemScript);
+
+            //LocalPlayerObject = newPlayerItem;
+        }
+
+        PlayerObjectCreated = true;
+    }
+
+    void CreateClientPlayerItem()
+    {
+
+    }
+    void RemovePlayerItem()
+    {
+
+    }
+    void UpdatePlayerItem()
+    {
+
+    }
+
 }

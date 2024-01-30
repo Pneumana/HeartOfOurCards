@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardEnemyController : MonoBehaviour
+public class CardEnemyController : NetworkBehaviour
 {
 
     public int currentEnergy;
@@ -50,7 +51,7 @@ public class CardEnemyController : MonoBehaviour
     public void TakeTurn()
     {
         //play picked card
-        deck.PlayCard(transform.forward);
+        deck.ServerPlayCard(netId, transform.forward, -1);
         EndTurn();
         PickCard();
         //pick a new card to play. 

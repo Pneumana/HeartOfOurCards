@@ -1,9 +1,10 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CardDeck : MonoBehaviour
+public class CardDeck : NetworkBehaviour
 {
     public List<ConnorCard> hand = new List<ConnorCard>();
     public List<ConnorCard> deck = new List<ConnorCard> ();
@@ -19,14 +20,14 @@ public class CardDeck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+/*        if (Input.GetKeyDown(KeyCode.Q))
         {
             DrawCard();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayCard(transform.forward);
-        }
+        }*/
     }
     public void DrawCard(int drawcount = 1)
     {
@@ -64,30 +65,44 @@ public class CardDeck : MonoBehaviour
         
 
     }
-    public void ServerPlayCard(int netID, Vector3 target, int playedCard = -1)
+    [ClientRpc]
+    public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
     {
+        Debug.Log("server recieved play request");
+        PlayCard(netID, target, playedCard);
         //run play card on all clients, checking for netID match so the same player uses them
     }
-    public void PlayCard(Vector3 target, int playedCard = -1)
+    [ClientRpc]
+    public void ServerSuggestCard(uint netID, Vector3 target, int playedCard)
     {
-        //if it doesn't meet the energy requirment, uhh yeah
-        if (hand.Count == 0)
+
+    }
+    public void PlayCard(uint netID, Vector3 target, int playedCard = -1)
+    {
+        Debug.Log("playing card on client");
+        //find object with netID
+        if (netID == netId)
         {
-            Debug.Log("hand is empty");
-            return;
+            //if it doesn't meet the energy requirment, uhh yeah
+            if (hand.Count == 0)
+            {
+                Debug.Log("hand is empty");
+                return;
+            }
+            if (playedCard == -1)
+                playedCard = Random.Range(0, hand.Count - 1);
+            foreach (GameObject proj in hand[playedCard].attackPrefab)
+            {
+                var attack = Instantiate(proj);
+                attack.transform.position = transform.position + (transform.forward * 2);
+                attack.transform.forward = new Vector3(target.x, attack.transform.position.y, target.z) - attack.transform.position;
+                attack.GetComponent<Rigidbody>().AddForce(attack.transform.forward * 10, ForceMode.Impulse);
+            }
+            discardPile.Add(hand[playedCard]);
+            Debug.Log("Played card " + hand[playedCard].cardName);
+            hand.Remove(hand[playedCard]);
         }
-        if(playedCard==-1)
-            playedCard = Random.Range(0, hand.Count - 1);
-        foreach(GameObject proj in hand[playedCard].attackPrefab)
-        {
-            var attack = Instantiate(proj);
-            attack.transform.position = transform.position + (transform.forward * 2);
-            attack.transform.forward = new Vector3(target.x, attack.transform.position.y, target.z) - attack.transform.position;
-            attack.GetComponent<Rigidbody>().AddForce(attack.transform.forward * 10,ForceMode.Impulse);
-        }
-        discardPile.Add(hand[playedCard]);
-        Debug.Log("Played card " + hand[playedCard].cardName);
-        hand.Remove(hand[playedCard]);
+        
 
     }
 }
