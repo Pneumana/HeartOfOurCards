@@ -150,4 +150,13 @@ public class TurnManager : NetworkBehaviour
         while (enemyLoopIndex<enemyTeam.Count);
         yield return null;
     }
+    public void GetEnemyList()
+    {
+        foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
+        {
+            Debug.Log(enemy.gameObject);
+            if (enemy != null)
+                enemyTeam.Add(enemy);
+        }
+    }
 }

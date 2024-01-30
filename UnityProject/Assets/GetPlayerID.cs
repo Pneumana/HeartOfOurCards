@@ -169,6 +169,21 @@ public class GetPlayerID : NetworkBehaviour
     }
     public void StartedScene()
     {
+        //disable player 2
+        if(AmbidexterousManager.Instance.PlayerList.Count == 1)
+        {
+            //enable localP2
+            player2combatScene.SetActive(true);
+            player2combatSceneUI.SetActive(true);
+        }
+        else
+        {
+            //disable
+            player2combatScene.SetActive(false);
+            player2combatSceneUI.SetActive(false);
+        }
+
+        Debug.Log("started scene on player");
         if (SceneManager.GetActiveScene().name == "MultiplayerTest")
         {
             //transform.SetParent(GameObject.Find("PlayerList").transform);
@@ -177,7 +192,16 @@ public class GetPlayerID : NetworkBehaviour
         {
 
             combatScene.SetActive(true);
-            combatScene.transform.position = Vector3.zero + (Vector3.down * 1.89f);
+            if (AmbidexterousManager.Instance.PlayerList[0] == this)
+            {
+                //this is p1
+                combatScene.transform.position = (Vector3.zero) + (Vector3.down * 1.89f);
+            }
+            else
+            {
+                combatScene.transform.position = (Vector3.right * 4) + (Vector3.down * 1.89f);
+            }
+            //combatScene.transform.position = Vector3.zero + (Vector3.down * 1.89f);
             combatSceneUI.SetActive(true);
             combatSceneUI.transform.SetParent(GameObject.Find("Canvas").transform);
             combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;

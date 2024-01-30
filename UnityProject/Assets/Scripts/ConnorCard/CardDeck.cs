@@ -58,26 +58,27 @@ public class CardDeck : NetworkBehaviour
                 var drawnCard = Random.Range(0, deck.Count - 1);
                 hand.Add(deck[drawnCard]);
                 deck.Remove(deck[drawnCard]);
-                Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
+                //Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
             }
             drawcount--;
         }
         
 
     }
-    [ClientRpc]
+    [Command(requiresAuthority =false)]
     public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
     {
         Debug.Log("server recieved play request");
         PlayCard(netID, target, playedCard);
         //run play card on all clients, checking for netID match so the same player uses them
     }
-    [ClientRpc]
+    [Command(requiresAuthority =false)]
     public void ServerSuggestCard(uint netID, Vector3 target, int playedCard)
     {
-
+        Debug.Log("card suggestions");
     }
-    public void PlayCard(uint netID, Vector3 target, int playedCard = -1)
+    [ClientRpc]
+    public void PlayCard(uint netID, Vector3 target, int playedCard)
     {
         Debug.Log("playing card on client");
         //find object with netID

@@ -45,17 +45,13 @@ public class AmbidexterousManager : NetworkManager
 
     public NetworkConnectionToClient hostConnection;
 
+    int loadedPlayers;
+
     //public List<PlayerObjectController> GamePlayers { get; } = new List<PlayerObjectController> { };
-    public override void Start()
-    {
-        base.Start();
-        if (Instance == null)
-            Instance = this;
-
-
-    }
     public override void Awake()
     {
+        if (Instance == null)
+            Instance = this;
         offlineHud = GetComponent<NetworkManagerHUD>();
         if (!ignoreSteam)
         {
@@ -88,6 +84,7 @@ public class AmbidexterousManager : NetworkManager
             Debug.Log("offline as DefaultName");
             transport = offline;
         }
+        DontDestroyOnLoad(transport.gameObject);
         base.Awake();
     }
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -95,24 +92,11 @@ public class AmbidexterousManager : NetworkManager
         //base.OnServerAddPlayer(conn);
         if(SceneManager.GetActiveScene().name == "MultiplayerTest")
         {
+            Debug.Log("added Player");
+            GetPlayerID player = Instantiate(GamePlayerPrefab);
+            NetworkServer.AddPlayerForConnection(conn, player.gameObject);
 
-/*        if (SceneManager.GetActiveScene().name == "MultiplayerTest")
-        {
-            Debug.Log("Player joined server");
-            //GetPlayerID GamePlayerInstance = Instantiate(GamePlayerPrefab);
-            //GamePlayerInstance.ConnectionID = conn.connectionId;
-            //GamePlayerInstance.PlayerIDNumber = GamePlayers.Count + 1;
-            //GamePlayerInstance.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)SteamLobby.instance.CurrentLobbyID, PlayerList.Count);
-            //if (PlayerList.Count == 0)
-                //hostConnection = conn;
-                //NetworkServer.AddPlayerForConnection(conn, GamePlayerInstance.gameObject);
-        }*/
-
-        Debug.Log("added Player");
-        GetPlayerID player = Instantiate(GamePlayerPrefab);
-        NetworkServer.AddPlayerForConnection(conn, player.gameObject);
-
-        Debug.Log($"There are {numPlayers} on the server");
+            Debug.Log($"There are {numPlayers} on the server");
             if (PlayerList.Count == 0)
                 hostConnection = conn;
         }
@@ -182,10 +166,19 @@ public class AmbidexterousManager : NetworkManager
                 }*/
         ServerChangeScene("ConnorTest");
     }
-    
+    public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
+    {
+        NetworkClient.ready = false;
+        base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
+    }
+    public override void OnClientNotReady()
+    {
+        base.OnClientNotReady();
+    }
     public override void OnServerSceneChanged(string newSceneName)
     {
-        base.OnServerSceneChanged(newSceneName);
+        //base.OnServerSceneChanged(newSceneName);
+        Debug.Log("server loaded");
         for (int i = 0; i < NetworkServer.connections.Count; i++)
         {
             var player = NetworkServer.connections.ElementAt(i).Value;
@@ -193,18 +186,48 @@ public class AmbidexterousManager : NetworkManager
         }
         NetworkClient.ready = true;
         NetworkServer.SetClientReady(hostConnection);
-        if(newSceneName == "ConnorTest")
+        //NetworkClient.PrepareToSpawnSceneObjects();
+        if (newSceneName == "ConnorTest")
         {
             Debug.LogWarning("entered card game scene");
             var enemySpawner = GameObject.Find("EnemySpawner");
+
             Debug.Log("found enemy spawner");
             //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
-            enemySpawner.GetComponent<EnemySpawner>().SpawnEnemy(Random.Range(1, 3));
+            enemySpawner.gameObject.GetComponent<EnemySpawner>().SpawnEnemy(Random.Range(1, 3));
         }
 
-        
+        foreach(GetPlayerID plr in PlayerList)
+        {
+            plr.StartedScene();
+        }
             
 
+    }
+    public override void OnClientSceneChanged()
+    {
+        EnemySpawner.instance.gameObject.SetActive(true);
+        base.OnClientSceneChanged();
+
+        Debug.Log("client loaded");
+        loadedPlayers++;
+        Debug.Log(loadedPlayers + " total clients loaded");
+
+        foreach (GetPlayerID plr in PlayerList)
+        {
+            plr.StartedScene();
+        }
+
+        var enemySpawner = GameObject.Find("EnemySpawner");
+        if(enemySpawner != null)
+            Debug.Log("found enemy spawner");
+        else
+        {
+            Debug.Log("unable to find enemy spawner");
+        }
+        //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
+
+        //EnemySpawner.instance.SpawnEnemy(Random.Range(1, 3));
     }
     IEnumerator FindEnemySpawner()
     {
@@ -247,6 +270,8 @@ public class AmbidexterousManager : NetworkManager
 
         PlayerObjectCreated = true;
     }
+
+
 
     void CreateClientPlayerItem()
     {

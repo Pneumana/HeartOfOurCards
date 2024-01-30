@@ -2,6 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandManager : NetworkBehaviour
 {
@@ -24,20 +25,34 @@ public class HandManager : NetworkBehaviour
 
     GameObject playedCard;
     GameObject previewLine;
+
+    bool refeshStart;
+
     //this should only do stuff for local player, probably
 
     // Start is called before the first frame update
     void Start()
     {
         previewLine = GameObject.Find("LocalPlayerLine");
-        RefreshHand();
+        //RefreshHand();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //add a condition to make this only update when a card is drawn
+        if (SceneManager.GetActiveScene().name != "ConnorTest")
+        {
+            refeshStart = true;
+            return;
+        }
 
+        //add a condition to make this only update when a card is drawn
+        if (refeshStart)
+        {
+            HandPosition = transform.position + (transform.forward * 2 + transform.up * 2);
+            RefreshHand();
+            refeshStart = false;
+        }
         //raycast to world from mouse position.
         //if result is one of the renderedHand cards, and the player clicks, play that card
         CheckMouseOverCard();
@@ -175,7 +190,7 @@ public class HandManager : NetworkBehaviour
             }
         }
     }
-
+    [ContextMenu("Refresh Hand")]
     public void RefreshHand()
     {
         renderedHand = player.deck.hand;
