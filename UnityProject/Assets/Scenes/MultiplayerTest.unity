@@ -173,7 +173,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 0}
+  transport: {fileID: 1299732236}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -182,7 +182,9 @@ MonoBehaviour:
   playerPrefab: {fileID: 7085487310239617887, guid: 061c0ad919303fb42870444b6006da5b, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 1115048136592082124, guid: f3fb331b830b1d94cb95dbe1d734a247, type: 3}
+  - {fileID: 5130907772930195866, guid: c5f781e7e60486f41a080177971eb679, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2

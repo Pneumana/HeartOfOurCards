@@ -147,7 +147,10 @@ public class GetPlayerID : NetworkBehaviour
             nm.UpdateAllPlayers();
         }
     }
-
+    public override void OnStartAuthority()
+    {
+        gameObject.name = "LocalPlayer";
+    }
     public void ReadyOfflinePlayer2()
     {
         player2combatScene.SetActive(true);

@@ -43,6 +43,8 @@ public class AmbidexterousManager : NetworkManager
     //keep track of all players here
     public static AmbidexterousManager Instance;
 
+    public NetworkConnectionToClient hostConnection;
+
     //public List<PlayerObjectController> GamePlayers { get; } = new List<PlayerObjectController> { };
     public override void Start()
     {
@@ -86,8 +88,6 @@ public class AmbidexterousManager : NetworkManager
             Debug.Log("offline as DefaultName");
             transport = offline;
         }
-
-
         base.Awake();
     }
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -113,34 +113,8 @@ public class AmbidexterousManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player.gameObject);
 
         Debug.Log($"There are {numPlayers} on the server");
-            for (int i = 0; i < NetworkServer.connections.Count; i++)
-            {
-            //NetworkServer.connections.ElementAt(i).Value
-                
-                
-                var playerStartup = player.GetComponent<GetPlayerID>();
-                
-                if (SteamManager.Initialized)
-                {
-                    playerStartup.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CurrentLobbyID, i);
-                    //foreach()
-                }
-
-                else
-                {
-                }
-                if (NetworkServer.connections.Count == 1)
-                {
-                    //enable Player2
-                    player.GetComponent<GetPlayerID>().ReadyOfflinePlayer2();
-                }
-                else
-                {
-                    player.GetComponent<GetPlayerID>().DisableOfflinePlayer2();
-                }
-
-            playerStartup.RenameOnAll(i, player.GetComponent<NetworkIdentity>().netId);
-        }
+            if (PlayerList.Count == 0)
+                hostConnection = conn;
         }
         
 
@@ -208,16 +182,36 @@ public class AmbidexterousManager : NetworkManager
                 }*/
         ServerChangeScene("ConnorTest");
     }
-    public override void OnServerChangeScene(string newSceneName)
+    
+    public override void OnServerSceneChanged(string newSceneName)
     {
-        base.OnServerChangeScene(newSceneName);
+        base.OnServerSceneChanged(newSceneName);
         for (int i = 0; i < NetworkServer.connections.Count; i++)
         {
             var player = NetworkServer.connections.ElementAt(i).Value;
             //player.identity.GetComponent<GetPlayerID>().StartedScene();
         }
-    }
+        NetworkClient.ready = true;
+        NetworkServer.SetClientReady(hostConnection);
+        if(newSceneName == "ConnorTest")
+        {
+            Debug.LogWarning("entered card game scene");
+            var enemySpawner = GameObject.Find("EnemySpawner");
+            Debug.Log("found enemy spawner");
+            //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
+            enemySpawner.GetComponent<EnemySpawner>().SpawnEnemy(Random.Range(1, 3));
+        }
 
+        
+            
+
+    }
+    IEnumerator FindEnemySpawner()
+    {
+        yield return new WaitForSeconds(0.1f);
+        
+        yield return null;
+    }
     void UpdatePlayerList()
     {
 

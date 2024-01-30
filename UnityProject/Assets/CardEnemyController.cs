@@ -19,6 +19,8 @@ public class CardEnemyController : NetworkBehaviour
 
     private void Start()
     {
+        
+        NetworkServer.Spawn(gameObject, AmbidexterousManager.Instance.PlayerList[0].gameObject);
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //pick a card to play
