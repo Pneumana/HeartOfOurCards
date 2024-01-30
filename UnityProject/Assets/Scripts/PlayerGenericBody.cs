@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericBody : MonoBehaviour
+public class PlayerGenericBody : MonoBehaviour
 {
     [Header("Health")]
     public int health;
@@ -14,25 +14,29 @@ public class GenericBody : MonoBehaviour
     public int freeze;
     public int vulnerable;
     public int stun;
-    public int stength;
-    public int dexterity;
     public int regen;
     public int bleed;
 
-    //any % increases should use CeilToInt() so it all stays as ints
 
-    //replace gameobject with netID
+    public RunManager RM;
+
+    private void Start()
+    {
+        RM = GetComponent<RunManager>();
+        maxHealth = ((RM.player1Stats.CON * 2) + (RM.player2Stats.CON * 2));
+    }
+
     public void TakeDamage(int damageRecieved)
     {
         var damageToTake = damageRecieved;
         var shieldThisTurn = shield;
         //shield damage block
-        while (shieldThisTurn > 0 && damageToTake > 0) 
+        while (shieldThisTurn > 0 && damageToTake > 0)
         {
             shieldThisTurn--;
             damageToTake--;
         }
-        health-=damageToTake;
+        health -= damageToTake;
 
     }
 
@@ -50,7 +54,7 @@ public class GenericBody : MonoBehaviour
         shield += shieldRecieved;
     }
 
-    public void OnEnemyTurnStart()
+    public void OnTurnStart()
     {
         shield = 0;
 
@@ -82,4 +86,5 @@ public class GenericBody : MonoBehaviour
             vulnerable--;
         }
     }
+    
 }

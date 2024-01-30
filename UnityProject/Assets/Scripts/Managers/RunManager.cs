@@ -22,10 +22,10 @@ public class RunManager : MonoBehaviour
 
     public struct PlayerStats
     {
-        public int DMG;
-        public int INT;
-        public int NRG;
-        public int CON;//or evasion?
+        public int DMG; //Overkill
+        public int INT; //Logic
+        public int NRG; //Velocity
+        public int CON;//or evasion? //Endurance
     }
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;

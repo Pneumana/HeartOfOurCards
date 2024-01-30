@@ -25,7 +25,8 @@ namespace Enums
     {
         Attack,
         Heal,
-        Block,
+        AllyBlock,
+        EnemyBlock,
         Draw,
         EarnMana,
         LifeSteal,
@@ -34,7 +35,9 @@ namespace Enums
         Exhaust,
         Burn,
         Frost,
-        SpawnCards
+        Bleed,
+        SpawnCards,
+        TempOverkill
     }
 
     public enum CharacterType
@@ -85,7 +88,8 @@ namespace Enums
         Frozen,
         Burn,
         Stun,
-        Vulnerable
+        Vulnerable,
+        Bleed
     }
 
     public enum CardType
