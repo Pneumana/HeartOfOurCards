@@ -60,7 +60,7 @@ public class CardEnemyController : NetworkBehaviour
     }
     void PickCard()
     {
-        deck.DrawCard();
+        deck.ServerDrawCard(1);
         ConnorCard pickedCard = null;
         if(deck.hand.Count > 0)
             pickedCard = deck.hand[Random.Range(0, deck.hand.Count - 1)];

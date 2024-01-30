@@ -18,12 +18,13 @@ public class HandManager : NetworkBehaviour
 
     List<ConnorCard> renderedHand = new List<ConnorCard>();
     public List<GameObject> cards = new List<GameObject> ();
-
+    Dictionary<GameObject, int> hand = new Dictionary<GameObject, int>();
     //compare the local player to this number. if they dont match,
     //any attempted plays will result in "suggest playing card targeting X" with a visual ping
     public int OwnedBy;
 
     GameObject playedCard;
+    public string clickedCardName;
     GameObject previewLine;
 
     bool refeshStart;
@@ -52,6 +53,7 @@ public class HandManager : NetworkBehaviour
             HandPosition = transform.position + (transform.forward * 2 + transform.up * 2);
             RefreshHand();
             refeshStart = false;
+            previewLine = GameObject.Find("LocalPlayerLine");
         }
         //raycast to world from mouse position.
         //if result is one of the renderedHand cards, and the player clicks, play that card
@@ -103,11 +105,21 @@ public class HandManager : NetworkBehaviour
                     if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         int playedCardIndex = 0;
-                        for (int i = 0; i > cards.Count; i++)
+                        /*for (int i = 0; i > cards.Count; i++)
                         {
                             if (cards[i] == playedCard)
                             {
+                                Debug.Log(renderedHand[i].cardName + " with index " + i + " is the played card");
                                 playedCardIndex = i;
+                                break;
+                            }
+                        }*/
+                        foreach(GameObject card in hand.Keys)
+                        {
+                            if(card==playedCard)
+                            {
+                                playedCardIndex = hand[card];
+                                Debug.Log(renderedHand[hand[card]].cardName + " with index " + hand[card] + " is the played card");
                                 break;
                             }
                         }
@@ -119,6 +131,7 @@ public class HandManager : NetworkBehaviour
                             if (isLocalPlayer)
                             {
                                 player.currentEnergy -= renderedHand[playedCardIndex].energyCost;
+                                Debug.Log("played card with ID " + playedCardIndex);
                                 player.deck.ServerPlayCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
                                 RefreshHand();
                                 playedCard = null;
@@ -199,6 +212,7 @@ public class HandManager : NetworkBehaviour
             Destroy(go);
         }
         cards.Clear();
+        hand.Clear();
         for (int i = 0; i < renderedHand.Count; i++)
         {
             //Debug.Log("rendering new card");
@@ -207,6 +221,7 @@ public class HandManager : NetworkBehaviour
             n.GetComponent<ConnorCardController>().card = renderedHand[i];
             n.transform.LookAt(Camera.main.transform.position);
             cards.Add(n);
+            hand.Add(n, i);
         }
         
     }

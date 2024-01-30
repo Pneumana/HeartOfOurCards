@@ -29,7 +29,16 @@ public class CardDeck : NetworkBehaviour
             PlayCard(transform.forward);
         }*/
     }
-    public void DrawCard(int drawcount = 1)
+    [Command(requiresAuthority =false)]
+    public void ServerDrawCard(int drawcount)
+    {
+        int drawnCard = Random.Range(0, deck.Count - 1);
+        Debug.Log(drawnCard + " was drawn from deck of " + (deck.Count-1));
+        //deck.Remove(deck[drawnCard]);
+        DrawCard(drawcount, drawnCard);
+    }
+    [ClientRpc]
+    public void DrawCard(int drawcount, int drawnCard)
     {
         while(drawcount > 0)
         {
@@ -55,20 +64,32 @@ public class CardDeck : NetworkBehaviour
             }
             else
             {
-                var drawnCard = Random.Range(0, deck.Count - 1);
-                hand.Add(deck[drawnCard]);
-                deck.Remove(deck[drawnCard]);
-                //Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
+                //var drawnCard = Random.Range(0, deck.Count - 1);
+                try
+                {
+                    if (drawnCard > deck.Count - 1)
+                    {
+                        drawnCard = deck.Count - 1;
+                    }
+                    hand.Add(deck[drawnCard]);
+                    deck.Remove(deck[drawnCard]);
+                    Debug.Log(deck.Count);
+                    Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
+                }
+                catch { Debug.LogWarning(drawnCard + " is greater than the remaining deck " + (deck.Count - 1)); }
+
             }
             drawcount--;
         }
-        
+        GetComponent<HandManager>().RefreshHand();
 
     }
     [Command(requiresAuthority =false)]
     public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
     {
         Debug.Log("server recieved play request");
+        if (playedCard == -1)
+            playedCard = Random.Range(0, hand.Count - 1);
         PlayCard(netID, target, playedCard);
         //run play card on all clients, checking for netID match so the same player uses them
     }
@@ -90,8 +111,7 @@ public class CardDeck : NetworkBehaviour
                 Debug.Log("hand is empty");
                 return;
             }
-            if (playedCard == -1)
-                playedCard = Random.Range(0, hand.Count - 1);
+            
             foreach (GameObject proj in hand[playedCard].attackPrefab)
             {
                 var attack = Instantiate(proj);
@@ -103,7 +123,7 @@ public class CardDeck : NetworkBehaviour
             Debug.Log("Played card " + hand[playedCard].cardName);
             hand.Remove(hand[playedCard]);
         }
-        
 
+        GetComponent<HandManager>().RefreshHand();
     }
 }

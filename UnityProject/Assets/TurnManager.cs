@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TurnManager : NetworkBehaviour
 {
     public List<CardPlayerController> playerTeam = new List<CardPlayerController>();
-    public List<CardEnemyController> enemyTeam = new List<CardEnemyController> ();
+    public List<CardEnemyController> enemyTeam = new List<CardEnemyController>();
 
     public List<CardPlayerController> turnEnded = new List<CardPlayerController>();
     public List<CardEnemyController> enemyTurnEnded = new List<CardEnemyController>();
@@ -17,10 +17,12 @@ public class TurnManager : NetworkBehaviour
 
     public int endedTurns;
 
-
+    public static TurnManager instance;
 
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
         //SceneManager.sceneLoaded += this.OnLoadCallback;
         Invoke("OnLoadCallback", 0.1f);
     }
@@ -34,7 +36,7 @@ public class TurnManager : NetworkBehaviour
         foreach (CardPlayerController player in FindObjectsByType<CardPlayerController>(FindObjectsSortMode.None))
         {
             Debug.Log(player.gameObject);
-            if(player!=null)
+            if (player != null)
                 playerTeam.Add(player);
         }
     }
@@ -50,7 +52,7 @@ public class TurnManager : NetworkBehaviour
             }
         }*/
     }
-    [Command(requiresAuthority =false)]
+    [Command(requiresAuthority = false)]
     public void ServerPlayerEndTurn(uint netID)
     {
         Debug.Log("ended turn on server");
@@ -66,8 +68,8 @@ public class TurnManager : NetworkBehaviour
         {
             if (netid.netId == netID)
             {
-                
-                Debug.Log("found netID match");
+
+                Debug.Log("found netID " + netid.name);
                 //turnEnder = netid.gameObject.GetComponent<CardPlayerController>();
                 var localPlayerControllers = netid.gameObject.GetComponentsInChildren<CardPlayerController>();
                 Debug.Log("matched player has " + localPlayerControllers.Length + " player controllers");
@@ -124,7 +126,7 @@ public class TurnManager : NetworkBehaviour
                 isPlayerTurn = true;
                 enemyTurnEnded.Clear();
                 Debug.Log("enemy turn ended");
-                foreach(CardPlayerController plr in playerTeam)
+                foreach (CardPlayerController plr in playerTeam)
                 {
                     plr.StartTurn();
                 }
@@ -132,12 +134,16 @@ public class TurnManager : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
+    [Command(requiresAuthority =false)]
     void ServerStartEnemyTurns()
+    {
+        ClientStartEnemyTurns();
+    }
+    [ClientRpc]
+    void ClientStartEnemyTurns()
     {
         StartCoroutine(EnemyTurnLoop());
     }
-
     IEnumerator EnemyTurnLoop()
     {
         int enemyLoopIndex = 0;

@@ -3,6 +3,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CardPlayerController : NetworkBehaviour
 {
@@ -12,6 +13,8 @@ public class CardPlayerController : NetworkBehaviour
     GenericBody body;
     public CardDeck deck;
     public ReadEnergyFromPlayer energydisplay;
+
+    public bool started;
     //network stuff
 
     private void Start()
@@ -20,12 +23,27 @@ public class CardPlayerController : NetworkBehaviour
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //load from run manager?
-
-        deck.DrawCard(4);
+/*        if(SceneManager.GetActiveScene().name == "Game")
+        deck.DrawCard(4);*/
     }
+
+    public void StartEncounter()
+    {
+        if (started)
+            return;
+        currentEnergy = maxEnergy;
+        body = GetComponent<GenericBody>();
+        deck = GetComponent<CardDeck>();
+        deck.ServerDrawCard(4);
+
+        GetComponent<HandManager>().HandPosition = transform.position + (transform.forward * 2) + Vector3.up;
+        GetComponent<HandManager>().RefreshHand();
+        started = true;
+    }
+
     public void StartTurn()
     {
-        deck.DrawCard();
+        deck.ServerDrawCard(1);
         TurnEnded = false;
         currentEnergy = maxEnergy;
         GetComponent<HandManager>().RefreshHand();

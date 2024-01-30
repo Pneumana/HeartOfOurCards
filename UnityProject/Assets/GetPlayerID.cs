@@ -128,7 +128,7 @@ public class GetPlayerID : NetworkBehaviour
             if (SteamManager.Initialized)
             {
                 GetPlayerIcon();
-                transform.localScale = new Vector3(1, -1, 1);
+                PlayerIcon.transform.localScale = new Vector3(1, -1, 1);
             }
             else
             {
@@ -165,6 +165,14 @@ public class GetPlayerID : NetworkBehaviour
     {
         //reparents all objects to this
         combatSceneUI.transform.SetParent(transform);
+        player2combatScene.transform.SetParent(combatScene.transform);
+        combatScene.transform.SetParent(transform);
+        var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
+        foreach (CardPlayerController cpc in playerControllers)
+        {
+            cpc.started = false;
+        }
+        PlayerIcon.transform.SetParent(transform);
         //DontDestroyOnLoad(gameObject);
     }
     public void StartedScene()
@@ -192,19 +200,37 @@ public class GetPlayerID : NetworkBehaviour
         {
 
             combatScene.SetActive(true);
+            combatSceneUI.SetActive(true);
             if (AmbidexterousManager.Instance.PlayerList[0] == this)
             {
                 //this is p1
+                Debug.Log("player1");
                 combatScene.transform.position = (Vector3.zero) + (Vector3.down * 1.89f);
+                combatSceneUI.transform.SetParent(GameObject.Find("Player1TurnUI").transform);
+                combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             }
             else
             {
+                Debug.Log("player 2");
                 combatScene.transform.position = (Vector3.right * 4) + (Vector3.down * 1.89f);
+                combatSceneUI.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
+                combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             }
             //combatScene.transform.position = Vector3.zero + (Vector3.down * 1.89f);
-            combatSceneUI.SetActive(true);
-            combatSceneUI.transform.SetParent(GameObject.Find("Canvas").transform);
-            combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+
+
+            player2combatSceneUI.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
+            player2combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+            PlayerIcon.transform.SetParent(GameObject.Find("Canvas").transform);
+            PlayerIcon.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            //combatscene CardPlayerController.handmanager.UpdateHand pos
+            var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
+            foreach (CardPlayerController cpc in playerControllers)
+            {
+                cpc.StartEncounter();
+            }
         }
     }
 }

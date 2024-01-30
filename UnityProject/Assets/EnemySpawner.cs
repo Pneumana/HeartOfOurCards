@@ -28,7 +28,7 @@ public class EnemySpawner : NetworkBehaviour
         {
             setUp = true;
             ClientSpawnEnemy();
-            GameObject.Find("TurnManager").GetComponent<TurnManager>().GetEnemyList();
+            TurnManager.instance.GetEnemyList();
         }
     }
     [Command(requiresAuthority = false)]
