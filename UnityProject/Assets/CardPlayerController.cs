@@ -34,13 +34,22 @@ public class CardPlayerController : NetworkBehaviour
         currentEnergy = maxEnergy;
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
-        deck.ServerDrawCard(4);
+        if (isOwned)
+        {
+            deck.ServerDrawCard(4);
+        }
+        
 
         GetComponent<HandManager>().HandPosition = transform.position + (transform.forward * 2) + Vector3.up;
         GetComponent<HandManager>().RefreshHand();
         started = true;
     }
-
+    [Command(requiresAuthority = false)]
+    public void CMDStartTurn()
+    {
+        StartTurn();
+    }
+    [ClientRpc]
     public void StartTurn()
     {
         deck.ServerDrawCard(1);
@@ -51,9 +60,13 @@ public class CardPlayerController : NetworkBehaviour
     }
     public void EndTurn()
     {
-        TurnEnded = true;
-        Debug.Log("ended turn on client");
-        GameObject.Find("TurnManager").GetComponent<TurnManager>().ServerPlayerEndTurn(netId);
+        if (isLocalPlayer)
+        {
+            TurnEnded = true;
+            Debug.Log("ended turn on client");
+            GameObject.Find("TurnManager").GetComponent<TurnManager>().ServerPlayerEndTurn(netId);
+        }
+        
     }
     private void Update()
     {

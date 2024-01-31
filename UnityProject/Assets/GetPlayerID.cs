@@ -218,12 +218,12 @@ public class GetPlayerID : NetworkBehaviour
             }
             //combatScene.transform.position = Vector3.zero + (Vector3.down * 1.89f);
 
-
+            
 
             player2combatSceneUI.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
             player2combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
-            PlayerIcon.transform.SetParent(GameObject.Find("Canvas").transform);
+            PlayerIcon.transform.SetParent(GameObject.Find("PlayerIconAnchor").transform);
             PlayerIcon.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             //combatscene CardPlayerController.handmanager.UpdateHand pos
             var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();

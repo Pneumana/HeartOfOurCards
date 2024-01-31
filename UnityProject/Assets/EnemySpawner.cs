@@ -27,8 +27,8 @@ public class EnemySpawner : NetworkBehaviour
         if(!setUp)
         {
             setUp = true;
-            ClientSpawnEnemy();
-            TurnManager.instance.GetEnemyList();
+            //ClientSpawnEnemy();
+            
         }
     }
     [Command(requiresAuthority = false)]
@@ -37,8 +37,20 @@ public class EnemySpawner : NetworkBehaviour
         Debug.Log("Running server enemy spawn");
         EnemySpawns = _EnemySpawns;
         serverOk = true;
-        
+
+        int spawns = 0;
+        while(EnemySpawns > 0)
+        {
+            var enemy = Instantiate(AmbidexterousManager.Instance.spawnPrefabs[2]);
+            enemy.transform.position += Vector3.left * spawns;
+            NetworkServer.Spawn(enemy);
+            spawns++;
+            EnemySpawns--;
+            //TurnManager.instance.enemyTeam.Add(enemy.GetComponent<CardEnemyController>());
+        }
+        TurnManager.instance.GetEnemyList();
     }
+    /*[ClientRpc]
     public void ClientSpawnEnemy()
     {
         Debug.Log("Running client enemy spawn");
@@ -51,5 +63,5 @@ public class EnemySpawner : NetworkBehaviour
             previousSpawns++;
             EnemySpawns--;
         }
-    }
+    }*/
 }

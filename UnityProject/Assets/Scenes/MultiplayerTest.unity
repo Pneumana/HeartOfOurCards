@@ -185,6 +185,7 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 1115048136592082124, guid: f3fb331b830b1d94cb95dbe1d734a247, type: 3}
   - {fileID: 5130907772930195866, guid: c5f781e7e60486f41a080177971eb679, type: 3}
+  - {fileID: 5130907772930195866, guid: c5f781e7e60486f41a080177971eb679, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -202,7 +203,7 @@ MonoBehaviour:
   timeInterpolationGui: 0
   offline: {fileID: 1299732236}
   online: {fileID: 1822606868}
-  ignoreSteam: 1
+  ignoreSteam: 0
   PlayerList: []
   PlayerLobby: []
   CurrentLobbyID: 0

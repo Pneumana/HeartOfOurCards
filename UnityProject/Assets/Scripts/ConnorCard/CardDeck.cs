@@ -30,7 +30,7 @@ public class CardDeck : NetworkBehaviour
         }*/
     }
     [Command(requiresAuthority =false)]
-    public void ServerDrawCard(int drawcount)
+    public async void ServerDrawCard(int drawcount)
     {
         int drawnCard = Random.Range(0, deck.Count - 1);
         Debug.Log(drawnCard + " was drawn from deck of " + (deck.Count-1));
@@ -81,7 +81,12 @@ public class CardDeck : NetworkBehaviour
             }
             drawcount--;
         }
-        GetComponent<HandManager>().RefreshHand();
+        try
+        {
+            GetComponent<HandManager>().RefreshHand();
+        }
+        catch { }
+
 
     }
     [Command(requiresAuthority =false)]
@@ -123,7 +128,10 @@ public class CardDeck : NetworkBehaviour
             Debug.Log("Played card " + hand[playedCard].cardName);
             hand.Remove(hand[playedCard]);
         }
-
-        GetComponent<HandManager>().RefreshHand();
+        try
+        {
+            GetComponent<HandManager>().RefreshHand();
+        }
+        catch { }
     }
 }

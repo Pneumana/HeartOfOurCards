@@ -12,7 +12,7 @@ public class HandManager : NetworkBehaviour
     public GameObject selectedCard;
 
     public Vector3 HandPosition;
-    static float cardSpread = 0.1f;
+    //static float cardSpread = 0.1f;
     static float angleMax = 90;
     //define bounds here and divide between hand size
 
@@ -213,13 +213,18 @@ public class HandManager : NetworkBehaviour
         }
         cards.Clear();
         hand.Clear();
+        var baseAngle = -angleMax / 2;
+        var spacing = angleMax / (renderedHand.Count);
         for (int i = 0; i < renderedHand.Count; i++)
         {
+            var currentSpace = spacing * (i + 1);
             //Debug.Log("rendering new card");
             var n = Instantiate(cardPrefab);
-            n.transform.position = HandPosition + (new Vector3(0.1f, 0.1f, 0) * i);
+
             n.GetComponent<ConnorCardController>().card = renderedHand[i];
-            n.transform.LookAt(Camera.main.transform.position);
+            n.transform.forward = -Camera.main.transform.forward;
+            n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
+            n.transform.position = HandPosition + (transform.forward * 0.1f * i);
             cards.Add(n);
             hand.Add(n, i);
         }

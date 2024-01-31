@@ -128,7 +128,7 @@ public class TurnManager : NetworkBehaviour
                 Debug.Log("enemy turn ended");
                 foreach (CardPlayerController plr in playerTeam)
                 {
-                    plr.StartTurn();
+                    plr.CMDStartTurn();
                 }
             }
         }
@@ -137,32 +137,45 @@ public class TurnManager : NetworkBehaviour
     [Command(requiresAuthority =false)]
     void ServerStartEnemyTurns()
     {
+        StartCoroutine(EnemyTurnLoop());
         ClientStartEnemyTurns();
     }
     [ClientRpc]
     void ClientStartEnemyTurns()
     {
-        StartCoroutine(EnemyTurnLoop());
+        //StartCoroutine(EnemyTurnLoop());
     }
     IEnumerator EnemyTurnLoop()
     {
         int enemyLoopIndex = 0;
         do
         {
-            enemyTeam[enemyLoopIndex].TakeTurn();
             yield return new WaitForSeconds(0.5f);
+            enemyTeam[enemyLoopIndex].TakeTurn();
             enemyLoopIndex++;
         }
         while (enemyLoopIndex<enemyTeam.Count);
         yield return null;
     }
+    [Command(requiresAuthority =false)]
+    public void CMDGetEnemyList()
+    {
+        GetEnemyList();
+    }
+    [ClientRpc]
     public void GetEnemyList()
     {
         foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
         {
-            Debug.Log(enemy.gameObject);
+            Debug.Log("added new enemy: " + enemy.gameObject);
             if (enemy != null)
+            {
                 enemyTeam.Add(enemy);
+                enemy.deck = enemy.GetComponent<CardDeck>();
+                enemy.deck.ServerDrawCard(1);
+                enemy.ServerDisplayEnemyCard();
+            }
+
         }
     }
 }

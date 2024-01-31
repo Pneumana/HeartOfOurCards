@@ -95,7 +95,8 @@ public class AmbidexterousManager : NetworkManager
             Debug.Log("added Player");
             GetPlayerID player = Instantiate(GamePlayerPrefab);
             NetworkServer.AddPlayerForConnection(conn, player.gameObject);
-
+            if(SteamManager.Initialized)
+                player.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CurrentLobbyID, PlayerList.Count);
             Debug.Log($"There are {numPlayers} on the server");
             if (PlayerList.Count == 0)
                 hostConnection = conn;
@@ -194,7 +195,9 @@ public class AmbidexterousManager : NetworkManager
 
             Debug.Log("found enemy spawner");
             //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
-            enemySpawner.gameObject.GetComponent<EnemySpawner>().SpawnEnemy(Random.Range(1, 3));
+            var rand = Random.Range(1, 3);
+            enemySpawner.gameObject.GetComponent<EnemySpawner>().SpawnEnemy(rand);
+            Debug.Log(rand + " enemies to spawn");
         }
 
         foreach(GetPlayerID plr in PlayerList)
