@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
+  m_Name: Producer
+  m_EditorClassIdentifier: 
+  Name: Producer
+  pss: her
+  pnd: she
+  Color: {r: 0.21176472, g: 0.10980393, b: 0.16078432, a: 0}
+  Default: {fileID: 21300000, guid: b0dd83c6bd0ddc64da0a9dbf65be9647, type: 3}
+  DefaultPoseOffset: {x: 88, y: -55}
+  Iris: {fileID: 21300000, guid: f3bb7038a2df2f244897506b32cdb2d3, type: 3}
+  OpenLines: {fileID: 21300000, guid: c86983ce184a7a84cb5f37dc7cbd54bc, type: 3}
+  OpenMask: {fileID: 21300000, guid: afac386ca33eac74ba9339450b9ae750, type: 3}
+  SquintLines: {fileID: 21300000, guid: f1cb6d0cbfa810c47bdb5fc723b31437, type: 3}
+  SquintMask: {fileID: 21300000, guid: 08ed311c5301538429cf1a4ecb0514fb, type: 3}
+  ClosedLines: {fileID: 21300000, guid: 4ba0252f77e9ae3468d81da3e7323199, type: 3}

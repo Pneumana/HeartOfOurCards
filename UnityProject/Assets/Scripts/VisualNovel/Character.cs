@@ -13,5 +13,16 @@ public class Character : ScriptableObject
     public string pnd;
     [Header("Character Display name Color")]
     public Color Color;
-
+    [Header("Character Poses")]
+    public Sprite Default;
+    //upon changing to this pose, the character controller will set it's position to this value
+    public Vector2 DefaultPoseOffset;
+    [Header("Character Eyes")]
+    public Sprite Iris;
+    public Sprite OpenLines;
+    public Sprite OpenMask;
+    public Sprite SquintLines;
+    public Sprite SquintMask;
+    public Sprite ClosedLines;
+    //no need for a mask for closed eyes, just disable the mask sprite and the iris
 }
