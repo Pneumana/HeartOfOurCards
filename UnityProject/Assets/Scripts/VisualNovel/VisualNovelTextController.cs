@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class VisualNovelTextController : MonoBehaviour
+using Mirror;
+public class VisualNovelTextController : NetworkBehaviour
 {
     float skipCD;
+    public VNSyncer VNSyncer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +23,21 @@ public class VisualNovelTextController : MonoBehaviour
         {
             AdvanceToNext();
         }
-        if(Input.mouseScrollDelta.y > 0)
+/*        if(Input.mouseScrollDelta.y > 0)
         {
             GoBack();
-        }
+        }*/
     }
     public void AdvanceToNext()
     {
         if (skipCD < 0)
         {
-            var dd = GameObject.Find("DialougeDisplayer").GetComponent<DialougeDisplayer>();
+            var VNSyncer = GameObject.Find("VNSyncer").GetComponent<VNSyncer>();
+            Debug.Log("clicked to progress");
+            VNSyncer.CMDProgressDialouge();
+            /*var dd = GameObject.Find("DialougeDisplayer").GetComponent<DialougeDisplayer>();
             if (!dd.displayingChoice)
-                dd.SkipTo(-1, false);
+                dd.SkipTo(-1, false);*/
             skipCD = 0.1f;
         }
 

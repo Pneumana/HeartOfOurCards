@@ -167,6 +167,17 @@ public class AmbidexterousManager : NetworkManager
                 }*/
         ServerChangeScene("ConnorTest");
     }
+
+    public void GoToVN()
+    {
+        /*        for (int i = 0; i < NetworkServer.connections.Count; i++)
+                {
+                    var player = NetworkServer.connections.ElementAt(i).Value;
+                    player.identity.GetComponent<GetPlayerID>().RecallWorldObjects();
+                }*/
+        ServerChangeScene("SampleScene");
+    }
+
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
     {
         NetworkClient.ready = false;
@@ -209,17 +220,23 @@ public class AmbidexterousManager : NetworkManager
     }
     public override void OnClientSceneChanged()
     {
-        EnemySpawner.instance.gameObject.SetActive(true);
+        var activeSceneName = SceneManager.GetActiveScene().name;
+        if (activeSceneName == "ConnorTest")
+        {
+            EnemySpawner.instance.gameObject.SetActive(true);
+            foreach (GetPlayerID plr in PlayerList)
+            {
+                plr.StartedScene();
+            }
+        }
+        
         base.OnClientSceneChanged();
 
         Debug.Log("client loaded");
         loadedPlayers++;
         Debug.Log(loadedPlayers + " total clients loaded");
 
-        foreach (GetPlayerID plr in PlayerList)
-        {
-            plr.StartedScene();
-        }
+
 
         var enemySpawner = GameObject.Find("EnemySpawner");
         if(enemySpawner != null)

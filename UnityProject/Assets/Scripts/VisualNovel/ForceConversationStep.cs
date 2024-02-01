@@ -9,6 +9,6 @@ public class ForceConversationStep : MonoBehaviour
     public int skipTo = -1;
     public void Activate()
     {
-        GameObject.Find("DialougeDisplayer").GetComponent<DialougeDisplayer>().SkipTo(skipTo, true);
+        GameObject.Find("VNSyncer").GetComponent<VNSyncer>().CMDSkipTo(skipTo);
     }
 }
