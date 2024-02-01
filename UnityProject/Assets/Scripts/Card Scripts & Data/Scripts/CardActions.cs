@@ -92,6 +92,22 @@ namespace CardActions
         }
     }
 
+    public class RegenAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.Regen;
+
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //var newTarget = actionParameters.TargetCharacter
+            //    ? actionParameters.TargetCharacter
+            //    : actionParameters.SelfCharacter;
+
+            //if (!newTarget) return;
+
+            //newTarget.CharacterStats.Heal(Mathf.RoundToInt(actionParameters.Value));
+        }
+    }
+
     public class IncreaseStrengthAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.IncreaseStrength;
@@ -152,6 +168,18 @@ namespace CardActions
             //    CollectionManager.AddCards(Mathf.RoundToInt(actionParameters.Value));
             //else
             //    Debug.LogError("There is no CollectionManager");
+        }
+    }
+
+    public class VulnerableAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.Vulnerable;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //if (!actionParameters.TargetCharacter) return;
+
+            //var value = actionParameters.Value;
+            //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Vulnerable, Mathf.RoundToInt(value));
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Enums
     {
         Attack,
         Heal,
+        Regen,
         AllyBlock,
         EnemyBlock,
         Draw,
@@ -37,7 +38,8 @@ namespace Enums
         Frost,
         Bleed,
         SpawnCards,
-        TempOverkill
+        TempOverkill,
+        Vulnerable
     }
 
     public enum CharacterType
