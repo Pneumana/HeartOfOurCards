@@ -12,13 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
   m_Name: Lesser Heal
   m_EditorClassIdentifier: 
-  id: 
-  cardName: 
-  energyCost: 0
+  id: Lesser_Heal
+  cardName: Lesser Heal
+  energyCost: 1
   cardSprite: {fileID: 0}
-  cardType: 
+  cardType: 01000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
-  cardActionDataList: []
-  cardDescriptionDataList: []
+  cardActionDataList:
+  - cardActionType: 1
+    actionTargetType: 0
+    actionValue: 3
+    actionDelay: 0
+  cardDescriptionDataList:
+  - descriptionText: 'Gain '
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  - descriptionText: 
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 1
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 1
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 1
+  - descriptionText: ' health'
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
   specialKeywordsList: 

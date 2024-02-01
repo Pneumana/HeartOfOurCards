@@ -16,6 +16,7 @@ MonoBehaviour:
   cardName: 
   energyCost: 0
   cardSprite: {fileID: 0}
+  cardType: 
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   cardActionDataList:
@@ -42,7 +43,7 @@ MonoBehaviour:
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 1
     modifiedActionValueIndex: 0
-    modiferStats: 1
+    modiferStats: 2
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: '*'
     overrideColorOnValueScaled: 1

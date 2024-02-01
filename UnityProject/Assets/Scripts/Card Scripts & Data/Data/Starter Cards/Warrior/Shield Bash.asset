@@ -19,6 +19,59 @@ MonoBehaviour:
   cardType: 00000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
-  cardActionDataList: []
-  cardDescriptionDataList: []
+  cardActionDataList:
+  - cardActionType: 0
+    actionTargetType: 0
+    actionValue: 2
+    actionDelay: 0
+  - cardActionType: 3
+    actionTargetType: 3
+    actionValue: 3
+    actionDelay: 0
+  cardDescriptionDataList:
+  - descriptionText: Deal
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  - descriptionText: 
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 1
+    modifiedActionValueIndex: 0
+    modiferStats: 2
+    usePrefixOnModifiedValue: 1
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 1
+  - descriptionText: ' damage to target enemy and gain '
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  - descriptionText: 
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 1
+    modifiedActionValueIndex: 1
+    modiferStats: 3
+    usePrefixOnModifiedValue: 1
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 1
+  - descriptionText: ' shield'
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 1
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
   specialKeywordsList: 
