@@ -252,7 +252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Go To VN
+  m_text: Go to Map
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -416,6 +416,7 @@ MonoBehaviour:
   positions: []
   speeds: []
   displayingChoice: 0
+  characterControllerPrefab: {fileID: 2660362282715669530, guid: 55c422b7b622ad64a91bee8fbbcc26ce, type: 3}
   commandsFromConvo: 
 --- !u!4 &492098576
 Transform:

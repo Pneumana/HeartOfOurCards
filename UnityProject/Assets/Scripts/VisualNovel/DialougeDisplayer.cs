@@ -40,6 +40,10 @@ public class DialougeDisplayer : MonoBehaviour
     //scrolling up acts as a history system
     //picked choices should be displayed with a different color
     //you cant change your choice after scrolling up
+
+
+    public GameObject characterControllerPrefab;
+
     List<Dictionary<int, List<string>>> convoActions = new List<Dictionary<int, List<string>>>();
 
     public struct CharData
@@ -71,6 +75,9 @@ public class DialougeDisplayer : MonoBehaviour
         ^\w.*
     */
     // Start is called before the first frame update
+
+
+
     void Start()
     {
         if(instance==null)
@@ -175,34 +182,36 @@ public class DialougeDisplayer : MonoBehaviour
         SplitTextFieldConvo();
         Debug.LogWarning("screen size is " + Screen.width + ", " + Screen.height);
         //create player talk sprite
-        var playerSprite = new GameObject();
+        var playerSprite = Instantiate(characterControllerPrefab);
         playerSprite.name = "PlayerTalkSprite";
-        playerSprite.transform.SetParent(GameObject.Find("Canvas").transform);
-        playerSprite.AddComponent<Image>();
-        playerSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/PlayerDefault");
+        //playerSprite.transform.SetParent(GameObject.Find("Canvas").transform);
+        //playerSprite.AddComponent<Image>();
+        //playerSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/PlayerDefault");
+        playerSprite.GetComponent<VNCharacterController>().character = player;
         playerSprite.transform.SetParent(GameObject.Find("CharacterScene").transform);
-        playerSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+/*        playerSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
         playerSprite.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
         playerSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
-        playerSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);
+        playerSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*/
         sprites.Add(playerSprite);
-        positions.Add(new Vector2(-0.5f, 0));
+        //positions.Add(new Vector2(-0.5f, 0));
 
         speeds.Add(1000);
         foreach (Character cha in textFieldConvo.characters)
         {
-            var charTalkSprite = new GameObject();
+            var charTalkSprite = Instantiate(characterControllerPrefab);
             charTalkSprite.name = cha.Name + "TalkSprite";
-            charTalkSprite.transform.SetParent(GameObject.Find("Canvas").transform);
-            charTalkSprite.AddComponent<Image>();
-            charTalkSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + cha.Name + "Default");
+            //charTalkSprite.transform.SetParent(GameObject.Find("Canvas").transform);
+            //charTalkSprite.AddComponent<Image>();
+            //charTalkSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + cha.Name + "Default");
             charTalkSprite.transform.SetParent(GameObject.Find("CharacterScene").transform);
-            charTalkSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<VNCharacterController>().character = cha;
+            /*charTalkSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
             charTalkSprite.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
             charTalkSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
-            charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);
+            charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*/
             sprites.Add(charTalkSprite);
-            positions.Add(new Vector2(-0.5f, 0));
+            //positions.Add(new Vector2(-0.5f, 0));
             speeds.Add(1000);
         }
         DisplayConvoAction();
@@ -210,7 +219,7 @@ public class DialougeDisplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < sprites.Count; i++)
+        /*for(int i = 0; i < sprites.Count; i++)
         {
             //something about converting como
             var currentRectTransform = sprites[i].GetComponent<RectTransform>();
@@ -226,7 +235,7 @@ public class DialougeDisplayer : MonoBehaviour
             //Debug.Log(actorName + " has a position var of " + currentRectTransform.anchoredPosition + " with a target of " + positions[i]);
             currentRectTransform.anchoredPosition = Vector2.MoveTowards(currentRectTransform.anchoredPosition, new Vector2(LerpX, LerpY), Time.deltaTime * speeds[i]);
 
-        }
+        }*/
     }
 
     void DisplayConvoAction()
@@ -447,7 +456,10 @@ public class DialougeDisplayer : MonoBehaviour
             var trimSpaces = ihateSpaces.Replace(commandSettings, "");
             var charID = actorCharID;
             Debug.Log("trying to display " + trimSpaces);
-            sprites[charID].GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + trimSpaces);
+            //sprites[charID].GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + trimSpaces);
+
+            //this needs to change the sprites[charID].DisplayEmote?
+
             return;
         }
         //CHOICE
@@ -563,8 +575,9 @@ public class DialougeDisplayer : MonoBehaviour
     }
     public void ChangePosition(int index, Vector2 pos, float speed = 5)
     {
-        positions[index] = pos;
-        speeds[index] = speed;
+        sprites[index].GetComponent<VNCharacterController>().moveTarget = pos;
+        //positions[index] = pos;
+        //speeds[index] = speed;
         //positions.Values.ElementAt(index) = pos;
     }
     public void DestroyAllChoices()

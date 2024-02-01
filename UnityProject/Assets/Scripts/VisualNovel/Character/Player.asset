@@ -10,9 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
-  m_Name: Joe
+  m_Name: Player
   m_EditorClassIdentifier: 
-  Name: Joe
+  Name: Player
   pss: him
   pnd: he
-  Color: {r: 0.7735849, g: 0.19339623, b: 0.19339623, a: 0}
+  Color: {r: 0.25854397, g: 0.40021113, b: 0.6603774, a: 0}
+  Default: {fileID: 21300000, guid: dcde9b3bf6c8d4f469963e87c074ae26, type: 3}
+  DefaultPoseOffset: {x: 0, y: 0}
+  Iris: {fileID: 0}
+  OpenLines: {fileID: 0}
+  OpenMask: {fileID: 0}
+  SquintLines: {fileID: 0}
+  SquintMask: {fileID: 0}
+  ClosedLines: {fileID: 0}

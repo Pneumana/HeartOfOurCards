@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 359075}
   - component: {fileID: 359074}
   - component: {fileID: 359073}
+  - component: {fileID: 359076}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -155,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204.7, y: 201.3}
+  m_AnchoredPosition: {x: 297.6, y: 201.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359073
@@ -202,9 +203,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AmbidexterousManager, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 359076}
+        m_TargetAssemblyTypeName: ChangeServerScene, Assembly-CSharp
+        m_MethodName: Clicked
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -252,6 +253,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359071}
   m_CullTransparentMesh: 1
+--- !u!114 &359076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04dd3c3893e812446a9b6ae11921940f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &148724117
 PrefabInstance:
   m_ObjectHideFlags: 0
