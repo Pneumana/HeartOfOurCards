@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-public class RunManager : MonoBehaviour
+using System.Globalization;
+
+public class RunManager : NetworkBehaviour
 {
     //List player1 items
     //list player1 deck
@@ -116,14 +118,34 @@ public class RunManager : MonoBehaviour
         }
     }
 
-/*    public override void OnStartAuthority()
+    /*    public override void OnStartAuthority()
+        {
+
+        }*/
+    public void TryStartGame(string map)
     {
-        
-    }*/
-    private void OnEnable()
+        Debug.Log("trying to start game");
+        if (isServer)
+        {
+            var _seed = Random.Range(int.MinValue, int.MaxValue);
+            Debug.Log("command to set seed to " + _seed);
+            ChangeServerSeed(_seed, map);
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void ChangeServerSeed(int seed, string map)
     {
-        //base.OnStartAuthority();
-        
-        //CMDGetSeed();
+        Debug.Log("command recieved");
+        ChangeClientSeed(seed, map);
+    }
+    [ClientRpc]
+    public void ChangeClientSeed(int seed, string map)
+    {
+        Debug.Log("client command recieved");
+        if (AmbidexterousManager.Instance.seed == 0)
+        {
+            AmbidexterousManager.Instance.ServerChangeSeed(seed);
+        }
+        AmbidexterousManager.Instance.ChangeScene(map);
     }
 }

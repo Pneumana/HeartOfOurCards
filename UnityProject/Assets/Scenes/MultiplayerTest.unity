@@ -149,6 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc487ee257ab314fb32ddf863e0a740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   explorableRooms: []
   revealedRooms: []
   completedRooms: []
@@ -280,6 +283,7 @@ MonoBehaviour:
   PlayerObjectCreated: 0
   GamePlayerPrefab: {fileID: 7146960351223948872, guid: 061c0ad919303fb42870444b6006da5b, type: 3}
   rm: {fileID: 69857295}
+  seed: 0
 --- !u!114 &85928319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,9 +877,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 85928318}
-        m_TargetAssemblyTypeName: AmbidexterousManager, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 69857295}
+        m_TargetAssemblyTypeName: RunManager, Assembly-CSharp
+        m_MethodName: TryStartGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -883,18 +887,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: ConnorTest
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 69857295}
-        m_TargetAssemblyTypeName: RunManager, Assembly-CSharp
-        m_MethodName: GetSeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &643599977
@@ -1290,9 +1282,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 85928318}
-        m_TargetAssemblyTypeName: AmbidexterousManager, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 69857295}
+        m_TargetAssemblyTypeName: RunManager, Assembly-CSharp
+        m_MethodName: TryStartGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1300,18 +1292,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: SampleScene
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 69857295}
-        m_TargetAssemblyTypeName: RunManager, Assembly-CSharp
-        m_MethodName: GetSeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1057705080
@@ -1950,9 +1930,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 85928318}
-        m_TargetAssemblyTypeName: AmbidexterousManager, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 69857295}
+        m_TargetAssemblyTypeName: RunManager, Assembly-CSharp
+        m_MethodName: TryStartGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1960,18 +1940,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Map
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 69857295}
-        m_TargetAssemblyTypeName: RunManager, Assembly-CSharp
-        m_MethodName: GetSeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2002482483

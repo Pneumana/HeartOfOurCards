@@ -174,12 +174,13 @@ public class AmbidexterousManager : NetworkManager
     }
     public void ChangeScene(string scene)
     {
-        var _seed = Random.Range(int.MinValue, int.MaxValue);
-        Debug.Log("command to set seed to " + _seed);
-        if (seed == 0)
-            seed = _seed;
+
         //RunManager.instance.CMDGetSeed();
         ServerChangeScene(scene);
+    }
+    public void ServerChangeSeed(int newseed)
+    {
+        seed = newseed;
     }
     public void GoToVN()
     {
