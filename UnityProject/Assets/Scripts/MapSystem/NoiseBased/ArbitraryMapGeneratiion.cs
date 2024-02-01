@@ -14,7 +14,6 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     int placeAttempts;
 
 
-
     public List<Vector3Int> mapPositions = new List<Vector3Int>();
 
     //remove from this list when a room gets it's special type
@@ -59,6 +58,18 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
 
     //need a list of adjacant positions for each placed room, excluding positions that are already used
     public List<Vector3Int> firstadjacents = new List<Vector3Int>();
+
+    private void Awake()
+    {
+        //set seed to whatever run manager says it is
+        //set explorablerooms, revealed rooms, and completed rooms to the run manager's list
+        var rm = RunManager.instance;
+        explorableRooms = rm.explorableRooms;
+        completedRooms = rm.completedRooms;
+        revealedRooms = rm.revealedRooms;
+        seed = AmbidexterousManager.Instance.seed;
+    }
+
     private void Start()
     {
         if(seed ==0)
@@ -255,6 +266,18 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         Debug.DrawLine(gridSize * new Vector3(0, 1), gridSize * new Vector3(1, 1), Color.cyan, 30);
         Debug.DrawLine(gridSize * new Vector3(0, 0), gridSize * new Vector3(0, 1), Color.cyan, 30);
 
+        foreach (Vector3Int pos in revealedRooms)
+        {
+            fogOfWar.SetTile(pos, fogVisible);
+        }
+        foreach (Vector3Int pos in explorableRooms)
+        {
+            fogOfWar.SetTile(pos, fogBorder);
+        }
+        foreach (Vector3Int pos in completedRooms)
+        {
+            fogOfWar.SetTile(pos, null);
+        }
     }
 
     //creates objects in a grid until it runs out of place attempts;
@@ -333,11 +356,11 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftControl))
         {
-            SceneManager.LoadSceneAsync("Map", LoadSceneMode.Single);
+            //SceneManager.LoadSceneAsync("Map", LoadSceneMode.Single);
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            ClickToExplore();
+            //ClickToExplore(In);
         }
     }
     IEnumerator ExploreTile(int x, int y)
@@ -387,9 +410,9 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         }
         yield return null;
     }
-    void ClickToExplore()
+    public void ClickToExplore(Vector3 mouse)
     {
-        var mouseCast = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mouseCast = Camera.main.ScreenToWorldPoint(mouse);
         mouseCast.z = 0;
         Vector3Int clickedTile = Vector3Int.zero;
         bool clicked =  false;
@@ -517,5 +540,12 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                 break;
             attempts--;
         }
+    }
+    private void OnDestroy()
+    {
+        var rm = RunManager.instance;
+        rm.explorableRooms = explorableRooms;
+        rm.completedRooms = completedRooms;
+        rm.revealedRooms = revealedRooms;
     }
 }

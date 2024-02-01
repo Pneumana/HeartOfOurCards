@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 public class RunManager : MonoBehaviour
 {
     //List player1 items
@@ -19,6 +19,12 @@ public class RunManager : MonoBehaviour
     //this data can be synced between players, using RPC to modify any of the values
 
     public static RunManager instance;
+
+    public List<Vector3Int> explorableRooms = new List<Vector3Int>();
+    public List<Vector3Int> revealedRooms = new List<Vector3Int>();
+    public List<Vector3Int> completedRooms = new List<Vector3Int>();
+
+    public int seed;
 
     public struct PlayerStats
     {
@@ -56,6 +62,9 @@ public class RunManager : MonoBehaviour
         player2Stats.INT = 10;
         player2Stats.NRG = 10;
         player2Stats.CON = 10;
+
+
+
     }
 
     // Update is called once per frame
@@ -65,8 +74,8 @@ public class RunManager : MonoBehaviour
     }
     private void OnGUI()
     {
-        p1 = GUI.Window(0, p1, Player1Window, "Player 1 Stats");
-        p2 = GUI.Window(1, p2, Player2Window, "Player 2 Stats");
+        //p1 = GUI.Window(0, p1, Player1Window, "Player 1 Stats");
+        //p2 = GUI.Window(1, p2, Player2Window, "Player 2 Stats");
     }
     void Player1Window(int windowID)
     {
@@ -105,5 +114,16 @@ public class RunManager : MonoBehaviour
         {
             player2Stats.CON++;
         }
+    }
+
+/*    public override void OnStartAuthority()
+    {
+        
+    }*/
+    private void OnEnable()
+    {
+        //base.OnStartAuthority();
+        
+        //CMDGetSeed();
     }
 }

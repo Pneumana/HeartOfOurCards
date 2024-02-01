@@ -47,6 +47,10 @@ public class AmbidexterousManager : NetworkManager
 
     int loadedPlayers;
 
+    public RunManager rm;
+
+    public int seed;
+
     //public List<PlayerObjectController> GamePlayers { get; } = new List<PlayerObjectController> { };
     public override void Awake()
     {
@@ -85,6 +89,7 @@ public class AmbidexterousManager : NetworkManager
             transport = offline;
         }
         DontDestroyOnLoad(transport.gameObject);
+
         base.Awake();
     }
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -167,7 +172,15 @@ public class AmbidexterousManager : NetworkManager
                 }*/
         ServerChangeScene("ConnorTest");
     }
-
+    public void ChangeScene(string scene)
+    {
+        var _seed = Random.Range(int.MinValue, int.MaxValue);
+        Debug.Log("command to set seed to " + _seed);
+        if (seed == 0)
+            seed = _seed;
+        //RunManager.instance.CMDGetSeed();
+        ServerChangeScene(scene);
+    }
     public void GoToVN()
     {
         /*        for (int i = 0; i < NetworkServer.connections.Count; i++)
@@ -175,6 +188,7 @@ public class AmbidexterousManager : NetworkManager
                     var player = NetworkServer.connections.ElementAt(i).Value;
                     player.identity.GetComponent<GetPlayerID>().RecallWorldObjects();
                 }*/
+
         ServerChangeScene("SampleScene");
     }
 
