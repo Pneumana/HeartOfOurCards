@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ public class DialougeDisplayer : MonoBehaviour
     public GameObject characterControllerPrefab;
 
     List<Dictionary<int, List<string>>> convoActions = new List<Dictionary<int, List<string>>>();
+    List<string> stepNames = new List<string>();
 
     public struct CharData
     {
@@ -90,7 +92,7 @@ public class DialougeDisplayer : MonoBehaviour
 
         //check for 
         //MatchCollection actionLabels = Regex.Matches(textFieldConvo.commandScript, @"(?<=\w\s)(.|\w\s)*(?=;)");//find all actions
-        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?<=.*\n)(:|.|\S\s)*(?<=;)");//find all actions
+        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?=..*\n)(:|.|\S\s)*(?<=;)");//find all actions
         commandsFromConvo = textFieldConvo.commandScript;
         if (actions.Count > 0)
         {
@@ -98,6 +100,12 @@ public class DialougeDisplayer : MonoBehaviour
             Debug.Log("found " + actions.Count + " commands");
             for(int i =0; i<actions.Count; i++ )
             {
+                var StepLabel = Regex.Match(actions[i].ToString(), @"^.*");
+                if (StepLabel.Success)
+                {
+                    stepNames.Add(StepLabel.ToString());
+                    Debug.Log("action step is " + i + " with name " + StepLabel);
+                }
                 Dictionary<int, List<string>> commandsPerCharacterID = new Dictionary<int, List<string>>();
                 /*                if (actions[i].ToString() == "")
                                     continue;*/
@@ -538,7 +546,30 @@ public class DialougeDisplayer : MonoBehaviour
             var button = Instantiate(optionPrefab);
             button.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = split[0];
             button.transform.SetParent(GameObject.Find("MultipleChoice").transform);
-            button.GetComponent<ForceConversationStep>().skipTo = Int32.Parse(split[1]);
+
+
+            //if parse fails, it's using a string. so use 
+            //int index = myList.FindIndex(a => a.Prop == oProp);
+            //on the step names list
+            var skipToID = 0;
+            try
+            {
+                skipToID = Int32.Parse(split[1]);
+                Debug.Log("goto is formatted in int");
+            }
+            catch
+            {
+                Debug.Log("goto is formatted in string");
+                int index = stepNames.IndexOf(split[1]);
+                if(index != -1)
+                    skipToID = index;
+                else
+                {
+                    Debug.LogWarning("There is no step in the current conversation named " + split[1]);
+                }
+            }
+
+            button.GetComponent<ForceConversationStep>().skipTo = skipToID;
         }
 /*        foreach (string str in options.Keys)
         {
@@ -556,6 +587,13 @@ public class DialougeDisplayer : MonoBehaviour
             DestroyAllChoices();
         }
 
+        switch (index)
+        {
+            case -1:
+                //plus one
+                break;
+        }
+
         if (index >= 0)
             convoActionIndex = index;
         else
@@ -563,6 +601,7 @@ public class DialougeDisplayer : MonoBehaviour
         //DestroyAllButtons
         DisplayConvoAction();
     }
+
     public void GobackOne()
     {
         if (convoActionIndex <= 0)

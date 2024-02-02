@@ -25,6 +25,8 @@ public class VNCharacterController : MonoBehaviour
     public float scaleTarget;
     public float speed;
 
+    bool speaking;
+
     public enum EmotionState
     {
         Neutral,
@@ -85,14 +87,10 @@ public class VNCharacterController : MonoBehaviour
         {
             EyeMask.enabled = true;
             Iris.enabled = true;
-            if(character.SquintLines!=null)
+            
                 EyeLines.sprite = character.SquintLines;
-            else
-                EyeLines.enabled = false;
-            if (character.SquintMask != null)
+
                 EyeMask.sprite = character.SquintMask;
-            else
-                EyeMask.enabled = false;
             //EyeMask.GetComponent<SpriteMask>().sprite = character.SquintMask;
         }
         if (blinkTime > 2.87f)
@@ -106,7 +104,33 @@ public class VNCharacterController : MonoBehaviour
             StartCoroutine(RollEyes());
         }
     }
+    void LateUpdate()
+    {
+        //check for sprites being null, if null fallback to the producer sprites
+        //or hide them i guess lol
+        if (Body.sprite == null)
+            Body.enabled = false;
+        else
+            Body.enabled = true;
 
+        if (EyeLines.sprite == null)
+            EyeLines.enabled = false;
+        else
+            EyeLines.enabled = true;
+
+        if (EyeMask.sprite == null)
+            EyeMask.enabled = false;
+        else
+            EyeMask.enabled = true;
+
+        if(Iris.sprite==null)
+            Iris.enabled = false;
+        else
+            Iris.enabled = true;
+
+        //if speaking, set mouth sprite to open
+        //if not set mouth to closed by ChangeEmote(currentEmote)
+    }
     IEnumerator RollEyes()
     {
         Debug.Log("start eye roll");
@@ -129,9 +153,7 @@ public class VNCharacterController : MonoBehaviour
             case EmotionState.Neutral:
                 //neutral face
                 //neutral eyes
-                if(character.OpenLines!=null)
                     EyeLines.sprite = character.OpenLines;
-                if (character.OpenMask != null)
                     EyeMask.sprite = character.OpenMask;
                 //EyeMask.GetComponent<SpriteMask>().sprite = character.OpenMask;
                 break;
@@ -158,17 +180,6 @@ public class VNCharacterController : MonoBehaviour
     {
         Body.sprite = character.Default;
         Body.transform.localPosition = character.DefaultPoseOffset;
-        if (character.Iris == null)
-        {
-            Iris.enabled = false;
-        }
-        if (character.ClosedLines == null)
-        {
-            EyeLines.enabled = false;
-        }
-        if (character.OpenMask == null)
-        {
-            EyeLines.enabled = false;
-        }
+        
     }
 }
