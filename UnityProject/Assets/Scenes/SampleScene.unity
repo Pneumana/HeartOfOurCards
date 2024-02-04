@@ -406,12 +406,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 24989ac2cc21d7144b34d0edc637366b, type: 2}
+  playerList: []
   speaker: {fileID: 1279610420}
   textBody: {fileID: 531180593}
   convoActionIndex: 0
   currentConvo: {fileID: 0}
   textFieldConvo: {fileID: 11400000, guid: bd5d47209724be24193f7a425ccc2f74, type: 2}
   optionPrefab: {fileID: 5502359447542862431, guid: d33a566bd6ad99445be38e99b1dd0bba, type: 3}
+  statCheckPrefab: {fileID: 5502359447542862431, guid: 5852c2cbd30acb340ac65f498b57c1ea, type: 3}
   sprites: []
   positions: []
   speeds: []

@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
@@ -13,6 +14,7 @@ using static UnityEditor.Progress;
 public class DialougeDisplayer : MonoBehaviour
 {
     public Character player;
+    public List<Character> playerList = new List<Character>();
 
     public TextMeshProUGUI speaker;
     public TextMeshProUGUI textBody;
@@ -24,6 +26,7 @@ public class DialougeDisplayer : MonoBehaviour
     public TextFieldConversation textFieldConvo;
 
     public GameObject optionPrefab;
+    public GameObject statCheckPrefab;
 
     public List<GameObject> sprites = new List<GameObject>();
     //target screen position normalized, speed
@@ -58,6 +61,23 @@ public class DialougeDisplayer : MonoBehaviour
 
         //sort int
     }
+    public struct StatCheckInfo
+    {
+        public string stat;
+        public int requirement;
+        public string label;
+        public int pass;
+        public int fail;
+        public StatCheckInfo(string STAT, int REQUIREMENT, string LABEL, int PASS, int FAIL)
+        {
+            stat = STAT;
+            requirement = REQUIREMENT;
+            label = LABEL;
+            pass = PASS;
+            fail = FAIL;
+        }
+    }
+
     [TextArea(20, 20)]
     public string commandsFromConvo;
     //for multiplayer, this can be synced to whoever is in the conversation;
@@ -403,6 +423,7 @@ public class DialougeDisplayer : MonoBehaviour
                 actorName = textFieldConvo.characters[actorCharID - 1].Name;
                 actorColor = textFieldConvo.characters[actorCharID - 1].Color;
             }
+            //maybe add some ability to obscure who's talking, like before they give you their name?
             speaker.text = "<color=#" + ColorUtility.ToHtmlStringRGB(actorColor) + ">" + actorName + "</color>";
             Debug.Log("updated speaker to " + speaker.text);
             return;
@@ -423,8 +444,8 @@ public class DialougeDisplayer : MonoBehaviour
             Debug.Log(split[1]);
             Debug.Log(split[2]);
             var charID = actorCharID;
-            ChangePosition(charID, new Vector2(float.Parse(split[0], System.Globalization.NumberStyles.AllowDecimalPoint), float.Parse(split[1], System.Globalization.NumberStyles.AllowDecimalPoint)), float.Parse(split[2], System.Globalization.NumberStyles.AllowDecimalPoint));
-            targetPos = new Vector2(float.Parse(split[0], System.Globalization.NumberStyles.AllowDecimalPoint), float.Parse(split[1], System.Globalization.NumberStyles.AllowDecimalPoint));
+            ChangePosition(charID, new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture)), float.Parse(split[2], CultureInfo.InvariantCulture));
+            targetPos = new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture));
             Debug.Log("@POS character id " + charID + " has new targetpos: " + targetPos + "\nrecieved from command " + command);
             return;
         }
@@ -473,6 +494,7 @@ public class DialougeDisplayer : MonoBehaviour
         //CHOICE
         else if (Regex.IsMatch(command, "^@CHO"))
         {
+            //use actorCharID for playerID
             Debug.Log("command is Choice");
             //OPTION
             //formatting should be something like @CHO @OP 
@@ -489,7 +511,7 @@ public class DialougeDisplayer : MonoBehaviour
                     options.Add(match.ToString());
                 }
                 //An INT should be passed from the dialouge that skips the convoActionIndex
-                CreateChoiceOptions(options);
+                CreateChoiceOptions(options, actorCharID);
                 displayingChoice = true;
             }
 
@@ -501,21 +523,72 @@ public class DialougeDisplayer : MonoBehaviour
         }
         else if(Regex.IsMatch(command, "^@STAT")) 
         {
+            //use actorCharID for playerID
+            //this can be used as a jump destination for picking an option, it also redirects to different steps in a pass or fail
             //@STAT 
-            //formatting is STAT, Number
+            //formatting is player ID, STAT, Number
+            //@STAT PlayerID @INT, Requirement, Label, Pass, Fail%
             Regex regex = new Regex("^@STAT");
             Regex iHateSpaces = new Regex(@"\s");
-            var commandSettings = regex.Replace(command, "");
-            var spaceless = iHateSpaces.Replace(commandSettings, "");
-            var split = Regex.Split(spaceless, ",");
-            if (split[1].ToString() == "")
+            MatchCollection matches = Regex.Matches(command, @"(?<= @)(...)(.*?)(?=%)");
+            if (matches.Count > 0)
             {
-                Debug.LogError("No value supplied for stat check command");
+                List<StatCheckInfo> options = new List<StatCheckInfo>();
+                Debug.Log("found " + matches.Count + " options");
+                
+                foreach (Match match in matches)
+                {
+                    var spaceless = iHateSpaces.Replace(match.ToString(), "");
+                    var split = Regex.Split(spaceless.ToString(), ",");
+                    //List<string> options = new List<StatCheckInfo>();
+                    //options.Add();
+                    int req = Int32.Parse(split[1]);
+                    int[] passFail = new int[2];
+
+                    for(int i = 0; i<passFail.Length; i++)
+                    {
+                        try
+                        {
+                            passFail[i] = Int32.Parse(split[3]);
+                            Debug.Log("goto is formatted in int");
+                        }
+                        catch
+                        {
+                            Debug.Log("goto is formatted in string");
+                            int index = stepNames.IndexOf(split[3]);
+                            if (index != -1)
+                                passFail[i] = index;
+                            else
+                            {
+                                Debug.LogWarning("There is no step in the current conversation named " + split[i]);
+                            }
+                        }
+                    }
+                    
+
+                    options.Add(new StatCheckInfo(split[0], req, split[2], passFail[0], passFail[1]));
+
+                    /*CaptureCollection captures = match.Captures;
+                    Debug.Log(captures[0].Value);
+                    options.Add(match.ToString());*/
+
+                }
+                CreateStatOptions(options, actorCharID);
+                displayingChoice = true;
+            }
+
+            var commandSettings = regex.Replace(command, "");
+
+            //var split = Regex.Split(spaceless, ",");
+            /*if (split.Contains(""))
+            {
+                Debug.LogError("Incorrect Check formatting! @INT|DMG|CON|NRG, Requirement, Label, Pass, Fail%");
                 return;
             }
             switch (split[0].ToString())
             {
                 case "INT":
+                        
                     break;
                 case "CON":
                     break;
@@ -526,17 +599,17 @@ public class DialougeDisplayer : MonoBehaviour
                 default:
                     Debug.LogError("No stat detected for stat command!");
                     return;
-            }
-
+            }*/
+            return;
         }
-        else if(Regex.IsMatch(command, "^@JUMP"))
+        else if(Regex.IsMatch(command, "^@HP"))
         {
-
+            //formatted as HP playerID(1, 2, 0 for both) then the modifier to apply in INT
         }
         Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
     }
     //stat checks?
-    public void CreateChoiceOptions(List<string> options)
+    public void CreateChoiceOptions(List<string> options, int charID)
     {
         for(int i = 0; i< options.Count; i++)
         {
@@ -570,6 +643,7 @@ public class DialougeDisplayer : MonoBehaviour
             }
 
             button.GetComponent<ForceConversationStep>().skipTo = skipToID;
+            button.GetComponent<ForceConversationStep>().characterID = charID;
         }
 /*        foreach (string str in options.Keys)
         {
@@ -578,6 +652,34 @@ public class DialougeDisplayer : MonoBehaviour
             button.transform.SetParent(GameObject.Find("MultipleChoice").transform);
             button.GetComponent<ForceConversationStep>().skipTo = options.Values[];
         }*/
+    }
+    public void CreateStatOptions(List<StatCheckInfo> options, int checkedCharacter)
+    {
+        for (int i = 0; i < options.Count; i++)
+        {
+            //options[i].stat;
+
+            var button = Instantiate(statCheckPrefab);
+            button.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = options[i].label;
+            button.transform.SetParent(GameObject.Find("MultipleChoice").transform);
+
+
+            //if parse fails, it's using a string. so use 
+            //int index = myList.FindIndex(a => a.Prop == oProp);
+            //on the step names list
+
+            button.GetComponent<VNStatCheck>().targetStat = options[i].stat;
+            button.GetComponent<VNStatCheck>().passRequirement = options[i].requirement;
+            button.GetComponent<VNStatCheck>().failID = options[i].fail;
+            button.GetComponent<VNStatCheck>().passID = options[i].pass;
+        }
+        /*        foreach (string str in options.Keys)
+                {
+                    var button = Instantiate(optionPrefab);
+                    button.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = str;
+                    button.transform.SetParent(GameObject.Find("MultipleChoice").transform);
+                    button.GetComponent<ForceConversationStep>().skipTo = options.Values[];
+                }*/
     }
     public void SkipTo(int index, bool triggeredByChoice)
     {

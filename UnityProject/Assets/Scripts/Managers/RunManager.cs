@@ -28,15 +28,28 @@ public class RunManager : NetworkBehaviour
 
     public int seed;
 
+    public bool secondPlayerPick;
+
+    public int LocalPlayerID;
+
     public struct PlayerStats
     {
         public int DMG; //Overkill
         public int INT; //Logic
         public int NRG; //Velocity
         public int CON;//or evasion? //Endurance
+        public PlayerStats(int _dmg, int _int, int _nrg, int _con)
+        {
+            DMG = _dmg;
+            INT = _int;
+            NRG = _nrg;
+            CON = _con;
+        }
     }
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;
+
+    [SyncVar]public List<PlayerStats> playerStatList = new List<PlayerStats>();
 
     Rect p1 = new Rect(20, 20, 120, 120);
     Rect p2 = new Rect(140, 20, 120, 120);
@@ -148,4 +161,25 @@ public class RunManager : NetworkBehaviour
         }
         AmbidexterousManager.Instance.ChangeScene(map);
     }
+/*    [Command(requiresAuthority = false)]
+    public void ChangePlayerMapTurn()
+    {
+        if(AmbidexterousManager.Instance.PlayerList.Count > 1)
+        {
+            ClientChangeMapTurn();
+            //toggle map turns (this is who can pick where they go)
+        }
+    }
+    [ClientRpc]
+    public void ClientChangeMapTurn()
+    {
+        if (secondPlayerPick)
+        {
+            secondPlayerPick = false;
+        }
+        else
+        {
+            secondPlayerPick = true;
+        }
+    }*/
 }

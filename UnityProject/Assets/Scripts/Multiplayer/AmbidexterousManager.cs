@@ -99,12 +99,18 @@ public class AmbidexterousManager : NetworkManager
         {
             Debug.Log("added Player");
             GetPlayerID player = Instantiate(GamePlayerPrefab);
-            NetworkServer.AddPlayerForConnection(conn, player.gameObject);
-            if(SteamManager.Initialized)
+            player.ConnID = PlayerList.Count;
+            if (SteamManager.Initialized)
                 player.PlayerSteamID = (ulong)SteamMatchmaking.GetLobbyMemberByIndex((CSteamID)CurrentLobbyID, PlayerList.Count);
+            NetworkServer.AddPlayerForConnection(conn, player.gameObject);
+
             Debug.Log($"There are {numPlayers} on the server");
             if (PlayerList.Count == 0)
                 hostConnection = conn;
+
+            PlayerList.Add(player);
+
+            RunManager.instance.playerStatList.Add(new RunManager.PlayerStats(10,10,10,10));
         }
         
 

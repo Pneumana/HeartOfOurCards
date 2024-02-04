@@ -14,6 +14,7 @@ public class GetPlayerID : NetworkBehaviour
 
     public ulong PlayerSteamID;
     public string PlayerName;
+    [SyncVar]public int ConnID;
 
     public TextMeshProUGUI PlayerNameText;
     public RawImage PlayerIcon;
@@ -141,7 +142,9 @@ public class GetPlayerID : NetworkBehaviour
     {
         if(SceneManager.GetActiveScene().name == "MultiplayerTest")
         {
-            AmbidexterousManager.Instance.PlayerList.Add(this);
+
+
+            //AmbidexterousManager.Instance.PlayerList.Add(this);
             var nm = GameObject.Find("NetworkManager").GetComponent<AmbidexterousManager>();
             nm.RenameLobby();
             nm.UpdateAllPlayers();
@@ -150,6 +153,7 @@ public class GetPlayerID : NetworkBehaviour
     public override void OnStartAuthority()
     {
         gameObject.name = "LocalPlayer";
+        RunManager.instance.LocalPlayerID = ConnID;
     }
     public void ReadyOfflinePlayer2()
     {

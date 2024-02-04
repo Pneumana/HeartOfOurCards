@@ -57,6 +57,11 @@ MonoBehaviour:
     @SAY Worlds
     of words can be put in these text boxes
 
+    !0
+
+    @STAT @INT, 10, Smart Option,
+    -1, -1% @DMG, 10, Damage Option, -1, -1%
+
     ;
 
     Action4
@@ -84,7 +89,7 @@ MonoBehaviour:
     @SAY
     What about you? You get the picture yet?
 
-    @CHO @OP What?&&1% @OP Glorper.&&-1%
+    @CHO @OP What?&&Ending% @OP Glorper.&&-1%
 
     :
 
@@ -153,6 +158,4 @@ MonoBehaviour:
 
     @DIS JoeHappy
 
-    ;
-
-'
+    ;'
