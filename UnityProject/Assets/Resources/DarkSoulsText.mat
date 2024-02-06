@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DarkSoulsText
-  m_Shader: {fileID: -6465566751694194690, guid: 664583fd96579c14d96a5905a61af5e5, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 93247542149c96c44a6b10d0a819d0ca, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f2b2b44b5ab79a047830c327354995f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_bd8b9b8cc93344abb0f3d3dd40df2faa_Texture_1_Texture2D:
@@ -50,6 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0.5
     - _ColorMask: 15
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -61,7 +62,7 @@ Material:
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _blurFade: 1
-    - _blurScale: 0.7519013
+    - _blurScale: 1
     - _fade: 0
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
