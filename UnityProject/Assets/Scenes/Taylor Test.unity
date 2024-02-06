@@ -964,6 +964,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0a8d5b82756e345a325c20f90ed98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   hand: []
   deck:
   - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
@@ -987,6 +990,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c70a4439e2ef543b7f7a9290b6ce9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   currentEnergy: 0
   maxEnergy: 0
   TurnEnded: 0
@@ -1004,10 +1010,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddad0bce4bbb341923bd4cd7faf667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   health: 5
   maxHealth: 0
   shield: 0
-  thorns: 0
+  burn: 0
+  freeze: 0
+  vulnerable: 0
+  stun: 0
+  stength: 0
+  dexterity: 0
+  regen: 0
+  bleed: 0
 --- !u!65 &354497087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1301,9 +1315,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0f088eeb106ab47b25bd9130f33274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   playerTeam:
-  - {fileID: 883898587}
   - {fileID: 1916377749}
+  - {fileID: 1916377749}
+  - {fileID: 883898587}
   enemyTeam:
   - {fileID: 1086212394}
   - {fileID: 1328710974}
@@ -1723,10 +1741,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddad0bce4bbb341923bd4cd7faf667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   health: 5
   maxHealth: 0
   shield: 0
-  thorns: 0
+  burn: 0
+  freeze: 0
+  vulnerable: 0
+  stun: 0
+  stength: 0
+  dexterity: 0
+  regen: 0
+  bleed: 0
 --- !u!65 &883898583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1827,11 +1853,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c088a96b19aa0b04293b4fc669aae441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   currentEnergy: 0
   maxEnergy: 2
   TurnEnded: 0
   deck: {fileID: 0}
   energydisplay: {fileID: 248793986}
+  started: 0
 --- !u!114 &883898588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1844,6 +1874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0a8d5b82756e345a325c20f90ed98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   hand: []
   deck:
   - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
@@ -1867,12 +1900,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16048c0c2b9583e409b5d22e3c8ae270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   cardPrefab: {fileID: 6640280803177796311, guid: d8d1714a1d8273344ae03eb9d7886fca, type: 3}
   player: {fileID: 883898587}
   selectedCard: {fileID: 0}
   HandPosition: {x: -2.33, y: 0, z: -2.46}
   cards: []
   OwnedBy: 0
+  clickedCardName: 
 --- !u!1 &1077679874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,10 +2082,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddad0bce4bbb341923bd4cd7faf667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   health: 5
   maxHealth: 0
   shield: 0
-  thorns: 0
+  burn: 0
+  freeze: 0
+  vulnerable: 0
+  stun: 0
+  stength: 0
+  dexterity: 0
+  regen: 0
+  bleed: 0
 --- !u!65 &1086212390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2149,6 +2194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c70a4439e2ef543b7f7a9290b6ce9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   currentEnergy: 0
   maxEnergy: 0
   TurnEnded: 0
@@ -2166,6 +2214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0a8d5b82756e345a325c20f90ed98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   hand: []
   deck:
   - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
@@ -2736,6 +2787,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0a8d5b82756e345a325c20f90ed98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   hand: []
   deck:
   - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
@@ -2759,6 +2813,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c70a4439e2ef543b7f7a9290b6ce9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   currentEnergy: 0
   maxEnergy: 0
   TurnEnded: 0
@@ -2776,10 +2833,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddad0bce4bbb341923bd4cd7faf667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   health: 5
   maxHealth: 0
   shield: 0
-  thorns: 0
+  burn: 0
+  freeze: 0
+  vulnerable: 0
+  stun: 0
+  stength: 0
+  dexterity: 0
+  regen: 0
+  bleed: 0
 --- !u!65 &1328710976
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4227,11 +4292,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c088a96b19aa0b04293b4fc669aae441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   currentEnergy: 0
   maxEnergy: 2
   TurnEnded: 0
   deck: {fileID: 0}
   energydisplay: {fileID: 165801957}
+  started: 0
 --- !u!114 &1916377750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4244,10 +4313,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddad0bce4bbb341923bd4cd7faf667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   health: 5
   maxHealth: 0
   shield: 0
-  thorns: 0
+  burn: 0
+  freeze: 0
+  vulnerable: 0
+  stun: 0
+  stength: 0
+  dexterity: 0
+  regen: 0
+  bleed: 0
 --- !u!65 &1916377751
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4348,6 +4425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0a8d5b82756e345a325c20f90ed98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   hand: []
   deck:
   - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
@@ -4371,12 +4451,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16048c0c2b9583e409b5d22e3c8ae270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   cardPrefab: {fileID: 6640280803177796311, guid: d8d1714a1d8273344ae03eb9d7886fca, type: 3}
   player: {fileID: 1916377749}
   selectedCard: {fileID: 0}
   HandPosition: {x: 2.33, y: 0, z: -2.46}
   cards: []
   OwnedBy: 0
+  clickedCardName: 
 --- !u!1 &2030462230
 GameObject:
   m_ObjectHideFlags: 0

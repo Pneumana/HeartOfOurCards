@@ -66,7 +66,7 @@ namespace CardActions
 
     public class GainEnergyAction : CardActionBase
     {
-        public override CardActionType ActionType => CardActionType.EarnMana;
+        public override CardActionType ActionType => CardActionType.EarnEnergy;
         public override void DoAction(CardActionParameters actionParameters)
         {
             //if (CombatManager != null)

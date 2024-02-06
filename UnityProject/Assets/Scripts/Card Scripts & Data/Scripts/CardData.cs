@@ -27,6 +27,7 @@ namespace DeckData
         [SerializeField] private List<SpecialKeywords> specialKeywordsList;
 
         public string Id => id;
+        public bool UsableWithoutTarget => usableWithoutTarget;
         public int EnergyCost => energyCost;
         public string CardName => cardName;
         public Sprite CardSprite => cardSprite;
@@ -44,7 +45,7 @@ namespace DeckData
             //foreach (var descriptionData in cardDescriptionDataList)
             //{
             //    str.Append(descriptionData.UseModifier
-            //        ? descriptionData.GetModifiedValue(this) (this is for later)
+            //        ? descriptionData.GetModifiedValue(this)
             //        : descriptionData.GetDescription());
             //}
 

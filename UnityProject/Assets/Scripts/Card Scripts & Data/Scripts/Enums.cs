@@ -29,7 +29,7 @@ namespace Enums
         AllyBlock,
         EnemyBlock,
         Draw,
-        EarnMana,
+        EarnEnergy,
         LifeSteal,
         Stun,
         IncreaseStrength,
@@ -45,6 +45,8 @@ namespace Enums
     public enum CharacterType
     {
         Ally,
+        P1,
+        P2,
         Enemy
     }
 

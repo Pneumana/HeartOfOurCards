@@ -1,85 +1,101 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GenericBody : MonoBehaviour
+namespace Characters
 {
-    [Header("Health")]
-    public int health;
-    public int maxHealth;
-    [Space(10)]
-    [Header("Buffs/Debuffs")]
-    public int shield;
-    public int burn;
-    public int freeze;
-    public int vulnerable;
-    public int stun;
-    public int stength;
-    public int dexterity;
-    public int regen;
-    public int bleed;
-
-    //any % increases should use CeilToInt() so it all stays as ints
-
-    //replace gameobject with netID
-    public void TakeDamage(int damageRecieved)
+    public class GenericBody : MonoBehaviour
     {
-        var damageToTake = damageRecieved;
-        var shieldThisTurn = shield;
-        //shield damage block
-        while (shieldThisTurn > 0 && damageToTake > 0) 
+        [Header("Info")]
+        [SerializeField] private CharacterType characterType;
+        [Header("Health")]
+        public int health;
+        public int maxHealth;
+        [Space(10)]
+        [Header("Buffs/Debuffs")]
+        public int shield;
+        public int burn;
+        public int freeze;
+        public int vulnerable;
+        public int stun;
+        public int stength;
+        public int dexterity;
+        public int regen;
+        public int bleed;
+
+        public CharacterType CharacterType => characterType;
+        //any % increases should use CeilToInt() so it all stays as ints
+
+        //replace gameobject with netID
+        public void TakeDamage(int damageRecieved)
         {
-            shieldThisTurn--;
-            damageToTake--;
-        }
-        health-=damageToTake;
+            var damageToTake = damageRecieved;
+            var shieldThisTurn = shield;
+            //shield damage block
+            while (shieldThisTurn > 0 && damageToTake > 0)
+            {
+                shieldThisTurn--;
+                damageToTake--;
+            }
+            health -= damageToTake;
 
-    }
-
-    public void HealDamage(int healRecieved)
-    {
-        health += healRecieved;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
-    }
-
-    public void GainShield(int shieldRecieved)
-    {
-        shield += shieldRecieved;
-    }
-
-    public void OnEnemyTurnStart()
-    {
-        shield = 0;
-
-        if (regen > 0)
-        {
-            HealDamage(regen);
-            regen--;
-        }
-
-        if (burn > 0)
-        {
-            TakeDamage(burn);
-            burn--;
         }
 
-        if (bleed > 0)
+        public void HealDamage(int healRecieved)
         {
-            TakeDamage(bleed);
-            bleed--;
+            health += healRecieved;
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
 
-        if (freeze > 0)
+        public void GainShield(int shieldRecieved)
         {
-            freeze--;
+            shield += shieldRecieved;
         }
 
-        if (vulnerable > 0)
+        public void OnEnemyTurnStart()
         {
-            vulnerable--;
+            shield = 0;
+
+            if (regen > 0)
+            {
+                HealDamage(regen);
+                regen--;
+            }
+
+            if (burn > 0)
+            {
+                TakeDamage(burn);
+                burn--;
+            }
+
+            if (bleed > 0)
+            {
+                TakeDamage(bleed);
+                bleed--;
+            }
+
+            if (freeze > 0)
+            {
+                freeze--;
+            }
+
+            if (vulnerable > 0)
+            {
+                vulnerable--;
+            }
+        }
+
+        public CharacterType GetCharacterType()
+        {
+            return CharacterType;
+        }
+
+        public GenericBody GetCharacterBase()
+        {
+            return this;
         }
     }
 }
