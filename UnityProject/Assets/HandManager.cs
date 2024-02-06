@@ -1,3 +1,5 @@
+using CardActions;
+using DeckData;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,9 +18,9 @@ public class HandManager : NetworkBehaviour
     static float angleMax = 90;
     //define bounds here and divide between hand size
 
-    List<ConnorCard> renderedHand = new List<ConnorCard>();
+    List<CardData> renderedHand = new List<CardData>();
     public List<GameObject> cards = new List<GameObject> ();
-    Dictionary<GameObject, int> hand = new Dictionary<GameObject, int>();
+    public Dictionary<GameObject, int> hand = new Dictionary<GameObject, int>();
     //compare the local player to this number. if they dont match,
     //any attempted plays will result in "suggest playing card targeting X" with a visual ping
     public int OwnedBy;
@@ -119,26 +121,26 @@ public class HandManager : NetworkBehaviour
                             if(card==playedCard)
                             {
                                 playedCardIndex = hand[card];
-                                Debug.Log(renderedHand[hand[card]].cardName + " with index " + hand[card] + " is the played card");
+                                Debug.Log(renderedHand[hand[card]].CardName + " with index " + hand[card] + " is the played card");
                                 break;
                             }
                         }
                         if (previewLine != null)
                             previewLine.GetComponent<PointToTarget>().Hide();
-                        if (renderedHand[playedCardIndex].energyCost <= player.currentEnergy)
+                        if (renderedHand[playedCardIndex].EnergyCost <= player.currentEnergy)
                         {
                             //local player check  here
                             if (isLocalPlayer)
                             {
-                                player.currentEnergy -= renderedHand[playedCardIndex].energyCost;
+                                player.currentEnergy -= renderedHand[playedCardIndex].EnergyCost;
                                 Debug.Log("played card with ID " + playedCardIndex);
-                                player.deck.ServerPlayCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
+                                player.deck.ServerPlayCard(netId, hit.collider.gameObject.GetComponent<NetworkIdentity>().netId, playedCardIndex);
                                 RefreshHand();
                                 playedCard = null;
                             }
                             else
                             {
-                                player.deck.ServerSuggestCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
+                                player.deck.ServerSuggestCard(netId, hit.collider.gameObject.GetComponent<NetworkIdentity>().netId, playedCardIndex);
                                 playedCard = null;
                             }
                         }
@@ -221,7 +223,8 @@ public class HandManager : NetworkBehaviour
             //Debug.Log("rendering new card");
             var n = Instantiate(cardPrefab);
 
-            n.GetComponent<ConnorCardController>().card = renderedHand[i];
+            //n.GetComponent<ConnorCardController>().card = renderedHand[i];
+            n.GetComponent<CardBase>().CardData = renderedHand[i];
             n.transform.forward = -Camera.main.transform.forward;
             n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
             n.transform.position = HandPosition + (transform.forward * 0.1f * i);

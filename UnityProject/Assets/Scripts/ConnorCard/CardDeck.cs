@@ -1,20 +1,25 @@
+using CardActions;
+using Characters;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Managers;
+using DeckData;
 
 public class CardDeck : NetworkBehaviour
 {
-    public List<ConnorCard> hand = new List<ConnorCard>();
-    public List<ConnorCard> deck = new List<ConnorCard> ();
-    public List<ConnorCard> discardPile = new List<ConnorCard>();
+    public List<CardData> hand = new List<CardData>();
+    public List<CardData> deck = new List<CardData> ();
+    public List<CardData> discardPile = new List<CardData>();
 
+    private HandManager hm;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        hm = GetComponent<HandManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +35,7 @@ public class CardDeck : NetworkBehaviour
         }*/
     }
     [Command(requiresAuthority =false)]
-    public async void ServerDrawCard(int drawcount)
+    public void ServerDrawCard(int drawcount)
     {
         int drawnCard = Random.Range(0, deck.Count - 1);
         Debug.Log(drawnCard + " was drawn from deck of " + (deck.Count-1));
@@ -74,7 +79,7 @@ public class CardDeck : NetworkBehaviour
                     hand.Add(deck[drawnCard]);
                     deck.Remove(deck[drawnCard]);
                     Debug.Log(deck.Count);
-                    Debug.Log("Drew card " + hand[hand.Count - 1].cardName);
+                    Debug.Log("Drew card " + hand[hand.Count - 1].CardName);
                 }
                 catch { Debug.LogWarning(drawnCard + " is greater than the remaining deck " + (deck.Count - 1)); }
 
@@ -90,24 +95,26 @@ public class CardDeck : NetworkBehaviour
 
     }
     [Command(requiresAuthority =false)]
-    public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
+    public void ServerPlayCard(uint netID, uint targetNetID, int playedCard)
     {
         Debug.Log("server recieved play request");
         if (playedCard == -1)
             playedCard = Random.Range(0, hand.Count - 1);
-        PlayCard(netID, target, playedCard);
+        PlayCard(netID, targetNetID, playedCard);
         //run play card on all clients, checking for netID match so the same player uses them
     }
     [Command(requiresAuthority =false)]
-    public void ServerSuggestCard(uint netID, Vector3 target, int playedCard)
+    public void ServerSuggestCard(uint netID, uint targetNetID, int playedCard)
     {
         Debug.Log("card suggestions");
     }
     [ClientRpc]
-    public void PlayCard(uint netID, Vector3 target, int playedCard)
+    public void PlayCard(uint netID, uint targetNetID, int playedCard)
     {
         Debug.Log("playing card on client");
         //find object with netID
+
+        var targetObj = NetworkServer.spawned[targetNetID];
         if (netID == netId)
         {
             //if it doesn't meet the energy requirment, uhh yeah
@@ -116,16 +123,20 @@ public class CardDeck : NetworkBehaviour
                 Debug.Log("hand is empty");
                 return;
             }
+
+            hm.cards[playedCard].GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList);
             
-            foreach (GameObject proj in hand[playedCard].attackPrefab)
+            //CardBase.
+            
+            /*foreach (GameObject proj in hand[playedCard].attackPrefab)
             {
                 var attack = Instantiate(proj);
                 attack.transform.position = transform.position + (transform.forward * 2);
                 attack.transform.forward = new Vector3(target.x, attack.transform.position.y, target.z) - attack.transform.position;
                 attack.GetComponent<Rigidbody>().AddForce(attack.transform.forward * 10, ForceMode.Impulse);
-            }
+            }*/
             discardPile.Add(hand[playedCard]);
-            Debug.Log("Played card " + hand[playedCard].cardName);
+            Debug.Log("Played card " + hand[playedCard].CardName);
             hand.Remove(hand[playedCard]);
         }
         try

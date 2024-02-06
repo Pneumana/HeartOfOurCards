@@ -202,7 +202,7 @@ public class GetPlayerID : NetworkBehaviour
         }
         if (SceneManager.GetActiveScene().name == "ConnorTest")
         {
-
+            Debug.Log("combat scene");
             combatScene.SetActive(true);
             combatSceneUI.SetActive(true);
             if (AmbidexterousManager.Instance.PlayerList[0] == this)

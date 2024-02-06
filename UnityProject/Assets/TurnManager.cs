@@ -1,3 +1,4 @@
+using Characters;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,11 +16,21 @@ namespace Managers
         public List<CardPlayerController> turnEnded = new List<CardPlayerController>();
         public List<CardEnemyController> enemyTurnEnded = new List<CardEnemyController>();
 
+
         public bool isPlayerTurn;
 
         public int endedTurns;
 
         public static TurnManager instance;
+
+        [Header("References")]
+        [SerializeField] private List<Transform> enemyPosList;
+        [SerializeField] private List<Transform> allyPosList;
+
+        public List<GenericBody> CurrentAlliesList { get; private set; } = new List<GenericBody>();
+        public List<GenericBody> CurrentEnemiesList { get; private set; } = new List<GenericBody>();
+
+        public GenericBody CurrentMainAlly => CurrentAlliesList.Count > 0 ? CurrentAlliesList[0] : null;
 
         private void Awake()
         {

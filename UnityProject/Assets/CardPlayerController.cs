@@ -31,6 +31,7 @@ public class CardPlayerController : NetworkBehaviour
 
     public void StartEncounter()
     {
+        Debug.Log("drawing cards at start");
         if (started)
             return;
         currentEnergy = maxEnergy;

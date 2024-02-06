@@ -4,20 +4,20 @@ using UnityEngine;
 
 namespace Characters 
 {
-    public class PlayerGenericBody : MonoBehaviour
+    public class PlayerGenericBody : GenericBody
     {
         [Header("Health")]
-        public int health;
-        public int maxHealth;
+/*        public int health;
+        public int maxHealth;*/
         [Space(10)]
         [Header("Buffs/Debuffs")]
-        public int shield;
+/*        public int shield;
         public int burn;
         public int freeze;
         public int vulnerable;
         public int stun;
         public int regen;
-        public int bleed;
+        public int bleed;*/
 
 
         public RunManager RM;
@@ -28,18 +28,23 @@ namespace Characters
             maxHealth = ((RM.player1Stats.CON * 2) + (RM.player2Stats.CON * 2));
         }
 
-        public void TakeDamage(int damageRecieved)
+        public void PlayerTakeDamage(int damageRecieved)
         {
             var damageToTake = damageRecieved;
             var shieldThisTurn = shield;
             //shield damage block
-            while (shieldThisTurn > 0 && damageToTake > 0)
+            if(damageRecieved > 0)
             {
-                shieldThisTurn--;
-                damageToTake--;
+                while (shieldThisTurn > 0 && damageToTake > 0)
+                {
+                    shieldThisTurn--;
+                    damageToTake--;
+                }
             }
-            health -= damageToTake;
 
+            health -= damageToTake;
+            health = Mathf.Clamp(health, 0, maxHealth);
+            //sync damage here
         }
 
         public void HealDamage(int healRecieved)

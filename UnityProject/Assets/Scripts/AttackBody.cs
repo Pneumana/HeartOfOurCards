@@ -22,11 +22,18 @@ public class AttackBody : MonoBehaviour
         if (collision.gameObject != null)
         {
             var gb = collision.gameObject.GetComponent<GenericBody>();
-            if (gb != null)
+            var pb = collision.gameObject.GetComponent<PlayerGenericBody>();
+            if (pb != null)
+            {
+                pb.PlayerTakeDamage(Damage);
+                Despawn();
+            }
+            else if (gb != null)
             {
                 gb.TakeDamage(Damage);
                 Despawn();
             }
+
         }
     }
     void Despawn()

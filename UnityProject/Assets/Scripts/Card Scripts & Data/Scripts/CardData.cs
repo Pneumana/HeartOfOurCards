@@ -42,12 +42,14 @@ namespace DeckData
         {
             var str = new StringBuilder();
 
-            //foreach (var descriptionData in cardDescriptionDataList)
-            //{
-            //    str.Append(descriptionData.UseModifier
-            //        ? descriptionData.GetModifiedValue(this)
-            //        : descriptionData.GetDescription());
-            //}
+            foreach (var descriptionData in cardDescriptionDataList)
+            {
+                //str.Append(descriptionData.Value);
+                    //? descriptionData.GetModifiedValue(this)
+                    //: descriptionData.GetDescription());
+            }
+
+            //[STR]
 
             MyDescription = str.ToString();
         }
@@ -58,12 +60,12 @@ namespace DeckData
     {
         [SerializeField] private CardActionType cardActionType;
         [SerializeField] private ActionTargetType actionTargetType;
-        [SerializeField] private float actionValue;
+        [SerializeField] private int actionValue;
         [SerializeField] private float actionDelay;
 
         public ActionTargetType ActionTargetType => actionTargetType;
         public CardActionType CardActionType => cardActionType;
-        public float ActionValue => actionValue;
+        public int ActionValue => actionValue;
         public float ActionDelay => actionDelay;
     }
 

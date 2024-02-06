@@ -11,6 +11,9 @@ namespace Characters
         [Header("Health")]
         public int health;
         public int maxHealth;
+
+        public RunManager.PlayerStats stats;
+
         [Space(10)]
         [Header("Buffs/Debuffs")]
         public int shield;
@@ -29,9 +32,14 @@ namespace Characters
         //replace gameobject with netID
         public void TakeDamage(int damageRecieved)
         {
+            Debug.Log("body taking " + damageRecieved + " damage");
             var damageToTake = damageRecieved;
             var shieldThisTurn = shield;
             //shield damage block
+            if (vulnerable > 0)
+            {
+                damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
+            }
             while (shieldThisTurn > 0 && damageToTake > 0)
             {
                 shieldThisTurn--;
@@ -55,7 +63,7 @@ namespace Characters
             shield += shieldRecieved;
         }
 
-        public void OnEnemyTurnStart()
+        public void OnTurnStart()
         {
             shield = 0;
 

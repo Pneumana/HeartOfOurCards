@@ -10,14 +10,14 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.Attack;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //if (!actionParameters.TargetCharacter) return;
+            if (!actionParameters.TargetCharacter) return;
 
-            //var targetCharacter = actionParameters.TargetCharacter;
-            //var selfCharacter = actionParameters.SelfCharacter;
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
 
-            //var value = actionParameters.Value + selfCharacter.CharacterStats.StatusDict[StatusType.Strength].StatusValue;
+            var value = actionParameters.Value + Mathf.FloorToInt(selfCharacter.stats.DMG/3);
 
-            //targetCharacter.CharacterStats.Damage(Mathf.RoundToInt(value)); 
+            targetCharacter.TakeDamage(value);
         }
     }
 

@@ -38,7 +38,7 @@ public class RunManager : NetworkBehaviour
         public int INT; //Logic
         public int NRG; //Velocity
         public int CON;//or evasion? //Endurance
-        public PlayerStats(int _dmg, int _int, int _nrg, int _con)
+        public PlayerStats(int _dmg = 0, int _int = 0, int _nrg = 0, int _con = 0)
         {
             DMG = _dmg;
             INT = _int;

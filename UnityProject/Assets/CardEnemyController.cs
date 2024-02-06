@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Characters;
-using Managers; 
+using Managers;
+using CardActions;
+using DeckData;
 
 public class CardEnemyController : NetworkBehaviour
 {
@@ -56,8 +58,12 @@ public class CardEnemyController : NetworkBehaviour
     public void TakeTurn()
     {
         //play picked card
+        uint targetNetID = 0;
 
-            deck.PlayCard(netId, transform.forward, 0);
+        //FIND LOCAL PLAYER NETID
+
+
+            deck.PlayCard(netId, targetNetID, 0);
             EndTurn();
             deck.ServerDrawCard(1);
             ServerDisplayEnemyCard();
@@ -88,7 +94,7 @@ public class CardEnemyController : NetworkBehaviour
         }
         //deck.DrawCard(1, pickedCardIndex);
         FirstCardDraw(pickedCardIndex);
-        ConnorCard pickedCard = null;
+        CardData pickedCard = null;
         if(deck.hand.Count > 0)
             pickedCard = deck.hand[pickedCardIndex];
         if(currentDisplay!=null)
@@ -136,7 +142,7 @@ public class CardEnemyController : NetworkBehaviour
                 deck.hand.Add(deck.deck[drawnCard]);
                 deck.deck.Remove(deck.deck[drawnCard]);
                 Debug.Log(deck.deck.Count);
-                Debug.Log("Drew card " + deck.hand[deck.hand.Count - 1].cardName);
+                Debug.Log("Drew card " + deck.hand[deck.hand.Count - 1].CardName);
             }
             catch { Debug.LogWarning(drawnCard + " is greater than the remaining deck " + (deck.deck.Count - 1)); }
 
