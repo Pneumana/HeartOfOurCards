@@ -99,6 +99,8 @@ public class CardDeck : NetworkBehaviour
     [Command(requiresAuthority =false)]
     public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
     {
+        if (!isServer)
+            return;
         Debug.Log("server recieved play request");
         if (playedCard == -1)
             playedCard = Random.Range(0, hand.Count - 1);
@@ -130,6 +132,7 @@ public class CardDeck : NetworkBehaviour
                     targetObj = go.gameObject;
                 }
             }
+            Debug.Log("playing card " + hand[playedCard].CardName + " on " + targetObj.name);
             //if it doesn't meet the energy requirment, uhh yeah
             if (hand.Count == 0)
             {

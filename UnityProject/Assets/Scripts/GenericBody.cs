@@ -2,14 +2,15 @@ using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 namespace Characters
 {
-    public class GenericBody : MonoBehaviour
+    public class GenericBody : NetworkBehaviour
     {
         [Header("Info")]
         [SerializeField] private CharacterType characterType;
         [Header("Health")]
-        public int health;
+        [SyncVar]public int health;
         public int maxHealth;
 
         public RunManager.PlayerStats stats;
@@ -30,6 +31,9 @@ namespace Characters
         //any % increases should use CeilToInt() so it all stays as ints
 
         //replace gameobject with netID
+
+
+        [Server]
         public void TakeDamage(int damageRecieved)
         {
             Debug.Log("body taking " + damageRecieved + " damage");

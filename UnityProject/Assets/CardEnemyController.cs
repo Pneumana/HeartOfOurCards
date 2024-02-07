@@ -22,6 +22,8 @@ public class CardEnemyController : NetworkBehaviour
     public CardDeck deck;
     //network stuff
 
+    public bool Ready;
+
     private void Start()
     {
         
@@ -62,7 +64,8 @@ public class CardEnemyController : NetworkBehaviour
 
         //FIND LOCAL PLAYER NETID
 
-
+        if (!isServer)
+            return;
             deck.ServerPlayCard(netId, transform.forward * 4, 0);
             EndTurn();
             deck.ServerDrawCard(1);
@@ -109,7 +112,7 @@ public class CardEnemyController : NetworkBehaviour
 
         if (pickedCard != null)
         {
-            Debug.Log("calling for card " + deck.hand[pickedCardIndex].CardName + " to be displayed");
+            //Debug.Log("calling for card " + deck.hand[pickedCardIndex].CardName + " to be displayed");
             currentDisplay = Instantiate(displayCardPrefab);
             currentDisplay.transform.position = transform.position + (Vector3.up * 2) + (transform.forward * 1.5f);
             currentDisplay.GetComponent<CardBase>().CardData = pickedCard;

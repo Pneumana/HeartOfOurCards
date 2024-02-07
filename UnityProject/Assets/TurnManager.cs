@@ -23,12 +23,12 @@ namespace Managers
 
         public static TurnManager instance;
 
-        [Header("References")]
+        /*[Header("References")]
         [SerializeField] private List<Transform> enemyPosList;
-        [SerializeField] private List<Transform> allyPosList;
+        [SerializeField] private List<Transform> allyPosList;*/
 
-        public List<GenericBody> CurrentAlliesList { get; private set; } = new List<GenericBody>();
-        public List<GenericBody> CurrentEnemiesList { get; private set; } = new List<GenericBody>();
+        public List<GenericBody> CurrentAlliesList  = new List<GenericBody>();
+        public List<GenericBody> CurrentEnemiesList = new List<GenericBody>();
 
         public GenericBody CurrentMainAlly => CurrentAlliesList.Count > 0 ? CurrentAlliesList[0] : null;
 
@@ -50,7 +50,24 @@ namespace Managers
             {
                 Debug.Log(player.gameObject);
                 if (player != null)
+                {
                     playerTeam.Add(player);
+                    CurrentAlliesList.Add(player.GetComponent<GenericBody>());
+                }
+            }
+            foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
+            {
+                Debug.Log("added new enemy: " + enemy.gameObject);
+                if (enemy != null && !enemyTeam.Contains(enemy))
+                {
+                    enemyTeam.Add(enemy);
+                    CurrentEnemiesList.Add(enemy.GetComponent<GenericBody>());
+                    enemy.deck = enemy.GetComponent<CardDeck>();
+                    //enemy.deck.ServerDrawCard(1);
+                    enemy.FirstCardDraw(0);
+                    //enemy.ServerDisplayEnemyCard();
+                }
+
             }
         }
         //enemy plays card(s), waits about 0.5s then the next enemy takes it's turn
@@ -156,7 +173,8 @@ namespace Managers
         [ClientRpc]
         void ClientStartEnemyTurns()
         {
-            StartCoroutine(EnemyTurnLoop());
+            if(isServer)
+                StartCoroutine(EnemyTurnLoop());
         }
         IEnumerator EnemyTurnLoop()
         {
