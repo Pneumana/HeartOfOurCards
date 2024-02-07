@@ -150,13 +150,13 @@ namespace Managers
         [Command(requiresAuthority = false)]
         void ServerStartEnemyTurns()
         {
-            StartCoroutine(EnemyTurnLoop());
+            //StartCoroutine(EnemyTurnLoop());
             ClientStartEnemyTurns();
         }
         [ClientRpc]
         void ClientStartEnemyTurns()
         {
-            //StartCoroutine(EnemyTurnLoop());
+            StartCoroutine(EnemyTurnLoop());
         }
         IEnumerator EnemyTurnLoop()
         {
@@ -170,14 +170,33 @@ namespace Managers
             while (enemyLoopIndex < enemyTeam.Count);
             yield return null;
         }
-        [Command(requiresAuthority = false)]
+        [Command(requiresAuthority =false)]
         public void CMDGetEnemyList()
         {
-            GetEnemyList();
+            //Invoke("DisplayEnemyCards", 0.1f);
+            //GetEnemyList();
+            foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
+            {
+                Debug.Log("added new enemy: " + enemy.gameObject);
+                if (enemy != null)
+                {
+                    //enemyTeam.Add(enemy);
+                    //enemy.deck = enemy.GetComponent<CardDeck>();
+                    //enemy.deck.ServerDrawCard(1);
+                    //enemy.FirstCardDraw(0);
+                    //enemy.ServerDisplayEnemyCard();
+                }
+
+            }
+            DisplayEnemyCards();
+            //Command();
         }
         [ClientRpc]
-        public void GetEnemyList()
+        void DisplayEnemyCards()
         {
+            Debug.Log("command GetEnemyList");
+            //GetEnemyList();
+            Debug.Log("ClientRPC GetEnemyList");
             foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
             {
                 Debug.Log("added new enemy: " + enemy.gameObject);
@@ -185,11 +204,31 @@ namespace Managers
                 {
                     enemyTeam.Add(enemy);
                     enemy.deck = enemy.GetComponent<CardDeck>();
-                    enemy.deck.ServerDrawCard(1);
-                    enemy.ServerDisplayEnemyCard();
+                    //enemy.deck.ServerDrawCard(1);
+                    enemy.FirstCardDraw(0);
+                    //enemy.ServerDisplayEnemyCard();
                 }
 
             }
         }
+       
+        /*[ClientRpc]
+        public void GetEnemyList()
+        {
+            Debug.Log("ClientRPC GetEnemyList");
+            foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
+            {
+                Debug.Log("added new enemy: " + enemy.gameObject);
+                if (enemy != null)
+                {
+                    enemyTeam.Add(enemy);
+                    enemy.deck = enemy.GetComponent<CardDeck>();
+                    //enemy.deck.ServerDrawCard(1);
+                    enemy.FirstCardDraw(0);
+                    enemy.ServerDisplayEnemyCard();
+                }
+
+            }
+        }*/
     }
 }

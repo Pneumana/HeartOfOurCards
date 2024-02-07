@@ -134,13 +134,13 @@ public class HandManager : NetworkBehaviour
                             {
                                 player.currentEnergy -= renderedHand[playedCardIndex].EnergyCost;
                                 Debug.Log("played card with ID " + playedCardIndex);
-                                player.deck.ServerPlayCard(netId, hit.collider.gameObject.GetComponent<NetworkIdentity>().netId, playedCardIndex);
+                                player.deck.ServerPlayCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
                                 RefreshHand();
                                 playedCard = null;
                             }
                             else
                             {
-                                player.deck.ServerSuggestCard(netId, hit.collider.gameObject.GetComponent<NetworkIdentity>().netId, playedCardIndex);
+                                player.deck.ServerSuggestCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
                                 playedCard = null;
                             }
                         }

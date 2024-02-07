@@ -36,7 +36,7 @@ public class GetPlayerID : NetworkBehaviour
     {
         DontDestroyOnLoad(gameObject);
         ImageLoaded = Callback<AvatarImageLoaded_t>.Create(OnImageLoaded);
-        StartedScene();
+        //StartedScene(SceneManager.GetActiveScene().name);
         //StartCoroutine(Startup());
         if (netIdentity.isClientOnly)
         {
@@ -144,10 +144,12 @@ public class GetPlayerID : NetworkBehaviour
         {
 
 
-            //AmbidexterousManager.Instance.PlayerList.Add(this);
+
             var nm = GameObject.Find("NetworkManager").GetComponent<AmbidexterousManager>();
             nm.RenameLobby();
             nm.UpdateAllPlayers();
+            nm.PlayerList.Add(this);
+            nm.PlayerNetIDs.Add(netId);
         }
     }
     public override void OnStartAuthority()
@@ -172,17 +174,18 @@ public class GetPlayerID : NetworkBehaviour
         player2combatScene.transform.SetParent(combatScene.transform);
         combatScene.transform.SetParent(transform);
         var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
-        foreach (CardPlayerController cpc in playerControllers)
+/*        foreach (CardPlayerController cpc in playerControllers)
         {
             cpc.started = false;
-        }
+        }*/
         PlayerIcon.transform.SetParent(transform);
         //DontDestroyOnLoad(gameObject);
     }
-    public void StartedScene()
+    public void StartedScene(string SceneName)
     {
+        Debug.Log("started scene " + SceneManager.GetActiveScene().name + " on player " + ConnID);
         //disable player 2
-        if(AmbidexterousManager.Instance.PlayerList.Count == 1)
+        if (NetworkServer.connections.Count == 1)
         {
             //enable localP2
             player2combatScene.SetActive(true);
@@ -195,14 +198,15 @@ public class GetPlayerID : NetworkBehaviour
             player2combatSceneUI.SetActive(false);
         }
 
-        Debug.Log("started scene on player");
-        if (SceneManager.GetActiveScene().name == "MultiplayerTest")
+       
+        if (SceneName == "MultiplayerTest")
         {
             //transform.SetParent(GameObject.Find("PlayerList").transform);
         }
-        if (SceneManager.GetActiveScene().name == "ConnorTest")
+        if (SceneName == "ConnorTest")
         {
-            Debug.Log("combat scene");
+            Debug.Log("combat scene loaded by Local player");
+            
             combatScene.SetActive(true);
             combatSceneUI.SetActive(true);
             if (AmbidexterousManager.Instance.PlayerList[0] == this)
@@ -231,12 +235,14 @@ public class GetPlayerID : NetworkBehaviour
             PlayerIcon.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             //combatscene CardPlayerController.handmanager.UpdateHand pos
             var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
+            Debug.Log("issuing draw requests for " + playerControllers.Length + " player controllers");
+            if (isServer && NetworkServer.connections.Count > 1)
+                return;
             foreach (CardPlayerController cpc in playerControllers)
             {
-                cpc.StartEncounter();
+                if(cpc.gameObject.activeSelf)
+                    cpc.CMDStartEncounter();
             }
         }
     }
-
-    
 }

@@ -123,10 +123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddad0bce4bbb341923bd4cd7faf667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   health: 5
   maxHealth: 0
   shield: 0
-  thorns: 0
+  burn: 0
+  freeze: 0
+  vulnerable: 0
+  stun: 0
+  stength: 0
+  dexterity: 0
+  regen: 0
+  bleed: 0
 --- !u!114 &6755538673471680110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,14 +172,10 @@ MonoBehaviour:
   syncInterval: 0
   hand: []
   deck:
-  - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
-  - {fileID: 11400000, guid: 2b1c9357e930a924b9aaa6b6c8ca6ff2, type: 2}
-  - {fileID: 11400000, guid: 8c64ea67042feee46a24459acec9691b, type: 2}
-  - {fileID: 11400000, guid: 8c64ea67042feee46a24459acec9691b, type: 2}
-  - {fileID: 11400000, guid: 6ccf19baf4498e54fb9ed214a7848944, type: 2}
-  - {fileID: 11400000, guid: 7e58e0456227e5147ad5893b966688af, type: 2}
-  - {fileID: 11400000, guid: f1c18ca69f0c5644eb846446fb75e8d6, type: 2}
-  - {fileID: 11400000, guid: fff517b1dd9a1a34c87395d04ecd5a6f, type: 2}
+  - {fileID: 11400000, guid: 069ac55cdcb55f841a5803fc905ee243, type: 2}
+  - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: a3a22e6416ae5df49a082eaf1242da11, type: 2}
   discardPile: []
 --- !u!114 &5319212191646905860
 MonoBehaviour:

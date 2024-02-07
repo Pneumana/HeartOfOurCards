@@ -22,7 +22,7 @@ public class AmbidexterousManager : NetworkManager
     protected Callback<LobbyEnter_t> LobbyEntered;
 
     public List<GetPlayerID> PlayerList = new List<GetPlayerID>();
-
+    public List<uint> PlayerNetIDs = new List<uint>();
     //use a unique prefab for UI
     public List<GetPlayerID> PlayerLobby = new List<GetPlayerID>();
     //public List<GetPlayerID> PlayerList = new List<GetPlayerID>();
@@ -108,7 +108,7 @@ public class AmbidexterousManager : NetworkManager
             if (PlayerList.Count == 0)
                 hostConnection = conn;
 
-            PlayerList.Add(player);
+            //PlayerList.Add(player);
 
             RunManager.instance.playerStatList.Add(new RunManager.PlayerStats(10,10,10,10));
         }
@@ -210,62 +210,67 @@ public class AmbidexterousManager : NetworkManager
     }
     public override void OnServerSceneChanged(string newSceneName)
     {
-        //base.OnServerSceneChanged(newSceneName);
+        base.OnServerSceneChanged(newSceneName);
         Debug.Log("server loaded");
         for (int i = 0; i < NetworkServer.connections.Count; i++)
         {
             var player = NetworkServer.connections.ElementAt(i).Value;
             //player.identity.GetComponent<GetPlayerID>().StartedScene();
         }
-        NetworkClient.ready = true;
         NetworkServer.SetClientReady(hostConnection);
+        NetworkClient.ready = true;
+
         //NetworkClient.PrepareToSpawnSceneObjects();
         if (newSceneName == "ConnorTest")
         {
-            Debug.LogWarning("entered card game scene");
+            
+            //Debug.LogWarning("entered card game scene");
             var enemySpawner = GameObject.Find("EnemySpawner");
 
-            Debug.Log("found enemy spawner");
+            //Debug.Log("server found enemy spawner");
             //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
             var rand = Random.Range(1, 3);
             enemySpawner.gameObject.GetComponent<EnemySpawner>().SpawnEnemy(rand);
             Debug.Log(rand + " enemies to spawn");
         }
-
-        foreach(GetPlayerID plr in PlayerList)
+        //Debug.Log("starting scene for " + PlayerList.Count + " players");
+        /*foreach (GetPlayerID plr in PlayerList)
         {
-            plr.StartedScene();
-        }
-            
+            plr.StartedScene(newSceneName);
+        }*/
+
 
     }
     public override void OnClientSceneChanged()
     {
-        var activeSceneName = SceneManager.GetActiveScene().name;
-        if (activeSceneName == "ConnorTest")
-        {
-            EnemySpawner.instance.gameObject.SetActive(true);
-            foreach (GetPlayerID plr in PlayerList)
-            {
-                plr.StartedScene();
-            }
-        }
-        
+
+
         base.OnClientSceneChanged();
 
         Debug.Log("client loaded");
         loadedPlayers++;
         Debug.Log(loadedPlayers + " total clients loaded");
 
-
-
-        var enemySpawner = GameObject.Find("EnemySpawner");
-        if(enemySpawner != null)
-            Debug.Log("found enemy spawner");
-        else
+        var activeSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("client changed scene to " + activeSceneName);
+        if (activeSceneName == "ConnorTest")
         {
-            Debug.Log("unable to find enemy spawner");
+            EnemySpawner.instance.gameObject.SetActive(true);
+            foreach (GetPlayerID plr in PlayerList)
+            {
+                plr.StartedScene(activeSceneName);
+            }
+            /*var enemySpawner = GameObject.Find("EnemySpawner");
+            if (enemySpawner != null)
+                Debug.Log("found enemy spawner");
+            else
+            {
+                Debug.Log("unable to find enemy spawner");
+                return;
+            }*/
+
         }
+
         //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
 
         //EnemySpawner.instance.SpawnEnemy(Random.Range(1, 3));

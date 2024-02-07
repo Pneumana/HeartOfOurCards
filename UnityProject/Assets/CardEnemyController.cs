@@ -17,7 +17,7 @@ public class CardEnemyController : NetworkBehaviour
     GenericBody body;
 
     public GameObject displayCardPrefab;
-    GameObject currentDisplay;
+    public GameObject currentDisplay;
 
     public CardDeck deck;
     //network stuff
@@ -29,7 +29,7 @@ public class CardEnemyController : NetworkBehaviour
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //pick a card to play
-        //ServerDisplayEnemyCard();
+        ServerDisplayEnemyCard();
     }
     public void StartTurn()
     {
@@ -54,16 +54,16 @@ public class CardEnemyController : NetworkBehaviour
         }
         //you can still mouse over your hand while it isnt your turn
     }
-
+    [Command(requiresAuthority =false)]
     public void TakeTurn()
     {
         //play picked card
-        uint targetNetID = 0;
+        //NetworkIdentity targetNetID = null;
 
         //FIND LOCAL PLAYER NETID
 
 
-            deck.PlayCard(netId, targetNetID, 0);
+            deck.ServerPlayCard(netId, transform.forward * 4, 0);
             EndTurn();
             deck.ServerDrawCard(1);
             ServerDisplayEnemyCard();
@@ -80,13 +80,16 @@ public class CardEnemyController : NetworkBehaviour
             deck = GetComponent<CardDeck>();
         }
         //await deck.ServerDrawCard(1);
+        if (deck.hand.Count < 1)
+            deck.DrawCard(1, 0);
         var pickedCard = Random.Range(0, deck.hand.Count - 1);
+        //Debug.Log(deck.hand[0].CardName);
         PickCard(pickedCard);
     }
     [ClientRpc]
     void PickCard(int pickedCardIndex)
     {
-        Debug.Log("calling for a card draw");
+        Debug.Log("client wants to display enemy card");
         if (deck == null)
         {
             body = GetComponent<GenericBody>();
@@ -96,18 +99,28 @@ public class CardEnemyController : NetworkBehaviour
         FirstCardDraw(pickedCardIndex);
         CardData pickedCard = null;
         if(deck.hand.Count > 0)
-            pickedCard = deck.hand[pickedCardIndex];
-        if(currentDisplay!=null)
+        {
+            pickedCard = deck.hand[0];
+        }
+        if (currentDisplay != null)
+        {
             Destroy(currentDisplay);
+        }
+
         if (pickedCard != null)
         {
+            Debug.Log("calling for card " + deck.hand[pickedCardIndex].CardName + " to be displayed");
             currentDisplay = Instantiate(displayCardPrefab);
             currentDisplay.transform.position = transform.position + (Vector3.up * 2) + (transform.forward * 1.5f);
-            currentDisplay.GetComponent<ConnorCardController>().card = pickedCard;
+            currentDisplay.GetComponent<CardBase>().CardData = pickedCard;
             currentDisplay.transform.LookAt(Camera.main.transform.position);
         }
+        else
+        {
+
+        }
     }
-    void FirstCardDraw(int pickedCardIndex)
+    public void FirstCardDraw(int pickedCardIndex)
     {
         var drawnCard = pickedCardIndex;
         if (deck.deck.Count == 0)
@@ -141,8 +154,8 @@ public class CardEnemyController : NetworkBehaviour
                 }
                 deck.hand.Add(deck.deck[drawnCard]);
                 deck.deck.Remove(deck.deck[drawnCard]);
-                Debug.Log(deck.deck.Count);
-                Debug.Log("Drew card " + deck.hand[deck.hand.Count - 1].CardName);
+                //Debug.Log(deck.deck.Count);
+                //Debug.Log("Drew card " + deck.hand[deck.hand.Count - 1].CardName);
             }
             catch { Debug.LogWarning(drawnCard + " is greater than the remaining deck " + (deck.deck.Count - 1)); }
 

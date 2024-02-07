@@ -32,7 +32,7 @@ public class EnemySpawner : NetworkBehaviour
             
         }
     }
-    [Command(requiresAuthority = false)]
+    [Server]
     public void SpawnEnemy(int _EnemySpawns)
     {
         Debug.Log("Running server enemy spawn");
@@ -44,12 +44,12 @@ public class EnemySpawner : NetworkBehaviour
         {
             var enemy = Instantiate(AmbidexterousManager.Instance.spawnPrefabs[2]);
             enemy.transform.position += Vector3.left * spawns;
-            NetworkServer.Spawn(enemy);
             spawns++;
             EnemySpawns--;
+            NetworkServer.Spawn(enemy);
             //TurnManager.instance.enemyTeam.Add(enemy.GetComponent<CardEnemyController>());
         }
-        TurnManager.instance.GetEnemyList();
+        TurnManager.instance.CMDGetEnemyList();
     }
     /*[ClientRpc]
     public void ClientSpawnEnemy()

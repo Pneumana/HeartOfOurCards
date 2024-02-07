@@ -16,7 +16,7 @@ public class CardPlayerController : NetworkBehaviour
     public CardDeck deck;
     public ReadEnergyFromPlayer energydisplay;
 
-    public bool started;
+    bool started = false;
     //network stuff
 
     private void Start()
@@ -25,15 +25,21 @@ public class CardPlayerController : NetworkBehaviour
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //load from run manager?
-/*        if(SceneManager.GetActiveScene().name == "Game")
-        deck.DrawCard(4);*/
+        /*        if(SceneManager.GetActiveScene().name == "Game")
+                deck.DrawCard(4);*/
     }
-
+    [Command(requiresAuthority = false)]
+    public void CMDStartEncounter()
+    {
+        StartEncounter();
+    }
+    [ClientRpc]
     public void StartEncounter()
     {
-        Debug.Log("drawing cards at start");
+
         if (started)
             return;
+        Debug.Log("drawing cards at start");
         currentEnergy = maxEnergy;
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
@@ -50,7 +56,9 @@ public class CardPlayerController : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMDStartTurn()
     {
+        
         StartTurn();
+
     }
     [ClientRpc]
     public void StartTurn()
@@ -75,6 +83,7 @@ public class CardPlayerController : NetworkBehaviour
     {
         if(!TurnEnded&&body.health > 0)
         {
+                //StartEncounter();
             //this is things the player can do while alive and it's their turn.
             //this needs to be a local player check
 /*            if (Input.GetKeyDown(KeyCode.Space))

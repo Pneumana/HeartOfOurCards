@@ -14,6 +14,8 @@ public class CardDeck : NetworkBehaviour
     public List<CardData> deck = new List<CardData> ();
     public List<CardData> discardPile = new List<CardData>();
 
+    //public List<CardBase> cardHand = new List<CardBase>();
+
     private HandManager hm;
 
     // Start is called before the first frame update
@@ -78,8 +80,8 @@ public class CardDeck : NetworkBehaviour
                     }
                     hand.Add(deck[drawnCard]);
                     deck.Remove(deck[drawnCard]);
-                    Debug.Log(deck.Count);
-                    Debug.Log("Drew card " + hand[hand.Count - 1].CardName);
+                    //Debug.Log(deck.Count);
+                    //Debug.Log("Drew card " + hand[hand.Count - 1].CardName);
                 }
                 catch { Debug.LogWarning(drawnCard + " is greater than the remaining deck " + (deck.Count - 1)); }
 
@@ -95,36 +97,55 @@ public class CardDeck : NetworkBehaviour
 
     }
     [Command(requiresAuthority =false)]
-    public void ServerPlayCard(uint netID, uint targetNetID, int playedCard)
+    public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
     {
         Debug.Log("server recieved play request");
         if (playedCard == -1)
             playedCard = Random.Range(0, hand.Count - 1);
-        PlayCard(netID, targetNetID, playedCard);
+        PlayCard(netID, target, playedCard);
         //run play card on all clients, checking for netID match so the same player uses them
     }
     [Command(requiresAuthority =false)]
-    public void ServerSuggestCard(uint netID, uint targetNetID, int playedCard)
+    public void ServerSuggestCard(uint netID, Vector3 targetNetID, int playedCard)
     {
         Debug.Log("card suggestions");
     }
     [ClientRpc]
-    public void PlayCard(uint netID, uint targetNetID, int playedCard)
+    public void PlayCard(uint netID, Vector3 target, int playedCard)
     {
         Debug.Log("playing card on client");
         //find object with netID
-
-        var targetObj = NetworkServer.spawned[targetNetID];
+        
         if (netID == netId)
         {
+            GameObject targetObj = null;
+            float dist = float.MaxValue;
+            foreach (GenericBody go in GameObject.FindObjectsByType<GenericBody>(FindObjectsSortMode.None))
+            {
+                var pos = go.gameObject.transform.position;
+                var comp = Vector3.Distance(target, pos);
+                if (comp < dist && go != gameObject)
+                {
+                    dist = comp;
+                    targetObj = go.gameObject;
+                }
+            }
             //if it doesn't meet the energy requirment, uhh yeah
             if (hand.Count == 0)
             {
                 Debug.Log("hand is empty");
                 return;
             }
-
-            hm.cards[playedCard].GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList);
+            try
+            {
+                //player using a card
+                hm.cards[playedCard].GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList);
+            }
+            catch
+            {
+                //enemies don't have hands so yeah
+                GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList);
+            }
             
             //CardBase.
             
