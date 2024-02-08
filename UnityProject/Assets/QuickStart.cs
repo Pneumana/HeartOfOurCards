@@ -7,17 +7,17 @@ public class QuickStart : MonoBehaviour
 {
     private void Awake()
     {
+
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         if (NetworkServer.active)
             gameObject.SetActive(false);
         else
         {
             GetComponent<NetworkManager>().StartHost();
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
