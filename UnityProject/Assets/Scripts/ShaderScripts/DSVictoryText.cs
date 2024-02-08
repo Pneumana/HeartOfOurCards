@@ -22,7 +22,7 @@ public class DSVictoryText : MonoBehaviour
         do
         {
             time = Mathf.MoveTowards(time, 1, speed * Time.deltaTime);
-            darkSoulsText.material.SetFloat("_blurScale", time);
+            darkSoulsText.material.SetFloat("_blurScale", Mathf.Clamp((1.1f - time), 0, 1));
             yield return new WaitForSeconds(0);
         } while (time<1);
 
