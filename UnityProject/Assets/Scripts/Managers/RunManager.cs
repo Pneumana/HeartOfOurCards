@@ -56,7 +56,7 @@ public class RunManager : NetworkBehaviour
 
     void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance!= this)
         {
             Destroy(gameObject);
         }
