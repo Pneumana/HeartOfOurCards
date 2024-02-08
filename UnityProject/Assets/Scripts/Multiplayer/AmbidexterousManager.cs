@@ -317,8 +317,20 @@ public class AmbidexterousManager : NetworkManager
         PlayerObjectCreated = true;
     }
 
-
-
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        Debug.Log("disconnect");
+        SceneManager.LoadScene("MainMenu");
+        Destroy(RunManager.instance.gameObject);
+        Destroy(transport.gameObject);
+        Destroy(gameObject);
+    }
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        
+    }
     void CreateClientPlayerItem()
     {
 
@@ -331,5 +343,27 @@ public class AmbidexterousManager : NetworkManager
     {
 
     }
-
+    public void QuitToMenu()
+    {
+        Debug.Log("quit to menu");
+        if(NetworkClient.active)
+            Invoke("QuitToMenu", 0.01f);
+        StopHost();
+        SceneManager.LoadScene("MainMenu");
+        Destroy(RunManager.instance.gameObject);
+        Destroy(transport.gameObject);
+        Destroy(gameObject);
+    }
+    public void StartSingleplayer()
+    {
+        transport = offline;
+        StartHost();
+    }
+    public void StartMultiplayer()
+    {
+        if (SteamManager.Initialized)
+            transport = online;
+        else
+            transport = offline;
+    }
 }

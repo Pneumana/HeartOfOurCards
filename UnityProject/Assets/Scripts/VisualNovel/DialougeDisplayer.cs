@@ -527,7 +527,7 @@ public class DialougeDisplayer : MonoBehaviour
             //this can be used as a jump destination for picking an option, it also redirects to different steps in a pass or fail
             //@STAT 
             //formatting is player ID, STAT, Number
-            //@STAT PlayerID @INT, Requirement, Label, Pass, Fail%
+            //@STAT @INT, Requirement, Label, Pass, Fail%
             Regex regex = new Regex("^@STAT");
             Regex iHateSpaces = new Regex(@"\s");
             MatchCollection matches = Regex.Matches(command, @"(?<= @)(...)(.*?)(?=%)");
