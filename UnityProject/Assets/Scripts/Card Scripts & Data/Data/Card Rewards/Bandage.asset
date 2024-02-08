@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
+  m_Name: Bandage
+  m_EditorClassIdentifier: 
+  id: Bandage
+  cardName: Bandage
+  energyCost: 0
+  cardSprite: {fileID: 0}
+  cardType: 02000000
+  usableWithoutTarget: 1
+  exhaustAfterPlay: 1
+  cardActionDataList:
+  - cardActionType: 1
+    actionTargetType: 1
+    actionValue: 0
+    actionDelay: 0
+  - cardActionType: 10
+    actionTargetType: 1
+    actionValue: 0
+    actionDelay: 0
+  cardDescriptionDataList:
+  - descriptionText: 'Heal '
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  - descriptionText: 
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 1
+    modifiedActionValueIndex: 0
+    modiferStats: 3
+    usePrefixOnModifiedValue: 1
+    modifiedValuePrefix: 4
+    overrideColorOnValueScaled: 1
+  - descriptionText: ' Health, Bandage is removed from deck'
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  specialKeywordsList: 
