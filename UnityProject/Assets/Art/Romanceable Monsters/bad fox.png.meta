@@ -154,7 +154,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bad fox_0: 3919209482317192996
+      bad fox_1: 2386690981101218347
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
