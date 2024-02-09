@@ -331,8 +331,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31fe1db7c4bf35446a38ec337f4f238c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 24989ac2cc21d7144b34d0edc637366b, type: 2}
-  playerList: []
+  player:
+  - {fileID: 11400000, guid: 24989ac2cc21d7144b34d0edc637366b, type: 2}
+  - {fileID: 11400000, guid: 24989ac2cc21d7144b34d0edc637366b, type: 2}
+  playerList:
+  - {fileID: 11400000, guid: 24989ac2cc21d7144b34d0edc637366b, type: 2}
+  - {fileID: 11400000, guid: 24989ac2cc21d7144b34d0edc637366b, type: 2}
   speaker: {fileID: 1279610420}
   textBody: {fileID: 531180593}
   convoActionIndex: 0

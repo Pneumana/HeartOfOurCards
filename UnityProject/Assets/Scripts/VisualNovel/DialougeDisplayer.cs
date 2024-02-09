@@ -13,7 +13,7 @@ using static UnityEditor.Progress;
 
 public class DialougeDisplayer : MonoBehaviour
 {
-    public Character player;
+    public Character[] player = new Character[2];
     public List<Character> playerList = new List<Character>();
 
     public TextMeshProUGUI speaker;
@@ -206,25 +206,52 @@ public class DialougeDisplayer : MonoBehaviour
     }
     public void LoadConvo()
     {
+        Character[] loadorder = player;
+        //Invert the character order if it's player 2 picking the dialouge
+
+        if (RunManager.instance.pickingPlayer == 1)
+        {
+            player[0] = loadorder[1];
+            player[1] = loadorder[0];
+        }
         //split textFieldConvo
         SplitTextFieldConvo();
         Debug.LogWarning("screen size is " + Screen.width + ", " + Screen.height);
         //create player talk sprite
-        var playerSprite = Instantiate(characterControllerPrefab);
+        /*var playerSprite = Instantiate(characterControllerPrefab);
         playerSprite.name = "PlayerTalkSprite";
         //playerSprite.transform.SetParent(GameObject.Find("Canvas").transform);
         //playerSprite.AddComponent<Image>();
         //playerSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/PlayerDefault");
-        playerSprite.GetComponent<VNCharacterController>().character = player;
+        playerSprite.GetComponent<VNCharacterController>().character = player[0];
         playerSprite.transform.SetParent(GameObject.Find("CharacterScene").transform);
-/*        playerSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+*//*        playerSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
         playerSprite.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
         playerSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
-        playerSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*/
+        playerSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*//*
         sprites.Add(playerSprite);
         //positions.Add(new Vector2(-0.5f, 0));
 
-        speeds.Add(1000);
+        speeds.Add(1000);*/
+
+        foreach (Character cha in player)
+        {
+            var charTalkSprite = Instantiate(characterControllerPrefab);
+            charTalkSprite.name = cha.Name + "TalkSprite";
+            //charTalkSprite.transform.SetParent(GameObject.Find("Canvas").transform);
+            //charTalkSprite.AddComponent<Image>();
+            //charTalkSprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + cha.Name + "Default");
+            charTalkSprite.transform.SetParent(GameObject.Find("CharacterScene").transform);
+            charTalkSprite.GetComponent<VNCharacterController>().character = cha;
+            /*charTalkSprite.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
+            charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*/
+            sprites.Add(charTalkSprite);
+            //positions.Add(new Vector2(-0.5f, 0));
+            speeds.Add(1000);
+        }
+
         foreach (Character cha in textFieldConvo.characters)
         {
             var charTalkSprite = Instantiate(characterControllerPrefab);
@@ -316,13 +343,13 @@ public class DialougeDisplayer : MonoBehaviour
             int charID = convoActions[convoActionIndex].Keys.ElementAt(charLoopIndex);
             Debug.Log(charID + " is the character ID for the current convoActionIndex");
             Debug.Log("there have been " + charLoopIndex + "/" + convoActions[convoActionIndex].Count + " characters processed this action before this one");
-            if (charID <= 0)
+            if (charID <= 1)
             {
-                    Debug.Log("character " + player.Name + " has the following commands @ step " + convoActionIndex + ":");
+                    Debug.Log("character " + player[charID].Name + " has the following commands @ step " + convoActionIndex + ":");
             }
             else
             {
-                    Debug.Log("character " + textFieldConvo.characters[charID - 1].Name + " has the following commands @ step " + convoActionIndex + ":");
+                    Debug.Log("character " + textFieldConvo.characters[charID - 2].Name + " has the following commands @ step " + convoActionIndex + ":");
             }
 
             //Debug.Log("character " + textFieldConvo.characters[charID].Name + " has the following commands:");
@@ -359,15 +386,15 @@ public class DialougeDisplayer : MonoBehaviour
                 Debug.Log(intSplit);
                 int real = Int32.Parse(intSplit.ToString());
                 Debug.Log("found character id " + intSplit[i] + " name mention");
-                if (real==0)
+                if (real<=1)
                 {
-                    commandRemoved = currentname.Replace(commandRemoved, " " + player.Name + " ");
-                    Debug.Log(player.Name);
+                    commandRemoved = currentname.Replace(commandRemoved, " " + player[real].Name + " ");
+                    Debug.Log(player[real].Name);
                 }
                 else
                 {
-                    commandRemoved = currentname.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real-1].Name + " ");
-                    Debug.Log(textFieldConvo.characters[real - 1].Name);
+                    commandRemoved = currentname.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real-2].Name + " ");
+                    Debug.Log(textFieldConvo.characters[real - 2].Name);
                 }
                 
             }
@@ -379,15 +406,15 @@ public class DialougeDisplayer : MonoBehaviour
                 Debug.Log(intSplit);
                 int real = Int32.Parse(intSplit.ToString());
                 Debug.Log("found character id " + intSplit[i] + " name mention");
-                if (real == 0)
+                if (real <= 1)
                 {
-                    commandRemoved = currentpronoun.Replace(commandRemoved, " " + player.pss + " ");
-                    Debug.Log(player.pss);
+                    commandRemoved = currentpronoun.Replace(commandRemoved, " " + player[real].pss + " ");
+                    Debug.Log(player[real].pss);
                 }
                 else
                 {
-                    commandRemoved = currentpronoun.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real - 1].pss + " ");
-                    Debug.Log(textFieldConvo.characters[real - 1].pss);
+                    commandRemoved = currentpronoun.Replace(commandRemoved.ToString(), " " + textFieldConvo.characters[real - 2].pss + " ");
+                    Debug.Log(textFieldConvo.characters[real - 2].pss);
                 }
 
             }
@@ -401,8 +428,8 @@ public class DialougeDisplayer : MonoBehaviour
                 Debug.Log("found character id " + intSplit[i] + " name mention");
                 if (real == 0)
                 {
-                    commandRemoved = currentpronoun.Replace(commandRemoved, " " + player.pnd + " ");
-                    Debug.Log(player.pnd);
+                    commandRemoved = currentpronoun.Replace(commandRemoved, " " + player[0].pnd + " ");
+                    Debug.Log(player[0].pnd);
                 }
                 else
                 {
@@ -413,15 +440,15 @@ public class DialougeDisplayer : MonoBehaviour
                 textBody.text = commandRemoved.ToString();
             //replace pronoun second person pnd1 with he and pronoun possessive pss1 with the pronoun fetched from the character with id X's pronouns
 
-            if (actorCharID <= 0)
+            if (actorCharID <= 1)
             {
-                actorName = player.Name;
-                actorColor = player.Color;
+                actorName = player[actorCharID].Name;
+                actorColor = player[actorCharID].Color;
             }
             else
             {
-                actorName = textFieldConvo.characters[actorCharID - 1].Name;
-                actorColor = textFieldConvo.characters[actorCharID - 1].Color;
+                actorName = textFieldConvo.characters[actorCharID - 2].Name;
+                actorColor = textFieldConvo.characters[actorCharID - 2].Color;
             }
             //maybe add some ability to obscure who's talking, like before they give you their name?
             speaker.text = "<color=#" + ColorUtility.ToHtmlStringRGB(actorColor) + ">" + actorName + "</color>";

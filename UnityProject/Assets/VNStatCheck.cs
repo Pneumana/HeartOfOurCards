@@ -14,7 +14,7 @@ public class VNStatCheck : MonoBehaviour
 
     private void Start()
     {
-        if(RunManager.instance.LocalPlayerID != characterID)
+        if(RunManager.instance.LocalPlayerID != RunManager.instance.pickingPlayer)
         {
             gameObject.GetComponent<Button>().enabled = false;
             Debug.Log("local player cant make a choice " + characterID);

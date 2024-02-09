@@ -12,7 +12,8 @@ public class ForceConversationStep : MonoBehaviour
     public int characterID;
     private void Start()
     {
-        if (RunManager.instance.LocalPlayerID != characterID)
+
+        if (RunManager.instance.LocalPlayerID != RunManager.instance.pickingPlayer)
         {
             gameObject.GetComponent<Button>().enabled = false;
         }

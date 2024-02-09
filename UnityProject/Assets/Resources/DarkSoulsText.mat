@@ -66,8 +66,8 @@ Material:
     - _fade: 0.5
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
-    - _GlowColor: {r: 1, g: 0.69803923, b: 0.6, a: 0}
-    - _TextColor: {r: 1, g: 1, b: 0.41960788, a: 0}
+    - _GlowColor: {r: 1, g: 0, b: 0.7241974, a: 0}
+    - _TextColor: {r: 1, g: 0, b: 0.11128998, a: 0}
     - _direction: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

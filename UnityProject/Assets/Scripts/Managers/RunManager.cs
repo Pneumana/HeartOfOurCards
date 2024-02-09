@@ -27,8 +27,8 @@ public class RunManager : NetworkBehaviour
     public List<Vector3Int> completedRooms = new List<Vector3Int>();
 
     public int seed;
-
-    public bool secondPlayerPick;
+    //This is the player that can click on the map and is the main character for dialouge.
+    public int pickingPlayer;
 
     public int LocalPlayerID;
 

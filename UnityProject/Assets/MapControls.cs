@@ -11,6 +11,10 @@ public class MapControls : NetworkBehaviour
     private void Start()
     {
         mapGen = GameObject.Find("ArbitraryMap").GetComponent<ArbitraryMapGeneratiion>();
+        if (isServer)
+        {
+            CMDChangePickingPlayer();
+        }
     }
     private void Update()
     {
@@ -53,24 +57,21 @@ public class MapControls : NetworkBehaviour
     {
         mapGen.ClickToExplore(pos);
 
-        if(AmbidexterousManager.Instance.PlayerList.Count > 1)
+        /*if(AmbidexterousManager.Instance.PlayerList.Count > 1)
         {
-            var rm = RunManager.instance;
-            if (rm.secondPlayerPick)
+            
+            if (rm.pickingPlayer == rm.LocalPlayerID)
             {
-                rm.secondPlayerPick = false;
+                rm.pickingPlayer++;
             }
             else
             {
-                rm.secondPlayerPick = true;
+                rm.pickingPlayer--;
             }
             //messages
-            if (rm.secondPlayerPick)
+            if (rm.pickingPlayer == rm.LocalPlayerID)
             {
-                if (isServer)
-                    text.text = "Please wait for the other player to make a selection";
-                else
-                    text.text = "Click on a room to explore";
+                    
             }
             else
             {
@@ -83,9 +84,30 @@ public class MapControls : NetworkBehaviour
         else
         {
             text.text = "Click on a room to explore";
+        }*/
+
+
+
+    }
+    [Command(requiresAuthority = false)]
+    void CMDChangePickingPlayer()
+    {
+        ChangePickingPlayer();
+    }
+    [ClientRpc]
+    void ChangePickingPlayer()
+    {
+        var rm = RunManager.instance;
+
+        if (rm.pickingPlayer == 0)
+        {
+            rm.pickingPlayer = 1;
+        }
+        else
+        {
+            rm.pickingPlayer = 0;
         }
 
-
-        
+        text.text = "Player " + rm.pickingPlayer + " is picking";
     }
 }
