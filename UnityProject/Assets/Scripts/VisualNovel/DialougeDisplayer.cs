@@ -606,7 +606,34 @@ public class DialougeDisplayer : MonoBehaviour
         {
             //formatted as HP playerID(1, 2, 0 for both) then the modifier to apply in INT
         }
-        Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
+        else if(Regex.IsMatch(command, @"^@END"))
+        {
+            //formatted as END Scene Name
+            //Goes to the scene
+            //Needs to wait for current animations to finish, then do a fade to black?
+
+            var split = Regex.Split(command, @" ");
+            Debug.Log(split[1].ToString());
+            RunManager.instance.TryStartGame(split[1].ToString());
+        }
+        else if(Regex.IsMatch(command, "^@LOAD"))
+        {
+            //formatted LOAD Conversation Name
+            //loads a conversation from the Resources directory
+            var split = Regex.Split(command, @" ");
+            Debug.Log(split[1].ToString());
+
+            //set current text field convo to loaded name
+            //LoadNewConvo(currenttext field convo)
+            //textFieldConvo = Resources.Load<TextFieldConversation>("/Conversations/" + split[1]);
+            LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + split[1].ToString()));
+        }
+        try
+        {
+            Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);
+
+        }
+        catch { }
     }
     //stat checks?
     public void CreateChoiceOptions(List<string> options, int charID)
