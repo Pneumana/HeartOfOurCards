@@ -8,8 +8,10 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DialougeDisplayer : MonoBehaviour
 {
@@ -642,6 +644,30 @@ public class DialougeDisplayer : MonoBehaviour
             var split = Regex.Split(command, @" ");
             Debug.Log(split[1].ToString());
             RunManager.instance.TryStartGame(split[1].ToString());
+        }
+        else if (Regex.IsMatch(command, @"^@INC"))
+        {
+            //formatted LOVE CHARACTER AMOUNT
+
+            var split = Regex.Split(command, @" ");
+            //Debug.Log(split[1].ToString());
+
+            var TargetPlayer = RunManager.instance.playerStatList[actorCharID];
+            var _targetStat = TargetPlayer.GetType().GetField(split[1].ToString());
+            var num = Int32.Parse(split[2]);
+            //var stat = _targetStat.GetType().GetField(split[1].ToString());
+            //stat.SetValueDirect(__makeref(TargetPlayer), (int)stat.GetValue(TargetPlayer) + num);
+
+            //use this one
+
+            /*var stat = TargetPlayer.GetType().GetField(split[1].ToString());
+            object copy = _lifetimeStats;
+            stat.SetValue(copy, value);
+            TargetPlayer = (LifetimeStatistics)copy;*/
+
+            TargetPlayer.GetType().GetField(split[1].ToString()).SetValueDirect(__makeref(TargetPlayer), (int)TargetPlayer.GetType().GetField(split[1].ToString()).GetValue(TargetPlayer) + num);
+            Debug.Log(split[1] + " modified to " + (int)TargetPlayer.GetType().GetField(split[1].ToString()).GetValue(TargetPlayer) + " with a change of " + num);
+            //RunManager.instance.TryStartGame(split[1].ToString());
         }
         else if(Regex.IsMatch(command, "^@LOAD"))
         {

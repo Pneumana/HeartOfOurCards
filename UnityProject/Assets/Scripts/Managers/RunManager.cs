@@ -38,12 +38,29 @@ public class RunManager : NetworkBehaviour
         public int INT; //Logic
         public int NRG; //Velocity
         public int CON;//or evasion? //Endurance
-        public PlayerStats(int _dmg = 0, int _int = 0, int _nrg = 0, int _con = 0)
+
+        public int Kitsune;
+        public int Lich;
+        public int Naga;
+        public int Mermaid;
+        public int Dragon;
+        public int Vampire;
+
+        public int Producer;
+
+        public PlayerStats(int _dmg = 0, int _int = 0, int _nrg = 0, int _con = 0, int _kit = 0, int _lic = 0, int _nag = 0, int _mer = 0, int _dra = 0, int _vam = 0, int _pro = 0)
         {
             DMG = _dmg;
             INT = _int;
             NRG = _nrg;
             CON = _con;
+            Kitsune = _kit;
+            Lich = _lic;
+            Naga = _nag;
+            Mermaid = _mer;
+            Dragon = _dra;
+            Vampire = _vam;
+            Producer = _pro;
         }
     }
     public PlayerStats player1Stats;
@@ -89,8 +106,8 @@ public class RunManager : NetworkBehaviour
     }
     private void OnGUI()
     {
-        //p1 = GUI.Window(0, p1, Player1Window, "Player 1 Stats");
-        //p2 = GUI.Window(1, p2, Player2Window, "Player 2 Stats");
+        p1 = GUI.Window(0, p1, Player1Window, "Player 1 Stats");
+        p2 = GUI.Window(1, p2, Player2Window, "Player 2 Stats");
     }
     void Player1Window(int windowID)
     {
