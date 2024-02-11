@@ -170,8 +170,10 @@ public class GetPlayerID : NetworkBehaviour
     public void RecallWorldObjects()
     {
         //reparents all objects to this
+        player2combatSceneUI.transform.SetParent(combatSceneUI.transform);
         combatSceneUI.transform.SetParent(transform);
         player2combatScene.transform.SetParent(combatScene.transform);
+
         combatScene.transform.SetParent(transform);
         var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
 /*        foreach (CardPlayerController cpc in playerControllers)

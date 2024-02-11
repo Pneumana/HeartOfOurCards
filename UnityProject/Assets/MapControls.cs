@@ -18,7 +18,7 @@ public class MapControls : NetworkBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             //need to have some method for checking who's turn it is to pick a map.
 

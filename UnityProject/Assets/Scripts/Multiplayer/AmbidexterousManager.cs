@@ -203,6 +203,10 @@ public class AmbidexterousManager : NetworkManager
     {
         NetworkClient.ready = false;
         base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
+        foreach(GetPlayerID plr in PlayerList)
+        {
+            plr.RecallWorldObjects();
+        }
     }
     public override void OnClientNotReady()
     {

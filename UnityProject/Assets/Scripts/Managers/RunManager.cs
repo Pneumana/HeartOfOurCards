@@ -32,6 +32,9 @@ public class RunManager : NetworkBehaviour
 
     public int LocalPlayerID;
 
+    public float localMapCamZoom;
+    public Vector2 localMapCamPos;
+
     public struct PlayerStats
     {
         public int DMG; //Overkill

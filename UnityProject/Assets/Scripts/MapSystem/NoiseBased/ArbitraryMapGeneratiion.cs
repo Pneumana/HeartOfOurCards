@@ -408,6 +408,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         {
                 fogOfWar.SetTile(pos, null);
         }
+
         yield return null;
     }
     public void ClickToExplore(Vector3 mouse)
@@ -435,11 +436,25 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         if (clicked)
         {
             StartCoroutine(ExploreTile(clickedTile.x, clickedTile.y));
+            var cell = clickedTile;
+            if (world.GetTile(cell) == romance)
+            {
+                AmbidexterousManager.Instance.ChangeScene("SampleScene");
+            }
+            else if (world.GetTile(cell) == shop)
+            {
+                //AmbidexterousManager.Instance.ChangeScene("SampleScene");
+            }
+            else
+            {
+                AmbidexterousManager.Instance.ChangeScene("ConnorTest");
+            }
         }
     }
 
     void PickSpecialTiles()
     {
+        Random.InitState(seed);
         var romances = romancesToSpawn;
         var encounters = encountersToSpawn;
         var shops = shopsToSpawn;

@@ -156,7 +156,7 @@ MonoBehaviour:
   revealedRooms: []
   completedRooms: []
   seed: 0
-  secondPlayerPick: 0
+  pickingPlayer: 0
   LocalPlayerID: -1
 --- !u!4 &69857296
 Transform:
@@ -591,8 +591,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
