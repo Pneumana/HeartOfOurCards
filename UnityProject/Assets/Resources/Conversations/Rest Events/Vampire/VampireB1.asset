@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: VampireB1
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
+  commandScript: 'BreakStart
+
+    !2
+
+    @SAY
+
+    @POS 0.5, -0.1, 110
+
+    ;
+
+
+    BreakDialogue2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakDialogue3
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakPlayerChoice
+
+    !0
+
+    @STAT
+    @INT, 10, "TEXT HERE", BreakPlayerChoice1Success, BreakPlayerChoice1Fail% @CON,
+    10, "TEXT HERE", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
+
+    ;
+
+
+    BreakPlayerChoice1Success
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakPlayerChoice1Success2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakEnd1
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice1Fail
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakPlayerChoice1Fail2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakEnd2
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice2Success
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakPlayerChoice2Success2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakEnd3
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice2Fail
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakPlayerChoice2Fail2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    BreakEnd4
+
+    !0
+
+    @END
+    Map
+
+    ;'

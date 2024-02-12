@@ -1,0 +1,261 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: LichC1
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: 1c25102661b91a34badf1800d4c368a8, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
+  commandScript: 'CrowdWorkStart
+
+    !2
+
+    @SAY*CLACKCLACKCLACKCLACK* What have
+    we here? More soldiers for the legion?
+
+    @POS 0.5, -0.1, 110
+
+    ;
+
+
+    CrowdWorkPlayerResponse1
+
+    !0
+
+    @SAYDo
+    we look like those skeletons to you, lich?
+
+    ;
+
+
+    CrowdWorkDialogue2
+
+    !2
+
+    @SAYHmmm,
+    you have a point. It seems we''ll need to get rid of that pesky flesh of yours
+    first.
+
+    ;
+
+
+    CrowdWorkPlayerResponse2
+
+    !0
+
+    @SAYYou think you have
+    the strength for such threats? We''re not weak enough to be done in by mere undead!
+
+    ;
+
+
+    CrowdWorkDialogue3
+
+    !2
+
+    @SAY*CLACKCLACKCLACK*
+    Good! Good! I''d hate for the new additions to be too weak. Perhaps your courage
+    can be carried over into your next life under my eternal control!
+
+    ;
+
+
+    CrowdWorkPlayerChoice
+
+    !0
+
+    @STAT
+    @INT, 10, "*Attempt to withstand his magical influence*", CrowdWorkPlayerChoice1Success,
+    CrowdWorkPlayerChoice1Fail% @CON, 10, "*Endure against the wave of never ending
+    undead*", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success
+
+    !2
+
+    @SAYVery
+    well then! I shall show you your inescapable fate myself!
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration1
+
+    !3
+
+    @SAYHe
+    quickly casts an impressive mental black magic spell to enslave you.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration2
+
+    !3
+
+    @SAYYou
+    are slightly shaken, but your will holds firm. You won''t be controlled today!
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success2
+
+    !2
+
+    @SAYHaah,
+    haah. *CLACKCLACK* Perhaps it wasn''t a simple bluff. You have impressive fortitude.
+    I wonder if you''ll do as well facing me after being worn down by my monsters...
+
+    ;
+
+
+    CrowdWorkEnd1
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail
+
+    !2
+
+    @SAYVery well then!
+    I shall show you your inescapable fate myself!
+
+    ;
+
+
+    CrowdWorkPlayerChoice1FailNarration1
+
+    !3
+
+    @SAYBefore
+    he can cast his spell, you try to resist it a little too hard and get a slight
+    nosebleed.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1FailNarration2
+
+    !3
+
+    @SAYHe
+    notices your condition and quickly stops casting his spell, instead choosing
+    to pretend to cast a spell... It''s much less impressive
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail2
+
+    !2
+
+    @SAYUhh...
+    *CLACKCLACKCLACK* You are struggling with only this much! Shame, I had such high
+    hopes for my future recruits. Perhaps I can give you some time to raise your
+    strength to better serve me after our next encounter.
+
+    ;
+
+
+    CrowdWorkEnd2
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success
+
+    !3
+
+    @SAYHoards of undead
+    quickly surround you. You fight back valiantly, slaying many of them. The fight
+    lasts for what feels like forever.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success2
+
+    !2
+
+    @SAYStop!
+    That''s enough.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success3
+
+    !2
+
+    @SAYThis
+    fight isn''t worth the losses. I''ll leave you for now. I''m sure you won''t
+    be so lively after going through all of the expendables on your way. *CLACKCLACKCLACK*
+    I''ll see you then my worthy prospects.
+
+
+    CrowdWorkEnd3
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail
+
+    !3
+
+    @SAYThe army of undead
+    charges straight at you. You attempt to make a stand but are quickly pushed back.
+    Retreating step by step, you feel your limbs grow weak and your breath grow ragged.
+    Your limit is near.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail2
+
+    !2
+
+    @SAY*CLACKCLACKCLACK*
+    After all that big talk, this is all you have?! And you think yourself worthy
+    of joining my legion? I''ve lost interest. Find me again if you wish to prove
+    your worth again. I may be merciful and take you in then.
+
+    ;
+
+
+    CrowdWorkEnd4
+
+    !0
+
+    @END
+    Map
+
+    ;'

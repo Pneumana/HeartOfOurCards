@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: MermaidC1
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: 2e282c5b9c669b84dbfea1c0d5c797c5, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
+  commandScript: 'CrowdWorkStart
+
+    !2
+
+    @SAYAvast! Iss''at a pair o'' plunderin''
+    ne''er d''wells? Out''n th'' high seas scallywags like youse would be drawn n''
+    quart''rd for y''ever got t'' me!
+
+    @POS 0.5, -0.1, 110
+
+    ;
+
+
+    CrowdWorkDialogue2
+
+    !2
+
+    @SAYHmm?
+    That''s a lot of booty ye''ve got on ye! Lets make a bargain, ye give me yer
+    gold, I give ye yer lives!
+
+    ;
+
+
+    CrowdWorkDialogue3
+
+    !2
+
+    @SAYLay
+    down yer arms n'' prepare to be boarded, arrrrrr!
+
+    ;
+
+
+    CrowdWorkNarration1
+
+    !3
+
+    @SAYIt''s
+    not quite time for the big bout with Merryreed yet, you need to escape while
+    still keeping up the crowd''s hype!
+
+    ;
+
+
+    CrowdWorkPlayerChoice
+
+    !0
+
+    @STAT
+    @DMG, 10, "*Do a little back and forth swashbuckling dueling.*", CrowdWorkPlayerChoice1Success,
+    CrowdWorkPlayerChoice1Fail% @CON, 10, "*Lets make this a chase, unleash your
+    secret family technique and RUN FOR IT!*", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success
+
+    !2
+
+    @SAYShiver
+    me Timbers! Whod''ve thought ye''d ''ave the stones t'' face me? Well then, ye
+    son o'' a biscuit ea''er, have at ye!
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration1
+
+    !3
+
+    @SAYThe
+    two of you clash weapons (a spell is a weapon too, it makes a clashing noise
+    when Merryreed bats it away with her sword and everything) and dance along the
+    planks. You see a stage hand flip a switch backstage, and the terrain you''re
+    fighting on splits in half.
+
+    ;
+
+
+    CrowdWorkEnd1
+
+    !0
+
+    @END Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail
+
+    !2
+
+    @SAYAha!
+    Think ye can challenge me y'' bilge sucking scoundre- Er, [Player], y'' pulled
+    out a fork not any weapon. uh- I mean... Arr, ye brought out that, y'' biscuit
+    eater? Such an offense, have at ye!
+
+    ;
+
+
+    CrowdWorkPlayerChoice1FailNarration1
+
+    !3
+
+    @SAYMerryreed
+    draws her rapier and lunges at you, and you try to parry with your fork. It nearly
+    hits your throat but she twists the blade out of the way just in the nick of
+    time.
+
+    ;
+
+
+    CrowdWorkEnd2
+
+    !0
+
+    @END Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success
+
+    !2
+
+    @SAYYe
+    can''t escape me y'' salty dog, I''ll chase ye to the ends o''the earth!
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration1
+
+    !3
+
+    @SAYMerryreed
+    chases you through the dungeon, the crowd cheers as you two parkour around dangerous
+    traps, leap over spiked pits, and duck in between swinging axes. Eventually you
+    lose her in a maze of rotating walls.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration2
+
+    !3
+
+    @SAYYour
+    ENDURANCE really pulled through for this one, a shame you couldn''t map out the
+    dungeon, but it''s not like this was a LOGIC test. And hey, that maze led you
+    right back to the room you were just in, so at least you didn''t get lost!
+
+    ;
+
+
+    CrowdWorkEnd3
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail
+
+    !3
+
+    @SAYYou break out into
+    a sprint, running as fast as your legs can carry you.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration2
+
+    !3
+
+    @SAYYou
+    run out of breath in a minute, collapsing on your knees. Merryreed catches up
+    to you with a dissapointed look on her face. Thankfully, you had the foresight
+    to run offstage,so the fans don''t get to see how out of shape you are.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration2
+
+    !3
+
+    @SAYThat''s
+    rough, champ, you need to get some cardio. Getting some ENDURACE will let you
+    let you last at least a little longer
+
+    ;
+
+
+    CrowdWorkEnd4
+
+    !0
+
+    @END
+    Map
+
+    ;'

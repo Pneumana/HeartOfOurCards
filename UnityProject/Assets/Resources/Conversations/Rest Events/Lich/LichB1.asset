@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: LichB1
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: 1c25102661b91a34badf1800d4c368a8, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
+  - {fileID: 11400000, guid: bed4b6c962bd2454c84902640181383f, type: 2}
+  commandScript: 'BreakStart
+
+    !2
+
+    @SAYOh... no.... Where is Occipital?
+
+    @POS
+    0.5, -0.1, 110
+
+    ;
+
+
+    BreakPlayerResponse1
+
+    !0
+
+    @SAYWhat is ''Occipital''?
+
+    ;
+
+
+    BreakDialogue2
+
+    !2
+
+    @SAYOh!
+    Uhh... Occipital... He''s one of my skulls. I think I might have left him in
+    the bathroom just now, but there''s not enough time to go back before the break
+    ends...
+
+    ;
+
+
+    BreakDialogue3
+
+    !2
+
+    @SAYI don''t know how I can
+    go on without him... He really keeps my head on my shoulders.
+
+    ;
+
+
+    BreakPlayerChoice
+
+    !0
+
+    @STAT
+    @NRG, 10, "Why don''t I go get him for you? I think I can make it back in time
+    if I hurry!", BreakPlayerChoice1Success, BreakPlayerChoice1Fail% @DMG, 10, "*Push
+    him out the door* Come on! You don''t need anyones help! Everything you need
+    was aways inside you all along!", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
+
+    ;
+
+
+    BreakPlayerChoice1Success
+
+    !2
+
+    @SAYOh!
+    Uh! You will? Thank you... oh they''re gone.
+
+    ;
+
+
+    BreakPlayerChoice1SuccessSecondary1
+
+    !4
+
+    @SAYYou
+    seem quite happy about it.
+
+
+    ;
+
+
+    BreakPlayerChoice1Success2
+
+    !2
+
+    @SAYHuh?!
+    Lacrimal what are you talking about?!
+
+    ;
+
+
+    BreakPlayerChoice1SuccessSecondary2
+
+    !4
+
+    @SAYI
+    meant about getting Occipital back...
+
+    ;
+
+
+    BreakEnd1
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice1Fail
+
+    !2
+
+    @SAYOh! It would be great
+    if you could do... that...
+
+    ;
+
+
+    BreakPlayerChoice1Fail2
+
+    !2
+
+    @SAYYeah,
+    stretching is important... I guess. But... are you going to go?
+
+    ;
+
+
+    BreakEnd2
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice2Success
+
+    !2
+
+    @SAYOh?! Uh, yeah! I
+    guess?
+
+    ;
+
+
+    BreakPlayerChoice2Success2
+
+    !2
+
+    @SAYYes! I can do
+    this! Definitely! Thank you!
+
+    ;
+
+
+    BreakEnd3
+
+    !0
+
+    @END Map
+
+    ;
+
+
+    BreakPlayerChoice2Fail
+
+    !2
+
+    @SAYWhat?!
+    Oh! Hey, wait!
+
+    ;
+
+
+    BreakPlayerChoice2Fail2
+
+    !2
+
+    @SAYNo! Stop!
+    That''s too hard! My tibia!
+
+    ;
+
+
+    BreakEnd4
+
+    !0
+
+    @END Map
+
+    ;'

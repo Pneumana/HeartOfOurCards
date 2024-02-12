@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
   m_Name: Merryreed Glowfathom - Mermaid
   m_EditorClassIdentifier: 
-  Name: 
-  pss: 
-  pnd: 
-  Color: {r: 0, g: 0, b: 0, a: 0}
-  Default: {fileID: 0}
+  Name: Merryreed Glowfathom
+  pss: Her
+  pnd: She
+  Color: {r: 0, g: 0.5713501, b: 1, a: 0}
+  Default: {fileID: -6351585532090774954, guid: 62194227509f8db44bb96d1607406c56, type: 3}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
-  - {fileID: 11400000, guid: 5cf5af636033c86438c255c135f6ba33, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: 'DateStart
 
     !2
 
-    @SAY Welcome to Astarte''s Keep''s forerunning
+    @SAYWelcome to Astarte''s Keep''s forerunning
     Kitsune Shrine where we heal you in both body and mind!
 
     @POS 0.5, -0.1,
@@ -32,7 +32,7 @@ MonoBehaviour:
 
     !2
 
-    @SAY How may we help- Oh! It''s you!
+    @SAYHow may we help- Oh! It''s you!
 
     ;
 
@@ -41,8 +41,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    I was wondering when you would be stopping by!
+    @SAYI
+    was wondering when you would be stopping by!
 
     ;
 
@@ -51,8 +51,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    I was sure you would since I gave personally gave you my glowing recommendation
+    @SAYI
+    was sure you would since I gave personally gave you my glowing recommendation
     and even offered a special discount.
 
     ;
@@ -62,9 +62,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    But... It''s been so long since I last saw you, so I started to think that you
-    might not be coming at all.
+    @SAYBut...
+    It''s been so long since I last saw you, so I started to think that you might
+    not be coming at all.
 
     ;
 
@@ -73,8 +73,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY The
-    thought of not seeing you was beginning to make me quite sad, you know. Fufu.
+    @SAYThe thought
+    of not seeing you was beginning to make me quite sad, you know. Fufu.
 
     ;
 
@@ -83,31 +83,10 @@ MonoBehaviour:
 
     !0
 
-    @CHO
-    @OP I made my way here as fast as I could, though.&&DatePlayerChoiceCheck1% @OP
-    I couldn''t wait to see you anymore, so here I am!&&DatePlayerChoiceCheck2%
-
-    ;
-
-
-    DatePlayerChoiceCheck1
-
-    !0
-
     @STAT
-    @NRG, 10, I made my way here as fast as I could, though., DatePlayerChoice1Success,
-    DatePlayerChoice1Fail%
-
-    ;
-
-
-    DatePlayerChoiceCheck2
-
-    !0
-
-    @STAT
-    @CON, 10, I couldn''t wait to see you anymore, so here I am!, DatePlayerChoice2Success,
-    DatePlayerChoice2Fail%
+    @NRG, 10, "I made my way here as fast as I could, though.", DatePlayerChoice1Success,
+    DatePlayerChoice1Fail% @CON, 10, "I couldn''t wait to see you anymore, so here
+    I am!", DatePlayerChoice2Success, DatePlayerChoice2Fail%
 
     ;
 
@@ -116,9 +95,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Oh! I guess I was just looking forward to seeing you so much, it must have felt
-    much longer than it was, fufu.
+    @SAYOh!
+    I guess I was just looking forward to seeing you so much, it must have felt much
+    longer than it was, fufu.
 
     ;
 
@@ -127,9 +106,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Anyway, you seem very eager to get treated then! So let''s quickly take a good
-    look at that body of yours. A *very* good look.
+    @SAYAnyway,
+    you seem very eager to get treated then! So let''s quickly take a good look at
+    that body of yours. A *very* good look.
 
     ;
 
@@ -148,8 +127,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Oh, um. You came *right* here? You must have been in an awful hurry, I suppose...
+    @SAYOh,
+    um. You came *right* here? You must have been in an awful hurry, I suppose...
 
     ;
 
@@ -158,8 +137,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Maybe I should help you find a hobby or something. Let''s just get you healed.
+    @SAYMaybe
+    I should help you find a hobby or something. Let''s just get you healed.
 
     ;
 
@@ -178,8 +157,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY 
-    Oh, you... uh... must have really wanted to see me then, huh? I''m flattered...
+    @SAYOh,
+    you... uh... must have really wanted to see me then, huh? I''m flattered...
 
     ;
 
@@ -188,9 +167,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Well! It seems I''ll have to give you some mental healing as well then. I''m
-    prescribing an extra dose of Tsuki Therapy just for you!
+    @SAYWell!
+    It seems I''ll have to give you some mental healing as well then. I''m prescribing
+    an extra dose of Tsuki Therapy just for you!
 
     ;
 
@@ -209,8 +188,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Oh my. You do look in dire need of me. You''re really on your last leg here.
+    @SAYOh
+    my. You do look in dire need of me. You''re really on your last leg here.
 
     ;
 
@@ -219,9 +198,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    We need to opperate right away, so I''ll hand you off to someone else now. See
-    you next time... maybe.
+    @SAYWe
+    need to opperate right away, so I''ll hand you off to someone else now. See you
+    next time... maybe.
 
     ;
 

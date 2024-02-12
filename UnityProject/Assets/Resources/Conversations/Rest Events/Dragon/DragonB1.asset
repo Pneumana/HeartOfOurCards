@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
-  m_Name: KitsuneB1
+  m_Name: DragonB1
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
+  - {fileID: 11400000, guid: 96f71882ee9d4634c8e90c4b9f6afe80, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: 'BreakStart
 
     !2
 
-    @SAYOh my! You look a little worse for
-    wear. What will you do if you end up collapsing at this rate?
+    @SAYAARGGH! All of these lesser beings
+    with their lesser furnature!
 
-    @POS 0.5,
-    -0.1, 110
+    @POS 0.5, -0.1, 110
 
     ;
 
@@ -32,8 +31,9 @@ MonoBehaviour:
 
     !2
 
-    @SAYWhy don''t you stop by
-    my shrine after this?
+    @SAYThe
+    couch is small and weak! The coffee table is small and weak! The microwave! SMALL
+    AND WEAK!
 
     ;
 
@@ -42,8 +42,7 @@ MonoBehaviour:
 
     !2
 
-    @SAYWe have some
-    of the best healers in Astarte''s Keep after all.
+    @SAYAnd it smells like fish.
 
     ;
 
@@ -63,8 +62,8 @@ MonoBehaviour:
     !0
 
     @STAT
-    @INT, 10, "Are you marketing your business right now?", BreakPlayerChoice1Success,
-    BreakPlayerChoice1Fail% @CON, 10, "What do you mean "special care"?", BreakPlayerChoice2Success,
+    @INT, 10, "Would you like me to move the furniture around for you?", BreakPlayerChoice1Success,
+    BreakPlayerChoice1Fail% @DMG, 10, "*Break the furnature in solidarity*", BreakPlayerChoice2Success,
     BreakPlayerChoice2Fail%
 
     ;
@@ -74,8 +73,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYI
-    do like a smart adventurer. I''m glad you can see the crux of this issue.
+    @SAYAn
+    open area? Exclusively for me?
 
     ;
 
@@ -84,8 +83,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYMake
-    sure to spread the word for me and I''ll personally treat you. Half off.
+    @SAYI
+    can finally lay out all of my treasures! Wonderful!
 
     ;
 
@@ -104,8 +103,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY*Sigh* There are some
-    things you should never ask a lady, you know.
+    @SAYYou dare to tell me
+    how to act?!
 
     ;
 
@@ -114,42 +113,13 @@ MonoBehaviour:
 
     !2
 
-    @SAYThere
-    is a 10% discount for coworkers.
+    @SAYThe Great
+    Black Fang does not act as told! The Great Black Fang is extremely spiteful!!
 
     ;
 
 
     BreakEnd2
-
-    !0
-
-    @END Map
-
-    ;
-
-
-    BreakPlayerChoice2Success
-
-    !2
-
-    @SAYFufu!
-    Do you need a special reason to want to be with me?
-
-    ;
-
-
-    BreakPlayerChoice2Success2
-
-    !2
-
-    @SAYAnyway,
-    do visit. You won''t regret it. Don''t keep me waiting.
-
-    ;
-
-
-    BreakEnd3
 
     !0
 
@@ -159,13 +129,43 @@ MonoBehaviour:
     ;
 
 
+    BreakPlayerChoice2Success
+
+    !2
+
+    @SAYHmmm. You seem a
+    bit... better than the rest of these lesser beings. Perhaps you can somewhat
+    relate to the problems of one as great as I.
+
+    ;
+
+
+    BreakPlayerChoice2Success2
+
+    !2
+
+    @SAYStay
+    strong, small one, in this world of the weak. Perhaps one day... I may have a
+    worthy foe.
+
+    ;
+
+
+    BreakEnd3
+
+    !0
+
+    @END Map
+
+    ;
+
+
     BreakPlayerChoice2Fail
 
     !2
 
-    @SAYMmm... Actually, you
-    seem in need of pretty urgent medical assisstance. I might not have the chance
-    to see you, after all.
+    @SAYYou...
+    are small and weak.
 
     ;
 
@@ -174,8 +174,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYBut
-    do drop by... You need it.
+    @SAYI didn''t
+    realize they hired worms for this line of work
 
     ;
 
@@ -184,6 +184,7 @@ MonoBehaviour:
 
     !0
 
-    @END Map
+    @END
+    Map
 
     ;'

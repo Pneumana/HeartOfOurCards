@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: 'CrowdWorkStart
 
     !2
 
-    @SAY Well what do we have here? It
-    seems some little adventurers have stumbled their way in.
+    @SAYWell what do we have here? It seems
+    some little adventurers have stumbled their way in.
 
-    @POS 0.5, -0.1,
-    110
+    @POS 0.5, -0.1, 110
 
     ;
 
@@ -31,8 +31,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY You must be lost to find
-    yourself here. Fufu.
+    @SAYYou
+    must be lost to find yourself here. Fufu.
 
     ;
 
@@ -41,8 +41,8 @@ MonoBehaviour:
 
     !0
 
-    @SAY
-    We''re not lost, fox! We''re here to conqure this dungeon!
+    @SAYWe''re
+    not lost, fox! We''re here to conqure this dungeon!
 
     ;
 
@@ -51,8 +51,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Oho. Is that so? Well, in that case, you should be careful around here.
+    @SAYOho.
+    Is that so? Well, in that case, you should be careful around here.
 
     ;
 
@@ -61,9 +61,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    I''d hate to see adventurers as cute as you getting hurt from not knowing your
-    limits.
+    @SAYI''d
+    hate to see adventurers as cute as you getting hurt from not knowing your limits.
 
     ;
 
@@ -72,8 +71,8 @@ MonoBehaviour:
 
     !1
 
-    @SAY There''s no need
-    to worry about that. We''re stronger than you give us credit for.
+    @SAYThere''s
+    no need to worry about that. We''re stronger than you give us credit for.
 
     ;
 
@@ -82,9 +81,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Fufufu! I hope that''s true. Come chase after my tail then. I''d hate to not
-    see you again soon.
+    @SAYFufufu!
+    I hope that''s true. Come chase after my tail then. I''d hate to not see you
+    again soon.
 
     ;
 
@@ -93,41 +92,10 @@ MonoBehaviour:
 
     !0
 
-    @CHO @OP
-    Next we meet will be when you meet your end, fox!&&CrowdWorkPlayerChoiceCheck1%
-    @OP We won''t keep you waiting. These monsters can''t hold us back for long!&&CrowdWorkPlayerChoiceCheck2%
-
-    ;
-
-
-    CrowdWorkPlayerChoiceCheck1
-
-    !0
-
-    @STAT
-    @DMG, 10, Next we meet will be when you meet your end fox!, CrowdWorkPlayerChoice1Success,
-    CrowdWorkPlayerChoice1Fail%
-
-    ;
-
-
-    CrowdWorkPlayerChoiceCheck2
-
-    !0
-
-    @STAT
-    @NRG, 10, We won''t keep you waiting. These monsters can''t hold us back for
-    long!, CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
-
-    ;
-
-
-    Test
-
-    !2
-
-    @SAY
-    Failure.
+    @STAT @DMG, 10, "Next
+    we meet will be when you meet your end fox!", CrowdWorkPlayerChoice1Success,
+    CrowdWorkPlayerChoice1Fail% @NRG, 10, "We won''t keep you waiting. These monsters
+    can''t hold us back for long!", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
 
     ;
 
@@ -136,8 +104,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY Oh my!
-    Fufu, I do like it to be a bit... rough.
+    @SAYOh
+    my! Fufu, I do like it to be a bit... rough.
 
     ;
 
@@ -146,8 +114,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Don''t keep me waiting. I''m not known for my patience.
+    @SAYDon''t
+    keep me waiting. I''m not known for my patience.
 
     ;
 
@@ -166,7 +134,7 @@ MonoBehaviour:
 
     !2
 
-    @SAY Ehmm... I don''t
+    @SAYEhmm... I don''t
     usually turn away from brutes, but this is a bit much... Even for me.
 
     ;
@@ -176,8 +144,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Next time, try asking for the safeword first.
+    @SAYNext
+    time, try asking for the safeword first.
 
     ;
 
@@ -196,7 +164,7 @@ MonoBehaviour:
 
     !2
 
-    @SAY I see you''re
+    @SAYI see you''re
     looking forward to our next meeting just as much as I am, fufufu. I''m always
     glad to have some active participants in these kinds of activities.
 
@@ -207,9 +175,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Huh? Oh... yes... fighting. That''s what I was talking about, fufu. Well, don''t
-    linger here. I can''t wait to get started with you!
+    @SAYHuh?
+    Oh... yes... fighting. That''s what I was talking about, fufu. Well, don''t linger
+    here. I can''t wait to get started with you!
 
     ;
 
@@ -228,7 +196,7 @@ MonoBehaviour:
 
     !2
 
-    @SAY Oh, well, you seem...
+    @SAYOh, well, you seem...
     eager. You might want to lay off a bit. Comes off a little... creepy.
 
     ;
@@ -238,9 +206,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    I''ll see you adventurers at the end of your journey... Maybe I should send some
-    more monsters.
+    @SAYI''ll
+    see you adventurers at the end of your journey... Maybe I should send some more
+    monsters.
 
     ;
 

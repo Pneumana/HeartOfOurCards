@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
-  - {fileID: 11400000, guid: 5cf5af636033c86438c255c135f6ba33, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: 'DateStartPart2
 
     !3
 
-    @SAY Healing seems to hurt a lot more
+    @SAYHealing seems to hurt a lot more
     than you thought it would... Like, a lot more!
 
     :
@@ -36,32 +36,11 @@ MonoBehaviour:
 
     !0
 
-    @CHO @OP *Clench your jaw
-    and muscle your way through the pain! You survived the injury, you can survive
-    this.*&&DatePlayerChoiceCheck1% @OP *Let''s just do something to keep your mind
-    off of it. Maybe you can talk to Tsuki to distract yourself.*&&DatePlayerChoiceCheck2%
-
-    ;
-
-
-    DatePlayerChoiceCheck1
-
-    !0
-
-    @STAT
-    @DMG, 10, *Clench your jaw and muscle your way through the pain! You survived
-    the injury, you can survive this.*, DatePlayerChoice3Success, DatePlayerChoice1Fail%
-
-    ;
-
-
-    DatePlayerChoiceCheck2
-
-    !0
-
-    @STAT
-    @INT, 10, *Let''s just do something to keep your mind off of it. Maybe you can
-    talk to Tsuki to distract yourself.*, DatePlayerChoice4Success, DatePlayerChoice2Fail%
+    @STAT @DMG, 10, "*Clench
+    your jaw and muscle your way through the pain! You survived the injury, you can
+    survive this.*", DatePlayerChoice3Success, DatePlayerChoice1Fail% @INT, 10, "*Let''s
+    just do something to keep your mind off of it. Maybe you can talk to Tsuki to
+    distract yourself.*", DatePlayerChoice4Success, DatePlayerChoice2Fail%
 
     ;
 
@@ -70,8 +49,8 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Wow! I''ve never seen anyone handle healing so well before. Honestly, I''m impressed.
+    @SAYWow!
+    I''ve never seen anyone handle healing so well before. Honestly, I''m impressed.
 
     ;
 
@@ -80,10 +59,10 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Looking at you like this, it seems like you won''t shy away from healing like
-    the rest of those would-be adventurers in the making. Seems like I''ll be seeing
-    a lot of you after this, fufu.
+    @SAYLooking
+    at you like this, it seems like you won''t shy away from healing like the rest
+    of those would-be adventurers in the making. Seems like I''ll be seeing a lot
+    of you after this, fufu.
 
     ;
 
@@ -101,8 +80,8 @@ MonoBehaviour:
 
     !3
 
-    @SAY
-    Or maybe you can''t.
+    @SAYOr
+    maybe you can''t.
 
     ;
 
@@ -111,8 +90,7 @@ MonoBehaviour:
 
     !0
 
-    @SAY
-    AAAAAAAAAAAARRRRRRRGGGGGGGHHHHHHHH!!
+    @SAYAAAAAAAAAAAARRRRRRRGGGGGGGHHHHHHHH!!
 
     ;
 
@@ -121,10 +99,10 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    ...Have you been hanging out with that Merryreed recently? Anyway, you seem to
-    be struggling with this. You won''t get anosognosia from this will you?... I''ve
-    seen it happen before.
+    @SAY...Have
+    you been hanging out with that Merryreed recently? Anyway, you seem to be struggling
+    with this. You won''t get anosognosia from this will you?... I''ve seen it happen
+    before.
 
     ;
 
@@ -142,9 +120,9 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Oh! You can talk to me while getting healed? I''m impressed. Most people just
-    scream or cry.
+    @SAYOh!
+    You can talk to me while getting healed? I''m impressed. Most people just scream
+    or cry.
 
     ;
 
@@ -153,10 +131,10 @@ MonoBehaviour:
 
     !2
 
-    @SAY Well,
-    if talking to little ol'' me will help you through this, I suppose I wouldn''t
-    mind keeping you company for a while. Go ahead and fire off all those burning
-    questions you have for me. Anything that you''re just dying to know, fufu.
+    @SAYWell, if talking
+    to little ol'' me will help you through this, I suppose I wouldn''t mind keeping
+    you company for a while. Go ahead and fire off all those burning questions you
+    have for me. Anything that you''re just dying to know, fufu.
 
     ;
 
@@ -175,7 +153,7 @@ MonoBehaviour:
 
     !2
 
-    @SAY Um... Maybe you should
+    @SAYUm... Maybe you should
     unclench your jaw first. It''s really hard to understand you with that absolute
     vice grip you''ve got there.
 
@@ -186,10 +164,10 @@ MonoBehaviour:
 
     !2
 
-    @SAY
-    Well, I''ve seen people handle it worse, I suppose... And now you''re crying.
-    At least you''re not as bad as this one person I treated. They actually cried...
-    blood. Maybe I should just stop talking now.
+    @SAYWell,
+    I''ve seen people handle it worse, I suppose... And now you''re crying. At least
+    you''re not as bad as this one person I treated. They actually cried... blood.
+    Maybe I should just stop talking now.
 
     ;
 

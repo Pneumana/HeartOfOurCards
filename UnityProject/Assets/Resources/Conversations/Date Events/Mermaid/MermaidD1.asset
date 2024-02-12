@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: MermaidD1
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: 2e282c5b9c669b84dbfea1c0d5c797c5, type: 2}
+  - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
+  commandScript: 'DateStart
+
+    !2
+
+    @SAYAhoy-hoy! Oh that sounds so wrong to
+    do out of work... Sorry I''m a little late, by the way, I had a couple of fan
+    signings, but I''m excited to try this place out! Authentic merfolk cuisine is
+    pretty rare on the surface!
+
+    @POS 0.5, -0.1, 110
+
+    ;
+
+
+    DateDialogue2
+
+    !2
+
+    @SAYOur
+    manager was pressuring me to make this a public thing, take a portrait of me
+    eating here, but that''s a little weird, right? Like, I don''t have to publicize
+    every part of my life, y''know?
+
+    ;
+
+
+    DateDialogue3
+
+    !2
+
+    @SAYAh,
+    sorry, I was thinking so much of my day that I forgot this was supposed to be
+    time to relax... I think I''ll have something light, maybe just some Umibozu
+    Rolls... What are you having, [Player]?
+
+    ;
+
+
+    DateNarration1
+
+    !3
+
+    @SAYThe
+    waiter approaches the two of you, It''s time to order.
+
+    ;
+
+
+    DatePlayerChoice
+
+    !0
+
+    @STAT
+    @INT, 1, "You''ve heard it''s customary for the lady to order in merfolk culture.
+    Best let her handle it.", DatePlayerChoice1Success, DatePlayerChoice1Fail% @DMG,
+    10, "You''re here to impress her. Order the most intimidating item on the menu.",
+    DatePlayerChoice2Success, DatePlayerChoice2Fail%
+
+    ;
+
+
+    DatePlayerChoice1Success
+
+    !2
+
+    @SAYOh,
+    wow, making this a real date, huh? I''ll treat you right, don''t worry. [Player
+    Pronoun] will be having the Skull-Bellied Pufferfish, keep the guts.
+
+    ;
+
+
+    DatePlayerChoice1Success2
+
+    !2
+
+    @SAYIt''s
+    not really a dish for the inexperienced, but if you already have the manners,
+    I''m sure you can handle it!
+
+    ;
+
+
+    DatePart2Load1
+
+    !0
+
+    @LOAD Date
+    Events/Mermaid/MermaaidD1-2
+
+    ;
+
+
+    DatePlayerChoice1Fail
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    DatePlayerChoice1Fail2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    DatePart2Load2
+
+    !0
+
+    @LOAD
+    Date Events/Mermaid/MermaaidD1-2
+
+    ;
+
+
+    DatePlayerChoice2Success
+
+    !2
+
+    @SAYOh,
+    going for the Skull-Bellied Pufferfish [PLAYER]? A bold choice!
+
+    ;
+
+
+    DatePlayerChoice2Success2
+
+    !2
+
+    @SAYMy
+    uncle was killed from one of them. Not from like, eating it or anything, never
+    bring a knife to a pufferfish fight. He kinda deserved it though. Well, I''m
+    sure you''ll do better than him.
+
+    ;
+
+
+    DatePart2Load3
+
+    !0
+
+    @LOAD
+    Date Events/Mermaid/MermaaidD1-2
+
+    ;
+
+
+    DatePlayerChoice2Fail
+
+    !3
+
+    @SAYYou
+    stutter, and panic, flipping through the pages of the menu. As the waiter looks
+    at you, you just point at something.
+
+    ;
+
+
+    DatePlayerChoice2Fail2
+
+    !2
+
+    @SAYOh
+    wow, [Player], most people are too scared to go for the Skull-Bellied Pufferfish
+    on their first outing. I''m excited to see how you tackle it!
+
+    ;
+
+
+    DatePart2Load4
+
+    !0
+
+    @LOAD
+    Date Events/Mermaid/MermaaidD1-2
+
+    ;'
