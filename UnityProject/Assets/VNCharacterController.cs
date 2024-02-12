@@ -27,6 +27,8 @@ public class VNCharacterController : MonoBehaviour
 
     bool speaking;
 
+    bool eyeLoadErr;
+
     public enum EmotionState
     {
         Neutral,
@@ -54,12 +56,6 @@ public class VNCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*        var dist = Vector3.Distance(Input.mousePosition, EyeMask.transform.position) / 75;
-                dist = Mathf.Clamp(dist, -14.2f, 14.2f);
-                //var angle = Input.mousePosition - EyeMask.transform.position;
-                var relative = Iris.transform.InverseTransformPoint(Input.mousePosition);
-                float angle = Mathf.Atan2(relative.x, relative.y);
-                //lookTarget = new Vector3(Mathf.Sin(angle) * dist, Mathf.Cos(angle) * dist);*/
         var localLook = lookTarget * transform.lossyScale.x;
 
         transform.localScale = new Vector3(Mathf.MoveTowards(transform.localScale.x, scaleTarget, Time.deltaTime * 6), 1, 1);
@@ -70,34 +66,38 @@ public class VNCharacterController : MonoBehaviour
         //GetComponent<RectTransform>().anchoredPosition = 
 
         Iris.transform.localPosition =Vector3.MoveTowards(Iris.transform.localPosition, localLook, Time.deltaTime * 55);
-        blinkTime += Time.deltaTime;
-        if(blinkTime > 2.5f)
+        if (eyeLoadErr != true)
         {
-            EyeLines.sprite = character.SquintLines;
-            EyeMask.sprite = character.SquintMask;
-            //EyeMask.GetComponent<SpriteMask>().sprite = character.SquintMask;
-        }
-        if(blinkTime > 2.625f)
-        {
-            EyeLines.sprite = character.ClosedLines;
-            EyeMask.enabled = false;
-            Iris.enabled = false;
-        }
-        if (blinkTime > 2.75f)
-        {
-            EyeMask.enabled = true;
-            Iris.enabled = true;
-            
+            blinkTime += Time.deltaTime;
+            if (blinkTime > 2.5f)
+            {
+                EyeLines.sprite = character.SquintLines;
+                EyeMask.sprite = character.SquintMask;
+                //EyeMask.GetComponent<SpriteMask>().sprite = character.SquintMask;
+            }
+            if (blinkTime > 2.625f)
+            {
+                EyeLines.sprite = character.ClosedLines;
+                EyeMask.enabled = false;
+                Iris.enabled = false;
+            }
+            if (blinkTime > 2.75f)
+            {
+                EyeMask.enabled = true;
+                Iris.enabled = true;
+
                 EyeLines.sprite = character.SquintLines;
 
                 EyeMask.sprite = character.SquintMask;
-            //EyeMask.GetComponent<SpriteMask>().sprite = character.SquintMask;
+                //EyeMask.GetComponent<SpriteMask>().sprite = character.SquintMask;
+            }
+            if (blinkTime > 2.87f)
+            {
+                blinkTime = 0;
+                ChangeEmote(currentEmotion);
+            }
         }
-        if (blinkTime > 2.87f)
-        {
-            blinkTime = 0;
-            ChangeEmote(currentEmotion);
-        }
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("start eye roll");
@@ -108,7 +108,7 @@ public class VNCharacterController : MonoBehaviour
     {
         //check for sprites being null, if null fallback to the producer sprites
         //or hide them i guess lol
-        if (Body.sprite == null)
+        /*if (Body.sprite == null)
             Body.enabled = false;
         else
             Body.enabled = true;
@@ -126,7 +126,7 @@ public class VNCharacterController : MonoBehaviour
         if(Iris.sprite==null)
             Iris.enabled = false;
         else
-            Iris.enabled = true;
+            Iris.enabled = true;*/
 
         //if speaking, set mouth sprite to open
         //if not set mouth to closed by ChangeEmote(currentEmote)
@@ -178,6 +178,27 @@ public class VNCharacterController : MonoBehaviour
     }
     public void changePose()
     {
+        if (character.Iris == null)
+        {
+            Iris.enabled = false;
+            eyeLoadErr = true;
+        }
+        if(character.ClosedLines == null || character.OpenLines == null || character.SquintLines == null)
+        {
+            EyeLines.enabled = false;
+            eyeLoadErr = true;
+        }
+        if (character.SquintMask == null || character.OpenMask == null)
+        {
+            EyeMask.enabled = false;
+            eyeLoadErr = true;
+        }
+        if (character.Default == null)
+        {
+            Body.enabled = false;
+            eyeLoadErr = true;
+        }
+        Mouth.enabled = false;
         Body.sprite = character.Default;
         Body.transform.localPosition = character.DefaultPoseOffset;
         

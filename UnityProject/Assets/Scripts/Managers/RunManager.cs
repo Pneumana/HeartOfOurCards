@@ -69,7 +69,7 @@ public class RunManager : NetworkBehaviour
     public PlayerStats player1Stats;
     public PlayerStats player2Stats;
 
-    [SyncVar]public List<PlayerStats> playerStatList = new List<PlayerStats>();
+    [SyncVar]public List<PlayerStats> playerStatList = new List<PlayerStats>() { new PlayerStats(10, 9, 10, 9), new PlayerStats(9, 10, 9, 10) };
 
     Rect p1 = new Rect(20, 20, 120, 120);
     Rect p2 = new Rect(140, 20, 120, 120);
