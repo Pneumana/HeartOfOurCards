@@ -93,7 +93,8 @@ namespace Enums
         Burn,
         Stun,
         Vulnerable,
-        Bleed
+        Bleed,
+        Regen
     }
 
     public enum CardType

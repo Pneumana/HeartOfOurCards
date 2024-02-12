@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Enums;
-//using Managers; (for the future)
+using Managers; 
 using UnityEngine;
+using Extentions;
+using Characters;
 
 namespace DeckData
 {
@@ -38,15 +40,16 @@ namespace DeckData
         public bool ExhaustAfterPlay => exhaustAfterPlay;
         public List<CardType> CardType => cardType;
 
+
         public void UpdateDescription()
         {
             var str = new StringBuilder();
 
             foreach (var descriptionData in cardDescriptionDataList)
             {
-                //str.Append(descriptionData.Value);
-                    //? descriptionData.GetModifiedValue(this)
-                    //: descriptionData.GetDescription());
+                str.Append(descriptionData.UseModifier
+                    ? descriptionData.GetModifiedValue(this)
+                    : descriptionData.GetDescription());
             }
 
             //[STR]
@@ -95,15 +98,65 @@ namespace DeckData
         public string ModifiedValuePrefix => modifiedValuePrefix;
         public bool OverrideColorOnValueScaled => overrideColorOnValueScaled;
 
+        private TurnManager turnManager => TurnManager.instance;
+        private GameObject StatCheck;
+
         public string GetDescription()
         {
             var str = new StringBuilder();
 
             str.Append(DescriptionText);
 
+            if (EnableOverrideColor && !string.IsNullOrEmpty(str.ToString()))
+                str.Replace(str.ToString(), ColorExtentions.ColorString(str.ToString(), OverrideColor));
 
             return str.ToString();
         }
 
+        public string GetModifiedValue(CardData cardData)
+        {
+            if (cardData.CardActionDataList.Count <= 0) return "";
+
+            if (ModifiedActionValueIndex >= cardData.CardActionDataList.Count)
+                modifiedActionValueIndex = cardData.CardActionDataList.Count - 1;
+
+            if (ModifiedActionValueIndex < 0)
+                modifiedActionValueIndex = 0;
+
+            var str = new StringBuilder();
+            var value = cardData.CardActionDataList[ModifiedActionValueIndex].ActionValue;
+            var modifer = 0;
+            GenericBody GB = StatCheck.GetComponentInParent<GenericBody>();
+
+            if (GB)
+            {
+                modifer = GB.StatusDict[ModiferStats].StatusValue;
+                value += modifer;
+
+                if (modifer != 0)
+                {
+                    if (usePrefixOnModifiedValue)
+                        str.Append(modifiedValuePrefix);
+                }
+            }
+
+            str.Append(value);
+
+            if (EnableOverrideColor)
+            {
+                if (OverrideColorOnValueScaled)
+                {
+                    if (modifer != 0)
+                        str.Replace(str.ToString(), ColorExtentions.ColorString(str.ToString(), OverrideColor));
+                }
+                else
+                {
+                    str.Replace(str.ToString(), ColorExtentions.ColorString(str.ToString(), OverrideColor));
+                }
+
+            }
+
+            return str.ToString();
+        }
     }
 }

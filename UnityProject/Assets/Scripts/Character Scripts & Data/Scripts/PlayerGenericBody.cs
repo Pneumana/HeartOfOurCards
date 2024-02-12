@@ -1,3 +1,4 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,20 +31,21 @@ namespace Characters
 
         public void PlayerTakeDamage(int damageRecieved)
         {
+            Debug.Log("body taking " + damageRecieved + " damage");
             var damageToTake = damageRecieved;
-            var shieldThisTurn = shield;
+            var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
             //shield damage block
-            if(damageRecieved > 0)
+            if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
             {
-                while (shieldThisTurn > 0 && damageToTake > 0)
-                {
-                    shieldThisTurn--;
-                    damageToTake--;
-                }
+                damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
             }
-
+            while (shieldThisTurn > 0 && damageToTake > 0)
+            {
+                shieldThisTurn--;
+                damageToTake--;
+            }
             health -= damageToTake;
-            health = Mathf.Clamp(health, 0, maxHealth);
+            OnHealthChanged?.Invoke(health, maxHealth);
             //sync damage here
         }
 
@@ -56,42 +58,5 @@ namespace Characters
             }
         }
 
-        public void GainShield(int shieldRecieved)
-        {
-            shield += shieldRecieved;
-        }
-
-        public void OnTurnStart()
-        {
-            shield = 0;
-
-            if (regen > 0)
-            {
-                HealDamage(regen);
-                regen--;
-            }
-
-            if (burn > 0)
-            {
-                TakeDamage(burn);
-                burn--;
-            }
-
-            if (bleed > 0)
-            {
-                TakeDamage(bleed);
-                bleed--;
-            }
-
-            if (freeze > 0)
-            {
-                freeze--;
-            }
-
-            if (vulnerable > 0)
-            {
-                vulnerable--;
-            }
-        }
     }
 }
