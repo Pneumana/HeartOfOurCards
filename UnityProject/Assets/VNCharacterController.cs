@@ -201,6 +201,7 @@ public class VNCharacterController : MonoBehaviour
         Mouth.enabled = false;
         Body.sprite = character.Default;
         Body.transform.localPosition = character.DefaultPoseOffset;
-        
+        Debug.Log(Body.sprite.rect.width + " / " + Body.sprite.rect.height + " : " + Body.sprite.rect);
+        Body.transform.localScale = new Vector3((Body.sprite.rect.width/ Body.sprite.rect.height) * 0.5f, 0.5f);
     }
 }

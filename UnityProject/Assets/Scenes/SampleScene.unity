@@ -1112,6 +1112,7 @@ MonoBehaviour:
   LocalPlayerID: 0
   localMapCamZoom: 0
   localMapCamPos: {x: 0, y: 0}
+  ForceLoadConvo: 
 --- !u!4 &1384316822
 Transform:
   m_ObjectHideFlags: 0

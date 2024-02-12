@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
   m_Name: Producer - Demon
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Producer
   pss: 
   pnd: 
   Color: {r: 0, g: 0, b: 0, a: 0}
-  Default: {fileID: 0}
+  Default: {fileID: 21300000, guid: b0dd83c6bd0ddc64da0a9dbf65be9647, type: 3}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}

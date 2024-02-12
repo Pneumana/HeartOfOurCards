@@ -225,9 +225,11 @@ public class HandManager : NetworkBehaviour
 
             //n.GetComponent<ConnorCardController>().card = renderedHand[i];
             n.GetComponent<CardBase>().CardData = renderedHand[i];
+
             n.transform.forward = -Camera.main.transform.forward;
             n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
             n.transform.position = HandPosition + (transform.forward * 0.1f * i);
+            n.transform.SetParent(transform);
             cards.Add(n);
             hand.Add(n, i);
         }

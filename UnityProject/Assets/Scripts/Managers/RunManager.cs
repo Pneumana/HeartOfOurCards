@@ -34,6 +34,9 @@ public class RunManager : NetworkBehaviour
 
     public float localMapCamZoom;
     public Vector2 localMapCamPos;
+
+    public string ForceLoadConvo;
+
     [SerializeField]
     public struct PlayerStats
     {
@@ -180,6 +183,16 @@ public class RunManager : NetworkBehaviour
             AmbidexterousManager.Instance.ServerChangeSeed(seed);
         }
         AmbidexterousManager.Instance.ChangeScene(map);
+    }
+    [Command]
+    public void VNConvoOverride(string convo)
+    {
+        ConvoOverride(convo);
+    }
+
+    public void ConvoOverride(string convo)
+    {
+        ForceLoadConvo = convo;
     }
 /*    [Command(requiresAuthority = false)]
     public void ChangePlayerMapTurn()
