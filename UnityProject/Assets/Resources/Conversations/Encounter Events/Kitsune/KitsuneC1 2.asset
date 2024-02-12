@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: KitsuneC1 2
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
+  commandScript: 'CrowdWorkStart
+
+    !2
+
+    @SAY Well what do we have here? It
+    seems some little adventurers have stumbled their way in.
+
+    @POS 0.5, -0.1,
+    110
+
+    ;
+
+
+    CrowdWorkDialogue2
+
+    !2
+
+    @SAY You must be lost to find
+    yourself here. Fufu.
+
+    ;
+
+
+    CrowdWorkPlayerResponse1
+
+    !0
+
+    @SAY
+    We''re not lost, fox! We''re here to conqure this dungeon!
+
+    ;
+
+
+    CrowdWorkDialogue3
+
+    !2
+
+    @SAY
+    Oho. Is that so? Well, in that case, you should be careful around here.
+
+    ;
+
+
+    CrowdWorkDialogue4
+
+    !2
+
+    @SAY
+    I''d hate to see adventurers as cute as you getting hurt from not knowing your
+    limits.
+
+    ;
+
+
+    CrowdWorkPlayerResponse2
+
+    !1
+
+    @SAY There''s no need
+    to worry about that. We''re stronger than you give us credit for.
+
+    ;
+
+
+    CrowdWorkDialogue5
+
+    !2
+
+    @SAY
+    Fufufu! I hope that''s true. Come chase after my tail then. I''d hate to not
+    see you again soon.
+
+    ;
+
+
+    CrowdWorkPlayerChoice
+
+    !0
+
+    @STAT @DMG,
+    10, Next we meet will be when you meet your end fox!, CrowdWorkPlayerChoice1Success,
+    CrowdWorkPlayerChoice1Fail% @NRG, 10, We won''t keep you waiting. These monsters
+    can''t hold us back for long!, CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success
+
+    !2
+
+    @SAY
+    Oh my! Fufu, I do like it to be a bit... rough.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success2
+
+    !2
+
+    @SAY
+    Don''t keep me waiting. I''m not known for my patience.
+
+    ;
+
+
+    CrowdWorkEnd1
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail
+
+    !2
+
+    @SAY Ehmm... I don''t
+    usually turn away from brutes, but this is a bit much... Even for me.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail2
+
+    !2
+
+    @SAY
+    Next time, try asking for the safeword first.
+
+    ;
+
+
+    CrowdWorkEnd2
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success
+
+    !2
+
+    @SAY I see you''re
+    looking forward to our next meeting just as much as I am, fufufu. I''m always
+    glad to have some active participants in these kinds of activities.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success2
+
+    !2
+
+    @SAY
+    Huh? Oh... yes... fighting. That''s what I was talking about, fufu. Well, don''t
+    linger here. I can''t wait to get started with you!
+
+    ;
+
+
+    CrowdWorkEnd3
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail
+
+    !2
+
+    @SAY Oh, well, you seem...
+    eager. You might want to lay off a bit. Comes off a little... creepy.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail2
+
+    !2
+
+    @SAY
+    I''ll see you adventurers at the end of your journey... Maybe I should send some
+    more monsters.
+
+    ;
+
+
+    CrowdWorkEnd4
+
+    !0
+
+    @END Map
+
+    ;'

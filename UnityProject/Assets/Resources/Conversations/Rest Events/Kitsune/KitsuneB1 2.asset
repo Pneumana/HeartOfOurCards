@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
+  m_Name: KitsuneB1 2
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
+  commandScript: 'BreakStart
+
+    !2
+
+    @SAY Oh my! You look a little worse for
+    wear. What will you do if you end up collapsing at this rate?
+
+    @POS 0.5,
+    -0.1, 110
+
+    ;
+
+
+    BreakDialogue2
+
+    !2
+
+    @SAY Why don''t you stop by
+    my shrine after this?
+
+    ;
+
+
+    BreakDialogue3
+
+    !2
+
+    @SAY We have some
+    of the best healers in Astarte''s Keep after all.
+
+    ;
+
+
+    BreakDialogue4
+
+    !2
+
+    @SAY
+    I''ll make sure to take special care of you.
+
+    ;
+
+
+    BreakPlayerChoice
+
+    !0
+
+    @STAT
+    @INT, 10, Are you marketing your business right now?, BreakPlayerChoice1Success,
+    BreakPlayerChoice1Fail% @CON, 10, What do you mean "special care"?, BreakPlayerChoice2Success,
+    BreakPlayerChoice2Fail%
+
+    ;
+
+
+    BreakPlayerChoice1Success
+
+    !2
+
+    @SAY
+    I do like a smart adventurer. I''m glad you can see the crux of this issue.
+
+    ;
+
+
+    BreakPlayerChoice1Success2
+
+    !2
+
+    @SAY
+    Make sure to spread the word for me and I''ll personally treat you. Half off.
+
+    ;
+
+
+    BreakEnd1
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice1Fail
+
+    !2
+
+    @SAY *Sigh* There are some
+    things you should never ask a lady, you know.
+
+    ;
+
+
+    BreakPlayerChoice1Fail2
+
+    !2
+
+    @SAY
+    There is a 10% discount for coworkers.
+
+    ;
+
+
+    BreakEnd2
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice2Success
+
+    !2
+
+    @SAY Fufu! Do you need
+    a special reason to want to be with me?
+
+    ;
+
+
+    BreakPlayerChoice2Success2
+
+    !2
+
+    @SAY
+    Anyway, do visit. You won''t regret it. Don''t keep me waiting.
+
+    ;
+
+
+    BreakEnd3
+
+    !0
+
+    @END
+    Map
+
+    ;
+
+
+    BreakPlayerChoice2Fail
+
+    !2
+
+    @SAY Mmm... Actually, you
+    seem in need of pretty urgent medical assisstance. I might not have the chance
+    to see you, after all.
+
+    ;
+
+
+    BreakPlayerChoice2Fail2
+
+    !2
+
+    @SAY
+    But do drop by... You need it.
+
+    ;
+
+
+    BreakEnd4
+
+    !0
+
+    @END Map
+
+    ;'
