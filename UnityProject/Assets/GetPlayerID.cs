@@ -140,16 +140,23 @@ public class GetPlayerID : NetworkBehaviour
     }
     public override void OnStartClient()
     {
-        if(SceneManager.GetActiveScene().name == "MultiplayerTest")
+        var nm = GameObject.Find("NetworkManager").GetComponent<AmbidexterousManager>();
+        if (SceneManager.GetActiveScene().name == "MultiplayerTest")
         {
-
-
-
-            var nm = GameObject.Find("NetworkManager").GetComponent<AmbidexterousManager>();
             nm.RenameLobby();
             nm.UpdateAllPlayers();
             nm.PlayerList.Add(this);
             nm.PlayerNetIDs.Add(netId);
+        }
+        //Invoke("LateAddPlayers", 0.02f);
+    }
+    void LateAddPlayers()
+    {
+        var nm = AmbidexterousManager.Instance;
+        if (!nm.PlayerList.Contains(this))
+        {
+            Debug.Log("adding to playerlist");
+            
         }
     }
     public override void OnStartAuthority()
@@ -187,6 +194,13 @@ public class GetPlayerID : NetworkBehaviour
     {
         Debug.Log("started scene " + SceneManager.GetActiveScene().name + " on player " + ConnID);
         //disable player 2
+        if (RunManager.instance.playerStatList.Count < NetworkServer.connections.Count)
+            RunManager.instance.playerStatList.Add(new RunManager.PlayerStats(10, 10, 10, 10));
+        Debug.Log("player Stat List count = " + RunManager.instance.playerStatList.Count);
+        if (RunManager.instance.playerStatList.Count > NetworkServer.connections.Count)
+            RunManager.instance.playerStatList.RemoveAt(1);
+        Debug.Log("player Stat List count = " + RunManager.instance.playerStatList.Count);
+
         if (NetworkServer.connections.Count == 1)
         {
             //enable localP2

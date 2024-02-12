@@ -34,7 +34,7 @@ public class RunManager : NetworkBehaviour
 
     public float localMapCamZoom;
     public Vector2 localMapCamPos;
-
+    [SerializeField]
     public struct PlayerStats
     {
         public int DMG; //Overkill

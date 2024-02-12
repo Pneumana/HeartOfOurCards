@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class VNStatCheck : MonoBehaviour
 
     private void Start()
     {
+        if (NetworkServer.connections.Count == 1)
+            return;
         if(RunManager.instance.LocalPlayerID != RunManager.instance.pickingPlayer)
         {
             gameObject.GetComponent<Button>().enabled = false;
@@ -33,6 +36,7 @@ public class VNStatCheck : MonoBehaviour
 
     public void Activated()
     {
+        Debug.Log(RunManager.instance.playerStatList.Count + " <- playerStats");
         var TargetPlayer = RunManager.instance.playerStatList[characterID];
         var _targetStat = (int)TargetPlayer.GetType().GetField(targetStat).GetValue(TargetPlayer);
         if(_targetStat >= passRequirement)

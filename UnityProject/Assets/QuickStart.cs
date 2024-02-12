@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class QuickStart : MonoBehaviour
 {
-    private void Awake()
-    {
-
-    }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (NetworkServer.active)
-            gameObject.SetActive(false);
+        {
+            Destroy(gameObject);
+        }
         else
         {
+            RunManager.instance.playerStatList.Add(new RunManager.PlayerStats(10, 10, 10, 10));
             GetComponent<NetworkManager>().StartHost();
+            
         }
     }
 
