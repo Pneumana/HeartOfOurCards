@@ -16,7 +16,7 @@ MonoBehaviour:
   pss: Her
   pnd: She
   Color: {r: 0.3503272, g: 0, b: 0.9245283, a: 0}
-  Default: {fileID: 21300000, guid: 093b25e553563454b835193eb174d033, type: 3}
+  Default: {fileID: 21300000, guid: 8d4bd773ead7f7d47b6d5a8b320ec2f7, type: 3}
   DefaultPoseOffset: {x: 0.5, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}

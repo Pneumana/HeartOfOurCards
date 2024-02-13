@@ -20,9 +20,7 @@ MonoBehaviour:
     !2
 
     @SAYAhoy-hoy! Oh that sounds so wrong to
-    do out of work... Sorry I''m a little late, by the way, I had a couple of fan
-    signings, but I''m excited to try this place out! Authentic merfolk cuisine is
-    pretty rare on the surface!
+    do out of work...
 
     @POS 0.5, -0.1, 110
 
@@ -33,10 +31,9 @@ MonoBehaviour:
 
     !2
 
-    @SAYOur
-    manager was pressuring me to make this a public thing, take a portrait of me
-    eating here, but that''s a little weird, right? Like, I don''t have to publicize
-    every part of my life, y''know?
+    @SAYSorry
+    I''m a little late, by the way, I had a couple of fan signings, but I''m excited
+    to try this place out!
 
     ;
 
@@ -45,10 +42,50 @@ MonoBehaviour:
 
     !2
 
+    @SAYAuthentic
+    merfolk cuisine is pretty rare on the surface!
+
+    ;
+
+
+    DateDialogue4
+
+    !2
+
+    @SAYOur
+    manager was pressuring me to make this a public thing, take a portrait of me
+    eating here.
+
+    ;
+
+
+    DateDialogue5
+
+    !2
+
+    @SAYBut that''s a little
+    weird, right? Like, I don''t have to publicize every part of my life, y''know?
+
+    ;
+
+
+    DateDialogue6
+
+    !2
+
     @SAYAh,
     sorry, I was thinking so much of my day that I forgot this was supposed to be
-    time to relax... I think I''ll have something light, maybe just some Umibozu
-    Rolls... What are you having, [Player]?
+    time to relax...
+
+    ;
+
+
+    DateDialogue7
+
+    !2
+
+    @SAYI think I''ll have
+    something light, maybe just some Umibozu Rolls... What are you having, [Player]?
 
     ;
 
@@ -81,8 +118,7 @@ MonoBehaviour:
     !2
 
     @SAYOh,
-    wow, making this a real date, huh? I''ll treat you right, don''t worry. [Player
-    Pronoun] will be having the Skull-Bellied Pufferfish, keep the guts.
+    wow, making this a real date, huh? I''ll treat you right, don''t worry.
 
     ;
 
@@ -91,9 +127,28 @@ MonoBehaviour:
 
     !2
 
+    @SAY[Player
+    Pronoun] will be having the Skull-Bellied Pufferfish, keep the guts.
+
+    ;
+
+
+    DatePlayerChoice1Success3
+
+    !2
+
     @SAYIt''s
-    not really a dish for the inexperienced, but if you already have the manners,
-    I''m sure you can handle it!
+    not really a dish for the inexperienced.
+
+    ;
+
+
+    DatePlayerChoice1Success4
+
+    !2
+
+    @SAYBut
+    if you already have the manners, I''m sure you can handle it!
 
     ;
 
@@ -102,8 +157,8 @@ MonoBehaviour:
 
     !0
 
-    @LOAD Date
-    Events/Mermaid/MermaaidD1-2
+    @LOAD
+    Date Events/Mermaid/MermaaidD1-2
 
     ;
 
@@ -151,9 +206,27 @@ MonoBehaviour:
     !2
 
     @SAYMy
-    uncle was killed from one of them. Not from like, eating it or anything, never
-    bring a knife to a pufferfish fight. He kinda deserved it though. Well, I''m
-    sure you''ll do better than him.
+    uncle was killed from one of them.
+
+    ;
+
+
+    DatePlayerChoice2Success3
+
+    !2
+
+    @SAYNot
+    from like, eating it or anything, never bring a knife to a pufferfish fight.
+
+    ;
+
+
+    DatePlayerChoice2Success3
+
+    !2
+
+    @SAYHe
+    kinda deserved it though. Well, I''m sure you''ll do better than him.
 
     ;
 
@@ -173,8 +246,17 @@ MonoBehaviour:
     !3
 
     @SAYYou
-    stutter, and panic, flipping through the pages of the menu. As the waiter looks
-    at you, you just point at something.
+    stutter, and panic, flipping through the pages of the menu.
+
+    ;
+
+
+    DatePlayerChoice2FailNarration2
+
+    !3
+
+    @SAYAs
+    the waiter looks at you, you just point at something.
 
     ;
 
@@ -185,7 +267,17 @@ MonoBehaviour:
 
     @SAYOh
     wow, [Player], most people are too scared to go for the Skull-Bellied Pufferfish
-    on their first outing. I''m excited to see how you tackle it!
+    on their first outing.
+
+    ;
+
+
+    DatePlayerChoice2Fail3
+
+    !2
+
+    @SAYI''m
+    excited to see how you tackle it!
 
     ;
 

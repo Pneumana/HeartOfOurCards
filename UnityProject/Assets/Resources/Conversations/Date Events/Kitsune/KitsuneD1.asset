@@ -84,8 +84,8 @@ MonoBehaviour:
     !0
 
     @STAT
-    @NRG, 10, "I made my way here as fast as I could, though.", DatePlayerChoice1Success,
-    DatePlayerChoice1Fail% @CON, 10, "I couldn''t wait to see you anymore, so here
+    @NRG, 10, "I made my way here as fast as I could though.", DatePlayerChoice1Success,
+    DatePlayerChoice1Fail% @CON, 10, "I couldn''t wait to see you anymore so here
     I am!", DatePlayerChoice2Success, DatePlayerChoice2Fail%
 
     ;
@@ -107,8 +107,27 @@ MonoBehaviour:
     !2
 
     @SAYAnyway,
-    you seem very eager to get treated then! So let''s quickly take a good look at
-    that body of yours. A *very* good look.
+    you seem very eager to get treated then!
+
+    ;
+
+
+    DatePlayerChoice1Success3
+
+    !2
+
+    @SAYLet''s
+    quickly take a good look at that body of yours.
+
+    ;
+
+
+    DatePlayerChoice1Success4
+
+    !2
+
+    @SAYA
+    *very* good look.
 
     ;
 
@@ -117,8 +136,7 @@ MonoBehaviour:
 
     !0
 
-    @LOAD
-    Date Events/Kitsune/KitsuneD1-2
+    @LOAD Date Events/Kitsune/KitsuneD1-2
 
     ;
 
@@ -138,7 +156,17 @@ MonoBehaviour:
     !2
 
     @SAYMaybe
-    I should help you find a hobby or something. Let''s just get you healed.
+    I should help you find a hobby or something.
+
+    ;
+
+
+    DatePlayerChoice1Fail3
+
+    !2
+
+    @SAYLet''s
+    just get you healed.
 
     ;
 
@@ -147,8 +175,7 @@ MonoBehaviour:
 
     !0
 
-    @LOAD
-    Date Events/Kitsune/KitsuneD1-2
+    @LOAD Date Events/Kitsune/KitsuneD1-2
 
     ;
 
@@ -168,8 +195,17 @@ MonoBehaviour:
     !2
 
     @SAYWell!
-    It seems I''ll have to give you some mental healing as well then. I''m prescribing
-    an extra dose of Tsuki Therapy just for you!
+    It seems I''ll have to give you some mental healing as well then.
+
+    ;
+
+
+    DatePlayerChoice2Success3
+
+    !2
+
+    @SAYI''m
+    prescribing an extra dose of Tsuki Therapy just for you!
 
     ;
 
@@ -200,7 +236,16 @@ MonoBehaviour:
 
     @SAYWe
     need to opperate right away, so I''ll hand you off to someone else now. See you
-    next time... maybe.
+    next time...
+
+    ;
+
+
+    DatePlayerChoice2Fail3
+
+    !2
+
+    @SAYMaybe...
 
     ;
 
@@ -209,6 +254,7 @@ MonoBehaviour:
 
     !0
 
-    @LOAD Date Events/Kitsune/KitsuneD1-2
+    @LOAD
+    Date Events/Kitsune/KitsuneD1-2
 
     ;'

@@ -165,8 +165,17 @@ MonoBehaviour:
     !2
 
     @SAYI see you''re
-    looking forward to our next meeting just as much as I am, fufufu. I''m always
-    glad to have some active participants in these kinds of activities.
+    looking forward to our next meeting just as much as I am, fufufu.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success2
+
+    !2
+
+    @SAYI''m
+    always glad to have some active participants in these kinds of activities.
 
     ;
 
@@ -176,8 +185,17 @@ MonoBehaviour:
     !2
 
     @SAYHuh?
-    Oh... yes... fighting. That''s what I was talking about, fufu. Well, don''t linger
-    here. I can''t wait to get started with you!
+    Oh... yes... fighting. That''s what I was talking about, fufu.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success3
+
+    !2
+
+    @SAYWell,
+    don''t linger here. I can''t wait to get started with you!
 
     ;
 
@@ -207,8 +225,17 @@ MonoBehaviour:
     !2
 
     @SAYI''ll
-    see you adventurers at the end of your journey... Maybe I should send some more
-    monsters.
+    see you adventurers at the end of your journey...
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail3
+
+    !2
+
+    @SAYMaybe
+    I should send some more monsters.
 
     ;
 
@@ -217,6 +244,7 @@ MonoBehaviour:
 
     !0
 
-    @END Map
+    @END
+    Map
 
     ;'

@@ -53,7 +53,17 @@ MonoBehaviour:
     !0
 
     @SAYYou think you have
-    the strength for such threats? We''re not weak enough to be done in by mere undead!
+    the strength for such threats?
+
+    ;
+
+
+    CrowdWorkPlayerResponse3
+
+    !0
+
+    @SAYWe''re
+    not weak enough to be done in by mere undead!
 
     ;
 
@@ -63,8 +73,17 @@ MonoBehaviour:
     !2
 
     @SAY*CLACKCLACKCLACK*
-    Good! Good! I''d hate for the new additions to be too weak. Perhaps your courage
-    can be carried over into your next life under my eternal control!
+    Good! Good! I''d hate for the new additions to be too weak.
+
+    ;
+
+
+    CrowdWorkDialogue4
+
+    !2
+
+    @SAYPerhaps
+    your courage can be carried over into your next life under my eternal control!
 
     ;
 
@@ -117,7 +136,16 @@ MonoBehaviour:
 
     @SAYHaah,
     haah. *CLACKCLACK* Perhaps it wasn''t a simple bluff. You have impressive fortitude.
-    I wonder if you''ll do as well facing me after being worn down by my monsters...
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success3
+
+    !2
+
+    @SAYI
+    wonder if you''ll do as well facing me after being worn down by my monsters...
 
     ;
 
@@ -147,8 +175,7 @@ MonoBehaviour:
     !3
 
     @SAYBefore
-    he can cast his spell, you try to resist it a little too hard and get a slight
-    nosebleed.
+    he can cast his spell, you try a little too hard to resist and get a slight nosebleed.
 
     ;
 
@@ -159,7 +186,17 @@ MonoBehaviour:
 
     @SAYHe
     notices your condition and quickly stops casting his spell, instead choosing
-    to pretend to cast a spell... It''s much less impressive
+    to pretend to cast a spell...
+
+    ;
+
+
+    CrowdWorkPlayerChoice1FailNarration3
+
+    !3
+
+    @SAYIt''s
+    much less impressive.
 
     ;
 
@@ -169,9 +206,37 @@ MonoBehaviour:
     !2
 
     @SAYUhh...
-    *CLACKCLACKCLACK* You are struggling with only this much! Shame, I had such high
-    hopes for my future recruits. Perhaps I can give you some time to raise your
-    strength to better serve me after our next encounter.
+    *CLACKCLACKCLACK* You are struggling with only this much!
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail3
+
+    !2
+
+    @SAYShame,
+    I had such high hopes for my future recruits.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail4
+
+    !2
+
+    @SAYPerhaps
+    I can give you some time to raise your strength.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail5
+
+    !2
+
+    @SAYThat
+    way, you can better serve me after our next encounter.
 
     ;
 
@@ -191,8 +256,17 @@ MonoBehaviour:
     !3
 
     @SAYHoards of undead
-    quickly surround you. You fight back valiantly, slaying many of them. The fight
-    lasts for what feels like forever.
+    quickly surround you. You fight back valiantly, slaying many of them.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration2
+
+    !3
+
+    @SAYThe
+    fight lasts for what feels like forever.
 
     ;
 
@@ -202,7 +276,7 @@ MonoBehaviour:
     !2
 
     @SAYStop!
-    That''s enough.
+    That''s enough, my soldiers.
 
     ;
 
@@ -212,9 +286,30 @@ MonoBehaviour:
     !2
 
     @SAYThis
-    fight isn''t worth the losses. I''ll leave you for now. I''m sure you won''t
-    be so lively after going through all of the expendables on your way. *CLACKCLACKCLACK*
+    fight isn''t worth the losses. I''ll leave you for now.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success3
+
+    !2
+
+    @SAYI''m
+    sure you won''t be so lively after going through all of the expendables on your
+    way.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Success4
+
+    !2
+
+    @SAY*CLACKCLACKCLACK*
     I''ll see you then my worthy prospects.
+
+    ;
 
 
     CrowdWorkEnd3
@@ -232,9 +327,37 @@ MonoBehaviour:
     !3
 
     @SAYThe army of undead
-    charges straight at you. You attempt to make a stand but are quickly pushed back.
-    Retreating step by step, you feel your limbs grow weak and your breath grow ragged.
-    Your limit is near.
+    charges straight at you.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration2
+
+    !3
+
+    @SAYYou
+    attempt to make a stand but are quickly pushed back.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration3
+
+    !3
+
+    @SAYRetreating
+    step by step, you feel your limbs grow weak and your breath grow ragged.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration4
+
+    !3
+
+    @SAYYour
+    limit is near.
 
     ;
 
@@ -244,9 +367,28 @@ MonoBehaviour:
     !2
 
     @SAY*CLACKCLACKCLACK*
-    After all that big talk, this is all you have?! And you think yourself worthy
-    of joining my legion? I''ve lost interest. Find me again if you wish to prove
-    your worth again. I may be merciful and take you in then.
+    After all that big talk, this is all you have?!
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail3
+
+    !2
+
+    @SAYAnd
+    you think yourself worthy of joining my legion? I''ve lost interest.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2Fail4
+
+    !2
+
+    @SAYFind
+    me again if you wish to prove your worth again. I may be merciful and take you
+    in then.
 
     ;
 
@@ -255,7 +397,6 @@ MonoBehaviour:
 
     !0
 
-    @END
-    Map
+    @END Map
 
     ;'

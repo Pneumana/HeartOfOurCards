@@ -20,8 +20,7 @@ MonoBehaviour:
     !2
 
     @SAYAvast! Iss''at a pair o'' plunderin''
-    ne''er d''wells? Out''n th'' high seas scallywags like youse would be drawn n''
-    quart''rd for y''ever got t'' me!
+    ne''er d''wells?
 
     @POS 0.5, -0.1, 110
 
@@ -32,14 +31,34 @@ MonoBehaviour:
 
     !2
 
-    @SAYHmm?
-    That''s a lot of booty ye''ve got on ye! Lets make a bargain, ye give me yer
-    gold, I give ye yer lives!
+    @SAYOut''n
+    th'' high seas scallywags like youse would be drawn n'' quart''rd for y''ever
+    got t'' me!
 
     ;
 
 
     CrowdWorkDialogue3
+
+    !2
+
+    @SAYHmm? That''s a lot
+    of booty ye''ve got on ye!
+
+    ;
+
+
+    CrowdWorkDialogue4
+
+    !2
+
+    @SAYLets
+    make a bargain, ye give me yer gold, I give ye yer lives!
+
+    ;
+
+
+    CrowdWorkDialogue5
 
     !2
 
@@ -54,8 +73,17 @@ MonoBehaviour:
     !3
 
     @SAYIt''s
-    not quite time for the big bout with Merryreed yet, you need to escape while
-    still keeping up the crowd''s hype!
+    not quite time for the big bout with Merryreed, yet.
+
+    ;
+
+
+    CrowdWorkNarration2
+
+    !3
+
+    @SAYYou
+    need to escape while still keeping up the crowd''s hype!
 
     ;
 
@@ -66,7 +94,7 @@ MonoBehaviour:
 
     @STAT
     @DMG, 10, "*Do a little back and forth swashbuckling dueling.*", CrowdWorkPlayerChoice1Success,
-    CrowdWorkPlayerChoice1Fail% @CON, 10, "*Lets make this a chase, unleash your
+    CrowdWorkPlayerChoice1Fail% @CON, 10, "*Lets make this a chase! Unleash your
     secret family technique and RUN FOR IT!*", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
 
     ;
@@ -77,8 +105,17 @@ MonoBehaviour:
     !2
 
     @SAYShiver
-    me Timbers! Whod''ve thought ye''d ''ave the stones t'' face me? Well then, ye
-    son o'' a biscuit ea''er, have at ye!
+    me Timbers! Whod''ve thought ye''d ''ave the stones t'' face me?
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Success2
+
+    !2
+
+    @SAYWell
+    then, ye son o'' a biscuit ea''er, have at ye!
 
     ;
 
@@ -88,10 +125,47 @@ MonoBehaviour:
     !3
 
     @SAYThe
-    two of you clash weapons (a spell is a weapon too, it makes a clashing noise
-    when Merryreed bats it away with her sword and everything) and dance along the
-    planks. You see a stage hand flip a switch backstage, and the terrain you''re
-    fighting on splits in half.
+    two of you clash weapons.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration2
+
+    !3
+
+    @SAYA
+    spell is a weapon, too.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration3
+
+    !3
+
+    @SAYIt
+    makes a clashing noise when Merryreed bats it away with her sword and everything.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration4
+
+    !3
+
+    @SAYYou
+    dance along the planks. You see a stage hand flip a switch backstage.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1SuccessNarration5
+
+    !3
+
+    @SAYThe
+    terrain you''re fighting on splits in half sending you both to different areas.
 
     ;
 
@@ -100,7 +174,8 @@ MonoBehaviour:
 
     !0
 
-    @END Map
+    @END
+    Map
 
     ;
 
@@ -109,10 +184,29 @@ MonoBehaviour:
 
     !2
 
-    @SAYAha!
-    Think ye can challenge me y'' bilge sucking scoundre- Er, [Player], y'' pulled
-    out a fork not any weapon. uh- I mean... Arr, ye brought out that, y'' biscuit
-    eater? Such an offense, have at ye!
+    @SAYAha! Think ye can
+    challenge me y'' bilge sucking scoundre...
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fail2
+
+    !2
+
+    @SAYEr,
+    [Player], y'' pulled out a fork not any weapon.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1Fall3
+
+    !2
+
+    @SAYUh-
+    I mean... Arr, ye brought out that, y'' biscuit eater? Such an offense, have
+    at ye!
 
     ;
 
@@ -122,9 +216,18 @@ MonoBehaviour:
     !3
 
     @SAYMerryreed
-    draws her rapier and lunges at you, and you try to parry with your fork. It nearly
-    hits your throat but she twists the blade out of the way just in the nick of
-    time.
+    draws her rapier and lunges at you, and you try to parry with your fork.
+
+    ;
+
+
+    CrowdWorkPlayerChoice1FailNarration2
+
+    !3
+
+    @SAYIt
+    nearly hits your throat but she twists the blade out of the way just in the nick
+    of time.
 
     ;
 
@@ -153,9 +256,7 @@ MonoBehaviour:
     !3
 
     @SAYMerryreed
-    chases you through the dungeon, the crowd cheers as you two parkour around dangerous
-    traps, leap over spiked pits, and duck in between swinging axes. Eventually you
-    lose her in a maze of rotating walls.
+    chases you through the dungeon.
 
     ;
 
@@ -164,10 +265,51 @@ MonoBehaviour:
 
     !3
 
+    @SAYThe
+    crowd cheers as you parkour around dangerous traps, leap over spiked pits, and
+    duck between swinging axes.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration3
+
+    !3
+
+    @SAYEventually
+    you lose her in a maze of rotating walls.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration4
+
+    !3
+
     @SAYYour
     ENDURANCE really pulled through for this one, a shame you couldn''t map out the
-    dungeon, but it''s not like this was a LOGIC test. And hey, that maze led you
-    right back to the room you were just in, so at least you didn''t get lost!
+    dungeon.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration5
+
+    !3
+
+    @SAYBut
+    it''s not like this was a LOGIC test.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2SuccessNarration6
+
+    !3
+
+    @SAYAnd
+    hey, that maze led you right back to the room you were just in so at least you
+    didn''t get lost!
 
     ;
 
@@ -176,8 +318,7 @@ MonoBehaviour:
 
     !0
 
-    @END
-    Map
+    @END Map
 
     ;
 
@@ -186,8 +327,8 @@ MonoBehaviour:
 
     !3
 
-    @SAYYou break out into
-    a sprint, running as fast as your legs can carry you.
+    @SAYYou
+    break out into a sprint, running as fast as your legs can carry you.
 
     ;
 
@@ -197,9 +338,28 @@ MonoBehaviour:
     !3
 
     @SAYYou
-    run out of breath in a minute, collapsing on your knees. Merryreed catches up
-    to you with a dissapointed look on her face. Thankfully, you had the foresight
-    to run offstage,so the fans don''t get to see how out of shape you are.
+    run out of breath in a minute, collapsing on your knees.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration3
+
+    !3
+
+    @SAYMerryreed
+    catches up to you with a dissapointed look on her face.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration4
+
+    !3
+
+    @SAYThankfully,
+    you had the foresight to run offstage,so the fans don''t get to see how out of
+    shape you are.
 
     ;
 
@@ -209,8 +369,17 @@ MonoBehaviour:
     !3
 
     @SAYThat''s
-    rough, champ, you need to get some cardio. Getting some ENDURACE will let you
-    let you last at least a little longer
+    rough, champ, you need to get some cardio.
+
+    ;
+
+
+    CrowdWorkPlayerChoice2FailNarration3
+
+    !3
+
+    @SAYGetting
+    some ENDURACE will let you let you last at least a little longer
 
     ;
 

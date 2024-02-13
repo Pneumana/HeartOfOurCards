@@ -36,7 +36,7 @@ MonoBehaviour:
     !0
 
     @STAT @NRG, 10, "TEXT HERE*",
-    DatePlayerChoice3Success, DatePlayerChoice1Fail% @CON, 10, "TEXT HERE", DatePlayerChoice4Success,
+    DatePlayerChoice1Success, DatePlayerChoice1Fail% @CON, 10, "TEXT HERE", DatePlayerChoice2Success,
     DatePlayerChoice2Fail%
 
     ;

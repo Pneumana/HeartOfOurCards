@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
   m_Name: The Black Fang - Dragon
   m_EditorClassIdentifier: 
-  Name: 
+  Name: The Black Fang
   pss: 
   pnd: 
-  Color: {r: 0, g: 0, b: 0, a: 0}
+  Color: {r: 0.0062299734, g: 0.31764707, b: 0.13725491, a: 0}
   Default: {fileID: 0}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}

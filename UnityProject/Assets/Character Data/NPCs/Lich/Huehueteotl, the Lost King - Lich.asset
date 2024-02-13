@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
   m_Name: Huehueteotl, the Lost King - Lich
   m_EditorClassIdentifier: 
-  Name: 
-  pss: 
-  pnd: 
-  Color: {r: 0, g: 0, b: 0, a: 0}
+  Name: Huehueteotl
+  pss: His
+  pnd: Him
+  Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0}
   Default: {fileID: 0}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}

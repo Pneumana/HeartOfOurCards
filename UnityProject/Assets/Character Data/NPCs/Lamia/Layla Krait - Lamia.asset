@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ebf157f995dd44ba188fd48b57ac0, type: 3}
   m_Name: Layla Krait - Lamia
   m_EditorClassIdentifier: 
-  Name: 
-  pss: 
-  pnd: 
-  Color: {r: 1, g: 0, b: 0, a: 0}
+  Name: Layla
+  pss: Her
+  pnd: She
+  Color: {r: 1, g: 0.6039216, b: 0, a: 0}
   Default: {fileID: 0}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}

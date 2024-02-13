@@ -37,10 +37,10 @@ MonoBehaviour:
     !0
 
     @STAT @DMG, 10, "*Clench
-    your jaw and muscle your way through the pain! You survived the injury, you can
-    survive this.*", DatePlayerChoice3Success, DatePlayerChoice1Fail% @INT, 10, "*Let''s
+    your jaw and muscle your way through the pain! You survived the injury. You can
+    survive this.*", DatePlayerChoice1Success, DatePlayerChoice1Fail% @INT, 10, "*Let''s
     just do something to keep your mind off of it. Maybe you can talk to Tsuki to
-    distract yourself.*", DatePlayerChoice4Success, DatePlayerChoice2Fail%
+    distract yourself.*", DatePlayerChoice2Success, DatePlayerChoice2Fail%
 
     ;
 
@@ -60,9 +60,28 @@ MonoBehaviour:
     !2
 
     @SAYLooking
-    at you like this, it seems like you won''t shy away from healing like the rest
-    of those would-be adventurers in the making. Seems like I''ll be seeing a lot
-    of you after this, fufu.
+    at you like this.
+
+    ;
+
+
+    DatePlayerChoice1Success3
+
+    !2
+
+    @SAYIt
+    seems like you won''t shy away from healing like the rest of those would-be adventurers
+    in the making.
+
+    ;
+
+
+    DatePlayerChoice1Success4
+
+    !2
+
+    @SAYSeems
+    like I''ll be seeing a lot of you after this, fufu.
 
     ;
 
@@ -71,7 +90,8 @@ MonoBehaviour:
 
     !0
 
-    @END Map
+    @END
+    Map
 
     ;
 
@@ -80,8 +100,7 @@ MonoBehaviour:
 
     !3
 
-    @SAYOr
-    maybe you can''t.
+    @SAYOr maybe you can''t.
 
     ;
 
@@ -100,8 +119,27 @@ MonoBehaviour:
     !2
 
     @SAY...Have
-    you been hanging out with that Merryreed recently? Anyway, you seem to be struggling
-    with this. You won''t get anosognosia from this will you?... I''ve seen it happen
+    you been hanging out with that Merryreed recently?
+
+    ;
+
+
+    DatePlayerChoice1Fail3
+
+    !2
+
+    @SAYAnyway,
+    you seem to be struggling with this. You won''t get anosognosia from this will
+    you?
+
+    ;
+
+
+    DatePlayerChoice1Fail4
+
+    !2
+
+    @SAY...I''ve seen it happen
     before.
 
     ;
@@ -133,8 +171,27 @@ MonoBehaviour:
 
     @SAYWell, if talking
     to little ol'' me will help you through this, I suppose I wouldn''t mind keeping
-    you company for a while. Go ahead and fire off all those burning questions you
-    have for me. Anything that you''re just dying to know, fufu.
+    you company for a while.
+
+    ;
+
+
+    DatePlayerChoice2Success3
+
+    !2
+
+    @SAYGo
+    ahead and fire off all those burning questions you have for me.
+
+    ;
+
+
+    DatePlayerChoice2Success3
+
+    !2
+
+    @SAYAnything
+    that you''re just dying to know, fufu.
 
     ;
 
@@ -154,8 +211,17 @@ MonoBehaviour:
     !2
 
     @SAYUm... Maybe you should
-    unclench your jaw first. It''s really hard to understand you with that absolute
-    vice grip you''ve got there.
+    unclench your jaw first.
+
+    ;
+
+
+    DatePlayerChoice2Fail2
+
+    !2
+
+    @SAYIt''s
+    really hard to understand you with that vice grip you''ve got there.
 
     ;
 
@@ -165,9 +231,28 @@ MonoBehaviour:
     !2
 
     @SAYWell,
-    I''ve seen people handle it worse, I suppose... And now you''re crying. At least
-    you''re not as bad as this one person I treated. They actually cried... blood.
-    Maybe I should just stop talking now.
+    I''ve seen people handle it worse, I suppose... And now you''re crying.
+
+    ;
+
+
+    DatePlayerChoice2Fail3
+
+    !2
+
+    @SAYAt
+    least you''re not as bad as this one person I treated. They actually cried...
+    blood.
+
+    ;
+
+
+    DatePlayerChoice2Fail4
+
+    !2
+
+    @SAYMaybe I should just
+    stop talking now.
 
     ;
 
@@ -176,7 +261,6 @@ MonoBehaviour:
 
     !0
 
-    @END
-    Map
+    @END Map
 
     ;'
