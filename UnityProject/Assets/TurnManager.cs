@@ -30,7 +30,7 @@ namespace Managers
         public List<GenericBody> CurrentAlliesList  = new List<GenericBody>();
         public List<GenericBody> CurrentEnemiesList = new List<GenericBody>();
 
-        public GenericBody CurrentMainAlly => CurrentAlliesList.Count > 0 ? CurrentAlliesList[0] : null;
+        public GenericBody CurrentMainAlly;
 
         private void Awake()
         {
@@ -53,6 +53,14 @@ namespace Managers
                 {
                     playerTeam.Add(player);
                     CurrentAlliesList.Add(player.GetComponent<GenericBody>());
+                }
+            }
+            foreach (PlayerGenericBody player in FindObjectsByType<PlayerGenericBody>(FindObjectsSortMode.None))
+            {
+                Debug.Log(player.gameObject);
+                if (player != null)
+                {
+                    CurrentMainAlly = player.GetComponent<GenericBody>();
                 }
             }
             foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))

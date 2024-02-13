@@ -538,10 +538,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597431434}
     m_Modifications:
+    - target: {fileID: 2078451310767628081, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078451310767628081, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078451310767628081, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078451310767628081, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 3785802270788556824, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_Name
       value: AllyCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5519735401171641451, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
+      propertyPath: currentHealthText
+      value: 
+      objectReference: {fileID: 829087816}
     - target: {fileID: 5652830513727982184, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_Camera
       value: 
@@ -588,7 +608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173814704940880885, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -784
       objectReference: {fileID: 0}
     - target: {fileID: 7173814704940880885, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_LocalRotation.w
@@ -608,11 +628,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173814704940880885, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 7173814704940880885, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 540
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 7173814704940880885, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1326,6 +1346,7 @@ MonoBehaviour:
   endedTurns: 0
   CurrentAlliesList: []
   CurrentEnemiesList: []
+  CurrentMainAlly: {fileID: 0}
 --- !u!4 &445859151
 Transform:
   m_ObjectHideFlags: 0
@@ -1572,7 +1593,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterType: 0
-  health: 50
+  health: 40
   maxHealth: 50
   allyCanvas: {fileID: 219039026}
   RM: {fileID: 0}
@@ -1915,8 +1936,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

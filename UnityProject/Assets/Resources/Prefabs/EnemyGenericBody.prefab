@@ -190,8 +190,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   characterType: 3
-  health: 0
-  maxHealth: 0
+  health: 5
+  maxHealth: 5
   enemyCanvas: {fileID: 8459242550535986870}
 --- !u!1001 &1470261728063124005
 PrefabInstance:

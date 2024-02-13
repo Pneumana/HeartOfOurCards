@@ -21,7 +21,7 @@ MonoBehaviour:
   exhaustAfterPlay: 0
   cardActionDataList:
   - cardActionType: 0
-    actionTargetType: 4
+    actionTargetType: 6
     actionValue: 3
     actionDelay: 0
   cardDescriptionDataList:
@@ -34,15 +34,6 @@ MonoBehaviour:
     usePrefixOnModifiedValue: 0
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 0
-  - descriptionText: 
-    enableOverrideColor: 0
-    overrideColor: {r: 0, g: 0, b: 0, a: 0}
-    useModifier: 1
-    modifiedActionValueIndex: 0
-    modiferStats: 2
-    usePrefixOnModifiedValue: 1
-    modifiedValuePrefix: 
-    overrideColorOnValueScaled: 1
   - descriptionText: 
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}

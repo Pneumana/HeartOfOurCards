@@ -22,11 +22,12 @@ namespace Characters
             RM = RunManager.instance;
             maxHealth = ((RM.player1Stats.CON * 2) + (RM.player2Stats.CON * 2));
             SetAllStatus();
+            AllyCanvas.InitCanvas();
 
-            OnHealthChanged += allyCanvas.UpdateHealthText;
-            OnStatusChanged += allyCanvas.UpdateStatusText;
-            OnStatusApplied += allyCanvas.ApplyStatus;
-            OnStatusCleared += allyCanvas.ClearStatus;
+            OnHealthChanged += AllyCanvas.UpdateHealthText;
+            OnStatusChanged += AllyCanvas.UpdateStatusText;
+            OnStatusApplied += AllyCanvas.ApplyStatus;
+            OnStatusCleared += AllyCanvas.ClearStatus;
 
             OnHealthChanged?.Invoke(health, maxHealth);
         }

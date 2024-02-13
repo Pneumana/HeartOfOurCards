@@ -19,8 +19,9 @@ namespace Characters
         {
             RM = RunManager.instance;
             Controller = GetComponent<CardPlayerController>();
-
+            
             SetAllStatus();
+            AllyCanvas.InitCanvas();
 
             if (CharacterType == CharacterType.P1)
             {

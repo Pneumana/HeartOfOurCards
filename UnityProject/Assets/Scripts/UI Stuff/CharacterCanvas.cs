@@ -52,6 +52,7 @@ namespace Characters
                 var clone = Instantiate(statusIconData.StatusIconBasePrefab, statusIconRoot);
                 clone.SetStatus(targetData);
                 StatusDict[targetStatus] = clone;
+                Debug.Log("Status applied");
             }
 
             StatusDict[targetStatus].SetStatusValue(value);

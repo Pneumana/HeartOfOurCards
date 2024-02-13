@@ -1,4 +1,5 @@
 using Enums;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -15,25 +16,79 @@ namespace CardActions
             var targetCharacter = actionParameters.TargetCharacter;
             var selfCharacter = actionParameters.SelfCharacter;
 
-            var value = actionParameters.Value + Mathf.FloorToInt(selfCharacter.stats.DMG/3);
+            var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
+    public class AttackTwiceAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.AttackTwice;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            if (!actionParameters.TargetCharacter) return;
+
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
 
             targetCharacter.TakeDamage(value);
         }
     }
 
+    public class FireAttackAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.FireAttack;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            if (!actionParameters.TargetCharacter) return;
+
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            if (targetCharacter.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value * 2);
+                targetCharacter.ClearStatus(StatusType.Frozen);
+            }
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
+    public class FrostAttackAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.FrostAttack;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            if (!actionParameters.TargetCharacter) return;
+
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            if (targetCharacter.StatusDict[StatusType.Burn].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value * 2);
+                targetCharacter.ClearStatus(StatusType.Burn);
+            }
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
     public class AllyBlockAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.AllyBlock;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //var newTarget = actionParameters.TargetCharacter
-            //    ? actionParameters.TargetCharacter
-            //    : actionParameters.SelfCharacter;
+            var newTarget = actionParameters.HealthPool;
 
-            //if (!newTarget) return;
+            if (!newTarget) return;
 
-            //newTarget.CharacterStats.ApplyStatus(StatusType.Block, 
-            //    Mathf.RoundToInt(actionParameters.Value + actionParameters.SelfCharacter.CharacterStats.StatusDict[StatusType.Dexterity].StatusValue));
+            newTarget.ApplyStatus(StatusType.Block, Mathf.RoundToInt(actionParameters.Value + actionParameters.SelfCharacter.StatusDict[StatusType.Dexterity].StatusValue));
         }
     }
     public class EnemyBlockAction : CardActionBase
@@ -57,6 +112,7 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.Draw;
         public override void DoAction(CardActionParameters actionParameters)
         {
+
             //if (CollectionManager != null)
             //    CollectionManager.DrawCards(Mathf.RoundToInt(actionParameters.Value));
             //else
@@ -82,13 +138,11 @@ namespace CardActions
 
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //var newTarget = actionParameters.TargetCharacter
-            //    ? actionParameters.TargetCharacter
-            //    : actionParameters.SelfCharacter;
+            var newTarget = actionParameters.HealthPool;
 
-            //if (!newTarget) return;
+            if (!newTarget) return;
 
-            //newTarget.CharacterStats.Heal(Mathf.RoundToInt(actionParameters.Value));
+            newTarget.HealDamage(Mathf.FloorToInt(actionParameters.Value));
         }
     }
 
@@ -98,13 +152,11 @@ namespace CardActions
 
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //var newTarget = actionParameters.TargetCharacter
-            //    ? actionParameters.TargetCharacter
-            //    : actionParameters.SelfCharacter;
+            var newTarget = actionParameters.HealthPool;
 
-            //if (!newTarget) return;
+            if (!newTarget) return;
 
-            //newTarget.CharacterStats.Heal(Mathf.RoundToInt(actionParameters.Value));
+            newTarget.ApplyStatus(StatusType.Regen, Mathf.RoundToInt(actionParameters.Value));
         }
     }
 
@@ -140,10 +192,12 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.Burn;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //if (!actionParameters.TargetCharacter) return;
+            if (!actionParameters.TargetCharacter) return;
 
-            //var value = actionParameters.Value;
-            //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Burn, Mathf.RoundToInt(value));
+            var targetCharacter = actionParameters.TargetCharacter;
+            var value = actionParameters.Value;
+
+            targetCharacter.ApplyStatus(StatusType.Burn, Mathf.RoundToInt(value));
         }
     }
 
@@ -152,10 +206,12 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.Frost;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //if (!actionParameters.TargetCharacter) return;
+            if (!actionParameters.TargetCharacter) return;
 
-            //var value = actionParameters.Value;
-            //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Frost, Mathf.RoundToInt(value));
+            var targetCharacter = actionParameters.TargetCharacter;
+            var value = actionParameters.Value;
+
+            targetCharacter.ApplyStatus(StatusType.Frozen, Mathf.RoundToInt(value));
         }
     }
 
@@ -176,10 +232,12 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.Vulnerable;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //if (!actionParameters.TargetCharacter) return;
+            if (!actionParameters.TargetCharacter) return;
 
-            //var value = actionParameters.Value;
-            //actionParameters.TargetCharacter.CharacterStats.ApplyStatus(StatusType.Vulnerable, Mathf.RoundToInt(value));
+            var targetCharacter = actionParameters.TargetCharacter;
+            var value = actionParameters.Value;
+
+            targetCharacter.ApplyStatus(StatusType.Vulnerable, Mathf.RoundToInt(value));
         }
     }
 }

@@ -52,29 +52,29 @@ namespace CardActions
             //cardImage.sprite = CardData.CardSprite;
         }
 
-        public virtual void Use(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
+        public virtual void Use(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
         {
             if (!IsPlayable) return;
 
-            StartCoroutine(CardUseRoutine(self, targetCharacter, allEnemies, allAllies));
+            StartCoroutine(CardUseRoutine(self, targetCharacter, allEnemies, allAllies, healthPool));
         }
 
-        private IEnumerator CardUseRoutine(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies)
+        private IEnumerator CardUseRoutine(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool)
         {
             SpendEnergy(CardData.EnergyCost);
 
             foreach (var playerAction in CardData.CardActionDataList)
             {
                 yield return new WaitForSeconds(playerAction.ActionDelay);
-                var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, playerAction);
+                var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction);
 
                 foreach (var target in targetList)
-                    CardActionProcessor.GetAction(playerAction.CardActionType).DoAction(new CardActionParameters(playerAction.ActionValue, target, self, CardData, this));
+                    CardActionProcessor.GetAction(playerAction.CardActionType).DoAction(new CardActionParameters(playerAction.ActionValue, target, self, healthPool, CardData, this));
             }
             /* Add something here to check for exhaust*/
         }
 
-        private static List<GenericBody> DetermineTargets(GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, CardActionData playerAction)
+        private static List<GenericBody> DetermineTargets(GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, CardActionData playerAction)
         {
             List<GenericBody> targetList = new List<GenericBody>();
             switch (playerAction.ActionTargetType)
@@ -90,17 +90,22 @@ namespace CardActions
                         targetList.Add(enemyBase);
                     break;
                 case ActionTargetType.AllAllies:
-                    foreach (var allyBase in allAllies)
-                        targetList.Add(allyBase);
+                        targetList.Add(healthPool);
                     break;
                 case ActionTargetType.RandomEnemy:
                     if (allEnemies.Count > 0)
                         targetList.Add(allEnemies[Random.Range(0, allEnemies.Count-1)]);
-
                     break;
                 case ActionTargetType.RandomAlly:
                     if (allAllies.Count > 0)
                         targetList.Add(allAllies[Random.Range(0, allAllies.Count - 1)]);
+                    break;
+                case ActionTargetType.TwoRandomEnemies:
+                    if (allEnemies.Count > 0)
+                    {
+                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count - 1)]);
+                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count - 1)]);
+                    }
                     break;
                 default:
                     Debug.LogError("womp womp");

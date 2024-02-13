@@ -15,11 +15,12 @@ namespace Characters
         public void Start()
         {
             SetAllStatus();
+            EnemyCanvas.InitCanvas();
 
-            OnHealthChanged += enemyCanvas.UpdateHealthText;
-            OnStatusChanged += enemyCanvas.UpdateStatusText;
-            OnStatusApplied += enemyCanvas.ApplyStatus;
-            OnStatusCleared += enemyCanvas.ClearStatus;
+            OnHealthChanged += EnemyCanvas.UpdateHealthText;
+            OnStatusChanged += EnemyCanvas.UpdateStatusText;
+            OnStatusApplied += EnemyCanvas.ApplyStatus;
+            OnStatusCleared += EnemyCanvas.ClearStatus;
 
             OnHealthChanged?.Invoke(health, maxHealth);
         }

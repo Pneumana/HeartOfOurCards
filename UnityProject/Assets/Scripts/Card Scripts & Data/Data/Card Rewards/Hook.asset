@@ -22,7 +22,7 @@ MonoBehaviour:
   cardActionDataList:
   - cardActionType: 0
     actionTargetType: 0
-    actionValue: 0
+    actionValue: 4
     actionDelay: 0
   - cardActionType: 16
     actionTargetType: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   - descriptionText: ' damage and apply '
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
-    useModifier: 1
+    useModifier: 0
     modifiedActionValueIndex: 0
     modiferStats: 0
     usePrefixOnModifiedValue: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   - descriptionText: ' vulnerable to target enemy'
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
-    useModifier: 1
+    useModifier: 0
     modifiedActionValueIndex: 0
     modiferStats: 0
     usePrefixOnModifiedValue: 0

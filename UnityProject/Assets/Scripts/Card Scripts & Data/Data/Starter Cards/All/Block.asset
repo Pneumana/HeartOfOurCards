@@ -20,12 +20,12 @@ MonoBehaviour:
   usableWithoutTarget: 1
   exhaustAfterPlay: 0
   cardActionDataList:
-  - cardActionType: 2
-    actionTargetType: 1
+  - cardActionType: 3
+    actionTargetType: 3
     actionValue: 5
     actionDelay: 0
   cardDescriptionDataList:
-  - descriptionText: Gain
+  - descriptionText: 'Gain '
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
-  - descriptionText: block
+  - descriptionText: ' block'
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0

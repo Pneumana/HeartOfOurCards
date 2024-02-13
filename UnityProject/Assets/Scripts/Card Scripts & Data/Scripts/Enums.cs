@@ -7,7 +7,8 @@ namespace Enums
         AllEnemies,
         AllAllies,
         RandomEnemy,
-        RandomAlly
+        RandomAlly,
+        TwoRandomEnemies
     }
 
     public enum SpecialKeywords
@@ -39,7 +40,10 @@ namespace Enums
         Bleed,
         SpawnCards,
         TempOverkill,
-        Vulnerable
+        Vulnerable,
+        FireAttack,
+        FrostAttack,
+        AttackTwice
     }
 
     public enum CharacterType
