@@ -16,7 +16,7 @@ MonoBehaviour:
   pss: 
   pnd: 
   Color: {r: 0.0062299734, g: 0.31764707, b: 0.13725491, a: 0}
-  Default: {fileID: 0}
+  Default: {fileID: 1165868153760428524, guid: a6c9dbbdd16a5dd46b176f18d559d6dd, type: 3}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}

@@ -15,11 +15,13 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: 1c25102661b91a34badf1800d4c368a8, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
+  - {fileID: 11400000, guid: 4e749189d6e01a748a311501473177f2, type: 2}
   commandScript: 'DateStartPart2
 
     !3
 
-    @SAY
+    @SAYTo get closer to someone, you have
+    to get closer to their friends. This is your in.
 
     :
 
@@ -35,8 +37,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT @NRG, 10, "TEXT HERE",
-    DatePlayerChoice1Success, DatePlayerChoice1Fail% @CON, 10, "TEXT HERE", DatePlayerChoice2Success,
+    @STAT @INT, 10, "Try to
+    remember all of the skulls'' names.", DatePlayerChoice1Success, DatePlayerChoice1Fail%
+    @NRG, 10, "Try to get involved in the skulls'' conversation.", DatePlayerChoice2Success,
     DatePlayerChoice2Fail%
 
     ;
@@ -44,9 +47,22 @@ MonoBehaviour:
 
     DatePlayerChoice1Success
 
-    !2
+    !0
 
-    @SAY
+    @SAYSo...
+    you''re Lambdoid, Parietal, Ethmoid... It''s nice to meet you all. I hope we
+    can be good friends!
+
+    ;
+
+
+    DatePlayerChoice1SuccessSecondary1
+
+    !4
+
+    @SAYHuh?
+    Oh, yeah! We''d say nice to meet you, too, but we''re all bones. We don''t have
+    any meat!
 
     ;
 
@@ -55,7 +71,39 @@ MonoBehaviour:
 
     !2
 
-    @SAY
+    @SAY*CLACKCLACKCLACK*
+    It seems like Zygomatic likes you.
+
+    ;
+
+
+    DatePlayerChoice1Success3
+
+    !2
+
+    @SAYHe''s
+    telling you one of his best jokes after all.
+
+    ;
+
+
+    DatePlayerChoice1Success4
+
+    !2
+
+    @SAYI''m
+    suprised, though. Most people struggle to remember each of them, but you did
+    it first try!
+
+    ;
+
+
+    DatePlayerChoice1Success5
+
+    !2
+
+    @SAYYou''re
+    really smart, [Player]!
 
     ;
 
@@ -64,17 +112,27 @@ MonoBehaviour:
 
     !0
 
-    @END
-    Map
+    @END Map
 
     ;
 
 
     DatePlayerChoice1Fail
 
-    !2
+    !0
 
-    @SAY
+    @SAYSo...
+    you''re Temporalis... Masseter... and... Orbicularis?
+
+    ;
+
+
+    DatePlayerChoice1FailSecondary1
+
+    !4
+
+    @SAYHuh?!
+    Do we look like we get our fibers to you? Hmph!
 
     ;
 
@@ -83,7 +141,28 @@ MonoBehaviour:
 
     !2
 
-    @SAY
+    @SAYUmm...
+    [Player], those aren''t their names. You were really close, though!
+
+    ;
+
+
+    DatePlayerChoice1FailSecondary2
+
+    !4
+
+    @SAYIt
+    wasn''t close, at all!
+
+    ;
+
+
+    DatePlayerChoice1Fail3
+
+    !2
+
+    @SAYAlright...
+    It was actually a little offensive...
 
     ;
 
@@ -100,9 +179,60 @@ MonoBehaviour:
 
     DatePlayerChoice2Success
 
-    !2
+    !0
 
-    @SAY
+    @SAYIt seems like it would
+    be hard to live as just a head. You guys must have a lot on your plates.
+
+    ;
+
+
+    DatePlayerChoice2SuccessSecondary1
+
+    !4
+
+    @SAYTell
+    me about it!
+
+    ;
+
+
+    DatePlayerChoice2SuccessSecondary2
+
+    !4
+
+    @SAYYeah!
+    It''s really hard!
+
+    ;
+
+
+    DatePlayerChoice2SuccessSecondary3
+
+    !4
+
+    @SAYHuehue
+    is here, though, so it could be worse.
+
+    ;
+
+
+    DatePlayerChoice2SuccessSecondary4
+
+    !4
+
+    @SAYThat''s
+    true! Huehue really helps us out.
+
+    ;
+
+
+    DatePlayerChoice2SuccessResponse1
+
+    !0
+
+    @SAYHehe,
+    I guess "Huehue" is as thoughtful as he seems, huh?
 
     ;
 
@@ -111,7 +241,18 @@ MonoBehaviour:
 
     !2
 
-    @SAY
+    @SAYHuh??
+    Oh! No...
+
+    ;
+
+
+    DatePlayerChoice2SuccessSecondary5
+
+    !4
+
+    @SAYHuehue
+    is the best neck down we could ask for!
 
     ;
 
@@ -128,9 +269,29 @@ MonoBehaviour:
 
     DatePlayerChoice2Fail
 
-    !3
+    !0
 
-    @SAY
+    @SAYHey, uh...
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary1
+
+    !4
+
+    @SAYHey,
+    Huehue, this is boring!
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary2
+
+    !4
+
+    @SAYYeah!
+    Let''s get going!
 
     ;
 
@@ -139,7 +300,77 @@ MonoBehaviour:
 
     !2
 
-    @SAY
+    @SAYHuh? Wait!
+    What about [Player]...?
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary3
+
+    !4
+
+    @SAYI
+    want to go bowling!
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary4
+
+    !4
+
+    @SAYI
+    want a nice view!
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary5
+
+    !4
+
+    @SAYI
+    want to go to a coffee shop! Not for the coffee, just for the atmosphere. I''m
+    writing a screen pla-!
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary6
+
+    !4
+
+    @SAYTake
+    me to-!
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary7
+
+    !4
+
+    @SAYI want-!
+
+    ;
+
+
+    DatePlayerChoice2FailSecondary8
+
+    !4
+
+    @SAYHuehue-!
+
+    ;
+
+
+    DatePlayerChoice2Fail3
+
+    !2
+
+    @SAYAhhh!
+    I''m sorry, [Player]. I have to go now! See you... uh, some other time!
 
     ;
 

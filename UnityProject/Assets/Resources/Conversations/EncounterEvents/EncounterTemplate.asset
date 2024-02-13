@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
-  m_Name: LamiaD1
+  m_Name: EncounterTemplate
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 11400000, guid: f93868bcdbf758d41a4c5f50ae4cec19, type: 2}
+  - {fileID: 11400000, guid: 96f71882ee9d4634c8e90c4b9f6afe80, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStart
+  commandScript: 'CrowdWorkStart
 
     !2
 
@@ -26,7 +26,7 @@ MonoBehaviour:
     ;
 
 
-    DateDialogue2
+    CrowdWorkDialogue2
 
     !2
 
@@ -35,7 +35,7 @@ MonoBehaviour:
     ;
 
 
-    DateDialogue3
+    CrowdWorkDialogue3
 
     !2
 
@@ -44,18 +44,18 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice
+    CrowdWorkPlayerChoice
 
     !0
 
     @STAT
-    @INT, 10, "TEXT HERE", DatePlayerChoice1Success, DatePlayerChoice1Fail% @DMG,
-    10, "TEXT HERE", DatePlayerChoice2Success, DatePlayerChoice2Fail%
+    @DMG, 10, "TEXT HERE", CrowdWorkPlayerChoice1Success, CrowdWorkPlayerChoice1Fail%
+    @CON, 10, "TEXT HERE", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
 
     ;
 
 
-    DatePlayerChoice1Success
+    CrowdWorkPlayerChoice1Success
 
     !2
 
@@ -64,7 +64,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice1Success2
+    CrowdWorkPlayerChoice1Success2
 
     !2
 
@@ -73,17 +73,17 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load1
+    CrowdWorkEnd1
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;
 
 
-    DatePlayerChoice1Fail
+    CrowdWorkPlayerChoice1Fail
 
     !2
 
@@ -92,7 +92,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice1Fail2
+    CrowdWorkPlayerChoice1Fail2
 
     !2
 
@@ -101,17 +101,17 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load2
+    CrowdWorkEnd2
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;
 
 
-    DatePlayerChoice2Success
+    CrowdWorkPlayerChoice2Success
 
     !2
 
@@ -120,7 +120,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice2Success2
+    CrowdWorkPlayerChoice2Success2
 
     !2
 
@@ -129,17 +129,17 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load3
+    CrowdWorkEnd3
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;
 
 
-    DatePlayerChoice2Fail
+    CrowdWorkPlayerChoice2Fail
 
     !2
 
@@ -148,7 +148,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice2Fail2
+    CrowdWorkPlayerChoice2Fail2
 
     !2
 
@@ -157,11 +157,11 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load4
+    CrowdWorkEnd4
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;'

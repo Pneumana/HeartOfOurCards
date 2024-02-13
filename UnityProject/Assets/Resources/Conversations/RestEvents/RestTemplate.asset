@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
-  m_Name: LamiaD1
+  m_Name: RestTemplate
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: f93868bcdbf758d41a4c5f50ae4cec19, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStart
+  commandScript: 'BreakStart
 
     !2
 
@@ -26,7 +26,7 @@ MonoBehaviour:
     ;
 
 
-    DateDialogue2
+    BreakDialogue2
 
     !2
 
@@ -35,7 +35,7 @@ MonoBehaviour:
     ;
 
 
-    DateDialogue3
+    BreakDialogue3
 
     !2
 
@@ -44,18 +44,18 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice
+    BreakPlayerChoice
 
     !0
 
     @STAT
-    @INT, 10, "TEXT HERE", DatePlayerChoice1Success, DatePlayerChoice1Fail% @DMG,
-    10, "TEXT HERE", DatePlayerChoice2Success, DatePlayerChoice2Fail%
+    @INT, 10, "TEXT HERE", BreakPlayerChoice1Success, BreakPlayerChoice1Fail% @CON,
+    10, "TEXT HERE", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
 
     ;
 
 
-    DatePlayerChoice1Success
+    BreakPlayerChoice1Success
 
     !2
 
@@ -64,7 +64,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice1Success2
+    BreakPlayerChoice1Success2
 
     !2
 
@@ -73,17 +73,17 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load1
+    BreakEnd1
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;
 
 
-    DatePlayerChoice1Fail
+    BreakPlayerChoice1Fail
 
     !2
 
@@ -92,7 +92,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice1Fail2
+    BreakPlayerChoice1Fail2
 
     !2
 
@@ -101,17 +101,17 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load2
+    BreakEnd2
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;
 
 
-    DatePlayerChoice2Success
+    BreakPlayerChoice2Success
 
     !2
 
@@ -120,7 +120,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice2Success2
+    BreakPlayerChoice2Success2
 
     !2
 
@@ -129,17 +129,17 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load3
+    BreakEnd3
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;
 
 
-    DatePlayerChoice2Fail
+    BreakPlayerChoice2Fail
 
     !2
 
@@ -148,7 +148,7 @@ MonoBehaviour:
     ;
 
 
-    DatePlayerChoice2Fail2
+    BreakPlayerChoice2Fail2
 
     !2
 
@@ -157,11 +157,11 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load4
+    BreakEnd4
 
     !0
 
-    @LOAD
-    DateEvents/Lamia/LamiaD1-2
+    @END
+    Map
 
     ;'
