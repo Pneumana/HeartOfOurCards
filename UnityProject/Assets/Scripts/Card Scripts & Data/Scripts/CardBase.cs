@@ -117,7 +117,7 @@ namespace CardActions
 
         public virtual void UpdateCardText()
         {
-            CardData.UpdateDescription();
+            CardData.UpdateDescription(GetComponentInParent<GenericBody>());
             nameTextField.text = CardData.CardName;
             descTextField.text = CardData.MyDescription;
             manaTextField.text = CardData.EnergyCost.ToString();

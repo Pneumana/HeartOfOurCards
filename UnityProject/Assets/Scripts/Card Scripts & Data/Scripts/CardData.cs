@@ -41,14 +41,14 @@ namespace DeckData
         public List<CardType> CardType => cardType;
 
 
-        public void UpdateDescription()
+        public void UpdateDescription(GenericBody GB)
         {
             var str = new StringBuilder();
 
             foreach (var descriptionData in cardDescriptionDataList)
             {
                 str.Append(descriptionData.UseModifier
-                    ? descriptionData.GetModifiedValue(this)
+                    ? descriptionData.GetModifiedValue(this, GB)
                     : descriptionData.GetDescription());
             }
 
@@ -99,7 +99,7 @@ namespace DeckData
         public bool OverrideColorOnValueScaled => overrideColorOnValueScaled;
 
         private TurnManager turnManager => TurnManager.instance;
-        private GameObject StatCheck;
+        //public GameObject StatCheck;
 
         public string GetDescription()
         {
@@ -113,7 +113,7 @@ namespace DeckData
             return str.ToString();
         }
 
-        public string GetModifiedValue(CardData cardData)
+        public string GetModifiedValue(CardData cardData, GenericBody GB)
         {
             if (cardData.CardActionDataList.Count <= 0) return "";
 
@@ -126,7 +126,7 @@ namespace DeckData
             var str = new StringBuilder();
             var value = cardData.CardActionDataList[ModifiedActionValueIndex].ActionValue;
             var modifer = 0;
-            GenericBody GB = StatCheck.GetComponentInParent<GenericBody>();
+            //GenericBody GB = StatCheck.GetComponentInParent<GenericBody>();
 
             if (GB)
             {
