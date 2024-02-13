@@ -591,7 +591,7 @@ public class DialougeDisplayer : MonoBehaviour
                         catch
                         {
                             Debug.Log("goto is formatted in string");
-                            int index = stepNames.IndexOf(split[3]);
+                            int index = stepNames.IndexOf(split[3 + i]);
                             if (index != -1)
                                 passFail[i] = index;
                             else
@@ -600,8 +600,8 @@ public class DialougeDisplayer : MonoBehaviour
                             }
                         }
                     }
-                    
 
+                    Debug.Log("addedn new option with " + split[0] + ", " + req + ", " + split[2] + ", " + passFail[0] + ", " + passFail[1]);
                     options.Add(new StatCheckInfo(split[0], req, split[2], passFail[0], passFail[1]));
 
                     /*CaptureCollection captures = match.Captures;
@@ -770,6 +770,7 @@ public class DialougeDisplayer : MonoBehaviour
     }
     public void SkipTo(int index, bool triggeredByChoice)
     {
+        Debug.Log("skipping to " + index);
         if (triggeredByChoice)
         {
             displayingChoice = false;
