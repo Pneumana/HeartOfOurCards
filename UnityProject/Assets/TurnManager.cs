@@ -30,7 +30,7 @@ namespace Managers
         public List<GenericBody> CurrentAlliesList  = new List<GenericBody>();
         public List<GenericBody> CurrentEnemiesList = new List<GenericBody>();
 
-        public GenericBody CurrentMainAlly;
+        public PlayerGenericBody CurrentMainAlly;
 
         private void Awake()
         {
@@ -60,7 +60,7 @@ namespace Managers
                 Debug.Log(player.gameObject);
                 if (player != null)
                 {
-                    CurrentMainAlly = player.GetComponent<GenericBody>();
+                    CurrentMainAlly = player.GetComponent<PlayerGenericBody>();
                 }
             }
             foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
@@ -68,8 +68,9 @@ namespace Managers
                 Debug.Log("added new enemy: " + enemy.gameObject);
                 if (enemy != null && !enemyTeam.Contains(enemy))
                 {
+                    var enemyGB = enemy.GetComponent<GenericBody>();
+                    CurrentEnemiesList.Add(enemyGB);
                     enemyTeam.Add(enemy);
-                    CurrentEnemiesList.Add(enemy.GetComponent<GenericBody>());
                     enemy.deck = enemy.GetComponent<CardDeck>();
                     //enemy.deck.ServerDrawCard(1);
                     enemy.FirstCardDraw(0);
@@ -164,6 +165,7 @@ namespace Managers
                     isPlayerTurn = true;
                     enemyTurnEnded.Clear();
                     Debug.Log("enemy turn ended");
+                    CurrentMainAlly.OnPlayerTurnStart();
                     foreach (CardPlayerController plr in playerTeam)
                     {
                         plr.CMDStartTurn();
@@ -191,6 +193,7 @@ namespace Managers
             {
                 yield return new WaitForSeconds(0.5f);
                 enemyTeam[enemyLoopIndex].TakeTurn();
+                //CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
                 enemyLoopIndex++;
             }
             while (enemyLoopIndex < enemyTeam.Count);

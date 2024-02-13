@@ -22,7 +22,7 @@ MonoBehaviour:
   cardActionDataList:
   - cardActionType: 1
     actionTargetType: 1
-    actionValue: 0
+    actionValue: 4
     actionDelay: 0
   - cardActionType: 10
     actionTargetType: 1
@@ -43,9 +43,9 @@ MonoBehaviour:
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 1
     modifiedActionValueIndex: 0
-    modiferStats: 3
+    modiferStats: 0
     usePrefixOnModifiedValue: 1
-    modifiedValuePrefix: 4
+    modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
   - descriptionText: ' Health, Bandage is removed from deck'
     enableOverrideColor: 0

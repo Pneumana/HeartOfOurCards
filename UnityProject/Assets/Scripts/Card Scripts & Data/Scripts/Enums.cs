@@ -28,7 +28,6 @@ namespace Enums
         Heal,
         Regen,
         AllyBlock,
-        EnemyBlock,
         Draw,
         EarnEnergy,
         LifeSteal,
@@ -43,7 +42,12 @@ namespace Enums
         Vulnerable,
         FireAttack,
         FrostAttack,
-        AttackTwice
+        AttackTwice,
+        EnemyAttack,
+        EnemyBlock,
+        EnemyHeal,
+        EnemyVulnerability,
+        EnemyBleed
     }
 
     public enum CharacterType

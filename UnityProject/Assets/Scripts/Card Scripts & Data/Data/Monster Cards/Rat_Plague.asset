@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
-  m_Name: Strike
+  m_Name: Rat_Plague
   m_EditorClassIdentifier: 
-  id: Strike
-  cardName: Strike
-  energyCost: 1
+  id: Plague
+  cardName: Plague
+  energyCost: 0
   cardSprite: {fileID: 0}
-  cardType: 00000000
+  cardType: 02000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   cardActionDataList:
-  - cardActionType: 0
-    actionTargetType: 0
-    actionValue: 4
+  - cardActionType: 19
+    actionTargetType: 3
+    actionValue: 3
+    actionDelay: 0
+  - cardActionType: 22
+    actionTargetType: 3
+    actionValue: 1
     actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: 'Deal '
@@ -43,12 +47,30 @@ MonoBehaviour:
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
-  - descriptionText: ' damage to target enemy.'
+  - descriptionText: ' damage and apply '
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
     modifiedActionValueIndex: 0
-    modiferStats: 2
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  - descriptionText: 
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 1
+    modifiedActionValueIndex: 1
+    modiferStats: 0
+    usePrefixOnModifiedValue: 1
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 1
+  - descriptionText: ' vulnerable'
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
     usePrefixOnModifiedValue: 0
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 0

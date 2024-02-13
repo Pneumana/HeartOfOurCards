@@ -22,7 +22,7 @@ MonoBehaviour:
   cardActionDataList:
   - cardActionType: 0
     actionTargetType: 0
-    actionValue: 0
+    actionValue: 2
     actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: 'Deal '
@@ -32,7 +32,7 @@ MonoBehaviour:
     modifiedActionValueIndex: 0
     modiferStats: 0
     usePrefixOnModifiedValue: 0
-    modifiedValuePrefix: 2
+    modifiedValuePrefix: 
     overrideColorOnValueScaled: 0
   - descriptionText: 
     enableOverrideColor: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
-  - descriptionText: ' Damage'
+  - descriptionText: ' damage'
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0

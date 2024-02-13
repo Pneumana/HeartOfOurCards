@@ -158,6 +158,9 @@ MonoBehaviour:
   seed: 0
   pickingPlayer: 0
   LocalPlayerID: -1
+  localMapCamZoom: 0
+  localMapCamPos: {x: 0, y: 0}
+  ForceLoadConvo: 
 --- !u!4 &69857296
 Transform:
   m_ObjectHideFlags: 0
@@ -256,8 +259,8 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 1115048136592082124, guid: f3fb331b830b1d94cb95dbe1d734a247, type: 3}
-  - {fileID: 5130907772930195866, guid: c5f781e7e60486f41a080177971eb679, type: 3}
-  - {fileID: 5130907772930195866, guid: c5f781e7e60486f41a080177971eb679, type: 3}
+  - {fileID: 6102217815632708100, guid: 00529e2199940384aa3cb478efb27aa1, type: 3}
+  - {fileID: 5006751889763522343, guid: f5a3be8970218fd45aa47c8701baa4a9, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
