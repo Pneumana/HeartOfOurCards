@@ -32,8 +32,7 @@ MonoBehaviour:
     !2
 
     @SAYThe
-    couch is small and weak! The coffee table is small and weak! The microwave! SMALL
-    AND WEAK!
+    couch is small and weak! The coffee table is small and weak! The microwave!
 
     ;
 
@@ -42,7 +41,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYAnd it smells like fish.
+    @SAYSMALL
+    AND WEAK!!!
 
     ;
 
@@ -51,8 +51,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYI''ll
-    make sure to take special care of you.
+    @SAY...And it smells like
+    fish.
 
     ;
 
@@ -61,10 +61,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @INT, 10, "Would you like me to move the furniture around for you?", BreakPlayerChoice1Success,
-    BreakPlayerChoice1Fail% @DMG, 10, "*Break the furnature in solidarity*", BreakPlayerChoice2Success,
-    BreakPlayerChoice2Fail%
+    @STAT @INT, 10, "Would you
+    like me to move the furniture around for you?", BreakPlayerChoice1Success, BreakPlayerChoice1Fail%
+    @DMG, 10, "*Break the furnature in solidarity*", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
 
     ;
 
@@ -85,6 +84,16 @@ MonoBehaviour:
 
     @SAYI
     can finally lay out all of my treasures! Wonderful!
+
+    ;
+
+
+    BreakPlayerChoice1Success3
+
+    !2
+
+    @SAYYou
+    may be a lesser being, but you are a useful lesser being.
 
     ;
 
@@ -114,7 +123,17 @@ MonoBehaviour:
     !2
 
     @SAYThe Great
-    Black Fang does not act as told! The Great Black Fang is extremely spiteful!!
+    Black Fang does not act as told!
+
+    ;
+
+
+    BreakPlayerChoice1Fail3
+
+    !2
+
+    @SAYThe
+    Great Black Fang is extremely spiteful!!
 
     ;
 
@@ -134,8 +153,7 @@ MonoBehaviour:
     !2
 
     @SAYHmmm. You seem a
-    bit... better than the rest of these lesser beings. Perhaps you can somewhat
-    relate to the problems of one as great as I.
+    bit... better than the rest of these lesser beings.
 
     ;
 
@@ -144,9 +162,28 @@ MonoBehaviour:
 
     !2
 
+    @SAYPerhaps
+    you can somewhat relate to the problems of one as great as I.
+
+    ;
+
+
+    BreakPlayerChoice2Success3
+
+    !2
+
     @SAYStay
-    strong, small one, in this world of the weak. Perhaps one day... I may have a
-    worthy foe.
+    strong, small one, in this world of the weak.
+
+    ;
+
+
+    BreakPlayerChoice2Success4
+
+    !2
+
+    @SAYPerhaps
+    one day... I may have a worthy foe.
 
     ;
 
@@ -155,7 +192,8 @@ MonoBehaviour:
 
     !0
 
-    @END Map
+    @END
+    Map
 
     ;
 
@@ -165,12 +203,21 @@ MonoBehaviour:
     !2
 
     @SAYYou...
-    are small and weak.
 
     ;
 
 
     BreakPlayerChoice2Fail2
+
+    !2
+
+    @SAYAre
+    small and weak.
+
+    ;
+
+
+    BreakPlayerChoice2Fail3
 
     !2
 

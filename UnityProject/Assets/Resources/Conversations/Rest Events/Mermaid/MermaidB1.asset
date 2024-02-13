@@ -15,237 +15,52 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: 2e282c5b9c669b84dbfea1c0d5c797c5, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'BreakStart
-
-    !2
-
-    @SAYI caught my accent slipping the last
-    warmup match I did, I spent so long working on it...
-
-    @POS 0.5, -0.1, 110
-
-    ;
-
-
-    BreakDialogue2
-
-    !2
-
-    @SAYBut
+  commandScript: "BreakStart\n!2\n@SAYI caught my accent slipping the last warmup
+    match I did, I spent so long working on it...\n@POS 0.5, -0.1, 110\n;\n\nBreakDialogue2\n!2\n@SAYBut
     finding the right spot to cut a word short or throw in an ARRR just makes the
-    mollusks in my stomachs tumble around. Oh, right, I guess you would call them
-    butterflies in the stomach up here on the surface...
-
-    ;
-
-
-    BreakDialogue2
-
-    !2
-
-    @SAYIt
-    was hard enough back home, but the air pressure up here just makes me more aware
-    of all the eyes on me, plus if I mess up it means it messes with all the others.
-    I really bit off more than I can chew with this thing.
-
-    ;
-
-
-    BreakDialogue3
-
-    !2
-
-    @SAYDo
-    you ever get nervous on stage [PLAYER]? Oh, what am I asking, I''m sure you have
-    at some point. I guess, I meant what do you do to be brave and fight through
-    it?
-
-    ;
-
-
-    BreakPlayerChoice
-
-    !0
-
-    @STAT @INT, 10, "Two words: Meditation
-    and Breathing Excercises.", BreakPlayerChoice1Success, BreakPlayerChoice1Fail%
-    @NRG, 10, "The best way to get those butterflies to stop fluttering is to tire
-    them out! Do some jumping around or some light excercise!", BreakPlayerChoice2Success,
-    BreakPlayerChoice2Fail%
-
-    ;
-
-
-    BreakPlayerChoice1Success
-
-    !2
-
-    @SAYOh!
-    I see what you mean. I can''t exactly do breathing excercises, but it''s the
-    principal right? Find something you normally do without thinking and do it manually,
-    and ground yourself to focus your thoughts!
-
-    ;
-
-
-    BreakPlayerChoice1Success2
-
-    !2
-
-    @SAYI
-    could do something similar with my fish maw, normally it just keeps my bouyancy
-    and I forget about it, but it''s technically a muscle I can control... Thanks
-    a lot, [PLAYER], I guess I never thought of it that way...
-
-    ;
-
-
-    BreakPlayerChoice1SuccessNarration1
-
-    !3
-
-    @SAYYour
-    LOGIC-al understanding of the fundamentals formed a deeper connection with Merryreed!
-    Way to help a rookie out!
-
-    ;
-
-
-    BreakEnd1
-
-    !0
-
-    @END Map
-
-    ;
-
-
-    BreakPlayerChoice1Fail
-
-    !2
-
-    @SAYUh,
-    that''s three words. Four, if you count the ''and''. I appreciate the help, but
-    since my air is magically provided I''m not really able to do breathing excercises
-    in the moment, y''know?
-
-    ;
-
-
-    BreakPlayerChoice1Fail2
-
-    !2
-
-    @SAYI
-    would only get more embarrased and make more of a mess if I ducked my neck down
-    in the nearest water barrel every time I got nervous...
-
-    ;
-
-
-    BreakPlayerChoice1FailNarration1
-
-    !3
-
-    @SAYMerryreed''s
-    underwater adaptation makes the usual methods of stress relief inaccessible.
-    Maybe with some more LOGIC you could reason out a compatible way to relax her
-    mind!
-
-    ;
-
-
-    BreakEnd2
-
-    !0
-
-    @END Map
-
-    ;
-
-
-    BreakPlayerChoice2Success
-
-    !2
-
-    @SAYOh!
-    That''s an amazing idea! I''m a pirate after all, so fancy footwork and flourishes
-    aren''t all out of the ordinary, right? It''ll also get some crowd work in too.
-    Wow, you really are a savant at this!
-
-    ;
-
-
-    BreakPlayerChoice2Success2
-
-    !2
-
-    @SAYHey,
-    we''ve still got some time for break, wanna practice some choreography to help
-    me bounce around a bit more in a fight?
-
-    ;
-
-
-    BreakPlayerChoice2SuccessNarration1
-
-    !3
-
-    @SAYYou
-    had enough VELOCITY in your toes to lead by example. Merryreed really seems to
-    admire you, and some extra time with her is always great!
-
-    ;
-
-
-    BreakEnd3
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    BreakPlayerChoice2Fail
-
-    !2
-
-    @SAYHuh? Oh no, surface
-    excercise is not for me, I feel queasy enough having to jog to work, I don''t
-    have my land legs yet.
-
-    ;
-
-
-    BreakPlayerChoice2Fail2
-
-    !2
-
-    @SAYMaybe
-    I should ask Layla. I mean, she''s elegant, hot, and makes this whole performing
-    thing look effortless. Maybe she has some tips for me!
-
-    ;
-
-
-    BreakPlayerChoice2FailNarration1
-
-    !3
-
-    @SAYLooks
-    like Layla gets to steal your personal time with Merryreed. Maybe She''d look
-    up to you more if you were as full of VELOCITY as Layla.
-
-    ;
-
-
-    BreakEnd4
-
-    !0
-
-    @END
-    Map
-
-    ;'
+    mollusks in my stomachs tumble around.\n;\n\nBreakDialogue3\n!2\n@SAYOh, right,
+    I guess you would call them butterflies in the stomach up here on the surface...\n;\n\nBreakDialogue4\n!2\n@SAYIt
+    was hard enough back home.\n;\n\nBreakDialogue5\n!2\n@SAYBut the air pressure
+    up here just makes me more aware of all the eyes on me.\n;\n\nBreakDialogue6\n!2\n@SAYPlus
+    if I mess up it means it messes with all the others. \n;\n\nBreakDialogue7\n!2\n@SAYI
+    really bit off more than I can chew with this thing.\n;\n\nBreakDialogue8\n!2\n@SAYDo
+    you ever get nervous on stage [PLAYER]?\n;\n\nBreakDialogue9\n!2\n@SAYOh, what
+    am I asking, I'm sure you have at some point.\n;\n\nBreakDialogue10\n!2\n@SAYI
+    guess, I meant what do you do to be brave and fight through it?\n;\n\nBreakPlayerChoice\n!0\n@STAT
+    @INT, 10, \"Two words: Meditation and Breathing Excercises.\", BreakPlayerChoice1Success,
+    BreakPlayerChoice1Fail% @NRG, 10, \"The best way to get those butterflies to
+    stop fluttering is to tire them out! Do some jumping around or some light excercise!\",
+    BreakPlayerChoice2Success, BreakPlayerChoice2Fail%\n;\n\nBreakPlayerChoice1Success\n!2\n@SAYOh!
+    I see what you mean. I can't exactly do breathing excercises, but it's the principal
+    right?\n;\n\nBreakPlayerChoice1Success2\n!2\n@SAYFind something you normally
+    do without thinking and do it manually and ground yourself to focus your thoughts!\n;\n\nBreakPlayerChoice1Success3\n!2\n@SAYI
+    could do something similar with my fish maw.\n;\n\nBreakPlayerChoice1Success4\n!2\n@SAYNormally
+    it just keeps my bouyancy and I forget about it.\n;\n\nBreakPlayerChoice1Success5\n!2\n@SAYBut
+    it's technically a muscle I can control...\n;\n\nBreakPlayerChoice1Success6\n!2\n@SAYThanks
+    a lot, [PLAYER], I guess I never thought of it that way...\n;\n\nBreakPlayerChoice1SuccessNarration1\n!3\n@SAYYour
+    LOGIC-al understanding of the fundamentals formed a deeper connection with Merryreed!\n;\n\nBreakPlayerChoice1SuccessNarration2\n!3\n@SAYWay
+    to help a rookie out!\n;\n\nBreakEnd1\n!0\n@END Map\n;\n\nBreakPlayerChoice1Fail\n!2\n@SAYUh,
+    that's three words. Four, if you count the 'and'.\n;\n\nBreakPlayerChoice1Fail2\n!2\n@SAYI
+    appreciate the help, but since my air is magically provided I'm not really able
+    to do breathing excercises in the moment, y'know?\n;\n\nBreakPlayerChoice1Fail3\n!2\n@SAYIf
+    I ducked my neck down in the nearest water barrel every time I got nervous,\n;\n\nBreakPlayerChoice1Fail4\n!2\n@SAYI
+    would only get more embarrased and make more of a mess...\n;\n\nBreakPlayerChoice1FailNarration1\n!3\n@SAYMerryreed's
+    underwater adaptation makes the usual methods of stress relief inaccessible.\n;\n\nBreakPlayerChoice1FailNarration2\n!3\n@SAYMaybe
+    with some more LOGIC you could reason out a compatible way to relax her mind!\n;\n\nBreakEnd2\n!0\n@END
+    Map\n;\n\nBreakPlayerChoice2Success\n!2\n@SAYOh! That's an amazing idea!\n;\n\nBreakPlayerChoice2Success2\n!2\n@SAYI'm
+    a pirate after all, so fancy footwork and flourishes aren't all out of the ordinary,
+    right?\n;\n\nBreakPlayerChoice2Success3\n!2\n@SAYIt'll also get some crowd work
+    in too. Wow, you really are a savant at this!\n;\n\nBreakPlayerChoice2Success4\n!2\n@SAYHey,
+    we've still got some time for break.\n;\n\nBreakPlayerChoice2Success5\n!2\n@SAYWanna
+    practice some choreography to help me bounce around a bit more in a fight?\n;\n\nBreakPlayerChoice2SuccessNarration1\n!3\n@SAYYou
+    had enough VELOCITY in your toes to lead by example.\n;\n\nBreakPlayerChoice2SuccessNarration2\n!3\n@SAYMerryreed
+    really seems to admire you, and some extra time with her is always great!\n;\n\nBreakEnd3\n!0\n@END
+    Map\n;\n\nBreakPlayerChoice2Fail\n!2\n@SAYHuh? Oh no, surface excercise is not
+    for me.\n;\n\nBreakPlayerChoice2Fail2\n!2\n@SAYI feel queasy enough having to
+    jog to work, I don't have my land legs yet.\n;\n\nBreakPlayerChoice2Fail3\n!2\n@SAYMaybe
+    I should ask Layla.\n;\n\nBreakPlayerChoice2Fail4\n!2\n@SAYI mean, she's elegant,
+    hot, and makes this whole performing thing look effortless.\n;\n\nBreakPlayerChoice2Fail5\n!2\n@SAYMaybe
+    she has some tips for me!\n;\n\nBreakPlayerChoice2FailNarration1\n!3\n@SAYLooks
+    like Layla gets to steal your personal time with Merryreed.\n;\n\nBreakPlayerChoice2FailNarration2\n!3\n@SAYMaybe
+    she'd look up to you more if you were as full of VELOCITY as Layla.\n;\n\nBreakEnd4\n!0\n@END
+    Map\n;"

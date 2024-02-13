@@ -164,8 +164,17 @@ MonoBehaviour:
     !2
 
     @SAYMmm... Actually, you
-    seem in need of pretty urgent medical assisstance. I might not have the chance
-    to see you, after all.
+    seem in need of pretty urgent medical assisstance.
+
+    ;
+
+
+    BreakPlayerChoice2Fail2
+
+    !2
+
+    @SAYI
+    might not have the chance to see you, after all.
 
     ;
 

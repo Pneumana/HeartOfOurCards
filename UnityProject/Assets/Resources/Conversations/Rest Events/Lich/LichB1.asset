@@ -20,7 +20,7 @@ MonoBehaviour:
 
     !2
 
-    @SAYOh... no.... Where is Occipital?
+    @SAYOh... no.... Where did I put Occipital?
 
     @POS
     0.5, -0.1, 110
@@ -42,9 +42,7 @@ MonoBehaviour:
     !2
 
     @SAYOh!
-    Uhh... Occipital... He''s one of my skulls. I think I might have left him in
-    the bathroom just now, but there''s not enough time to go back before the break
-    ends...
+    Uhh... Occipital... He''s one of my skulls.
 
     ;
 
@@ -53,8 +51,29 @@ MonoBehaviour:
 
     !2
 
-    @SAYI don''t know how I can
-    go on without him... He really keeps my head on my shoulders.
+    @SAYI
+    think I might have left him in the bathroom just now, but there''s not enough
+    time to go back before the break ends...
+
+    ;
+
+
+    BreakDialogue4
+
+    !2
+
+    @SAYI
+    don''t know how I can go on without him...
+
+    ;
+
+
+    BreakDialogue5
+
+    !2
+
+    @SAYHe
+    really keeps my head on my shoulders.
 
     ;
 
@@ -77,7 +96,7 @@ MonoBehaviour:
     !2
 
     @SAYOh!
-    Uh! You will? Thank you... oh they''re gone.
+    Uh! You will? Thank yo... oh they''re gone.
 
     ;
 
@@ -88,7 +107,6 @@ MonoBehaviour:
 
     @SAYYou
     seem quite happy about it.
-
 
     ;
 
@@ -138,12 +156,51 @@ MonoBehaviour:
     !2
 
     @SAYYeah,
-    stretching is important... I guess. But... are you going to go?
+    stretching is important... I guess. But...
+
+    ;
+
+
+    BreakPlayerChoice1Fail3
+
+    !2
+
+    @SAYAre
+    you going to go soon?
 
     ;
 
 
     BreakEnd2
+
+    !0
+
+    @END Map
+
+    ;
+
+
+    BreakPlayerChoice2Success
+
+    !2
+
+    @SAYOh?!
+    Uh, yeah! I guess?
+
+    ;
+
+
+    BreakPlayerChoice2Success2
+
+    !2
+
+    @SAYYes!
+    You''re right! I can do this! Definitely! Thank you!
+
+    ;
+
+
+    BreakEnd3
 
     !0
 
@@ -153,41 +210,12 @@ MonoBehaviour:
     ;
 
 
-    BreakPlayerChoice2Success
-
-    !2
-
-    @SAYOh?! Uh, yeah! I
-    guess?
-
-    ;
-
-
-    BreakPlayerChoice2Success2
-
-    !2
-
-    @SAYYes! I can do
-    this! Definitely! Thank you!
-
-    ;
-
-
-    BreakEnd3
-
-    !0
-
-    @END Map
-
-    ;
-
-
     BreakPlayerChoice2Fail
 
     !2
 
-    @SAYWhat?!
-    Oh! Hey, wait!
+    @SAYI don''t know about
+    tha- Ah! What?! Oh! Hey, wait!
 
     ;
 
@@ -196,8 +224,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYNo! Stop!
-    That''s too hard! My tibia!
+    @SAYNo!
+    Stop! That''s too hard! My tibia! AAHHHH!!
 
     ;
 
@@ -206,6 +234,7 @@ MonoBehaviour:
 
     !0
 
-    @END Map
+    @END
+    Map
 
     ;'
