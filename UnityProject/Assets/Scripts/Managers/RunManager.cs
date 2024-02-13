@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System.Globalization;
+using CardActions;
 
 public class RunManager : NetworkBehaviour
 {
@@ -87,6 +88,7 @@ public class RunManager : NetworkBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            CardActionProcessor.Initialize();
         }
     }
     private void Start()

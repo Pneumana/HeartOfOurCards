@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Statuses
 {
-    [CreateAssetMenu(fileName = "Status Icons", menuName = "CardStuff/StatusIcons", order = 2)]
+    [CreateAssetMenu(fileName = "Status Icons", menuName = "Card Stuff/StatusIcons", order = 2)]
     public class StatusIconsData : ScriptableObject
     {
         [SerializeField] private StatusIconBase statusIconBasePrefab;
@@ -22,9 +22,8 @@ namespace Statuses
     {
         [SerializeField] private StatusType iconStatus;
         [SerializeField] private Sprite iconSprite;
-        [SerializeField] private List<SpecialKeywords> specialKeywords;
+
         public StatusType IconStatus => iconStatus;
         public Sprite IconSprite => iconSprite;
-        public List<SpecialKeywords> SpecialKeywords => specialKeywords;
     }
 }

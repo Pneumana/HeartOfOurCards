@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Status Icons
+  m_EditorClassIdentifier: Assembly-CSharp:Statuses:StatusIconsData
+  statusIconBasePrefab: {fileID: 7050867158018059337, guid: 1db392ec84f7580489615b232794f61a, type: 3}
+  statusIconList:
+  - iconStatus: 1
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 2
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 3
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 4
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 5
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 6
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 7
+    iconSprite: {fileID: 7836489019867940121, guid: 74df149530f19304893f116b0dcf24c2, type: 3}
+  - iconStatus: 8
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+  - iconStatus: 9
+    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}

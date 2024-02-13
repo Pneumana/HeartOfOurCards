@@ -10,23 +10,25 @@ namespace Characters
         [Header("Health")]
 /*        public int health;
         public int maxHealth;*/
-        [Space(10)]
-        [Header("Buffs/Debuffs")]
-/*        public int shield;
-        public int burn;
-        public int freeze;
-        public int vulnerable;
-        public int stun;
-        public int regen;
-        public int bleed;*/
 
+        [SerializeField] private AllyCanvas allyCanvas;
+
+        public AllyCanvas AllyCanvas => allyCanvas;
 
         public RunManager RM;
 
-        private void Start()
+        public void Start()
         {
-            RM = GetComponent<RunManager>();
+            RM = RunManager.instance;
             maxHealth = ((RM.player1Stats.CON * 2) + (RM.player2Stats.CON * 2));
+            SetAllStatus();
+
+            OnHealthChanged += allyCanvas.UpdateHealthText;
+            OnStatusChanged += allyCanvas.UpdateStatusText;
+            OnStatusApplied += allyCanvas.ApplyStatus;
+            OnStatusCleared += allyCanvas.ClearStatus;
+
+            OnHealthChanged?.Invoke(health, maxHealth);
         }
 
         public void PlayerTakeDamage(int damageRecieved)
@@ -47,6 +49,15 @@ namespace Characters
             health -= damageToTake;
             OnHealthChanged?.Invoke(health, maxHealth);
             //sync damage here
+        }
+        public void OnPlayerTurnStart()
+        {
+            TriggerStatus(StatusType.Block);
+            TriggerStatus(StatusType.Bleed);
+            TriggerStatus(StatusType.Burn);
+            TriggerStatus(StatusType.Regen);
+            TriggerStatus(StatusType.Frozen);
+            TriggerStatus(StatusType.Vulnerable);
         }
 
         public void HealDamage(int healRecieved)

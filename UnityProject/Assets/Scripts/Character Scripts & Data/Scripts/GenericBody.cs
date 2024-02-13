@@ -45,9 +45,9 @@ namespace Characters
 
         public Action OnDeath;
         public Action<int, int> OnHealthChanged;
-        private readonly Action<StatusType, int> OnStatusChanged;
-        private readonly Action<StatusType, int> OnStatusApplied;
-        private readonly Action<StatusType> OnStatusCleared;
+        public Action<StatusType, int> OnStatusChanged;
+        public Action<StatusType, int> OnStatusApplied;
+        public Action<StatusType> OnStatusCleared;
         public Action OnHealAction;
         public Action OnTakeDamageAction;
         public Action OnShieldGained;
@@ -56,12 +56,8 @@ namespace Characters
 
         //replace gameobject with netID
 
-        public void Start()
-        {
-            SetAllStatus();
-        }
 
-        private void SetAllStatus()
+        public void SetAllStatus()
         {
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
                 StatusDict.Add((StatusType)i, new StatusStats((StatusType)i, 0));
@@ -87,6 +83,7 @@ namespace Characters
             StatusDict[StatusType.Regen].DecreaseOverTurn = true;
             StatusDict[StatusType.Regen].OnTriggerAction += RegenHeal;
         }
+
         public void ApplyStatus(StatusType targetStatus, int value)
         {
             if (StatusDict[targetStatus].IsActive)
@@ -148,7 +145,7 @@ namespace Characters
             TriggerStatus(StatusType.Vulnerable);
         }
 
-        private void TriggerStatus(StatusType targetStatus)
+        public void TriggerStatus(StatusType targetStatus)
         {
             StatusDict[targetStatus].OnTriggerAction?.Invoke();
 
@@ -184,19 +181,19 @@ namespace Characters
 
             OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
         }
-        private void DamageBleed()
+        public void DamageBleed()
         {
             if (StatusDict[StatusType.Bleed].StatusValue <= 0) return;
             TakeDamage(StatusDict[StatusType.Bleed].StatusValue);
         }
 
-        private void DamageBurn()
+        public void DamageBurn()
         {
             if (StatusDict[StatusType.Burn].StatusValue <= 0) return;
             TakeDamage(StatusDict[StatusType.Burn].StatusValue);
         }
 
-        private void RegenHeal()
+        public void RegenHeal()
         {
             if (StatusDict[StatusType.Regen].StatusValue <= 0) return;
             HealDamage(StatusDict[StatusType.Regen].StatusValue);

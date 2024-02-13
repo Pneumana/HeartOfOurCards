@@ -18,8 +18,6 @@ namespace Characters
     {
         [Header("References")]
         [SerializeField] protected Transform statusIconRoot;
-        [SerializeField] protected Transform highlightRoot;
-        [SerializeField] protected Transform descriptionRoot;
         [SerializeField] protected StatusIconsData statusIconData;
         [SerializeField] protected TextMeshProUGUI currentHealthText;
 
@@ -77,6 +75,5 @@ namespace Characters
         }
 
         public void UpdateHealthText(int currentHealth, int maxHealth) => currentHealthText.text = $"{currentHealth}/{maxHealth}";
-        public void SetHighlight(bool open) => highlightRoot.gameObject.SetActive(open);
     }
 }
