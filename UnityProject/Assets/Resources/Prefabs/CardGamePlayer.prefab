@@ -1706,7 +1706,7 @@ GameObject:
   - component: {fileID: 4794566778977511096}
   - component: {fileID: 8003667175630459667}
   - component: {fileID: 1776109210124928608}
-  - component: {fileID: 7817562730788173565}
+  - component: {fileID: 3417242552723621096}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -1872,7 +1872,7 @@ MonoBehaviour:
   cards: []
   OwnedBy: 0
   clickedCardName: 
---- !u!114 &7817562730788173565
+--- !u!114 &3417242552723621096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7340333167016136217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 854aa936c4fc2b443b69f4f9e2d52ba0, type: 3}
+  m_Script: {fileID: 11500000, guid: 245c3126357a26b4c87bd8a11a51aaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
@@ -1890,9 +1890,8 @@ MonoBehaviour:
   characterType: 1
   health: 0
   maxHealth: 0
+  allyCanvas: {fileID: 7481275983208407449}
   RM: {fileID: 0}
-  Controller: {fileID: 0}
-  allyCanvas: {fileID: 0}
 --- !u!1 &7873626825709132689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1938,7 @@ GameObject:
   - component: {fileID: 1240902133082307391}
   - component: {fileID: 5340194757500933440}
   - component: {fileID: 8457046981138908731}
-  - component: {fileID: 5615808943688602377}
+  - component: {fileID: 86598491584530056}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -2105,7 +2104,7 @@ MonoBehaviour:
   cards: []
   OwnedBy: 0
   clickedCardName: 
---- !u!114 &5615808943688602377
+--- !u!114 &86598491584530056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2114,7 +2113,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7959074646553227032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 854aa936c4fc2b443b69f4f9e2d52ba0, type: 3}
+  m_Script: {fileID: 11500000, guid: 245c3126357a26b4c87bd8a11a51aaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
@@ -2123,9 +2122,8 @@ MonoBehaviour:
   characterType: 2
   health: 0
   maxHealth: 0
+  allyCanvas: {fileID: 5959483231803946250}
   RM: {fileID: 0}
-  Controller: {fileID: 0}
-  allyCanvas: {fileID: 0}
 --- !u!1 &8073797949014368869
 GameObject:
   m_ObjectHideFlags: 0

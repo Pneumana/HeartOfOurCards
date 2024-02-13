@@ -12,7 +12,7 @@ public class CardPlayerController : NetworkBehaviour
     public int currentEnergy;
     public int maxEnergy;
     public bool TurnEnded;
-    GenericBody body;
+    PlayerGenericBody body;
     public CardDeck deck;
     public ReadEnergyFromPlayer energydisplay;
 
@@ -22,7 +22,7 @@ public class CardPlayerController : NetworkBehaviour
     private void Start()
     {
         currentEnergy = maxEnergy;
-        body = GetComponent<GenericBody>();
+        body = GetComponent<PlayerGenericBody>();
         deck = GetComponent<CardDeck>();
         //load from run manager?
         /*        if(SceneManager.GetActiveScene().name == "Game")
@@ -41,7 +41,7 @@ public class CardPlayerController : NetworkBehaviour
             return;
         Debug.Log("drawing cards at start");
         currentEnergy = maxEnergy;
-        body = GetComponent<GenericBody>();
+        body = GetComponent<PlayerGenericBody>();
         deck = GetComponent<CardDeck>();
         if (isOwned)
         {
@@ -63,6 +63,7 @@ public class CardPlayerController : NetworkBehaviour
     [ClientRpc]
     public void StartTurn()
     {
+        body.OnPlayerTurnStart();
         deck.ServerDrawCard(1);
         TurnEnded = false;
         currentEnergy = maxEnergy;
@@ -81,8 +82,8 @@ public class CardPlayerController : NetworkBehaviour
     }
     private void Update()
     {
-        if(!TurnEnded&&body.health > 0)
-        {
+        //if(!TurnEnded&&body.health > 0)
+        //{
                 //StartEncounter();
             //this is things the player can do while alive and it's their turn.
             //this needs to be a local player check
@@ -90,7 +91,7 @@ public class CardPlayerController : NetworkBehaviour
             {
                 EndTurn();
             }*/
-        }
+        //}
         //you can still mouse over your hand while it isnt your turn
     }
 }

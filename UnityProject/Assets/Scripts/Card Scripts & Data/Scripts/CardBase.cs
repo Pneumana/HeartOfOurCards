@@ -52,7 +52,7 @@ namespace CardActions
             //cardImage.sprite = CardData.CardSprite;
         }
 
-        public virtual void Use(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
+        public virtual void Use(GenericBody self, GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
         {
             Debug.Log(CardData.CardName + " was played");
             if (!IsPlayable) return;
@@ -60,7 +60,7 @@ namespace CardActions
             StartCoroutine(CardUseRoutine(self, targetCharacter, allEnemies, allAllies, healthPool));
         }
 
-        private IEnumerator CardUseRoutine(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool)
+        private IEnumerator CardUseRoutine(GenericBody self, GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool)
         {
             SpendEnergy(CardData.EnergyCost);
 
@@ -88,7 +88,7 @@ namespace CardActions
             /* Add something here to check for exhaust*/
         }
 
-        private static List<GenericBody> DetermineTargets(GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, CardActionData playerAction)
+        private static List<GenericBody> DetermineTargets(GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, CardActionData playerAction)
         {
             List<GenericBody> targetList = new List<GenericBody>();
             switch (playerAction.ActionTargetType)

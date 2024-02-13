@@ -28,7 +28,7 @@ namespace Managers
         [SerializeField] private List<Transform> allyPosList;*/
 
         public List<GenericBody> CurrentAlliesList  = new List<GenericBody>();
-        public List<GenericBody> CurrentEnemiesList = new List<GenericBody>();
+        public List<EnemyGenericBody> CurrentEnemiesList = new List<EnemyGenericBody>();
 
         public PlayerGenericBody CurrentMainAlly;
 
@@ -66,17 +66,25 @@ namespace Managers
             foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
             {
                 Debug.Log("added new enemy: " + enemy.gameObject);
-                if (enemy != null && !enemyTeam.Contains(enemy))
+                if (!enemyTeam.Contains(enemy))
                 {
-                    var enemyGB = enemy.GetComponent<GenericBody>();
-                    CurrentEnemiesList.Add(enemyGB);
+                    var enemyGB = enemy.GetComponent<EnemyGenericBody>();
+                    if(!CurrentEnemiesList.Contains(enemyGB))
+                        CurrentEnemiesList.Add(enemyGB);
+                    Debug.Log("adding " + enemy.gameObject.name + " to enemy team. It's genericbody has " + enemyGB.health + " health");
                     enemyTeam.Add(enemy);
                     enemy.deck = enemy.GetComponent<CardDeck>();
                     //enemy.deck.ServerDrawCard(1);
                     enemy.FirstCardDraw(0);
                     //enemy.ServerDisplayEnemyCard();
                 }
-
+                else
+                {
+                    Debug.Log("enemy is already in the enemyTeam list");
+                    var enemyGB = enemy.GetComponent<EnemyGenericBody>();
+                    if (!CurrentEnemiesList.Contains(enemyGB))
+                        CurrentEnemiesList.Add(enemyGB);
+                }
             }
         }
         //enemy plays card(s), waits about 0.5s then the next enemy takes it's turn
@@ -191,6 +199,7 @@ namespace Managers
             int enemyLoopIndex = 0;
             do
             {
+                CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
                 yield return new WaitForSeconds(0.5f);
                 enemyTeam[enemyLoopIndex].TakeTurn();
                 //CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
