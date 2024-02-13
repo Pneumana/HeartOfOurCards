@@ -13,7 +13,7 @@ using UnityEngine.VFX;
 
 namespace Characters
 {
-    [RequireComponent(typeof(Canvas))]
+    //[RequireComponent(typeof(Canvas))]
     public abstract class CharacterCanvas : MonoBehaviour
     {
         [Header("References")]
@@ -35,7 +35,7 @@ namespace Characters
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
                 StatusDict.Add((StatusType)i, null);
 
-            TargetCanvas = GetComponent<Canvas>();
+            
 
             if (TargetCanvas)
                 TargetCanvas.worldCamera = Camera.main;
@@ -74,7 +74,13 @@ namespace Characters
 
             StatusDict[targetStatus].StatusValueText.text = $"{value}";
         }
-
+        private void Update()
+        {
+            if (TargetCanvas == null)
+            {
+                TargetCanvas = GetComponentInParent<Canvas>();
+            }
+        }
         public void UpdateHealthText(int currentHealth, int maxHealth) => currentHealthText.text = $"{currentHealth}/{maxHealth}";
     }
 }

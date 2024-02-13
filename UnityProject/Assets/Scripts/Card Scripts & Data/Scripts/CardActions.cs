@@ -18,6 +18,11 @@ namespace CardActions
 
             var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
 
+            if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
             targetCharacter.TakeDamage(value);
         }
     }
@@ -32,6 +37,11 @@ namespace CardActions
             var selfCharacter = actionParameters.SelfCharacter;
 
             var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
 
             targetCharacter.TakeDamage(value);
         }
@@ -55,6 +65,11 @@ namespace CardActions
                 targetCharacter.ClearStatus(StatusType.Frozen);
             }
 
+            if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
             targetCharacter.TakeDamage(value);
         }
     }
@@ -76,6 +91,11 @@ namespace CardActions
                 targetCharacter.ClearStatus(StatusType.Burn);
             }
 
+            if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
             targetCharacter.TakeDamage(value);
         }
     }
@@ -85,25 +105,11 @@ namespace CardActions
         public override void DoAction(CardActionParameters actionParameters)
         {
             var newTarget = actionParameters.HealthPool;
+            var selfCharacter = actionParameters.SelfCharacter;
 
             if (!newTarget) return;
-
-            newTarget.ApplyStatus(StatusType.Block, Mathf.RoundToInt(actionParameters.Value + actionParameters.SelfCharacter.StatusDict[StatusType.Dexterity].StatusValue));
-        }
-    }
-    public class EnemyBlockAction : CardActionBase
-    {
-        public override CardActionType ActionType => CardActionType.EnemyBlock;
-        public override void DoAction(CardActionParameters actionParameters)
-        {
-            //var newTarget = actionParameters.TargetCharacter
-            //    ? actionParameters.TargetCharacter
-            //    : actionParameters.SelfCharacter;
-
-            //if (!newTarget) return;
-
-            //newTarget.CharacterStats.ApplyStatus(StatusType.Block, 
-            //    Mathf.RoundToInt(actionParameters.Value + actionParameters.SelfCharacter.CharacterStats.StatusDict[StatusType.Dexterity].StatusValue));
+            Debug.Log("Block Successful");
+            newTarget.ApplyStatus(StatusType.Block, Mathf.RoundToInt(actionParameters.Value + selfCharacter.StatusDict[StatusType.Dexterity].StatusValue));
         }
     }
 
@@ -238,6 +244,84 @@ namespace CardActions
             var value = actionParameters.Value;
 
             targetCharacter.ApplyStatus(StatusType.Vulnerable, Mathf.RoundToInt(value));
+        }
+    }
+    public class EnemyAttackAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyAttack;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var targetCharacter = actionParameters.HealthPool;
+
+            if (!targetCharacter) return;
+
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = actionParameters.Value + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            if (selfCharacter.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
+
+    public class EnemyBlockAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyBlock;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var newTarget = actionParameters.TargetCharacter
+                ? actionParameters.TargetCharacter
+                : actionParameters.SelfCharacter;
+
+            if (!newTarget) return;
+
+            newTarget.ApplyStatus(StatusType.Block, Mathf.RoundToInt(actionParameters.Value + actionParameters.SelfCharacter.StatusDict[StatusType.Dexterity].StatusValue));
+        }
+    }
+
+    public class EnemyHealAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyHeal;
+
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var newTarget = actionParameters.TargetCharacter
+                ? actionParameters.TargetCharacter
+                : actionParameters.SelfCharacter;
+
+            if (!newTarget) return;
+
+            newTarget.HealDamage(Mathf.FloorToInt(actionParameters.Value));
+        }
+    }
+
+    public class EnemyVulnAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyVulnerability;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var targetCharacter = actionParameters.HealthPool;
+
+            if (!targetCharacter) return;
+
+            targetCharacter.ApplyStatus(StatusType.Vulnerable, Mathf.RoundToInt(actionParameters.Value));
+        }
+    }
+
+    public class EnemyBleedAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyBleed;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var targetCharacter = actionParameters.HealthPool;
+
+            if (!targetCharacter) return;
+
+            targetCharacter.ApplyStatus(StatusType.Bleed, Mathf.RoundToInt(actionParameters.Value));
         }
     }
 }

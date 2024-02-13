@@ -57,6 +57,28 @@ namespace Characters
         //replace gameobject with netID
 
 
+
+
+        [Server]
+        public void TakeDamage(int damageRecieved)
+        {
+            Debug.Log("body taking " + damageRecieved + " damage");
+            var damageToTake = damageRecieved;
+            var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
+            //shield damage block
+            if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
+            {
+                damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
+            }
+            while (shieldThisTurn > 0 && damageToTake > 0)
+            {
+                shieldThisTurn--;
+                damageToTake--;
+            }
+            health -= damageToTake;
+            OnHealthChanged?.Invoke(health, maxHealth);
+        }
+
         public void SetAllStatus()
         {
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
@@ -90,34 +112,15 @@ namespace Characters
             {
                 StatusDict[targetStatus].StatusValue += value;
                 OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
-
+                Debug.Log("Status Increased" + targetStatus);
             }
             else
             {
                 StatusDict[targetStatus].StatusValue = value;
                 StatusDict[targetStatus].IsActive = true;
                 OnStatusApplied?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
+                Debug.Log("Status Active: " + targetStatus);
             }
-        }
-
-        [Server]
-        public void TakeDamage(int damageRecieved)
-        {
-            Debug.Log("body taking " + damageRecieved + " damage");
-            var damageToTake = damageRecieved;
-            var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
-            //shield damage block
-            if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
-            {
-                damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
-            }
-            while (shieldThisTurn > 0 && damageToTake > 0)
-            {
-                shieldThisTurn--;
-                damageToTake--;
-            }
-            health -= damageToTake;
-            OnHealthChanged?.Invoke(health, maxHealth);
         }
 
         public void HealDamage(int healRecieved)
@@ -133,6 +136,7 @@ namespace Characters
         public void GainShield(int shieldRecieved)
         {
             StatusDict[StatusType.Block].StatusValue += shieldRecieved;
+            Debug.Log("Shield gained: " + shieldRecieved);
         }
 
         public void OnTurnStart()
@@ -145,6 +149,7 @@ namespace Characters
             TriggerStatus(StatusType.Vulnerable);
         }
 
+
         public void TriggerStatus(StatusType targetStatus)
         {
             StatusDict[targetStatus].OnTriggerAction?.Invoke();
@@ -154,6 +159,7 @@ namespace Characters
             {
                 ClearStatus(targetStatus);
                 OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
+                Debug.Log(targetStatus + " changed");
                 return;
             }
 

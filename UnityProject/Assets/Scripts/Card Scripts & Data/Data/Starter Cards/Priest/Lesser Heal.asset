@@ -21,7 +21,7 @@ MonoBehaviour:
   exhaustAfterPlay: 0
   cardActionDataList:
   - cardActionType: 1
-    actionTargetType: 0
+    actionTargetType: 3
     actionValue: 3
     actionDelay: 0
   cardDescriptionDataList:
@@ -41,7 +41,7 @@ MonoBehaviour:
     modifiedActionValueIndex: 0
     modiferStats: 0
     usePrefixOnModifiedValue: 1
-    modifiedValuePrefix: 
+    modifiedValuePrefix: '*'
     overrideColorOnValueScaled: 1
   - descriptionText: ' health'
     enableOverrideColor: 0

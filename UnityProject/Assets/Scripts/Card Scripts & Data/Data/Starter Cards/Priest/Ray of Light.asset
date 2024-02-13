@@ -41,7 +41,7 @@ MonoBehaviour:
     modifiedActionValueIndex: 0
     modiferStats: 2
     usePrefixOnModifiedValue: 1
-    modifiedValuePrefix: 
+    modifiedValuePrefix: '*'
     overrideColorOnValueScaled: 1
   - descriptionText: ' damage to target enemy'
     enableOverrideColor: 0

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Managers;
+using System;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : NetworkBehaviour
 {
     public int EnemySpawns;
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefabs;
 
     public static EnemySpawner instance;
 
@@ -42,7 +44,8 @@ public class EnemySpawner : NetworkBehaviour
         int spawns = 0;
         while(EnemySpawns > 0)
         {
-            var enemy = Instantiate(AmbidexterousManager.Instance.spawnPrefabs[2]);
+            var number = Random.Range(1, 3);
+            var enemy = Instantiate(AmbidexterousManager.Instance.spawnPrefabs[number]);
             enemy.transform.position += Vector3.left * spawns;
             spawns++;
             EnemySpawns--;
