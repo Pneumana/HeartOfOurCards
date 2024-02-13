@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
-  m_Name: LichD1
+  m_Name: VampireD1
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 11400000, guid: 1c25102661b91a34badf1800d4c368a8, type: 2}
+  - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: 'DateStart
 
@@ -38,15 +38,6 @@ MonoBehaviour:
     DateDialogue3
 
     !2
-
-    @SAY
-
-    ;
-
-
-    DateNarration1
-
-    !3
 
     @SAY
 
@@ -87,7 +78,7 @@ MonoBehaviour:
     !0
 
     @LOAD
-    Date Events/Lich/LichD1-2
+    DateEvents/Vampire/VampireD1-2
 
     ;
 
@@ -115,7 +106,7 @@ MonoBehaviour:
     !0
 
     @LOAD
-    Date Events/Lich/LichD1-2
+    DateEvents/Vampire/VampireD1-2
 
     ;
 
@@ -143,7 +134,7 @@ MonoBehaviour:
     !0
 
     @LOAD
-    Date Events/Lich/LichD1-2
+    DateEvents/Vampire/VampireD1-2
 
     ;
 
@@ -171,6 +162,6 @@ MonoBehaviour:
     !0
 
     @LOAD
-    Date Events/Lich/LichD1-2
+    DateEvents/Vampire/VampireD1-2
 
     ;'

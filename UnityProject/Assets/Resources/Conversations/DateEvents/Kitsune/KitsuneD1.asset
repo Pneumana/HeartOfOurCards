@@ -136,7 +136,7 @@ MonoBehaviour:
 
     !0
 
-    @LOAD Date Events/Kitsune/KitsuneD1-2
+    @LOAD DateEvents/Kitsune/KitsuneD1-2
 
     ;
 
@@ -175,7 +175,7 @@ MonoBehaviour:
 
     !0
 
-    @LOAD Date Events/Kitsune/KitsuneD1-2
+    @LOAD DateEvents/Kitsune/KitsuneD1-2
 
     ;
 
@@ -215,7 +215,7 @@ MonoBehaviour:
     !0
 
     @LOAD
-    Date Events/Kitsune/KitsuneD1-2
+    DateEvents/Kitsune/KitsuneD1-2
 
     ;
 
@@ -255,6 +255,6 @@ MonoBehaviour:
     !0
 
     @LOAD
-    Date Events/Kitsune/KitsuneD1-2
+    DateEvents/Kitsune/KitsuneD1-2
 
     ;'
