@@ -45,6 +45,7 @@ namespace Managers
         }
         void OnLoadCallback()
         {
+            CurrentMainAlly = GameObject.Find("Health Pool").GetComponent<PlayerGenericBody>();
             Debug.Log("scene load callback");
             foreach (CardPlayerController player in FindObjectsByType<CardPlayerController>(FindObjectsSortMode.None))
             {
@@ -60,7 +61,7 @@ namespace Managers
                 Debug.Log(player.gameObject);
                 if (player != null)
                 {
-                    CurrentMainAlly = player.GetComponent<PlayerGenericBody>();
+                    
                 }
             }
             foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
