@@ -57,7 +57,14 @@ namespace Characters
         //replace gameobject with netID
 
 
+        private void Update()
+        {
+            if (StatusDict[StatusType.Block].StatusValue > 0)
+            {
+                Debug.Log(StatusDict[StatusType.Block].StatusValue + " on beneric body " + gameObject.name);
+            }
 
+        }
 
         [Server]
         public void TakeDamage(int damageRecieved)
@@ -70,11 +77,15 @@ namespace Characters
             {
                 damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
             }
-            while (shieldThisTurn > 0 && damageToTake > 0)
+            if (shieldThisTurn > 0 && damageToTake > 0)
             {
-                shieldThisTurn--;
-                damageToTake--;
+                //var block = shieldThisTurn;
+                var usedBlock = Mathf.Clamp(damageToTake, 0, shieldThisTurn);
+                damageToTake -= shieldThisTurn;
+                Mathf.Clamp(damageToTake, 0, damageRecieved);
+                shieldThisTurn -= usedBlock;
             }
+            Debug.Log("damage blocked by " + (damageRecieved - damageToTake));
             health -= damageToTake;
             OnHealthChanged?.Invoke(health, maxHealth);
         }
@@ -159,7 +170,7 @@ namespace Characters
             {
                 ClearStatus(targetStatus);
                 OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
-                Debug.Log(targetStatus + " changed");
+                Debug.Log(targetStatus + " changed on " + gameObject.name);
                 return;
             }
 

@@ -12,7 +12,7 @@ public class CardPlayerController : NetworkBehaviour
     public int currentEnergy;
     public int maxEnergy;
     public bool TurnEnded;
-    PlayerGenericBody body;
+    IndividualPlayerGenericBody body;
     public CardDeck deck;
     public ReadEnergyFromPlayer energydisplay;
 
@@ -22,7 +22,7 @@ public class CardPlayerController : NetworkBehaviour
     private void Start()
     {
         currentEnergy = maxEnergy;
-        body = GetComponent<PlayerGenericBody>();
+        body = GetComponent<IndividualPlayerGenericBody>();
         deck = GetComponent<CardDeck>();
         //load from run manager?
         /*        if(SceneManager.GetActiveScene().name == "Game")
@@ -41,7 +41,7 @@ public class CardPlayerController : NetworkBehaviour
             return;
         Debug.Log("drawing cards at start");
         currentEnergy = maxEnergy;
-        body = GetComponent<PlayerGenericBody>();
+        body = GetComponent<IndividualPlayerGenericBody>();
         deck = GetComponent<CardDeck>();
         if (isOwned)
         {
@@ -63,7 +63,7 @@ public class CardPlayerController : NetworkBehaviour
     [ClientRpc]
     public void StartTurn()
     {
-        body.OnPlayerTurnStart();
+        //body.OnPlayerTurnStart();
         deck.ServerDrawCard(1);
         TurnEnded = false;
         currentEnergy = maxEnergy;

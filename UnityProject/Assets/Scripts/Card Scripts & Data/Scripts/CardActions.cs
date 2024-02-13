@@ -104,6 +104,7 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.AllyBlock;
         public override void DoAction(CardActionParameters actionParameters)
         {
+            Debug.Log("trying to blovk");
             var newTarget = actionParameters.HealthPool;
             var selfCharacter = actionParameters.SelfCharacter;
 

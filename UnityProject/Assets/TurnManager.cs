@@ -171,15 +171,20 @@ namespace Managers
                 }
                 if (enemyTurnEnded.Count == enemyTeam.Count)
                 {
-                    isPlayerTurn = true;
-                    enemyTurnEnded.Clear();
-                    Debug.Log("enemy turn ended");
-                    CurrentMainAlly.OnPlayerTurnStart();
-                    foreach (CardPlayerController plr in playerTeam)
-                    {
-                        plr.CMDStartTurn();
-                    }
+                    Invoke("KickstartPlayerTurns", 0.02f);
                 }
+            }
+        }
+
+        void KickstartPlayerTurns()
+        {
+            isPlayerTurn = true;
+            enemyTurnEnded.Clear();
+            Debug.Log("enemy turn ended");
+            CurrentMainAlly.OnPlayerTurnStart();
+            foreach (CardPlayerController plr in playerTeam)
+            {
+                plr.CMDStartTurn();
             }
         }
 
