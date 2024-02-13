@@ -54,6 +54,7 @@ namespace CardActions
 
         public virtual void Use(GenericBody self, GenericBody targetCharacter, List<GenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
         {
+            Debug.Log(CardData.CardName + " was played");
             if (!IsPlayable) return;
 
             StartCoroutine(CardUseRoutine(self, targetCharacter, allEnemies, allAllies, healthPool));
@@ -65,12 +66,25 @@ namespace CardActions
 
             foreach (var playerAction in CardData.CardActionDataList)
             {
-                yield return new WaitForSeconds(playerAction.ActionDelay);
-                var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction);
+                float actionTime = 0;
+                do
+                {
+                    actionTime += Time.deltaTime;
+                    Debug.Log("player action " + playerAction.CardActionType);
+                    
+                    var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction);
 
-                foreach (var target in targetList)
-                    CardActionProcessor.GetAction(playerAction.CardActionType).DoAction(new CardActionParameters(playerAction.ActionValue, target, self, healthPool, CardData, this));
+                    foreach (var target in targetList)
+                    {
+                        Debug.Log("on target " + target.name);
+                        CardActionProcessor.GetAction(playerAction.CardActionType).DoAction(new CardActionParameters(playerAction.ActionValue, target, self, healthPool, CardData, this));
+                    }
+                    yield return new WaitForSeconds(0);
+                } while (actionTime < playerAction.ActionDelay);
+                
+                    
             }
+            yield return null;
             /* Add something here to check for exhaust*/
         }
 
@@ -111,7 +125,7 @@ namespace CardActions
                     Debug.LogError("womp womp");
                     break;
             }
-
+            Debug.Log(targetList.Count);
             return targetList;
         }
 

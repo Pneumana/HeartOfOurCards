@@ -574,6 +574,7 @@ public class DialougeDisplayer : MonoBehaviour
                 
                 foreach (Match match in matches)
                 {
+                    var label = Regex.Match(match.ToString(), "(?<=\").*(?=\")");
                     var spaceless = iHateSpaces.Replace(match.ToString(), "");
                     var split = Regex.Split(spaceless.ToString(), ",");
                     //List<string> options = new List<StatCheckInfo>();
@@ -600,7 +601,7 @@ public class DialougeDisplayer : MonoBehaviour
                             }
                         }
                     }
-
+                    split[2] = label.ToString();
                     Debug.Log("addedn new option with " + split[0] + ", " + req + ", " + split[2] + ", " + passFail[0] + ", " + passFail[1]);
                     options.Add(new StatCheckInfo(split[0], req, split[2], passFail[0], passFail[1]));
 

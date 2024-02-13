@@ -341,7 +341,7 @@ MonoBehaviour:
   textBody: {fileID: 531180593}
   convoActionIndex: 0
   currentConvo: {fileID: 0}
-  textFieldConvo: {fileID: 11400000, guid: 9905196c8285c0d469d5871d83be8eca, type: 2}
+  textFieldConvo: {fileID: 11400000, guid: f82a7fe3b39447346b9f5a8b0869c535, type: 2}
   optionPrefab: {fileID: 5502359447542862431, guid: d33a566bd6ad99445be38e99b1dd0bba, type: 3}
   statCheckPrefab: {fileID: 5502359447542862431, guid: 5852c2cbd30acb340ac65f498b57c1ea, type: 3}
   sprites: []
@@ -1403,7 +1403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020963884
@@ -1425,12 +1425,12 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
