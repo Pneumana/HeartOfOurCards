@@ -17,10 +17,10 @@ MonoBehaviour:
   pnd: 
   Color: {r: 0.5943396, g: 0, b: 0.18431373, a: 0}
   Default: {fileID: 21300000, guid: b0dd83c6bd0ddc64da0a9dbf65be9647, type: 3}
-  DefaultPoseOffset: {x: 0, y: 0}
-  Iris: {fileID: 0}
-  OpenLines: {fileID: 0}
-  OpenMask: {fileID: 0}
-  SquintLines: {fileID: 0}
-  SquintMask: {fileID: 0}
-  ClosedLines: {fileID: 0}
+  DefaultPoseOffset: {x: 55, y: 0}
+  Iris: {fileID: 21300000, guid: f3bb7038a2df2f244897506b32cdb2d3, type: 3}
+  OpenLines: {fileID: 21300000, guid: c86983ce184a7a84cb5f37dc7cbd54bc, type: 3}
+  OpenMask: {fileID: 21300000, guid: afac386ca33eac74ba9339450b9ae750, type: 3}
+  SquintLines: {fileID: 21300000, guid: f1cb6d0cbfa810c47bdb5fc723b31437, type: 3}
+  SquintMask: {fileID: 21300000, guid: 08ed311c5301538429cf1a4ecb0514fb, type: 3}
+  ClosedLines: {fileID: 21300000, guid: 4ba0252f77e9ae3468d81da3e7323199, type: 3}

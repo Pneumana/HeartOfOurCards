@@ -16,8 +16,8 @@ MonoBehaviour:
   pss: him
   pnd: he
   Color: {r: 0.25854397, g: 0.40021113, b: 0.6603774, a: 0}
-  Default: {fileID: 21300000, guid: dcde9b3bf6c8d4f469963e87c074ae26, type: 3}
-  DefaultPoseOffset: {x: 0, y: 0}
+  Default: {fileID: -466953233979645421, guid: cd55aa965d0e5cb489d98c02d64bea7e, type: 3}
+  DefaultPoseOffset: {x: 93, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}
   OpenMask: {fileID: 0}
