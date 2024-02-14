@@ -66,8 +66,13 @@ namespace Characters
 
         }
 
-        [Server]
+        [Command(requiresAuthority = false)]
         public void TakeDamage(int damageRecieved)
+        {
+            TakeDamageRPC(damageRecieved);
+        }
+        [ClientRpc]
+        void TakeDamageRPC(int damageRecieved)
         {
             Debug.Log("body taking " + damageRecieved + " damage");
             var damageToTake = damageRecieved;
@@ -88,8 +93,9 @@ namespace Characters
             Debug.Log("damage blocked by " + (damageRecieved - damageToTake));
             health -= damageToTake;
             OnHealthChanged?.Invoke(health, maxHealth);
+            if(gameObject.name=="Health Pool")
+                GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
         }
-
         public void SetAllStatus()
         {
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)

@@ -52,7 +52,7 @@ Material:
     - _bubbleSpeed: -0.1
     - _distanceMultiplier: 0.5
     - _fadeshortening: 6
-    - _fillAmount: 1
+    - _fillAmount: 0.1
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Endcolor: {r: 0.990566, g: 0.9482305, b: 0.6681648, a: 1}

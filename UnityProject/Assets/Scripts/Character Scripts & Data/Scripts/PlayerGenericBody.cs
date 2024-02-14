@@ -17,14 +17,18 @@ namespace Characters
 
         public RunManager RM;
 
+        public HealthBar sharedHealthBar;
+        //Start can be ran because this only needs to be set up once per combat
         public void Start()
         {
             RM = RunManager.instance;
-            maxHealth = ((RM.player1Stats.CON * 2) + (RM.player2Stats.CON * 2));
+            maxHealth = ((RM.playerStatList[0].CON * 2) + (RM.playerStatList[0].CON * 2));
+            health = RM.Health;
             SetAllStatus();
             AllyCanvas.InitCanvas();
 
             OnHealthChanged += AllyCanvas.UpdateHealthText;
+            //OnHealthChanged += sharedHealthBar.GetHealthChange;
             OnStatusChanged += AllyCanvas.UpdateStatusText;
             OnStatusApplied += AllyCanvas.ApplyStatus;
             OnStatusCleared += AllyCanvas.ClearStatus;
@@ -34,7 +38,7 @@ namespace Characters
 
         public void PlayerTakeDamage(int damageRecieved)
         {
-            Debug.Log("body taking " + damageRecieved + " damage");
+            Debug.Log("player body taking " + damageRecieved + " damage");
             var damageToTake = damageRecieved;
             var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
             //shield damage block
@@ -49,6 +53,7 @@ namespace Characters
             }
             health -= damageToTake;
             OnHealthChanged?.Invoke(health, maxHealth);
+            
             //sync damage here
         }
         public void OnPlayerTurnStart()
@@ -70,5 +75,9 @@ namespace Characters
             }
         }
 
+        private void OnDestroy()
+        {
+            RunManager.instance.Health = health;
+        }
     }
 }

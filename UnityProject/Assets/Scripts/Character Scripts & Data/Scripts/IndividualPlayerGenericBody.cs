@@ -30,15 +30,15 @@ namespace Characters
 
             if (CharacterType == CharacterType.P1)
             {
-                ApplyStatus(StatusType.Strength, Mathf.FloorToInt(RM.player1Stats.DMG / 3));
-                ApplyStatus(StatusType.Dexterity, Mathf.FloorToInt(RM.player1Stats.NRG / 3));
-                Controller.maxEnergy = (3 + Mathf.FloorToInt(RM.player1Stats.CON / 6));
+                ApplyStatus(StatusType.Strength, Mathf.FloorToInt(RM.playerStatList[0].DMG / 3));
+                ApplyStatus(StatusType.Dexterity, Mathf.FloorToInt(RM.playerStatList[0].NRG / 3));
+                Controller.maxEnergy = (3 + Mathf.FloorToInt(RM.playerStatList[0].CON / 6));
             }
             else if (CharacterType == CharacterType.P2)
             {
-                ApplyStatus(StatusType.Strength, Mathf.FloorToInt(RM.player2Stats.DMG / 3));
-                ApplyStatus(StatusType.Dexterity, Mathf.FloorToInt(RM.player2Stats.NRG / 3));
-                Controller.maxEnergy = (3 + Mathf.FloorToInt(RM.player1Stats.CON / 6));
+                ApplyStatus(StatusType.Strength, Mathf.FloorToInt(RM.playerStatList[1].DMG / 3));
+                ApplyStatus(StatusType.Dexterity, Mathf.FloorToInt(RM.playerStatList[1].NRG / 3));
+                Controller.maxEnergy = (3 + Mathf.FloorToInt(RM.playerStatList[1].CON / 6));
             }
         }
     }
