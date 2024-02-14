@@ -28,6 +28,8 @@ public class GetPlayerID : NetworkBehaviour
 
     protected Callback<AvatarImageLoaded_t> ImageLoaded;
 
+    [SerializeField] Image healthBar;
+    
     private void Awake()
     {
         
@@ -163,6 +165,7 @@ public class GetPlayerID : NetworkBehaviour
     {
         gameObject.name = "LocalPlayer";
         RunManager.instance.LocalPlayerID = ConnID;
+        
     }
     public void ReadyOfflinePlayer2()
     {
@@ -180,7 +183,8 @@ public class GetPlayerID : NetworkBehaviour
         player2combatSceneUI.transform.SetParent(combatSceneUI.transform);
         combatSceneUI.transform.SetParent(transform);
         player2combatScene.transform.SetParent(combatScene.transform);
-
+        healthBar.transform.SetParent(combatSceneUI.transform);
+        healthBar.gameObject.SetActive(false);
         combatScene.transform.SetParent(transform);
         var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
 /*        foreach (CardPlayerController cpc in playerControllers)
@@ -225,13 +229,18 @@ public class GetPlayerID : NetworkBehaviour
             
             combatScene.SetActive(true);
             combatSceneUI.SetActive(true);
+            healthBar.gameObject.SetActive(true);
+            healthBar.transform.SetParent(GameObject.Find("Canvas").transform);
+            healthBar.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 50);
             if (AmbidexterousManager.Instance.PlayerList[0] == this)
             {
                 //this is p1
                 Debug.Log("player1");
                 combatScene.transform.position = (Vector3.zero) + (Vector3.down * 1.89f);
                 combatSceneUI.transform.SetParent(GameObject.Find("Player1TurnUI").transform);
+
                 combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
             }
             else
             {

@@ -1,3 +1,4 @@
+using Characters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public int maxHealth = 100;
-    int health = 100;
+    public int health = 100;
     public Image damageRecieved;
     int healthBeforeDamage;
     public float endInstances;
@@ -15,22 +16,26 @@ public class HealthBar : MonoBehaviour
     float damageShake;
 
     // Start is called before the first frame update
-    void Start()
+    public void OnEnable()
     {
+        var RM = RunManager.instance;
+        maxHealth = ((RM.playerStatList[0].CON * 2) + (RM.playerStatList[0].CON * 2));
+        health = RM.Health;
         healthBeforeDamage = health;
+        ChangeHealth(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        /*if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             ChangeHealth(-5);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
             ChangeHealth(1);
-        }
+        }*/
         if(endInstances > 0)
         {
             endInstances -= Time.unscaledDeltaTime;
@@ -47,7 +52,11 @@ public class HealthBar : MonoBehaviour
         damageShake = Mathf.MoveTowards(damageShake, 0, Time.deltaTime * 50);
         transform.rotation = Quaternion.Euler(0, 0, damageShake);
     }
-
+    public void GetHealthChange(int currentHealth, int maxHealth)
+    {
+        var diff = currentHealth - health;
+        ChangeHealth(diff);
+    }
     void ChangeHealth(int change)
     {
         if (change < 0)

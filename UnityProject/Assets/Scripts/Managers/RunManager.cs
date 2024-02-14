@@ -38,6 +38,13 @@ public class RunManager : NetworkBehaviour
 
     public string ForceLoadConvo;
 
+    public int Health;
+
+    public int RepDMG;
+    public int RepINT;
+    public int RepNRG;
+    public int RepCON;
+
     [SerializeField]
     public struct PlayerStats
     {
@@ -70,8 +77,8 @@ public class RunManager : NetworkBehaviour
             Producer = _pro;
         }
     }
-    public PlayerStats player1Stats;
-    public PlayerStats player2Stats;
+    //public PlayerStats player1Stats;
+    //public PlayerStats player2Stats;
 
     [SyncVar]public List<PlayerStats> playerStatList = new List<PlayerStats>() { new PlayerStats(10, 9, 10, 9), new PlayerStats(9, 10, 9, 10) };
 
@@ -88,12 +95,14 @@ public class RunManager : NetworkBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            if (Health == 0)
+                Health = ((playerStatList[0].CON * 2) + (playerStatList[0].CON * 2));
             CardActionProcessor.Initialize();
         }
     }
     private void Start()
     {
-        player1Stats.DMG = 10;
+        /*player1Stats.DMG = 10;
         player1Stats.INT = 10;
         player1Stats.NRG = 10;
         player1Stats.CON = 10;
@@ -101,7 +110,7 @@ public class RunManager : NetworkBehaviour
         player2Stats.DMG = 10;
         player2Stats.INT = 10;
         player2Stats.NRG = 10;
-        player2Stats.CON = 10;
+        player2Stats.CON = 10;*/
 
 
 
@@ -119,7 +128,7 @@ public class RunManager : NetworkBehaviour
     }
     void Player1Window(int windowID)
     {
-        if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + player1Stats.DMG))
+        /*if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + player1Stats.DMG))
         {
             player1Stats.DMG++;
         }
@@ -134,11 +143,11 @@ public class RunManager : NetworkBehaviour
         if (GUI.Button(new Rect(0, 80, 120, 20), "CON = " + player1Stats.CON))
         {
             player1Stats.CON++;
-        }
+        }*/
     }
     void Player2Window(int windowID)
     {
-        if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + player2Stats.DMG))
+        /*if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + player2Stats.DMG))
         {
             player2Stats.DMG++;
         }
@@ -153,7 +162,7 @@ public class RunManager : NetworkBehaviour
         if (GUI.Button(new Rect(0, 80, 120, 20), "CON = " + player2Stats.CON))
         {
             player2Stats.CON++;
-        }
+        }*/
     }
 
     /*    public override void OnStartAuthority()
