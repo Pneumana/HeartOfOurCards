@@ -13,7 +13,8 @@ public class MapCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
+        if(cam==null)
+            cam = Camera.main;
         map = GameObject.Find("ArbitraryMap").GetComponent<ArbitraryMapGeneratiion>();
         if(RunManager.instance.localMapCamPos != Vector2.zero && cam.orthographicSize != 0)
         {

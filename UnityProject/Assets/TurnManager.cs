@@ -129,6 +129,7 @@ namespace Managers
                             if (playerTeam.Contains(turnEnder) && !turnEnded.Contains(turnEnder))
                             {
                                 //Debug.Log(turnEnder.gameObject.name + " ended turn");
+                                turnEnder.deck.ServerDiscard(turnEnder.deck.hand.Count, new int[0]);
                                 turnEnded.Add(turnEnder);
                             }
                         }

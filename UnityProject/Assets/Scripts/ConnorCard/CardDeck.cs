@@ -96,6 +96,62 @@ public class CardDeck : NetworkBehaviour
 
 
     }
+    [Command(requiresAuthority = false)]
+    public void ServerDiscard(int numberOfCards, int[] specificCards)
+    {
+        Debug.Log("server wants to discard " + numberOfCards + ", " + specificCards.Length + " of which are specific");
+        if(specificCards.Length > 0)
+        {
+            foreach(int card in specificCards)
+            {
+                ClientDiscard(card, 1);
+            }
+        }
+        else
+        {
+            ClientDiscard(Random.Range(0, deck.Count - 1), numberOfCards);
+        }
+        //
+
+    }
+
+    [ClientRpc]
+    void ClientDiscard(int discardedCardID, int discardCount)
+    {
+        /*if(discardedCardID)
+        hand.Remove(deck[discardedCardID]);
+        discardPile.Add(deck[discardedCardID]);
+        try
+        {
+            GetComponent<HandManager>().RefreshHand();
+        }
+        catch { }*/
+        Debug.Log("client discarding");
+        while (discardCount > 0 && hand.Count > 0)
+        {
+                //var drawnCard = Random.Range(0, deck.Count - 1);
+                try
+                {
+                    if (discardedCardID > deck.Count - 1)
+                    {
+                        discardedCardID = deck.Count - 1;
+                    }
+                    
+                discardPile.Add(hand[discardedCardID]);
+                Debug.Log(gameObject.name + "discarded " + hand[discardedCardID].CardName);
+                hand.Remove(hand[discardedCardID]);
+                //Debug.Log(deck.Count);
+
+            }
+                catch { Debug.LogWarning(discardedCardID + " is greater than the remaining deck " + (deck.Count - 1)); }
+            discardCount--;
+        }
+        try
+        {
+            GetComponent<HandManager>().RefreshHand();
+        }
+        catch { }
+    }
     [Command(requiresAuthority =false)]
     public void ServerPlayCard(uint netID, Vector3 target, int playedCard)
     {

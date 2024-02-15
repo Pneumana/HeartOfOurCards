@@ -413,6 +413,9 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     }
     public void ClickToExplore(Vector3 mouse)
     {
+        Debug.DrawLine(mouse + new Vector3(1, 1, 0) * 0.5f, mouse - new Vector3(1, 1, 0) * 0.5f, Color.red, 10);
+        Debug.DrawLine(mouse + new Vector3(1, -1, 0) * 0.5f, mouse - new Vector3(1, -1, 0) * 0.5f, Color.red, 10);
+
         var mouseCast = Camera.main.ScreenToWorldPoint(mouse);
         mouseCast.z = 0;
         Vector3Int clickedTile = Vector3Int.zero;
@@ -423,9 +426,9 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             {
                 if (fogOfWar.GetTile(pos) == fogBorder)
                 {
-                    if(Vector3.Distance(fogOfWar.CellToWorld(pos), mouseCast) < 0.5f)
+                    if(Vector3.Distance(fogOfWar.CellToWorld(pos), mouse) < 0.5f)
                     {
-                        Debug.DrawLine(fogOfWar.CellToWorld(pos), mouseCast, Color.red, 10);
+                        Debug.DrawLine(fogOfWar.CellToWorld(pos), mouse, Color.red, 10);
                         clickedTile = pos;
                         clicked = true;
                         break;

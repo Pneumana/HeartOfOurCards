@@ -45,7 +45,7 @@ public class CardPlayerController : NetworkBehaviour
         deck = GetComponent<CardDeck>();
         if (isOwned)
         {
-            deck.ServerDrawCard(4);
+            deck.ServerDrawCard(5 + Mathf.FloorToInt(RunManager.instance.playerStatList[0].INT/3));
         }
         
 
@@ -64,7 +64,7 @@ public class CardPlayerController : NetworkBehaviour
     public void StartTurn()
     {
         //body.OnPlayerTurnStart();
-        deck.ServerDrawCard(1);
+        deck.ServerDrawCard(5);
         TurnEnded = false;
         currentEnergy = maxEnergy;
         GetComponent<HandManager>().RefreshHand();

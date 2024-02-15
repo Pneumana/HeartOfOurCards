@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class MapControls : NetworkBehaviour
 {
     ArbitraryMapGeneratiion mapGen;
     public TextMeshProUGUI text;
+    public Camera renderTargetCam;
+
+    public Vector3 correction;
+
     private void Start()
     {
         mapGen = GameObject.Find("ArbitraryMap").GetComponent<ArbitraryMapGeneratiion>();
@@ -42,7 +47,39 @@ public class MapControls : NetworkBehaviour
             }*/
 /*            else if(AmbidexterousManager.Instance.PlayerList.Count ==1)
             {*/
-                CMDExplorePosition(Input.mousePosition);
+                //need to convert normalized position of where the scroll mesh was clicked to 
+                var raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray;
+            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider != null)
+                {
+
+                    var scroll = hit.collider.gameObject;
+
+                    if (scroll.name == "MapScrollQuad")
+                    {
+                        Debug.DrawLine(hit.point  + scroll.transform.up * 0.1f, hit.point - scroll.transform.up * 0.1f, Color.red, 10);
+                        Debug.DrawLine(hit.point + scroll.transform.right * 0.1f, hit.point - scroll.transform.right * 0.1f, Color.red, 10);
+                        //need some sort of scale for the max height 
+
+                        //correction is 0.5x 0.5y when scale is one
+                        var offsetScale = new Vector3(scroll.transform.lossyScale.x / 2, scroll.transform.lossyScale.y / 2);
+                        var offset = ((hit.point + offsetScale) - (scroll.transform.position ));
+                        offset.x /= scroll.transform.lossyScale.x;
+                        offset.y /= scroll.transform.lossyScale.y;
+                        offset.z = 0;
+
+                        Debug.Log(offset.normalized + ", " + offset);
+                        var cast = renderTargetCam.ViewportToWorldPoint(offset);
+                        cast.z = 0;
+                        CMDExplorePosition(cast);
+                    }
+                }
+            }
+                //CMDExplorePosition(Input.mousePosition);
             //}
         }
     }
