@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Poison_0: -4347532159779508366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
