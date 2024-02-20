@@ -42,8 +42,8 @@ MonoBehaviour:
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 1
-    modifiedActionValueIndex: 0
-    modiferStats: 2
+    modifiedActionValueIndex: 1
+    modiferStats: 3
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
@@ -60,8 +60,8 @@ MonoBehaviour:
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 1
-    modifiedActionValueIndex: 1
-    modiferStats: 3
+    modifiedActionValueIndex: 0
+    modiferStats: 2
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1

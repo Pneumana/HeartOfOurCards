@@ -20,6 +20,7 @@ namespace UI
         {
             MyStatusIconData = statusIconData;
             StatusImage.sprite = statusIconData.IconSprite;
+/*            GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);*/
         }
 
         public void SetStatusValue(int statusValue)

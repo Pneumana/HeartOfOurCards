@@ -1,29 +1,29 @@
-using Enums;
-using System.Collections.Generic;
-using System;
-using UI;
-using UnityEngine;
+//using Enums;
+//using System.Collections.Generic;
+//using System;
+//using UI;
+//using UnityEngine;
 
-namespace Statuses
-{
-    [CreateAssetMenu(fileName = "Status Icons", menuName = "Card Stuff/StatusIcons", order = 2)]
-    public class StatusIconsData : ScriptableObject
-    {
-        [SerializeField] private StatusIconBase statusIconBasePrefab;
-        [SerializeField] private List<StatusIconData> statusIconList;
+//namespace Statuses
+//{
+//    [CreateAssetMenu(fileName = "Status Icons", menuName = "Card Stuff/StatusIcons", order = 2)]
+//    public class StatusIconsData : ScriptableObject
+//    {
+//        [SerializeField] private StatusIconBase statusIconBasePrefab;
+//        [SerializeField] private List<StatusIconData> statusIconList;
 
-        public StatusIconBase StatusIconBasePrefab => statusIconBasePrefab;
-        public List<StatusIconData> StatusIconList => statusIconList;
-    }
+//        public StatusIconBase StatusIconBasePrefab => statusIconBasePrefab;
+//        public List<StatusIconData> StatusIconList => statusIconList;
+//    }
 
 
-    [Serializable]
-    public class StatusIconData
-    {
-        [SerializeField] private StatusType iconStatus;
-        [SerializeField] private Sprite iconSprite;
+//    [Serializable]
+//    public class StatusIconData
+//    {
+//        [SerializeField] private StatusType iconStatus;
+//        [SerializeField] private Sprite iconSprite;
 
-        public StatusType IconStatus => iconStatus;
-        public Sprite IconSprite => iconSprite;
-    }
-}
+//        public StatusType IconStatus => iconStatus;
+//        public Sprite IconSprite => iconSprite;
+//    }
+//}

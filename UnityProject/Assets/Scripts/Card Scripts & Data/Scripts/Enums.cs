@@ -19,7 +19,9 @@ namespace Enums
         Frozen,
         Burn,
         Stun,
-        Vulnerable
+        Vulnerable,
+        Bleed,
+        Regen
     }
 
     public enum CardActionType

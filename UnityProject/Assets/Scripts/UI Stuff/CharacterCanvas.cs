@@ -31,14 +31,8 @@ namespace Characters
 
         public void InitCanvas()
         {
-
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
                 StatusDict.Add((StatusType)i, null);
-
-            
-
-            if (TargetCanvas)
-                TargetCanvas.worldCamera = Camera.main;
         }
 
         public void ApplyStatus(StatusType targetStatus, int value)
