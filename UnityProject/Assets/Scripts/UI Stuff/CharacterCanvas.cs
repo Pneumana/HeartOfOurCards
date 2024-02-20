@@ -37,8 +37,8 @@ namespace Characters
 
             
 
-            if (TargetCanvas)
-                TargetCanvas.worldCamera = Camera.main;
+            /*if (TargetCanvas)
+                TargetCanvas.worldCamera = Camera.main;*/
         }
 
         public void ApplyStatus(StatusType targetStatus, int value)

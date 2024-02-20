@@ -689,6 +689,88 @@ public class DialougeDisplayer : MonoBehaviour
             //textFieldConvo = Resources.Load<TextFieldConversation>("/Conversations/" + split[1]);
             LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + split[1].ToString()));
         }
+        else if (Regex.IsMatch(command, "^@STAT"))
+        {
+            //formatting is @STAT AutoPass(int) Stat1 "Label" Pass Fail Stat2 "Label"
+
+            //
+
+
+            Regex regex = new Regex("^@STAT");
+            Regex iHateSpaces = new Regex(@"\s");
+            MatchCollection matches = Regex.Matches(command, @"(?<= @)(...)(.*?)(?=%)");
+            if (matches.Count > 0)
+            {
+                List<StatCheckInfo> options = new List<StatCheckInfo>();
+                Debug.Log("found " + matches.Count + " options");
+
+                foreach (Match match in matches)
+                {
+                    var label = Regex.Match(match.ToString(), "(?<=\").*(?=\")");
+                    var spaceless = iHateSpaces.Replace(match.ToString(), "");
+                    var split = Regex.Split(spaceless.ToString(), ",");
+                    //List<string> options = new List<StatCheckInfo>();
+                    //options.Add();
+                    int req = Int32.Parse(split[1]);
+                    int[] passFail = new int[2];
+
+                    for (int i = 0; i < passFail.Length; i++)
+                    {
+                        try
+                        {
+                            passFail[i] = Int32.Parse(split[3]);
+                            Debug.Log("goto is formatted in int");
+                        }
+                        catch
+                        {
+                            Debug.Log("goto is formatted in string");
+                            int index = stepNames.IndexOf(split[3 + i]);
+                            if (index != -1)
+                                passFail[i] = index;
+                            else
+                            {
+                                Debug.LogWarning("There is no step in the current conversation named " + split[i]);
+                            }
+                        }
+                    }
+                    split[2] = label.ToString();
+                    Debug.Log("addedn new option with " + split[0] + ", " + req + ", " + split[2] + ", " + passFail[0] + ", " + passFail[1]);
+                    options.Add(new StatCheckInfo(split[0], req, split[2], passFail[0], passFail[1]));
+
+                    /*CaptureCollection captures = match.Captures;
+                    Debug.Log(captures[0].Value);
+                    options.Add(match.ToString());*/
+
+                }
+                CreateStatOptions(options, actorCharID);
+                displayingChoice = true;
+            }
+
+            var commandSettings = regex.Replace(command, "");
+
+            //var split = Regex.Split(spaceless, ",");
+            /*if (split.Contains(""))
+            {
+                Debug.LogError("Incorrect Check formatting! @INT|DMG|CON|NRG, Requirement, Label, Pass, Fail%");
+                return;
+            }
+            switch (split[0].ToString())
+            {
+                case "INT":
+                        
+                    break;
+                case "CON":
+                    break;
+                case "NRG":
+                    break;
+                case "DMG":
+                    break;
+                default:
+                    Debug.LogError("No stat detected for stat command!");
+                    return;
+            }*/
+            return;
+        }
         try
         {
             Debug.LogWarning("no command identified for character id " + actorCharID + " which is step " + convoActionIndex + " in conversation " + currentConvo.name);

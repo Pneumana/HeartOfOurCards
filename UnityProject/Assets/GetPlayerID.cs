@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Steamworks;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DeckData;
 
 public class GetPlayerID : NetworkBehaviour
 {
@@ -25,6 +26,9 @@ public class GetPlayerID : NetworkBehaviour
     public GameObject player2combatScene;
 
     bool avatarRecieved;
+
+    //decks controlled by this player
+    public List<List<CardData>> decks = new List<List<CardData>>();
 
     protected Callback<AvatarImageLoaded_t> ImageLoaded;
 
