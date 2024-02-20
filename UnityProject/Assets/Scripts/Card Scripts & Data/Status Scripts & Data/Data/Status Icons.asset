@@ -9,26 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3b27eb9ccf2b10848943eb0770daa789, type: 3}
   m_Name: Status Icons
-  m_EditorClassIdentifier: Assembly-CSharp:Statuses:StatusIconsData
+  m_EditorClassIdentifier: 
   statusIconBasePrefab: {fileID: 7050867158018059337, guid: 1db392ec84f7580489615b232794f61a, type: 3}
   statusIconList:
   - iconStatus: 1
     iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
   - iconStatus: 2
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: 5766540855783961940, guid: 21abb163064d37e4e83da95648853876, type: 3}
   - iconStatus: 3
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: 5766540855783961940, guid: 21abb163064d37e4e83da95648853876, type: 3}
   - iconStatus: 4
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: -1692439364881576677, guid: 5effdd1e8e0f4c0468d6f9850adcda87, type: 3}
   - iconStatus: 5
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: 5597117985695365778, guid: 2c419f8e93fd28549be37c6efec04f49, type: 3}
   - iconStatus: 6
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: 3156634924717718424, guid: 5d1d280dddbf5e540991c67b587c83ab, type: 3}
   - iconStatus: 7
-    iconSprite: {fileID: 7836489019867940121, guid: 74df149530f19304893f116b0dcf24c2, type: 3}
+    iconSprite: {fileID: -9120369034046867018, guid: 3cf116041d9f2ae4bb00b21afeda965d, type: 3}
   - iconStatus: 8
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: -4347532159779508366, guid: 3fea7a064f51b454cb9cbb31fa82a73c, type: 3}
   - iconStatus: 9
-    iconSprite: {fileID: 1279847974017744597, guid: 1ee4cf53810556d41b8e967044f252c1, type: 3}
+    iconSprite: {fileID: 811347052310813615, guid: 4ec74bbc4e8569f4bb831c05b4e27da3, type: 3}

@@ -2139,6 +2139,7 @@ MonoBehaviour:
   maxHealth: 50
   allyCanvas: {fileID: 1054616917}
   RM: {fileID: 0}
+  sharedHealthBar: {fileID: 0}
 --- !u!1001 &753402135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4974,6 +4975,11 @@ MonoBehaviour:
   localMapCamZoom: 0
   localMapCamPos: {x: 0, y: 0}
   ForceLoadConvo: 
+  Health: 0
+  RepDMG: 0
+  RepINT: 0
+  RepNRG: 0
+  RepCON: 0
 --- !u!4 &1839625824
 Transform:
   m_ObjectHideFlags: 0

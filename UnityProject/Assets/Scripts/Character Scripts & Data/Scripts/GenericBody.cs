@@ -59,10 +59,10 @@ namespace Characters
 
         private void Update()
         {
-            if (StatusDict[StatusType.Block].StatusValue > 0)
-            {
-                Debug.Log(StatusDict[StatusType.Block].StatusValue + " on beneric body " + gameObject.name);
-            }
+            //if (StatusDict[StatusType.Block].StatusValue > 0)
+            //{
+            //    Debug.Log(StatusDict[StatusType.Block].StatusValue + " on beneric body " + gameObject.name);
+            //}
 
         }
 

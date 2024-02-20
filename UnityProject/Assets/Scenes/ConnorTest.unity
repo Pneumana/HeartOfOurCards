@@ -622,6 +622,10 @@ PrefabInstance:
       value: AllyCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5519735401171641451, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
+      propertyPath: statusIconRoot
+      value: 
+      objectReference: {fileID: 1693900868}
+    - target: {fileID: 5519735401171641451, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
       propertyPath: currentHealthText
       value: 
       objectReference: {fileID: 829087816}
@@ -714,17 +718,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
---- !u!114 &219039026 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5519735401171641451, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
-  m_PrefabInstance: {fileID: 219039025}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e0dc6186ae29f442a55a071d299b204, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &219039027 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173814704940880885, guid: 1aa343a23a07d574885e4a85150ea353, type: 3}
@@ -1909,7 +1902,7 @@ MonoBehaviour:
   characterType: 0
   health: 40
   maxHealth: 50
-  allyCanvas: {fileID: 219039026}
+  allyCanvas: {fileID: 1535440210}
   RM: {fileID: 0}
   sharedHealthBar: {fileID: 0}
 --- !u!65 &597431431
@@ -4593,8 +4586,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -36}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -7.2, y: -145.7}
+  m_SizeDelta: {x: 150, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1693900869
 MonoBehaviour:
@@ -4616,8 +4609,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 5, y: 5}
-  m_Spacing: {x: 7.5, y: 0}
+  m_CellSize: {x: 25, y: 20}
+  m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1745574780
