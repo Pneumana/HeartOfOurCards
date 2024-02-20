@@ -35,22 +35,34 @@ public class DeckViewer : MonoBehaviour
             Ray ray;
             RaycastHit hit;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.Log("deck viewer clicked");
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider != null)
                 {
+                    Debug.Log(hit.collider.gameObject.name);
                     if (hit.collider.gameObject.name == "Player1Deck")
                     {
+                        Debug.Log("displaying player 1 deck");
                         //set cards to player1 deck
                         cards.Clear();
-                        cards = AmbidexterousManager.Instance.PlayerList[0].decks[0];
+                        cards = AmbidexterousManager.Instance.PlayerList[0].combatScene.transform.Find("Player1").GetComponent<CardDeck>().deck;
 
                         RefreshHand();
                     }
                     else if (hit.collider.gameObject.name == "Player1Discard")
                     {
+                        Debug.Log("displaying player 1 discard");
+                        cards.Clear();
+                        cards = AmbidexterousManager.Instance.PlayerList[0].combatScene.transform.Find("Player1").GetComponent<CardDeck>().discardPile;
+
+                        RefreshHand();
                         //set cards to player1 discard
                     }
+                }
+                else
+                {
+                    Debug.Log("deck viewer raycast hit nothing");
                 }
             }
         }        
