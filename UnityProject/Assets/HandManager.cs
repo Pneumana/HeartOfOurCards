@@ -217,6 +217,7 @@ public class HandManager : NetworkBehaviour
         hand.Clear();
         var baseAngle = -angleMax / 2;
         var spacing = angleMax / (renderedHand.Count);
+        
         for (int i = 0; i < renderedHand.Count; i++)
         {
             var currentSpace = spacing * (i + 1);
@@ -227,13 +228,12 @@ public class HandManager : NetworkBehaviour
             n.GetComponent<CardBase>().CardData = renderedHand[i];
 
             n.transform.forward = -Camera.main.transform.forward;
-            n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
-            n.transform.position = HandPosition + (transform.forward * 0.1f * i);
+            //n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
+            n.transform.localPosition = HandPosition + ((Vector3.right + n.transform.forward) * 0.1f * i);
             n.transform.SetParent(transform);
             cards.Add(n);
             hand.Add(n, i);
         }
-        
     }
     private void OnDrawGizmosSelected()
     {
