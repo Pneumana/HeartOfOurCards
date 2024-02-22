@@ -726,7 +726,7 @@ public class DialougeDisplayer : MonoBehaviour
             var RemoveCommand = new Regex(@"^@STAT");
             var removed = RemoveCommand.Replace(command, "");
 
-            var split = Regex.Split(removed, @"|");
+            var split = Regex.Split(removed, @"\|");
             for(int i = 0; i < split.Length; i++)
             {
                 var s = split[i];
