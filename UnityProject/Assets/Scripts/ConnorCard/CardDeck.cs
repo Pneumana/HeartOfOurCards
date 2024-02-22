@@ -39,6 +39,7 @@ public class CardDeck : NetworkBehaviour
     [Command(requiresAuthority =false)]
     public void ServerDrawCard(int drawcount)
     {
+        Debug.Log("drawing " + drawcount + " cards");
         int drawnCard = Random.Range(0, deck.Count - 1);
         Debug.Log(drawnCard + " was drawn from deck of " + (deck.Count-1));
         //deck.Remove(deck[drawnCard]);
@@ -62,11 +63,12 @@ public class CardDeck : NetworkBehaviour
                     //discardPile.Clear();
                     Debug.Log("shuffling deck");
                     discardPile.Clear();
+                    drawcount++;
                 }
                 else
                 {
                     Debug.Log("deck is empty");
-                    return;
+                    //continue;
                 }
             }
             else
@@ -132,9 +134,9 @@ public class CardDeck : NetworkBehaviour
                 //var drawnCard = Random.Range(0, deck.Count - 1);
                 try
                 {
-                    if (discardedCardID > deck.Count - 1)
+                    if (discardedCardID > hand.Count - 1)
                     {
-                        discardedCardID = deck.Count - 1;
+                        discardedCardID = hand.Count - 1;
                     }
                     
                 discardPile.Add(hand[discardedCardID]);
@@ -143,7 +145,7 @@ public class CardDeck : NetworkBehaviour
                 //Debug.Log(deck.Count);
 
             }
-                catch { Debug.LogWarning(discardedCardID + " is greater than the remaining deck " + (deck.Count - 1)); }
+                catch { Debug.LogWarning(discardedCardID + " is greater than the remaining hand " + (hand.Count - 1)); }
             discardCount--;
         }
         try

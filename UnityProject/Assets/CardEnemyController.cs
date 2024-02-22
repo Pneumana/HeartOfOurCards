@@ -66,13 +66,15 @@ public class CardEnemyController : NetworkBehaviour
 
         if (!isServer)
             return;
-        if (body.health < 0)
-            return;
+        if (body.health > 0)
+        {
             deck.ServerPlayCard(netId, transform.forward * 4, 0);
-            EndTurn();
+
             deck.ServerDrawCard(1);
             ServerDisplayEnemyCard();
-        
+        }
+
+        EndTurn();
         //pick a new card to play. 
     }
     [Command(requiresAuthority =false)]
