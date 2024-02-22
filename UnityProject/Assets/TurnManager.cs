@@ -172,7 +172,7 @@ namespace Managers
                 }
                 if (enemyTurnEnded.Count == enemyTeam.Count)
                 {
-                    Invoke("KickstartPlayerTurns", 0.02f);
+                    Invoke("KickstartPlayerTurns", 1f);
                 }
             }
         }
