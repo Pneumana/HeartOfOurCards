@@ -42,6 +42,10 @@ public class EnemySpawner : NetworkBehaviour
         serverOk = true;
 
         int spawns = 0;
+
+        var initOffset = (EnemySpawns - 1) / 2 * Vector3.left;
+
+
         while(EnemySpawns > 0)
         {
             var number = Random.Range(1, 3);
