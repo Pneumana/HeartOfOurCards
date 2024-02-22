@@ -69,8 +69,36 @@ namespace Characters
         [Command(requiresAuthority = false)]
         public void TakeDamage(int damageRecieved)
         {
-            TakeDamageRPC(damageRecieved);
+            //TakeDamageRPC(damageRecieved);
+            var damageToTake = damageRecieved;
+            if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
+            {
+                damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
+            }
+            Debug.Log("body taking " + damageRecieved + " damage");
+            var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
+            var usedBlock = Mathf.Clamp(damageToTake, 0, shieldThisTurn);
+
+            if (shieldThisTurn > 0 && damageToTake > 0)
+            {
+                //var block = shieldThisTurn;
+                damageToTake = damageToTake - usedBlock;
+                damageToTake = Mathf.Clamp(damageToTake, 0, damageRecieved);
+                shieldThisTurn = shieldThisTurn - usedBlock;
+                health = health - damageToTake;
+            }
+            else if (shieldThisTurn == 0 && damageToTake > 0)
+            {
+                health = health - damageToTake;
+            }
+
+            Debug.Log("damage blocked by " + (damageRecieved - damageToTake));
+            ApplyStatus(StatusType.Block, -usedBlock);
+            OnHealthChanged?.Invoke(health, maxHealth);
+            if (gameObject.name == "Health Pool")
+                GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
         }
+
         [ClientRpc]
         void TakeDamageRPC(int damageRecieved)
         {
@@ -86,9 +114,9 @@ namespace Characters
             {
                 //var block = shieldThisTurn;
                 var usedBlock = Mathf.Clamp(damageToTake, 0, shieldThisTurn);
-                damageToTake -= shieldThisTurn;
+                damageToTake = damageToTake - shieldThisTurn;
                 Mathf.Clamp(damageToTake, 0, damageRecieved);
-                shieldThisTurn -= usedBlock;
+                shieldThisTurn = shieldThisTurn - usedBlock;
             }
             Debug.Log("damage blocked by " + (damageRecieved - damageToTake));
             health -= damageToTake;
@@ -96,6 +124,7 @@ namespace Characters
             if(gameObject.name=="Health Pool")
                 GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
         }
+
         public void SetAllStatus()
         {
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
