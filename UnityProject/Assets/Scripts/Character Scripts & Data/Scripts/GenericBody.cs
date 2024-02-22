@@ -69,7 +69,12 @@ namespace Characters
         [Command(requiresAuthority = false)]
         public void TakeDamage(int damageRecieved)
         {
-            //TakeDamageRPC(damageRecieved);
+            TakeDamageRPC(damageRecieved);
+        }
+
+        [ClientRpc]
+        void TakeDamageRPC(int damageRecieved)
+        {
             var damageToTake = damageRecieved;
             if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
             {
@@ -86,6 +91,7 @@ namespace Characters
                 damageToTake = Mathf.Clamp(damageToTake, 0, damageRecieved);
                 shieldThisTurn = shieldThisTurn - usedBlock;
                 health = health - damageToTake;
+                ApplyStatus(StatusType.Block, -usedBlock);
             }
             else if (shieldThisTurn == 0 && damageToTake > 0)
             {
@@ -93,35 +99,8 @@ namespace Characters
             }
 
             Debug.Log("damage blocked by " + (damageRecieved - damageToTake));
-            ApplyStatus(StatusType.Block, -usedBlock);
             OnHealthChanged?.Invoke(health, maxHealth);
             if (gameObject.name == "Health Pool")
-                GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
-        }
-
-        [ClientRpc]
-        void TakeDamageRPC(int damageRecieved)
-        {
-            Debug.Log("body taking " + damageRecieved + " damage");
-            var damageToTake = damageRecieved;
-            var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
-            //shield damage block
-            if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
-            {
-                damageToTake = Mathf.CeilToInt(damageToTake * 1.5f);
-            }
-            if (shieldThisTurn > 0 && damageToTake > 0)
-            {
-                //var block = shieldThisTurn;
-                var usedBlock = Mathf.Clamp(damageToTake, 0, shieldThisTurn);
-                damageToTake = damageToTake - shieldThisTurn;
-                Mathf.Clamp(damageToTake, 0, damageRecieved);
-                shieldThisTurn = shieldThisTurn - usedBlock;
-            }
-            Debug.Log("damage blocked by " + (damageRecieved - damageToTake));
-            health -= damageToTake;
-            OnHealthChanged?.Invoke(health, maxHealth);
-            if(gameObject.name=="Health Pool")
                 GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
         }
 
