@@ -59,8 +59,8 @@ MonoBehaviour:
 
     !0
 
-    @STAT @INT, 10, Smart Option,
-    -1, -1% @DMG, 10, Damage Option, -1, -1%
+    @STAT10  INT  "Smart Choice" 
+    SmartPass  SmartFail  DMG  "Strong Choice"  StrongPass  StrongFail
 
     ;
 

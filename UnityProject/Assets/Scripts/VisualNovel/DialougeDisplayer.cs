@@ -11,6 +11,9 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
+using static UnityEditor.ShaderData;
+using static UnityEngine.InputSystem.Editor.InputActionCodeGenerator;
+using static UnityEngine.InputSystem.HID.HID;
 using static UnityEngine.Rendering.DebugUI;
 
 public class DialougeDisplayer : MonoBehaviour
@@ -29,6 +32,7 @@ public class DialougeDisplayer : MonoBehaviour
 
     public GameObject optionPrefab;
     public GameObject statCheckPrefab;
+    public GameObject mPStatCheckPrefab;
 
     public List<GameObject> sprites = new List<GameObject>();
     //target screen position normalized, speed
@@ -77,6 +81,29 @@ public class DialougeDisplayer : MonoBehaviour
             label = LABEL;
             pass = PASS;
             fail = FAIL;
+        }
+    }
+
+    public struct MPStatCheckInfo
+    {
+        public string stat1;
+        public string stat2;
+        public int pass1;
+        public int fail1;
+        public int pass2;
+        public int fail2;
+        public string label1;
+        public string label2;
+        public MPStatCheckInfo(string STAT1, string LABEL1, int PASS1, int FAIL1, string STAT2, string LABEL2, int PASS2, int FAIL2)
+        {
+            stat1 = STAT1;
+            stat2 = STAT2;
+            label1 = LABEL1;
+            label2 = LABEL2;
+            pass1 = PASS1;
+            pass2 = PASS2;
+            fail1 = FAIL1;
+            fail2 = FAIL2;
         }
     }
 
@@ -557,7 +584,7 @@ public class DialougeDisplayer : MonoBehaviour
         {
             //check command, checks a player stat
         }
-        else if(Regex.IsMatch(command, "^@STAT")) 
+        else if(Regex.IsMatch(command, "^@DepSTAT")) 
         {
             //use actorCharID for playerID
             //this can be used as a jump destination for picking an option, it also redirects to different steps in a pass or fail
@@ -689,65 +716,85 @@ public class DialougeDisplayer : MonoBehaviour
             //textFieldConvo = Resources.Load<TextFieldConversation>("/Conversations/" + split[1]);
             LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + split[1].ToString()));
         }
-        else if (Regex.IsMatch(command, "^@STAT"))
+        else if (Regex.IsMatch(command, "(?<=^@STAT)"))
         {
-            //formatting is @STAT AutoPass(int) Stat1 "Label" Pass Fail Stat2 "Label"
+            //formatting is @STAT AutoPass(int) Stat1 "Label" Pass Fail Stat2 "Label" Pass Fail
+
+            //leave pass fail for option 2 blank to use option 1's pass fail for both options
 
             //
+            var RemoveCommand = new Regex(@"^@STAT");
+            var removed = RemoveCommand.Replace(command, "");
 
-
-            Regex regex = new Regex("^@STAT");
-            Regex iHateSpaces = new Regex(@"\s");
-            MatchCollection matches = Regex.Matches(command, @"(?<= @)(...)(.*?)(?=%)");
-            if (matches.Count > 0)
+            var split = Regex.Split(removed, @"|");
+            for(int i = 0; i < split.Length; i++)
             {
-                List<StatCheckInfo> options = new List<StatCheckInfo>();
-                Debug.Log("found " + matches.Count + " options");
-
-                foreach (Match match in matches)
-                {
-                    var label = Regex.Match(match.ToString(), "(?<=\").*(?=\")");
-                    var spaceless = iHateSpaces.Replace(match.ToString(), "");
-                    var split = Regex.Split(spaceless.ToString(), ",");
-                    //List<string> options = new List<StatCheckInfo>();
-                    //options.Add();
-                    int req = Int32.Parse(split[1]);
-                    int[] passFail = new int[2];
-
-                    for (int i = 0; i < passFail.Length; i++)
-                    {
-                        try
-                        {
-                            passFail[i] = Int32.Parse(split[3]);
-                            Debug.Log("goto is formatted in int");
-                        }
-                        catch
-                        {
-                            Debug.Log("goto is formatted in string");
-                            int index = stepNames.IndexOf(split[3 + i]);
-                            if (index != -1)
-                                passFail[i] = index;
-                            else
-                            {
-                                Debug.LogWarning("There is no step in the current conversation named " + split[i]);
-                            }
-                        }
-                    }
-                    split[2] = label.ToString();
-                    Debug.Log("addedn new option with " + split[0] + ", " + req + ", " + split[2] + ", " + passFail[0] + ", " + passFail[1]);
-                    options.Add(new StatCheckInfo(split[0], req, split[2], passFail[0], passFail[1]));
-
-                    /*CaptureCollection captures = match.Captures;
-                    Debug.Log(captures[0].Value);
-                    options.Add(match.ToString());*/
-
-                }
-                CreateStatOptions(options, actorCharID);
-                displayingChoice = true;
+                var s = split[i];
+                Debug.Log(s + ", " + split[i]);
             }
+            Debug.Log("count = " + split.Length);
+            var autoPass = Int32.Parse(split[0]);
 
-            var commandSettings = regex.Replace(command, "");
+            var stat1 = split[1].ToString();
+            var stat2 = split[5].ToString();
 
+            var stat1Label = split[2].ToString();
+            var stat2Label = split[6].ToString();
+
+            var stat1Pass = split[3].ToString();
+            var stat1Fail = split[4].ToString();
+
+            List<string> actionIDsToParse = new List<string>();
+
+            string stat2Pass;
+            string stat2Fail;
+
+            actionIDsToParse.Add(stat1Pass);
+            actionIDsToParse.Add(stat1Fail);
+            if (split.Length == 9)
+            {
+                stat2Pass = split[7].ToString();
+                stat2Fail = split[8].ToString();
+                //causes index out of bounds if stat press
+                actionIDsToParse.Add(stat2Pass);
+                actionIDsToParse.Add(stat2Fail);
+            }
+            List<int> actionIDsParsed = new List<int>();
+            for(int i = 0; i< actionIDsToParse.Count; i++)
+            {
+                try
+                {
+                    actionIDsParsed.Add(Int32.Parse(actionIDsToParse[i]));
+                    Debug.Log("goto is formatted in int");
+                }
+                catch
+                {
+                    Debug.Log("goto is formatted in string");
+                    int index = stepNames.IndexOf(actionIDsToParse[i]);
+                    if (index != -1)
+                        actionIDsParsed.Add(index);
+                    else
+                    {
+                        actionIDsParsed.Add(-1);
+                        Debug.LogWarning("There is no step in the current conversation named " + actionIDsToParse[i]);
+                    }
+                }
+            }
+            Debug.Log(actionIDsParsed.Count + " actions parced");
+
+
+            MPStatCheckInfo info = new MPStatCheckInfo();
+            if (split.Length < 9)
+            {
+                //use option 1 pass fail states
+                info = new MPStatCheckInfo(stat1, stat1Label, actionIDsParsed[0], actionIDsParsed[1], stat2, stat2Label, actionIDsParsed[0], actionIDsParsed[1]);
+            }
+            else
+            {
+                info = new MPStatCheckInfo(stat1, stat1Label, actionIDsParsed[0], actionIDsParsed[1], stat2, stat2Label, actionIDsParsed[2], actionIDsParsed[3]);
+            }
+            displayingChoice = true;
+            MonsterPromCreateStatOptions(info, actorCharID, autoPass);
             //var split = Regex.Split(spaceless, ",");
             /*if (split.Contains(""))
             {
@@ -829,7 +876,7 @@ public class DialougeDisplayer : MonoBehaviour
         {
             //options[i].stat;
 
-            var button = Instantiate(statCheckPrefab);
+            var button = Instantiate(mPStatCheckPrefab);
             button.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = options[i].label;
             button.transform.SetParent(GameObject.Find("MultipleChoice").transform);
 
@@ -851,6 +898,32 @@ public class DialougeDisplayer : MonoBehaviour
                     button.GetComponent<ForceConversationStep>().skipTo = options.Values[];
                 }*/
     }
+
+    public void MonsterPromCreateStatOptions(MPStatCheckInfo info, int checkedCharacter, int autoPass)
+    {
+        var parent = GameObject.Find("MultipleChoice").transform;
+        var op1 = Instantiate(mPStatCheckPrefab, parent);
+        var op2 = Instantiate(mPStatCheckPrefab, parent);
+
+        op1.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = info.label1;
+        var op1Brain = op1.GetComponent<MonsterPromStatCheck>();
+        op1Brain.characterID = checkedCharacter;
+        op1Brain.thisChoiceStat = info.stat1;
+        op1Brain.otherChoiceStat = info.stat2;
+        op1Brain.passID = info.pass1;
+        op1Brain.failID = info.fail1;
+        op1Brain.autoPass = autoPass;
+
+        op2.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = info.label2;
+        var op2Brain = op2.GetComponent<MonsterPromStatCheck>();
+        op2Brain.characterID = checkedCharacter;
+        op2Brain.thisChoiceStat = info.stat2;
+        op2Brain.otherChoiceStat = info.stat1;
+        op2Brain.passID = info.pass2;
+        op2Brain.failID = info.fail2;
+        op2Brain.autoPass = autoPass;
+    }
+
     public void SkipTo(int index, bool triggeredByChoice)
     {
         Debug.Log("skipping to " + index);
