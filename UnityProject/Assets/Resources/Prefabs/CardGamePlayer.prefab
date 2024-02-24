@@ -2039,7 +2039,8 @@ MonoBehaviour:
   cardPrefab: {fileID: 6640280803177796311, guid: d8d1714a1d8273344ae03eb9d7886fca, type: 3}
   player: {fileID: 4794566778977511096}
   selectedCard: {fileID: 0}
-  HandPosition: {x: -2.33, y: 0, z: -2.46}
+  HandPosition: {x: -4, y: -1, z: -2.82}
+  cardSpread: 3
   cards: []
   OwnedBy: 0
   clickedCardName: 
@@ -2272,7 +2273,8 @@ MonoBehaviour:
   cardPrefab: {fileID: 6640280803177796311, guid: d8d1714a1d8273344ae03eb9d7886fca, type: 3}
   player: {fileID: 1240902133082307391}
   selectedCard: {fileID: 0}
-  HandPosition: {x: 2, y: 0, z: -2.46}
+  HandPosition: {x: 4, y: -1, z: -2.82}
+  cardSpread: -3
   cards: []
   OwnedBy: 0
   clickedCardName: 

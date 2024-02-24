@@ -58,6 +58,12 @@ namespace Managers
                 {
                     playerTeam.Add(player);
                     CurrentAlliesList.Add(player.GetComponent<GenericBody>());
+                    try
+                    {
+                        //player.CMDStartEncounter();
+                        player.gameObject.GetComponent<HandManager>().RefreshHand();
+                    }
+                    catch { }
                 }
             }
             foreach (PlayerGenericBody player in FindObjectsByType<PlayerGenericBody>(FindObjectsSortMode.None))
@@ -67,6 +73,7 @@ namespace Managers
                 {
                     
                 }
+
             }
             foreach (CardEnemyController enemy in FindObjectsByType<CardEnemyController>(FindObjectsSortMode.None))
             {

@@ -49,7 +49,7 @@ public class CardPlayerController : NetworkBehaviour
         }
         
 
-        GetComponent<HandManager>().HandPosition = transform.position + (transform.forward * 2) + Vector3.up;
+        //GetComponent<HandManager>().HandPosition = transform.position + (transform.forward * 2) + Vector3.up;
         GetComponent<HandManager>().RefreshHand();
         started = true;
     }

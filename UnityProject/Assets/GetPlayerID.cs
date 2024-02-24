@@ -191,10 +191,11 @@ public class GetPlayerID : NetworkBehaviour
         healthBar.gameObject.SetActive(false);
         combatScene.transform.SetParent(transform);
         var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
-/*        foreach (CardPlayerController cpc in playerControllers)
+        
+        foreach (CardPlayerController cpc in playerControllers)
         {
-            cpc.started = false;
-        }*/
+            cpc.gameObject.GetComponent<CardDeck>().ServerDiscard(cpc.gameObject.GetComponent<CardDeck>().hand.Count, new int[0]);
+        }
         PlayerIcon.transform.SetParent(transform);
         //DontDestroyOnLoad(gameObject);
     }

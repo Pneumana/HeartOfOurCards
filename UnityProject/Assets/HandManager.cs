@@ -14,7 +14,7 @@ public class HandManager : NetworkBehaviour
     public GameObject selectedCard;
 
     public Vector3 HandPosition;
-    //static float cardSpread = 0.1f;
+    public float cardSpread = 3f;
     static float angleMax = 90;
     //define bounds here and divide between hand size
 
@@ -52,7 +52,7 @@ public class HandManager : NetworkBehaviour
         //add a condition to make this only update when a card is drawn
         if (refeshStart)
         {
-            HandPosition = transform.position + (transform.forward * 2 + transform.up * 2);
+            //HandPosition = transform.position + (transform.forward * 2 + transform.up * 2);
             RefreshHand();
             refeshStart = false;
             previewLine = GameObject.Find("LocalPlayerLine");
@@ -217,7 +217,7 @@ public class HandManager : NetworkBehaviour
         hand.Clear();
         var baseAngle = -angleMax / 2;
         var spacing = angleMax / (renderedHand.Count);
-        
+        var posSpacing = cardSpread / renderedHand.Count;
         for (int i = 0; i < renderedHand.Count; i++)
         {
             var currentSpace = spacing * (i + 1);
@@ -227,10 +227,13 @@ public class HandManager : NetworkBehaviour
             //n.GetComponent<ConnorCardController>().card = renderedHand[i];
             n.GetComponent<CardBase>().CardData = renderedHand[i];
 
-            n.transform.forward = -Camera.main.transform.forward;
+            
             //n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
-            n.transform.localPosition = HandPosition + ((Vector3.right + n.transform.forward) * 0.1f * i);
-            n.transform.SetParent(transform);
+            
+            n.transform.localPosition = HandPosition + ((Vector3.right) * posSpacing * i) + (n.transform.forward * i * 0.1f);
+            //
+            n.transform.LookAt(Camera.main.transform);
+            //n.transform.SetParent(transform, true);
             cards.Add(n);
             hand.Add(n, i);
         }
