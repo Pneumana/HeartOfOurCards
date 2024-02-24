@@ -1581,6 +1581,7 @@ MonoBehaviour:
   CurrentAlliesList: []
   CurrentEnemiesList: []
   CurrentMainAlly: {fileID: 0}
+  mapScroll: {fileID: 1324319257}
 --- !u!4 &445859151
 Transform:
   m_ObjectHideFlags: 0
@@ -1686,6 +1687,7 @@ MonoBehaviour:
   syncInterval: 0
   text: {fileID: 1681403450}
   renderTargetCam: {fileID: 432568842}
+  yfactor: 0.4
   correction: {x: 0, y: 0, z: 0}
 --- !u!1 &569788780
 GameObject:
@@ -3447,7 +3449,7 @@ Transform:
   m_GameObject: {fileID: 1324319257}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -9.49, y: 1.76, z: -3.65}
+  m_LocalPosition: {x: 0, y: -2.32, z: -7.73}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []

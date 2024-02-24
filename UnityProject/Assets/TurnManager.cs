@@ -32,12 +32,16 @@ namespace Managers
 
         public PlayerGenericBody CurrentMainAlly;
 
+        [SerializeField] GameObject mapScroll;
+        Vector3 mapStartPos;
+
         private void Awake()
         {
             if (instance == null)
                 instance = this;
             //SceneManager.sceneLoaded += this.OnLoadCallback;
             Invoke("OnLoadCallback", 0.1f);
+            mapStartPos = mapScroll.transform.position;
         }
         private void OnDisable()
         {
@@ -204,15 +208,34 @@ namespace Managers
         IEnumerator EnemyTurnLoop()
         {
             int enemyLoopIndex = 0;
+            int defeated = 0;
             do
             {
-                CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
-                yield return new WaitForSeconds(0.5f);
-                enemyTeam[enemyLoopIndex].TakeTurn();
-                //CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
+                if (CurrentEnemiesList[enemyLoopIndex].health <= 0)
+                {
+                    defeated++;
+                }
+                    CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
+                    yield return new WaitForSeconds(0.5f);
+                    enemyTeam[enemyLoopIndex].TakeTurn();
+                    //CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
                 enemyLoopIndex++;
             }
             while (enemyLoopIndex < enemyTeam.Count);
+
+            if (defeated == enemyTeam.Count)
+            {
+                Debug.Log("won!");
+                float anim = 0;
+                do
+                {
+                    anim += Time.deltaTime;
+                    mapScroll.transform.position = Vector3.Lerp(mapStartPos, mapStartPos + mapScroll.transform.up * 6.5f, anim);
+                    yield return new WaitForSeconds(0);
+                }
+                while (anim < 1);
+            }
+
             yield return null;
         }
         [Command(requiresAuthority =false)]

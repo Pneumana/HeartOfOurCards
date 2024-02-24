@@ -10,7 +10,7 @@ public class MapControls : NetworkBehaviour
     ArbitraryMapGeneratiion mapGen;
     public TextMeshProUGUI text;
     public Camera renderTargetCam;
-
+    public float yfactor;
     public Vector3 correction;
 
     private void Start()
@@ -68,13 +68,40 @@ public class MapControls : NetworkBehaviour
                         //correction is 0.5x 0.5y when scale is one
                         var offsetScale = new Vector3(scroll.transform.lossyScale.x / 2, scroll.transform.lossyScale.y / 2);
                         var offset = ((hit.point + offsetScale) - (scroll.transform.position ));
-                        offset.x /= scroll.transform.lossyScale.x;
-                        offset.y /= scroll.transform.lossyScale.y;
-                        offset.z = 0;
 
-                        Debug.Log(offset.normalized + ", " + offset);
+                        offset.z = 0;
+                        
+                        offset.x /= scroll.transform.lossyScale.x;
+                        //
+                        offset.y /= scroll.transform.lossyScale.y;
+
+                        //not 100% sure why it was happening, but the y offset would always be off when cast the the render target camera, so this should fix it
+                        if(offset.y > 0.5f)
+                            offset.y += yfactor * Mathf.Abs(offset.y - 0.5f);
+                        else if(offset.y <= 0.5f)
+                            offset.y -= yfactor * Mathf.Abs(offset.y - 0.5f);
+
+                        //offset.y *= yfactor;
+                        //Debug.Log(offset);
                         var cast = renderTargetCam.ViewportToWorldPoint(offset);
                         cast.z = 0;
+
+                        var Min = new Vector3(renderTargetCam.transform.position.x - renderTargetCam.orthographicSize, renderTargetCam.transform.position.y - renderTargetCam.orthographicSize);
+                        var Max = new Vector3(renderTargetCam.transform.position.x + renderTargetCam.orthographicSize, renderTargetCam.transform.position.y + renderTargetCam.orthographicSize);
+                        Debug.Log(offset + ", min = " + Min +", max = " + Max);
+                        cast.x = Mathf.Lerp(Min.x, Max.x, offset.x);
+                        cast.y = Mathf.Lerp(Min.y, Max.y, offset.y);
+
+                        //cast.x = currentX.x;
+
+                        Debug.Log("castx " + cast.x + " is " + (((cast.x - Min.x)/(Max.x - Min.x)) * 100) + "% of " + Max.x);
+                        Debug.Log("casty " + cast.y + " is " + (((cast.y - Min.y) / (Max.y - Min.y)) * 100) + "% of " + Max.y);
+
+                        Debug.DrawLine(cast + Vector3.up, cast - Vector3.up, Color.white, 5);
+                        Debug.DrawLine(cast + Vector3.right, cast - Vector3.right, Color.white, 5);
+
+                        //Debug.DrawLine(new Vector3(cast.x, renderTargetCam.transform.position.y + renderTargetCam.orthographicSize), new Vector3(cast.x, renderTargetCam.transform.position.y - renderTargetCam.orthographicSize), Color.cyan, 15);
+                        //Debug.DrawLine(new Vector3(renderTargetCam.transform.position.x + renderTargetCam.orthographicSize, cast.y), new Vector3(renderTargetCam.transform.position.x - renderTargetCam.orthographicSize, cast.y), Color.cyan, 15);
                         CMDExplorePosition(cast);
                     }
                 }
