@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 //using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
 using UnityEngine.Tilemaps;
 using static UnityEditor.PlayerSettings;
 
@@ -55,6 +56,8 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     public float allowedRepeatDistance;
 
     public int discoverRadius = 1;
+
+    public ConversationTable dungeonTable;
 
     //need a list of adjacant positions for each placed room, excluding positions that are already used
     public List<Vector3Int> firstadjacents = new List<Vector3Int>();
@@ -442,6 +445,8 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             var cell = clickedTile;
             if (world.GetTile(cell) == romance)
             {
+                //get from DungeonEvents ConversationTable, try to 
+                RunManager.instance.ForceLoadConvoReference = dungeonTable.events[Random.Range(0, dungeonTable.events.Count - 1)];
                 AmbidexterousManager.Instance.ChangeScene("SampleScene");
             }
             else if (world.GetTile(cell) == shop)

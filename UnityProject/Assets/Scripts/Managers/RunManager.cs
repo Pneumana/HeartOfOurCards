@@ -36,7 +36,9 @@ public class RunManager : NetworkBehaviour
     public float localMapCamZoom;
     public Vector2 localMapCamPos;
 
-    public string ForceLoadConvo;
+    //
+    [HideInInspector]public string ForceLoadConvo;
+    [HideInInspector]public TextFieldConversation ForceLoadConvoReference;
 
     public int Health;
 

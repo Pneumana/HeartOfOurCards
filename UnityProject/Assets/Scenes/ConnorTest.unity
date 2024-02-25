@@ -5259,6 +5259,7 @@ MonoBehaviour:
   shopsToSpawn: 6
   allowedRepeatDistance: 2
   discoverRadius: 15
+  dungeonTable: {fileID: 11400000, guid: 3010cd032b2e42a4cb864165eb2b42b5, type: 2}
   firstadjacents: []
 --- !u!114 &1809071495
 MonoBehaviour:

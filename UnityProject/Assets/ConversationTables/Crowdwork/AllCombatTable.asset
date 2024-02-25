@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf11a333abf8db4785b9a2afa3b30cd, type: 3}
+  m_Name: AllCombatTable
+  m_EditorClassIdentifier: 
+  events:
+  - {fileID: 11400000, guid: 5ebabdc19c132f34f8d15ba2d75506ee, type: 2}
+  - {fileID: 11400000, guid: 2a02492a30c4d5142a26ea196c23f145, type: 2}
+  - {fileID: 11400000, guid: 71ef9d3c10f59a14680144cfad127cb9, type: 2}
+  - {fileID: 11400000, guid: 1dc672a9565fafb4889bb3c0829e5fe1, type: 2}
+  - {fileID: 11400000, guid: 3b888b14ee010c34084adc76f83d3d9e, type: 2}
+  - {fileID: 11400000, guid: 3d29d8f53e4e0e14b9474ee63097568a, type: 2}

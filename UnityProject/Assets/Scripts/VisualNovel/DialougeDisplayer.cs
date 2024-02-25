@@ -135,7 +135,13 @@ public class DialougeDisplayer : MonoBehaviour
             instance = this;
 
         //check for override convo from RunManager
-        if (RunManager.instance.ForceLoadConvo != "")
+        if(RunManager.instance.ForceLoadConvoReference != null)
+        {
+            LoadNew(RunManager.instance.ForceLoadConvoReference);
+            RunManager.instance.ForceLoadConvoReference = null;
+            RunManager.instance.ForceLoadConvo = "";
+        }
+        else if (RunManager.instance.ForceLoadConvo != "")
         {
             LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + RunManager.instance.ForceLoadConvo));
             RunManager.instance.ForceLoadConvo = "";        }
