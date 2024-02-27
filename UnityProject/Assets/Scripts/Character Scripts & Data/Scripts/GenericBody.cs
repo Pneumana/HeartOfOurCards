@@ -147,8 +147,14 @@ namespace Characters
                 Debug.Log("Status Active: " + targetStatus);
             }
         }
+        [Command(requiresAuthority = false)]
+        public void HealDamage(int damageRecieved)
+        {
+            HealDamageRPC(damageRecieved);
+        }
 
-        public void HealDamage(int healRecieved)
+        [ClientRpc]
+        public void HealDamageRPC(int healRecieved)
         {
             health += healRecieved;
             if (health > maxHealth)
@@ -156,6 +162,7 @@ namespace Characters
                 health = maxHealth;
             }
             OnHealthChanged?.Invoke(health, maxHealth);
+            GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
         }
 
         public void GainShield(int shieldRecieved)

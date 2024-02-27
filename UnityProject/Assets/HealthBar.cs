@@ -19,7 +19,7 @@ public class HealthBar : MonoBehaviour
     public void OnEnable()
     {
         var RM = RunManager.instance;
-        maxHealth = ((RM.playerStatList[0].CON * 2) + (RM.playerStatList[0].CON * 2));
+        maxHealth = ((RM.playerStatList[0].CON * 2) + (RM.playerStatList[1].CON * 2));
         health = RM.Health;
         healthBeforeDamage = health;
         ChangeHealth(0);

@@ -172,13 +172,13 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.IncreaseStrength;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //var newTarget = actionParameters.TargetCharacter
-            //    ? actionParameters.TargetCharacter
-            //    : actionParameters.SelfCharacter;
+            var newtarget = actionParameters.TargetCharacter
+                ? actionParameters.TargetCharacter
+                : actionParameters.SelfCharacter;
 
-            //if (!newTarget) return;
+            if (!newtarget) return;
 
-            //newTarget.CharacterStats.ApplyStatus(StatusType.Strength, Mathf.RoundToInt(actionParameters.Value));
+            newtarget.ApplyStatus(StatusType.Strength, Mathf.RoundToInt(actionParameters.Value));
         }
     }
 
@@ -323,6 +323,20 @@ namespace CardActions
             if (!targetCharacter) return;
 
             targetCharacter.ApplyStatus(StatusType.Bleed, Mathf.RoundToInt(actionParameters.Value));
+        }
+    }
+
+    public class EnemyRegenAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyRegen;
+
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var newTarget = actionParameters.SelfCharacter;
+
+            if (!newTarget) return;
+
+            newTarget.ApplyStatus(StatusType.Regen, Mathf.RoundToInt(actionParameters.Value));
         }
     }
 }
