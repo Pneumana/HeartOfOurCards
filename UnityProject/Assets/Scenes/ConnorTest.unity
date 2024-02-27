@@ -5242,21 +5242,29 @@ MonoBehaviour:
   icon: {fileID: 429056563, guid: f155de584dfc2cd41928dcc305efd084, type: 3}
   world: {fileID: 1193672701}
   fogOfWar: {fileID: 1779627930}
-  tile: {fileID: 11400000, guid: e9f8831eb28f1ad4fb6ddd5b8a84217e, type: 2}
-  endpoint: {fileID: 11400000, guid: e8d3ab21f3711ca498c80d4f9dc2651d, type: 2}
-  startpoint: {fileID: 11400000, guid: d6d2fc9e926865245b99d247802e8500, type: 2}
-  fogBorder: {fileID: 11400000, guid: 142d1bb513d8e0c41bb4220177c78632, type: 2}
-  fog: {fileID: 11400000, guid: 9f55ca8bc4798ea42a78e0826d8e23cf, type: 2}
-  fogVisible: {fileID: 11400000, guid: 9abe1a8721be4da418f91fde3ed77c5b, type: 2}
-  romance: {fileID: 11400000, guid: fe777d571ebc9044d858c763af2ee95c, type: 2}
-  encounter: {fileID: 11400000, guid: 0955083889983174e991414452d04ca5, type: 2}
-  shop: {fileID: 11400000, guid: 0bf5b683f06c3314985a1e4ce2c5aa09, type: 2}
+  tile: {fileID: 11400000, guid: d4e868f3c6daacd45af65fbc8dc2f4c8, type: 2}
+  endpoint: {fileID: 11400000, guid: 63db2d6072261824095a55126ea03e68, type: 2}
+  startpoint: {fileID: 11400000, guid: 28fe729e285ea9c4cb1eaea52f852427, type: 2}
+  fogBorder: {fileID: 11400000, guid: 227127269122cf94d816bf5290834995, type: 2}
+  fog: {fileID: 11400000, guid: 435b4c5ecfad9ab46825abe5463c89d1, type: 2}
+  fogVisible: {fileID: 11400000, guid: 66c29094ebf0c034aa0ed0b225f851b8, type: 2}
+  romanceTiles:
+  - {fileID: 11400000, guid: 095062a414cd52e4a8166668e97a5946, type: 2}
+  - {fileID: 11400000, guid: 0ad55cc912b01df4b989f485f1cfb72b, type: 2}
+  - {fileID: 11400000, guid: 99b5bc71bb5827b44b688d3493d4104f, type: 2}
+  - {fileID: 11400000, guid: d4d2d9176fdc912488f2456b3a98dd1b, type: 2}
+  - {fileID: 11400000, guid: 697c85a18094bfc44b3e81e308f0947f, type: 2}
+  - {fileID: 11400000, guid: 10f72e76c0058eb40abcaa07419504c7, type: 2}
+  encounter: {fileID: 11400000, guid: cba4066ffe7dfab4993bf7a6b77b1c4f, type: 2}
+  crowdwork: {fileID: 11400000, guid: 55000407750e9d845954343c686a3c9e, type: 2}
+  mysterEncounter: {fileID: 11400000, guid: 2f88c2373905d3f45af9bde9e58b7353, type: 2}
   size: 100
   gridSize: {x: 25, y: 25}
   seed: 0
-  romancesToSpawn: 6
+  romancesToSpawn: 020000000200000002000000020000000200000002000000
   encountersToSpawn: 6
   shopsToSpawn: 6
+  mysteryEncounters: 4
   allowedRepeatDistance: 2
   discoverRadius: 15
   dungeonTable: {fileID: 11400000, guid: 3010cd032b2e42a4cb864165eb2b42b5, type: 2}

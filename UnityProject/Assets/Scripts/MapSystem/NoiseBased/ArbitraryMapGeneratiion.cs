@@ -1,6 +1,7 @@
 using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 //using System.Drawing;
 using UnityEngine;
@@ -40,9 +41,10 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     public Tile fog;
     public Tile fogVisible;
 
-    public Tile romance;
+    public List<Tile> romanceTiles = new List<Tile>();
     public Tile encounter;
-    public Tile shop;
+    public Tile crowdwork;
+    public Tile mysterEncounter;
 
     [Header("Generator Settings")]
     public int size;
@@ -50,9 +52,10 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     [Header("Leave blank for random")]
     public int seed;
     [Header("Number of special tiles the generator will attempt to spawn, in order")]
-    public int romancesToSpawn;
+    public List<int> romancesToSpawn = new List<int>();
     public int encountersToSpawn;
     public int shopsToSpawn;
+    public int mysteryEncounters;
     public float allowedRepeatDistance;
 
     public int discoverRadius = 1;
@@ -281,6 +284,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         {
             fogOfWar.SetTile(pos, null);
         }
+        Debug.Log("placed " + placedRooms.Count + " rooms");
     }
 
     //creates objects in a grid until it runs out of place attempts;
@@ -443,13 +447,13 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         {
             StartCoroutine(ExploreTile(clickedTile.x, clickedTile.y));
             var cell = clickedTile;
-            if (world.GetTile(cell) == romance)
+            if (romanceTiles.Contains(world.GetTile(cell)))
             {
                 //get from DungeonEvents ConversationTable, try to 
                 RunManager.instance.ForceLoadConvoReference = dungeonTable.events[Random.Range(0, dungeonTable.events.Count - 1)];
                 AmbidexterousManager.Instance.ChangeScene("SampleScene");
             }
-            else if (world.GetTile(cell) == shop)
+            else if (world.GetTile(cell) == crowdwork)
             {
                 //AmbidexterousManager.Instance.ChangeScene("SampleScene");
             }
@@ -463,7 +467,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
     void PickSpecialTiles()
     {
         Random.InitState(seed);
-        var romances = romancesToSpawn;
+        //var romances = romancesToSpawn;
         var encounters = encountersToSpawn;
         var shops = shopsToSpawn;
         Vector3Int previousPick = Vector3Int.zero;
@@ -472,35 +476,42 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         List<Vector3Int> placedSpecialRooms = new List<Vector3Int>();
         placedSpecialRooms.Add(Vector3Int.zero);
         var attempts = 1000;
-        while (romances > 0 && placedRooms.Count > 0)
+
+        for(int i = 0; i < romancesToSpawn.Count; i++)
         {
-            romances--;
-            var pick = placedRooms[Random.Range(0, placedRooms.Count)];
-            Debug.Log("romance " + romances +" " + Vector3Int.Distance(pick, previousPick));
-            bool placed = true;
-            foreach(Vector3Int pos in placedSpecialRooms)
+
+            var romances = romancesToSpawn[i];
+            while (romances > 0 && placedRooms.Count > 0)
             {
-                var test = Vector3Int.Distance(pick, pos);
-                if(test > allowedRepeatDistance){}
+                romances--;
+                var pick = placedRooms[Random.Range(0, placedRooms.Count)];
+                Debug.Log("romance " + romances + " " + Vector3Int.Distance(pick, previousPick));
+                bool placed = true;
+                foreach (Vector3Int pos in placedSpecialRooms)
+                {
+                    var test = Vector3Int.Distance(pick, pos);
+                    if (test > allowedRepeatDistance) { }
+                    else
+                    {
+                        placed = false;
+                    }
+                }
+                if (!placed)
+                    romances++;
                 else
                 {
-                    placed = false;
+                    placedRooms.Remove(pick);
+                    world.SetTile(pick, romanceTiles[i]);
+                    placedSpecialRooms.Add(pick);
+                    Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
+
                 }
+                if (attempts <= 0)
+                    break;
+                attempts--;
             }
-            if (!placed)
-                romances++;
-            else
-            {
-                placedRooms.Remove(pick);
-                world.SetTile(pick, romance);
-                placedSpecialRooms.Add(pick);
-                Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
-                
-            }
-            if (attempts <= 0)
-                break;
-            attempts--;
         }
+        
         attempts = 1000;
         placedSpecialRooms.Clear();
         placedSpecialRooms.Add(Vector3Int.zero);
@@ -554,7 +565,40 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             else
             {
                 placedRooms.Remove(pick);
-                world.SetTile(pick, shop);
+                world.SetTile(pick, crowdwork);
+                placedSpecialRooms.Add(pick);
+                Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
+
+            }
+            if (attempts <= 0)
+                break;
+            attempts--;
+        }
+
+        attempts = 1000;
+        placedSpecialRooms.Clear();
+        placedSpecialRooms.Add(Vector3Int.zero);
+        var mystery = mysteryEncounters;
+        while (mystery > 0 && placedRooms.Count > 0)
+        {
+            mystery--;
+            var pick = placedRooms[Random.Range(0, placedRooms.Count)];
+            bool placed = true;
+            foreach (Vector3Int pos in placedSpecialRooms)
+            {
+                var test = Vector3Int.Distance(pick, pos);
+                if (test > allowedRepeatDistance) { }
+                else
+                {
+                    placed = false;
+                }
+            }
+            if (!placed)
+                mystery++;
+            else
+            {
+                placedRooms.Remove(pick);
+                world.SetTile(pick, mysterEncounter);
                 placedSpecialRooms.Add(pick);
                 Debug.Log("added " + pick + " to placedSpecialRooms " + placedSpecialRooms.Count);
 

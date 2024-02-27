@@ -161,6 +161,12 @@ MonoBehaviour:
   localMapCamZoom: 0
   localMapCamPos: {x: 0, y: 0}
   ForceLoadConvo: 
+  ForceLoadConvoReference: {fileID: 0}
+  Health: 0
+  RepDMG: 0
+  RepINT: 0
+  RepNRG: 0
+  RepCON: 0
 --- !u!4 &69857296
 Transform:
   m_ObjectHideFlags: 0
@@ -356,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 100
   damageRecieved: {fileID: 1415206680}
   endInstances: 0
   currentDamageRecievedObj: {fileID: 0}
