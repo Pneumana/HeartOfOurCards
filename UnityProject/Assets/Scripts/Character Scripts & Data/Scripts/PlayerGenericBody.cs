@@ -66,15 +66,6 @@ namespace Characters
             TriggerStatus(StatusType.Vulnerable);
         }
 
-        public void HealDamage(int healRecieved)
-        {
-            health += healRecieved;
-            if (health > maxHealth)
-            {
-                health = maxHealth;
-            }
-        }
-
         private void OnDestroy()
         {
             RunManager.instance.Health = health;

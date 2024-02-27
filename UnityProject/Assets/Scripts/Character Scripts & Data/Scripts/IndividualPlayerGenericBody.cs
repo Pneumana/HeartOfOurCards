@@ -41,5 +41,10 @@ namespace Characters
                 Controller.maxEnergy = (3 + Mathf.FloorToInt(RM.playerStatList[1].CON / 6));
             }
         }
+
+        public void OnPlayerTurnEnd()
+        {
+            TriggerStatus(StatusType.Frozen);
+        }
     }
 }

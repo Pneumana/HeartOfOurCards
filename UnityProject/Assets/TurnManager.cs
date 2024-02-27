@@ -152,6 +152,10 @@ namespace Managers
             {
                 isPlayerTurn = false;
                 turnEnded.Clear();
+                foreach (IndividualPlayerGenericBody player in CurrentAlliesList)
+                {
+                    player.OnPlayerTurnEnd();
+                }
                 Debug.Log("player turn ended");
                 ServerStartEnemyTurns();
             }

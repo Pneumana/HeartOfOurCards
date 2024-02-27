@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9041586952255202221}
   - component: {fileID: 8069355965063178062}
   m_Layer: 0
-  m_Name: Enemy_Rat
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,14 +151,14 @@ MonoBehaviour:
   syncInterval: 0
   hand: []
   deck:
-  - {fileID: 11400000, guid: b7550fe9d1a9eb44c8e2d6b5d1153fcb, type: 2}
-  - {fileID: 11400000, guid: b7550fe9d1a9eb44c8e2d6b5d1153fcb, type: 2}
-  - {fileID: 11400000, guid: b7550fe9d1a9eb44c8e2d6b5d1153fcb, type: 2}
-  - {fileID: 11400000, guid: 5f5f6820e695ec04ebf34a5ffbd7e742, type: 2}
-  - {fileID: 11400000, guid: 5f5f6820e695ec04ebf34a5ffbd7e742, type: 2}
-  - {fileID: 11400000, guid: 5f5f6820e695ec04ebf34a5ffbd7e742, type: 2}
-  - {fileID: 11400000, guid: 46537477ec6fd5243b0b87f9a74113ef, type: 2}
-  - {fileID: 11400000, guid: 46537477ec6fd5243b0b87f9a74113ef, type: 2}
+  - {fileID: 11400000, guid: 39ac6c9a9e71602479cbeacab3fc8c5c, type: 2}
+  - {fileID: 11400000, guid: 39ac6c9a9e71602479cbeacab3fc8c5c, type: 2}
+  - {fileID: 11400000, guid: 39ac6c9a9e71602479cbeacab3fc8c5c, type: 2}
+  - {fileID: 11400000, guid: ffe9e35d8d188de4e8f4f23b16258eaa, type: 2}
+  - {fileID: 11400000, guid: ffe9e35d8d188de4e8f4f23b16258eaa, type: 2}
+  - {fileID: 11400000, guid: e4b3350478d43474b80dd04eb01ed750, type: 2}
+  - {fileID: 11400000, guid: e4b3350478d43474b80dd04eb01ed750, type: 2}
+  - {fileID: 11400000, guid: e4b3350478d43474b80dd04eb01ed750, type: 2}
   discardPile: []
 --- !u!114 &9041586952255202221
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientStarted: 0
   sceneId: 0
-  _assetId: 1420808435
+  _assetId: 2605069615
   serverOnly: 0
   visible: 2
   hasSpawned: 0
@@ -232,6 +232,14 @@ PrefabInstance:
     - target: {fileID: 1703370437496856768, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886193288261899631, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886193288261899631, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3550048313633122741, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
       propertyPath: m_Pivot.x

@@ -50,8 +50,11 @@ MonoBehaviour:
   syncInterval: 0
   EnemySpawns: 3
   enemyPrefabs:
-  - {fileID: 6102217815632708100, guid: 00529e2199940384aa3cb478efb27aa1, type: 3}
-  - {fileID: 5006751889763522343, guid: f5a3be8970218fd45aa47c8701baa4a9, type: 3}
+  - {fileID: 1852533363878200264, guid: cfc5bae119ec3114591ccd46913c3368, type: 3}
+  - {fileID: 2813959661709948727, guid: c4af1e470b6a28a4da8224094449e887, type: 3}
+  - {fileID: 6950614231293048718, guid: 96a3df3b83a1f8748adb0838ce5c4e9e, type: 3}
+  - {fileID: 2591733923278954959, guid: 180ce20d0ebd7f5488e66708ccbe8ace, type: 3}
+  - {fileID: 6412815493581016384, guid: 2d5499da66c6a2646aa13eb042124ba4, type: 3}
 --- !u!114 &4743632376309614393
 MonoBehaviour:
   m_ObjectHideFlags: 0

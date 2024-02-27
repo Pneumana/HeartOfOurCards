@@ -178,7 +178,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Incoming status effect_0: -3763156773315452426
+      Incoming status effect_1: -2708447593080379879
+      Incoming status effect_2: 8320164682361494752
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
