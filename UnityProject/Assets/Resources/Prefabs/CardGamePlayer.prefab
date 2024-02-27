@@ -2244,9 +2244,9 @@ MonoBehaviour:
   syncInterval: 0
   hand: []
   deck:
-  - {fileID: 11400000, guid: 04f04d925571c5c4f866d4ed6a72bcba, type: 2}
-  - {fileID: 11400000, guid: 04f04d925571c5c4f866d4ed6a72bcba, type: 2}
-  - {fileID: 11400000, guid: 04f04d925571c5c4f866d4ed6a72bcba, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 04f04d925571c5c4f866d4ed6a72bcba, type: 2}
   - {fileID: 11400000, guid: 47b5f304ad6847c4d9c4b6283a92df49, type: 2}
   - {fileID: 11400000, guid: 47b5f304ad6847c4d9c4b6283a92df49, type: 2}
