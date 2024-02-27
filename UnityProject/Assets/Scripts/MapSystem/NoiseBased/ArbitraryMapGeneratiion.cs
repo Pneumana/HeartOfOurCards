@@ -48,6 +48,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
 
     [Header("Generator Settings")]
     public int size;
+    public int sizeRange;
     public Vector2 gridSize = new Vector2(5, 5);
     [Header("Leave blank for random")]
     public int seed;
@@ -88,7 +89,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                 mapPositions.Add(new Vector3Int(x, y));
             }
         }
-        placeAttempts = size;
+        placeAttempts = size + Random.Range(-sizeRange, sizeRange);
         Vector3Int center = new Vector3Int(Mathf.FloorToInt(gridSize.x / 2), Mathf.FloorToInt(gridSize.y / 2));
         var startneighbors = GetNeighborsAt(center.x,center.y);
         foreach (Vector3Int neighbor in startneighbors)
@@ -101,7 +102,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         placedRooms.Add(center);
         while (placeAttempts > 0)
         {
-            placeAttempts--;
+
             //create room
 
             //pick a random node to start on
@@ -117,7 +118,10 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             //List<Vector3Int> pickedList = adjacantRooms[Random.Range(0, adjacantRooms.Count-1)];
             var pick = openList[Random.Range(0, openList.Count - 1)];
             if (placedRooms.Contains(pick))
+            {
+                //placeAttempts++;
                 continue;
+            }
             placedRooms.Add(pick);
             openList.Remove(pick);
             Debug.Log("removed " + pick);
@@ -131,16 +135,18 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                         openList.Add(neighbor);
                     }
             }
-/*            var worldPos = world.CellToWorld(pick);
-            Debug.DrawLine(worldPos + new Vector3(0.5f, -0.5f), worldPos + new Vector3(-0.5f, 0.5f), Color.red, 5);
-            Debug.DrawLine(worldPos + new Vector3(-0.5f, -0.5f), worldPos + new Vector3(0.5f, 0.5f), Color.red, 5);*/
+            /*            var worldPos = world.CellToWorld(pick);
+                        Debug.DrawLine(worldPos + new Vector3(0.5f, -0.5f), worldPos + new Vector3(-0.5f, 0.5f), Color.red, 5);
+                        Debug.DrawLine(worldPos + new Vector3(-0.5f, -0.5f), worldPos + new Vector3(0.5f, 0.5f), Color.red, 5);*/
             //find a random neighbor room
             //add to placed rooms
             //loop trhrough all neighbor lists and remove that position
             /*var mostrecentAddition = new Vector3(a * 0.8659766f, b);
             Debug.DrawLine(mostrecentAddition + new Vector3(0.5f, -0.5f), mostrecentAddition + new Vector3(-0.5f, 0.5f), Color.red, 10);
             Debug.DrawLine(mostrecentAddition + new Vector3(-0.5f, -0.5f), mostrecentAddition + new Vector3(0.5f, 0.5f), Color.red, 10);*/
+            placeAttempts--;
         }
+        Debug.Log("placed " + placedRooms.Count + " rooms after " + size +  " attempts ");
         Vector3Int furthestPair1 = Vector3Int.zero;
         Vector3Int furthestPair2 = Vector3Int.zero;
         float dist = 0;
@@ -284,7 +290,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         {
             fogOfWar.SetTile(pos, null);
         }
-        Debug.Log("placed " + placedRooms.Count + " rooms");
+        
     }
 
     //creates objects in a grid until it runs out of place attempts;

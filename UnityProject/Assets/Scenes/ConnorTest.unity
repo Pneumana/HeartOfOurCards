@@ -5259,6 +5259,7 @@ MonoBehaviour:
   crowdwork: {fileID: 11400000, guid: 55000407750e9d845954343c686a3c9e, type: 2}
   mysterEncounter: {fileID: 11400000, guid: 2f88c2373905d3f45af9bde9e58b7353, type: 2}
   size: 100
+  sizeRange: 25
   gridSize: {x: 25, y: 25}
   seed: 0
   romancesToSpawn: 020000000200000002000000020000000200000002000000
