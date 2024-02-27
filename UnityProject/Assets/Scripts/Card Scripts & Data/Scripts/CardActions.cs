@@ -339,4 +339,17 @@ namespace CardActions
             newTarget.ApplyStatus(StatusType.Regen, Mathf.RoundToInt(actionParameters.Value));
         }
     }
+
+    public class EnemyFreezeAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyFreeze;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var targetCharacter = actionParameters.HealthPool;
+
+            if (!targetCharacter) return;
+
+            targetCharacter.ApplyStatus(StatusType.Frozen, Mathf.RoundToInt(actionParameters.Value));
+        }
+    }
 }

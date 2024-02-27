@@ -6,6 +6,7 @@ namespace Enums
         Ally,
         AllEnemies,
         AllAllies,
+        HealthPool,
         RandomEnemy,
         RandomAlly,
         TwoRandomEnemies
@@ -50,7 +51,8 @@ namespace Enums
         EnemyHeal,
         EnemyVulnerability,
         EnemyBleed,
-        EnemyRegen
+        EnemyRegen,
+        EnemyFreeze
     }
 
     public enum CharacterType

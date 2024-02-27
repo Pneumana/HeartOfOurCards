@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5525322181852604386}
   - component: {fileID: 8569693575960599288}
   m_Layer: 0
-  m_Name: Enemy_Cultist
+  m_Name: Cultist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,13 @@ MonoBehaviour:
   hand: []
   deck:
   - {fileID: 11400000, guid: 713d7ef6c21ff644b8fa072c39b16a20, type: 2}
+  - {fileID: 11400000, guid: 713d7ef6c21ff644b8fa072c39b16a20, type: 2}
+  - {fileID: 11400000, guid: 713d7ef6c21ff644b8fa072c39b16a20, type: 2}
   - {fileID: 11400000, guid: 7285d089e5eff4a4990abb0691d210d3, type: 2}
+  - {fileID: 11400000, guid: 7285d089e5eff4a4990abb0691d210d3, type: 2}
+  - {fileID: 11400000, guid: 7285d089e5eff4a4990abb0691d210d3, type: 2}
+  - {fileID: 11400000, guid: ee3ae737f891d9b4a9c8f3f1bbd6ec71, type: 2}
+  - {fileID: 11400000, guid: ee3ae737f891d9b4a9c8f3f1bbd6ec71, type: 2}
   - {fileID: 11400000, guid: ee3ae737f891d9b4a9c8f3f1bbd6ec71, type: 2}
   discardPile: []
 --- !u!114 &5525322181852604386
@@ -227,6 +233,14 @@ PrefabInstance:
     - target: {fileID: 1703370437496856768, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886193288261899631, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886193288261899631, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3550048313633122741, guid: d69c9a77f833d314592a32e1620a9949, type: 3}
       propertyPath: m_Pivot.x

@@ -104,7 +104,8 @@ namespace CardActions
                         targetList.Add(enemyBase);
                     break;
                 case ActionTargetType.AllAllies:
-                        targetList.Add(healthPool);
+                    foreach (var ally in allAllies)
+                        targetList.Add(ally);
                     break;
                 case ActionTargetType.RandomEnemy:
                     if (allEnemies.Count > 0)
@@ -120,6 +121,9 @@ namespace CardActions
                         targetList.Add(allEnemies[Random.Range(0, allEnemies.Count - 1)]);
                         targetList.Add(allEnemies[Random.Range(0, allEnemies.Count - 1)]);
                     }
+                    break;
+                case ActionTargetType.HealthPool:
+                        targetList.Add(healthPool);
                     break;
                 default:
                     Debug.LogError("womp womp");
