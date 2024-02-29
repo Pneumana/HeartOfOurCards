@@ -21,6 +21,9 @@ public class MapCamera : MonoBehaviour
             cam.transform.position = new Vector3(RunManager.instance.localMapCamPos.x, RunManager.instance.localMapCamPos.y, -10);
             cam.orthographicSize = RunManager.instance.localMapCamZoom;
         }
+        cam.orthographicSize = 10f;
+        var center = new Vector3(Mathf.FloorToInt(map.gridSize.x / 2), Mathf.FloorToInt(map.gridSize.y / 2));
+        cam.transform.position = new Vector3(center.x, center.y, -10);
     }
 
     // Update is called once per frame
