@@ -40,6 +40,8 @@ public class RunManager : NetworkBehaviour
     [HideInInspector]public string ForceLoadConvo;
     [HideInInspector]public TextFieldConversation ForceLoadConvoReference;
 
+    public List<string> experiencedEvents = new List<string>();
+
     public int Health;
 
     public int RepDMG;

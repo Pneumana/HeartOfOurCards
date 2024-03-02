@@ -456,12 +456,48 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             if (romanceTiles.Contains(world.GetTile(cell)))
             {
                 //get from DungeonEvents ConversationTable, try to 
-                RunManager.instance.ForceLoadConvoReference = dungeonTable.events[Random.Range(0, dungeonTable.events.Count - 1)];
+                var roll = Random.Range(0, dungeonTable.events.Count);
+                var attempts = 1000;
+                while(RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name))
+                {
+                    attempts--;
+                    roll = Random.Range(0, dungeonTable.events.Count);
+                    if (attempts <= 0)
+                    {
+                        Debug.LogWarning("loading new event used up all re-roll attempts!");
+                        RunManager.instance.experiencedEvents.Clear();
+                        break;
+                    }
+                }
+                RunManager.instance.ForceLoadConvoReference = dungeonTable.events[roll];
+                RunManager.instance.experiencedEvents.Add(dungeonTable.events[roll].name);
+                Debug.Log("loading event <color=#00FF00>" + RunManager.instance.ForceLoadConvoReference.name + "</color> with roll " + roll + " of " + (dungeonTable.events.Count - 1));
                 AmbidexterousManager.Instance.ChangeScene("SampleScene");
             }
             else if (world.GetTile(cell) == crowdwork)
             {
                 //AmbidexterousManager.Instance.ChangeScene("SampleScene");
+            }
+            else if(world.GetTile(cell) == mysterEncounter)
+            {
+                //should be a 1/3 chance for this, because it's the generic event list
+                var roll = Random.Range(0, dungeonTable.events.Count);
+                var attempts = 1000;
+                while (RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name))
+                {
+                    attempts--;
+                    roll = Random.Range(0, dungeonTable.events.Count);
+                    if (attempts <= 0)
+                    {
+                        Debug.LogWarning("loading new event used up all re-roll attempts!");
+                        RunManager.instance.experiencedEvents.Clear();
+                        break;
+                    }
+                }
+                RunManager.instance.ForceLoadConvoReference = dungeonTable.events[roll];
+                RunManager.instance.experiencedEvents.Add(dungeonTable.events[roll].name);
+                Debug.Log("loading event <color=#00FF00>" + RunManager.instance.ForceLoadConvoReference.name + "</color> with roll " + roll + " of " + (dungeonTable.events.Count - 1));
+                AmbidexterousManager.Instance.ChangeScene("SampleScene");
             }
             else
             {
