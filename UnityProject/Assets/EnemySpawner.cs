@@ -34,9 +34,16 @@ public class EnemySpawner : NetworkBehaviour
             
         }
     }
+
+    
     [Server]
     public void SpawnEnemy(int _EnemySpawns)
     {
+        //AmbidexterousManager.Instance.spawnPrefabs.Add(prefab);
+        //if encounter is boss
+
+
+
         Debug.Log("Running server enemy spawn");
         EnemySpawns = _EnemySpawns;
         serverOk = true;
@@ -58,6 +65,8 @@ public class EnemySpawner : NetworkBehaviour
         }
         TurnManager.instance.CMDGetEnemyList();
     }
+
+
     /*[ClientRpc]
     public void ClientSpawnEnemy()
     {

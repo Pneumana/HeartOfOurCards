@@ -40,14 +40,16 @@ public class RunManager : NetworkBehaviour
     [HideInInspector]public string ForceLoadConvo;
     [HideInInspector]public TextFieldConversation ForceLoadConvoReference;
 
+    [HideInInspector]public GameObject forceLoadCombatEncounter;
+
     public List<string> experiencedEvents = new List<string>();
 
     public int Health;
 
-    public int RepDMG;
-    public int RepINT;
-    public int RepNRG;
-    public int RepCON;
+    public int Stamina = 8;
+    //used to move between dungeon tiles
+
+    public int Ratings;
 
     [SerializeField]
     public struct PlayerStats
@@ -56,6 +58,13 @@ public class RunManager : NetworkBehaviour
         public int INT; //Logic
         public int NRG; //Velocity
         public int CON;//or evasion? //Endurance
+
+        public int RepDMG;
+        public int RepINT;
+        public int RepNRG;
+        public int RepCON;
+
+        public int Gold;
 
         public int Kitsune;
         public int Lich;
@@ -66,7 +75,9 @@ public class RunManager : NetworkBehaviour
 
         public int Producer;
 
-        public PlayerStats(int _dmg = 0, int _int = 0, int _nrg = 0, int _con = 0, int _kit = 0, int _lic = 0, int _nag = 0, int _mer = 0, int _dra = 0, int _vam = 0, int _pro = 0)
+        public bool usedBreak;
+
+        public PlayerStats(int _dmg = 0, int _int = 0, int _nrg = 0, int _con = 0, int _kit = 0, int _lic = 0, int _nag = 0, int _mer = 0, int _dra = 0, int _vam = 0, int _pro = 0, int _gold = 0, int _repdmg = 0, int _repint = 0, int _repnrg = 0, int _repcon = 0, bool _usedBreak = false)
         {
             DMG = _dmg;
             INT = _int;
@@ -79,6 +90,14 @@ public class RunManager : NetworkBehaviour
             Dragon = _dra;
             Vampire = _vam;
             Producer = _pro;
+            Gold = _gold;
+
+            RepCON = _repcon;
+            RepINT = _repint;
+            RepDMG = _repdmg;
+            RepNRG = _repnrg;
+
+            usedBreak = _usedBreak;
         }
     }
     //public PlayerStats player1Stats;

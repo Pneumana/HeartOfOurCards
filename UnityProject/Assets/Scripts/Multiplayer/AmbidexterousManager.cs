@@ -182,7 +182,8 @@ public class AmbidexterousManager : NetworkManager
     {
 
         //RunManager.instance.CMDGetSeed();
-        ServerChangeScene(scene);
+        if(SceneManager.GetActiveScene().isLoaded)
+            ServerChangeScene(scene);
     }
     public void ServerChangeSeed(int newseed)
     {

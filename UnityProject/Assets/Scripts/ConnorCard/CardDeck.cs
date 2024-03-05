@@ -227,4 +227,5 @@ public class CardDeck : NetworkBehaviour
         }
         catch { }
     }
+    //Resources.Load<CardData>("CardData/" + cardName)
 }
