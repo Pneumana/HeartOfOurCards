@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4ba41e1c3c87ea54d9477f4b2603aae2
+guid: 72fefad1c99c6f9408c432e7ee3b1e28
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1422868305549830651
-    second: Shield Up_0
+      213: 745015870907820173
+    second: brittle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shield Up_0
+      name: brittle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5065a8590d4f04ce0800000000000000
-      internalID: -1422868305549830651
+      spriteID: d882d71ccf3d65a00800000000000000
+      internalID: 745015870907820173
       vertices: []
       indices: 
       edges: []
