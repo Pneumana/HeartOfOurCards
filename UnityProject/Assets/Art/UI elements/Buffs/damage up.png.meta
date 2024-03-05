@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 4ba41e1c3c87ea54d9477f4b2603aae2
+guid: aa60efa8157f145489f49adad7bbf035
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1422868305549830651
-    second: Shield Up_0
+      213: 1728526077591247136
+    second: damage up_0
+  - first:
+      213: 8820612285328818101
+    second: damage up_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +103,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shield Up_0
+      name: damage up_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 30
         y: 0
-        width: 128
+        width: 68
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -114,8 +117,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5065a8590d4f04ce0800000000000000
-      internalID: -1422868305549830651
+      spriteID: 02953d73f45fcf710800000000000000
+      internalID: 1728526077591247136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: damage up_1
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 30
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf7870d32c196a70800000000000000
+      internalID: 8820612285328818101
       vertices: []
       indices: 
       edges: []
