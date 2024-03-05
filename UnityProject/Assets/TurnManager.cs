@@ -245,6 +245,7 @@ namespace Managers
                     yield return new WaitForSeconds(0);
                 }
                 while (anim < 1);
+                WinEncounter();
             }
 
             yield return null;
@@ -270,6 +271,34 @@ namespace Managers
             DisplayEnemyCards();
             //Command();
         }
+        void WinEncounter()
+        {
+            Random.InitState(RunManager.instance.seed + RunManager.instance.completedRooms.Count);
+            var gold = Random.Range(25, 50);
+            //show a gold counter on each side
+            //var plr1 = RunManager.instance.playerStatList[0];
+            if (!isServer)
+                return;
+            var plr1 = RunManager.instance.playerStatList[0];
+            //plr1.Gold += gold;
+
+            var plr2 = RunManager.instance.playerStatList[1];
+            //plr2.Gold += gold;
+
+
+
+            Debug.Log("player1 has " + RunManager.instance.playerStatList[0].Gold + " player2 has gold " + RunManager.instance.playerStatList[1].Gold);
+            RunManager.instance.playerStatList[0] = new RunManager.PlayerStats(plr1.DMG, plr1.INT, plr1.NRG, plr1.CON,
+                plr1.Kitsune, plr1.Lich, plr1.Naga, plr1.Mermaid, plr1.Dragon, plr1.Vampire, plr1.Producer,
+                plr1.Gold + gold, plr1.RepDMG, plr1.RepINT, plr1.RepNRG, plr1.RepCON, plr1.usedBreak);
+            RunManager.instance.playerStatList[1] = new RunManager.PlayerStats(plr2.DMG, plr2.INT, plr2.NRG, plr2.CON,
+                plr2.Kitsune, plr2.Lich, plr2.Naga, plr2.Mermaid, plr2.Dragon, plr2.Vampire, plr2.Producer,
+                plr2.Gold + gold, plr2.RepDMG, plr2.RepINT, plr2.RepNRG, plr2.RepCON, plr2.usedBreak);
+            Debug.Log("player1 has " + RunManager.instance.playerStatList[0].Gold + " player2 has gold " + RunManager.instance.playerStatList[1].Gold);
+
+            //RunManager.instance.playerStatList[1].Gold = gold;
+        }
+
         [ClientRpc]
         void DisplayEnemyCards()
         {

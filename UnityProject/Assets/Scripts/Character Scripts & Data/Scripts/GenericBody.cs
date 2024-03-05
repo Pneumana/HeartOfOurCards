@@ -91,6 +91,7 @@ namespace Characters
                 damageToTake = Mathf.Clamp(damageToTake, 0, damageRecieved);
                 shieldThisTurn = shieldThisTurn - usedBlock;
                 health = health - damageToTake;
+                if(!isServer)
                 ApplyStatus(StatusType.Block, -usedBlock);
             }
             else if (shieldThisTurn == 0 && damageToTake > 0)
@@ -133,6 +134,7 @@ namespace Characters
 
         public void ApplyStatus(StatusType targetStatus, int value)
         {
+            //if(targetStatus == StatusType.Block)
             if (StatusDict[targetStatus].IsActive)
             {
                 StatusDict[targetStatus].StatusValue += value;

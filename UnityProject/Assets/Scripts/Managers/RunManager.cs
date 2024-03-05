@@ -5,6 +5,7 @@ using Mirror;
 using System.Globalization;
 using CardActions;
 
+
 public class RunManager : NetworkBehaviour
 {
     //List player1 items
@@ -51,6 +52,11 @@ public class RunManager : NetworkBehaviour
 
     public int Ratings;
 
+    public interface IPlayerStats
+    {
+        int Gold { get;  set; }
+    }
+    public static PlayerStats EmptyPlayer = new PlayerStats(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,false);
     [SerializeField]
     public struct PlayerStats
     {
