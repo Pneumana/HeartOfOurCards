@@ -46,9 +46,7 @@ public class MapCamera : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            cam.orthographicSize = 10f;
-            var center = new Vector3(Mathf.FloorToInt(map.gridSize.x / 2), Mathf.FloorToInt(map.gridSize.y / 2));
-            cam.transform.position = new Vector3(center.x, center.y, -10);
+            CenterCamera();
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -68,6 +66,13 @@ public class MapCamera : MonoBehaviour
         }
 
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 1, 10);
+    }
+
+    public void CenterCamera()
+    {
+        cam.orthographicSize = 10f;
+        var center = new Vector3(Mathf.FloorToInt(map.gridSize.x / 2), Mathf.FloorToInt(map.gridSize.y / 2));
+        cam.transform.position = new Vector3(center.x, center.y, -10);
     }
     private void OnDestroy()
     {

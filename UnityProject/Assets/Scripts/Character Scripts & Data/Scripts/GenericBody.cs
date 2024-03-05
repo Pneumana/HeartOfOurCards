@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Managers;
+
 namespace Characters
 {
     public class StatusStats
@@ -103,6 +105,11 @@ namespace Characters
             OnHealthChanged?.Invoke(health, maxHealth);
             if (gameObject.name == "Health Pool")
                 GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
+            if (GetComponent<EnemyGenericBody>() != null && health <=0)
+            {
+                TurnManager.instance.CheckWinCondition();
+                Debug.Log("enemy died!");
+            }
         }
 
         public void SetAllStatus()

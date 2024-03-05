@@ -3,6 +3,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +36,8 @@ namespace Managers
         [SerializeField] GameObject mapScroll;
         Vector3 mapStartPos;
 
+        GameObject victoryUI;
+
         private void Awake()
         {
             if (instance == null)
@@ -42,6 +45,9 @@ namespace Managers
             //SceneManager.sceneLoaded += this.OnLoadCallback;
             Invoke("OnLoadCallback", 0.1f);
             mapStartPos = mapScroll.transform.position;
+
+            victoryUI = GameObject.Find("VictoryUI");
+            victoryUI.SetActive(false);
         }
         private void OnDisable()
         {
@@ -225,6 +231,10 @@ namespace Managers
                 if (CurrentEnemiesList[enemyLoopIndex].health <= 0)
                 {
                     defeated++;
+                    CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
+                    enemyTeam[enemyLoopIndex].TakeTurn();
+                    enemyLoopIndex++;
+                    continue;
                 }
                     CurrentEnemiesList[enemyLoopIndex].OnEnemyTurnStart();
                     yield return new WaitForSeconds(0.5f);
@@ -237,14 +247,7 @@ namespace Managers
             if (defeated == enemyTeam.Count)
             {
                 Debug.Log("won!");
-                float anim = 0;
-                do
-                {
-                    anim += Time.deltaTime;
-                    mapScroll.transform.position = Vector3.Lerp(mapStartPos, mapStartPos + mapScroll.transform.up * 6.5f, anim);
-                    yield return new WaitForSeconds(0);
-                }
-                while (anim < 1);
+                StartCoroutine(BringUpScroll());
                 WinEncounter();
             }
 
@@ -271,10 +274,41 @@ namespace Managers
             DisplayEnemyCards();
             //Command();
         }
+        public void CheckWinCondition()
+        {
+            var defeated = 0;
+            for(int i = 0; i < enemyTeam.Count; i++)
+            {
+                if(CurrentEnemiesList[i].health <= 0)
+                {
+                    defeated++;
+                }
+            }
+            if(defeated == enemyTeam.Count)
+            {
+                StartCoroutine(BringUpScroll());
+                WinEncounter();
+            }
+        }
+        IEnumerator BringUpScroll()
+        {
+            float anim = 0;
+            do
+            {
+                anim += Time.deltaTime;
+                mapScroll.transform.position = Vector3.Lerp(mapStartPos, mapStartPos + mapScroll.transform.up * 6.5f, anim);
+                yield return new WaitForSeconds(0);
+            }
+            while (anim < 1);
+            yield return null;
+        }
         void WinEncounter()
         {
+            GameObject.FindFirstObjectByType<MapCamera>().CenterCamera();
             Random.InitState(RunManager.instance.seed + RunManager.instance.completedRooms.Count);
             var gold = Random.Range(25, 50);
+            victoryUI.SetActive(true);
+            victoryUI.transform.Find("GoldEarned").gameObject.GetComponent<TextMeshProUGUI>().text = "+" + gold + " gold to both players!";
             //show a gold counter on each side
             //var plr1 = RunManager.instance.playerStatList[0];
             if (!isServer)

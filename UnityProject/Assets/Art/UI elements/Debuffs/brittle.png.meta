@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      brittle_0: 745015870907820173
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
