@@ -190,7 +190,7 @@ public class CardDeck : NetworkBehaviour
                     targetObj = go.gameObject;
                 }
             }
-            Debug.Log("playing card " + hand[playedCard].CardName + " on " + targetObj.name);
+            //Debug.Log("playing card " + hand[playedCard].CardName + " on " + targetObj.name);
             //if it doesn't meet the energy requirment, uhh yeah
             if (hand.Count == 0)
             {

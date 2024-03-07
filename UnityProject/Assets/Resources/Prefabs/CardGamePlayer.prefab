@@ -2010,14 +2010,14 @@ MonoBehaviour:
   syncInterval: 0
   hand: []
   deck:
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
   - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
   - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
   discardPile: []

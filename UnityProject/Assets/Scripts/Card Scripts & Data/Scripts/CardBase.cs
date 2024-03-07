@@ -54,7 +54,7 @@ namespace CardActions
 
         public virtual void Use(GenericBody self, GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
         {
-            Debug.Log(CardData.CardName + " was played");
+            //Debug.Log(CardData.CardName + " was played"); <---- fuck this one in particular
             if (!IsPlayable) return;
 
             StartCoroutine(CardUseRoutine(self, targetCharacter, allEnemies, allAllies, healthPool));
@@ -69,8 +69,8 @@ namespace CardActions
                 float actionTime = 0;
                 do
                 {
-                    actionTime += Time.deltaTime;
-                    Debug.Log("player action " + playerAction.CardActionType);
+                    //actionTime += Time.deltaTime;
+                    //Debug.Log("player action " + playerAction.CardActionType);
                     
                     var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction);
 
@@ -79,7 +79,7 @@ namespace CardActions
                         Debug.Log("on target " + target.name);
                         CardActionProcessor.GetAction(playerAction.CardActionType).DoAction(new CardActionParameters(playerAction.ActionValue, target, self, healthPool, CardData, this));
                     }
-                    yield return new WaitForSeconds(0);
+                    //yield return new WaitForSeconds(0);
                 } while (actionTime < playerAction.ActionDelay);
                 
                     

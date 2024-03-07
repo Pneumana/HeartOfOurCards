@@ -93,7 +93,7 @@ namespace Characters
                 damageToTake = Mathf.Clamp(damageToTake, 0, damageRecieved);
                 shieldThisTurn = shieldThisTurn - usedBlock;
                 health = health - damageToTake;
-                if(!isServer)
+                //if(!isServer)
                 ApplyStatus(StatusType.Block, -usedBlock);
             }
             else if (shieldThisTurn == 0 && damageToTake > 0)
