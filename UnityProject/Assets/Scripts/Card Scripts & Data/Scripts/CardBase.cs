@@ -69,14 +69,14 @@ namespace CardActions
                 float actionTime = 0;
                 do
                 {
-                    //actionTime += Time.deltaTime;
+                    actionTime += Time.deltaTime;
                     //Debug.Log("player action " + playerAction.CardActionType);
                     
                     var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction);
 
                     foreach (var target in targetList)
                     {
-                        Debug.Log("on target " + target.name);
+                        //Debug.Log("on target " + target.name);
                         CardActionProcessor.GetAction(playerAction.CardActionType).DoAction(new CardActionParameters(playerAction.ActionValue, target, self, healthPool, CardData, this));
                     }
                     //yield return new WaitForSeconds(0);
@@ -129,7 +129,7 @@ namespace CardActions
                     Debug.LogError("womp womp");
                     break;
             }
-            Debug.Log(targetList.Count);
+            //Debug.Log(targetList.Count);
             return targetList;
         }
 

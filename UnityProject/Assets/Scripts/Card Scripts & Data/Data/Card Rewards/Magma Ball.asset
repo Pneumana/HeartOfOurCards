@@ -20,11 +20,11 @@ MonoBehaviour:
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   cardActionDataList:
-  - cardActionType: 0
+  - cardActionType: 16
     actionTargetType: 0
     actionValue: 5
     actionDelay: 0
-  - cardActionType: 11
+  - cardActionType: 10
     actionTargetType: 0
     actionValue: 3
     actionDelay: 0

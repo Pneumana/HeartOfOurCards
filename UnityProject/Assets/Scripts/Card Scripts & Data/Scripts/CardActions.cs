@@ -104,12 +104,12 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.AllyBlock;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            Debug.Log("trying to blovk");
+            //Debug.Log("trying to blovk");
             var newTarget = actionParameters.HealthPool;
             var selfCharacter = actionParameters.SelfCharacter;
 
             if (!newTarget) return;
-            Debug.Log("Block Successful");
+            //Debug.Log("Block Successful");
             newTarget.ApplyStatus(StatusType.Block, Mathf.RoundToInt(actionParameters.Value + selfCharacter.StatusDict[StatusType.Dexterity].StatusValue));
         }
     }

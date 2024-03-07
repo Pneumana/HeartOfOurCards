@@ -38,7 +38,7 @@ namespace Characters
 
         public void PlayerTakeDamage(int damageRecieved)
         {
-            Debug.Log("player body taking " + damageRecieved + " damage");
+            //Debug.Log("player body taking " + damageRecieved + " damage");
             var damageToTake = damageRecieved;
             var shieldThisTurn = StatusDict[StatusType.Block].StatusValue;
             //shield damage block

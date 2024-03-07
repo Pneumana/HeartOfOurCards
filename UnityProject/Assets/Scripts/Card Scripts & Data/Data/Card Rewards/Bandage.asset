@@ -24,10 +24,6 @@ MonoBehaviour:
     actionTargetType: 1
     actionValue: 4
     actionDelay: 0
-  - cardActionType: 10
-    actionTargetType: 1
-    actionValue: 0
-    actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: 'Heal '
     enableOverrideColor: 0
@@ -47,7 +43,7 @@ MonoBehaviour:
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
-  - descriptionText: ' Health, Bandage is removed from deck'
+  - descriptionText: ' Health, burn this card'
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
