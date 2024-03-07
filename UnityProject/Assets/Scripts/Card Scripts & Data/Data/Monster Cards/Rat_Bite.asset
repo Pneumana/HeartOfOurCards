@@ -21,7 +21,7 @@ MonoBehaviour:
   exhaustAfterPlay: 0
   cardActionDataList:
   - cardActionType: 19
-    actionTargetType: 3
+    actionTargetType: 4
     actionValue: 6
     actionDelay: 0
   cardDescriptionDataList:
