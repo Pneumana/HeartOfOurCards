@@ -194,10 +194,18 @@ public class GetPlayerID : NetworkBehaviour
         
         foreach (CardPlayerController cpc in playerControllers)
         {
-            cpc.gameObject.GetComponent<CardDeck>().ServerDiscard(cpc.gameObject.GetComponent<CardDeck>().hand.Count, new int[0]);
+            //cpc.gameObject.GetComponent<CardDeck>().ServerDiscard(cpc.gameObject.GetComponent<CardDeck>().hand.Count, new int[0]);
+            cpc.gameObject.GetComponent<CardDeck>().AllToDeck();
         }
+        
         PlayerIcon.transform.SetParent(transform);
         //DontDestroyOnLoad(gameObject);
+
+        foreach (CardPlayerController cpc in playerControllers)
+        {
+            if (cpc.gameObject.activeSelf)
+                cpc.started = false;
+        }
     }
     public void StartedScene(string SceneName)
     {
@@ -265,8 +273,8 @@ public class GetPlayerID : NetworkBehaviour
             PlayerIcon.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             //combatscene CardPlayerController.handmanager.UpdateHand pos
             var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
-            Debug.Log("issuing draw requests for " + playerControllers.Length + " player controllers");
-            if (isServer && NetworkServer.connections.Count > 1)
+            Debug.Log("issuing draw requests for " + playerControllers.Length + " player controllers on scene start");
+            if (isServerOnly && NetworkServer.connections.Count > 1)
                 return;
             foreach (CardPlayerController cpc in playerControllers)
             {

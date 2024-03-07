@@ -227,5 +227,18 @@ public class CardDeck : NetworkBehaviour
         }
         catch { }
     }
+    public void AllToDeck()
+    {
+        foreach(CardData dat in discardPile)
+        {
+            deck.Add(dat);
+        }
+        discardPile.Clear();
+        foreach (CardData dat in hand)
+        {
+            deck.Add(dat);
+        }
+        hand.Clear();
+    }
     //Resources.Load<CardData>("CardData/" + cardName)
 }

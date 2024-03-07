@@ -16,7 +16,7 @@ public class CardPlayerController : NetworkBehaviour
     public CardDeck deck;
     public ReadEnergyFromPlayer energydisplay;
 
-    bool started = false;
+    public bool started = false;
     //network stuff
 
     private void Start()
@@ -45,6 +45,7 @@ public class CardPlayerController : NetworkBehaviour
         deck = GetComponent<CardDeck>();
         if (isOwned)
         {
+            Debug.Log("started encounter and needs to draw " + (5 + Mathf.FloorToInt(RunManager.instance.playerStatList[0].INT / 3)) + " cards due to bonuses");
             deck.ServerDrawCard(5 + Mathf.FloorToInt(RunManager.instance.playerStatList[0].INT/3));
         }
         

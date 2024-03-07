@@ -165,7 +165,7 @@ MonoBehaviour:
   forceLoadCombatEncounter: {fileID: 0}
   experiencedEvents: []
   Health: 0
-  Stamina: 1
+  Stamina: 8
   Ratings: 0
 --- !u!4 &69857296
 Transform:
