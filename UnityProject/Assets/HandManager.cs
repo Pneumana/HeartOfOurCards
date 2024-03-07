@@ -230,10 +230,13 @@ public class HandManager : NetworkBehaviour
             
             //n.transform.rotation = Quaternion.Euler(n.transform.rotation.eulerAngles.x, 180, baseAngle + currentSpace);
             
-            n.transform.localPosition = HandPosition + ((Vector3.right) * posSpacing * i) + (n.transform.forward * i * 0.1f);
-            //
+            n.transform.position = HandPosition + ((Vector3.right) * posSpacing * i) + (n.transform.forward * i * 0.1f);
+            var tempPos = n.transform.position; /*<--- var to try to store position*/
+            //var tempPos = HandPosition + ((Vector3.right) * posSpacing * i) + (n.transform.forward * i * 0.1f);
+
+            n.transform.SetParent(transform, false);
+            n.transform.position = tempPos; /*<---- this was to set it back to old position, works for the most part but leaves cards blurry and overlapping */
             n.transform.LookAt(Camera.main.transform);
-            //n.transform.SetParent(transform, true);
             cards.Add(n);
             hand.Add(n, i);
         }

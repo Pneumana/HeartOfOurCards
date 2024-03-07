@@ -118,7 +118,10 @@ public class CardEnemyController : NetworkBehaviour
         {
             //Debug.Log("calling for card " + deck.hand[pickedCardIndex].CardName + " to be displayed");
             currentDisplay = Instantiate(displayCardPrefab);
-            currentDisplay.transform.position = transform.position + (Vector3.up * 2) + (transform.forward * 1.5f);
+            var tempPos = transform.position + (Vector3.up * 2) + (transform.forward * 1.5f);
+            currentDisplay.transform.SetParent(transform, false);
+            currentDisplay.transform.position = tempPos;
+            currentDisplay.transform.localScale = new Vector3(.33f, .33f, 1); 
             currentDisplay.GetComponent<CardBase>().CardData = pickedCard;
             currentDisplay.transform.LookAt(Camera.main.transform.position);
         }
