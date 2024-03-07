@@ -61,6 +61,9 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
 
     public int discoverRadius = 1;
 
+    Vector3Int furthestPair1 = Vector3Int.zero;
+    Vector3Int furthestPair2 = Vector3Int.zero;
+
     public ConversationTable dungeonTable;
 
     //need a list of adjacant positions for each placed room, excluding positions that are already used
@@ -147,8 +150,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             placeAttempts--;
         }
         Debug.Log("placed " + placedRooms.Count + " rooms after " + size +  " attempts ");
-        Vector3Int furthestPair1 = Vector3Int.zero;
-        Vector3Int furthestPair2 = Vector3Int.zero;
+
         float dist = 0;
         foreach(Vector3Int pos in placedRooms)
         {
@@ -433,7 +435,13 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         mouseCast.z = 0;
         Vector3Int clickedTile = Vector3Int.zero;
         bool clicked =  false;
-        foreach(Vector3Int pos in explorableRooms)
+        if (RunManager.instance.Stamina <= 0)
+        {
+            //load boss combat encounter here
+            return;
+        }
+
+        foreach (Vector3Int pos in explorableRooms)
         {
             if (fogOfWar.HasTile(pos))
             {
@@ -449,8 +457,14 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                 }
             }
         }
+        if (RunManager.instance.Stamina <= 0)
+        {
+            clickedTile = furthestPair2;
+        }
         if (clicked)
         {
+            RunManager.instance.ChangeStam(-1);
+            GameObject.FindFirstObjectByType<MapControls>().staminaText.text = "Stamina: " + RunManager.instance.Stamina;
             StartCoroutine(ExploreTile(clickedTile.x, clickedTile.y));
             var cell = clickedTile;
             if (romanceTiles.Contains(world.GetTile(cell)))

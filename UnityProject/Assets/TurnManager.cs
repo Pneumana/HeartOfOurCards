@@ -304,6 +304,11 @@ namespace Managers
         }
         void WinEncounter()
         {
+            foreach (CardPlayerController plr in playerTeam)
+            {
+                ServerPlayerEndTurn(plr.netId);
+            }
+
             GameObject.FindFirstObjectByType<MapCamera>().CenterCamera();
             Random.InitState(RunManager.instance.seed + RunManager.instance.completedRooms.Count);
             var gold = Random.Range(25, 50);
@@ -313,14 +318,15 @@ namespace Managers
             //var plr1 = RunManager.instance.playerStatList[0];
             if (!isServer)
                 return;
-            var plr1 = RunManager.instance.playerStatList[0];
+
             //plr1.Gold += gold;
 
-            var plr2 = RunManager.instance.playerStatList[1];
+
             //plr2.Gold += gold;
 
 
-
+            var plr1 = RunManager.instance.playerStatList[0];
+            var plr2 = RunManager.instance.playerStatList[1];
             Debug.Log("player1 has " + RunManager.instance.playerStatList[0].Gold + " player2 has gold " + RunManager.instance.playerStatList[1].Gold);
             RunManager.instance.playerStatList[0] = new RunManager.PlayerStats(plr1.DMG, plr1.INT, plr1.NRG, plr1.CON,
                 plr1.Kitsune, plr1.Lich, plr1.Naga, plr1.Mermaid, plr1.Dragon, plr1.Vampire, plr1.Producer,

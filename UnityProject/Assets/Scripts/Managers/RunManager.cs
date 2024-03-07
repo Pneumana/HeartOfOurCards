@@ -229,30 +229,44 @@ public class RunManager : NetworkBehaviour
     {
         ConvoOverride(convo);
     }
-
+    [ClientRpc]
     public void ConvoOverride(string convo)
     {
         ForceLoadConvo = convo;
     }
-/*    [Command(requiresAuthority = false)]
-    public void ChangePlayerMapTurn()
+    [Command(requiresAuthority =false)]
+    public void CMDChangeStam(int change)
     {
-        if(AmbidexterousManager.Instance.PlayerList.Count > 1)
-        {
-            ClientChangeMapTurn();
-            //toggle map turns (this is who can pick where they go)
-        }
+        Debug.Log("server change stam");
+        ChangeStam(change);
     }
     [ClientRpc]
-    public void ClientChangeMapTurn()
+    public void ChangeStam(int change)
     {
-        if (secondPlayerPick)
+        var old = Stamina;
+        Stamina += change;
+        Debug.Log("client change stam " + old + " => " + Stamina);
+    }
+
+    /*    [Command(requiresAuthority = false)]
+        public void ChangePlayerMapTurn()
         {
-            secondPlayerPick = false;
+            if(AmbidexterousManager.Instance.PlayerList.Count > 1)
+            {
+                ClientChangeMapTurn();
+                //toggle map turns (this is who can pick where they go)
+            }
         }
-        else
+        [ClientRpc]
+        public void ClientChangeMapTurn()
         {
-            secondPlayerPick = true;
-        }
-    }*/
+            if (secondPlayerPick)
+            {
+                secondPlayerPick = false;
+            }
+            else
+            {
+                secondPlayerPick = true;
+            }
+        }*/
 }

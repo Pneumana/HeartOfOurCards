@@ -162,9 +162,10 @@ MonoBehaviour:
   localMapCamPos: {x: 0, y: 0}
   ForceLoadConvo: 
   ForceLoadConvoReference: {fileID: 0}
+  forceLoadCombatEncounter: {fileID: 0}
   experiencedEvents: []
   Health: 0
-  Stamina: 8
+  Stamina: 1
   Ratings: 0
 --- !u!4 &69857296
 Transform:

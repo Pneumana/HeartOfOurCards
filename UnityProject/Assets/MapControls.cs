@@ -9,6 +9,9 @@ public class MapControls : NetworkBehaviour
 {
     ArbitraryMapGeneratiion mapGen;
     public TextMeshProUGUI text;
+
+    public TextMeshProUGUI staminaText;
+
     public Camera renderTargetCam;
     public float yfactor;
     public Vector3 correction;
@@ -25,30 +28,36 @@ public class MapControls : NetworkBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            if (RunManager.instance.pickingPlayer != RunManager.instance.LocalPlayerID && AmbidexterousManager.Instance.PlayerList.Count > 1)
+                return;
+
+
+            //RunManager.instance.Stamina--;
+            staminaText.text = "Stamina: " + RunManager.instance.Stamina;
             //need to have some method for checking who's turn it is to pick a map.
 
 
-           /* if (isServer != RunManager.instance.secondPlayerPick && AmbidexterousManager.Instance.PlayerList.Count > 1)
-            {
-                foreach(Vector3Int pos in mapGen.fogOfWar.cellBounds.allPositionsWithin)
-                {
-                    if(mapGen.fogOfWar.GetTile(pos) == mapGen.fogBorder)
-                    {
-                        if (Vector3.Distance(mapGen.fogOfWar.CellToWorld(pos), Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
-                        {
-                            CMDExplorePosition(Input.mousePosition);
-                            break;
-                        }
-                        Debug.DrawLine(pos, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                    }
+            /* if (isServer != RunManager.instance.secondPlayerPick && AmbidexterousManager.Instance.PlayerList.Count > 1)
+             {
+                 foreach(Vector3Int pos in mapGen.fogOfWar.cellBounds.allPositionsWithin)
+                 {
+                     if(mapGen.fogOfWar.GetTile(pos) == mapGen.fogBorder)
+                     {
+                         if (Vector3.Distance(mapGen.fogOfWar.CellToWorld(pos), Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
+                         {
+                             CMDExplorePosition(Input.mousePosition);
+                             break;
+                         }
+                         Debug.DrawLine(pos, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                     }
 
-                }
+                 }
 
-            }*/
-/*            else if(AmbidexterousManager.Instance.PlayerList.Count ==1)
-            {*/
-                //need to convert normalized position of where the scroll mesh was clicked to 
-                var raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+             }*/
+            /*            else if(AmbidexterousManager.Instance.PlayerList.Count ==1)
+                        {*/
+            //need to convert normalized position of where the scroll mesh was clicked to 
+            var raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray;
             RaycastHit hit;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -174,4 +183,5 @@ public class MapControls : NetworkBehaviour
 
         text.text = "Player " + rm.pickingPlayer + " is picking";
     }
+
 }
