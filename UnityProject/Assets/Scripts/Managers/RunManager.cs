@@ -157,41 +157,41 @@ public class RunManager : NetworkBehaviour
     }
     void Player1Window(int windowID)
     {
-        /*if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + player1Stats.DMG))
+        if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + playerStatList[0].DMG))
         {
-            player1Stats.DMG++;
+            //playerStatList[0].DMG++;
         }
-        if (GUI.Button(new Rect(0, 40, 100, 20), "INT = " + player1Stats.INT))
+        if (GUI.Button(new Rect(0, 40, 100, 20), "INT = " + playerStatList[0].INT))
         {
-            player1Stats.INT++;
+            //playerStatList[0].INT++;
         }
-        if (GUI.Button(new Rect(0, 60, 100, 20), "NRG = " + player1Stats.NRG))
+        if (GUI.Button(new Rect(0, 60, 100, 20), "NRG = " + playerStatList[0].NRG))
         {
-            player1Stats.NRG++;
+            //player1Stats.NRG++;
         }
-        if (GUI.Button(new Rect(0, 80, 120, 20), "CON = " + player1Stats.CON))
+        if (GUI.Button(new Rect(0, 80, 120, 20), "CON = " + playerStatList[0].CON))
         {
-            player1Stats.CON++;
-        }*/
+            //player1Stats.CON++;
+        }
     }
     void Player2Window(int windowID)
     {
-        /*if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + player2Stats.DMG))
+        if (GUI.Button(new Rect(0, 20, 100, 20), "DMG = " + playerStatList[1].DMG))
         {
-            player2Stats.DMG++;
+            //player2Stats.DMG++;
         }
-        if (GUI.Button(new Rect(0, 40, 100, 20), "INT = " + player2Stats.INT))
+        if (GUI.Button(new Rect(0, 40, 100, 20), "INT = " + playerStatList[1].INT))
         {
-            player2Stats.INT++;
+            //player2Stats.INT++;
         }
-        if (GUI.Button(new Rect(0, 60, 100, 20), "NRG = " + player2Stats.NRG))
+        if (GUI.Button(new Rect(0, 60, 100, 20), "NRG = " + playerStatList[1].NRG))
         {
-            player2Stats.NRG++;
+            //player2Stats.NRG++;
         }
-        if (GUI.Button(new Rect(0, 80, 120, 20), "CON = " + player2Stats.CON))
+        if (GUI.Button(new Rect(0, 80, 120, 20), "CON = " + playerStatList[1].CON))
         {
-            player2Stats.CON++;
-        }*/
+            //player2Stats.CON++;
+        }
     }
 
     /*    public override void OnStartAuthority()
@@ -269,4 +269,17 @@ public class RunManager : NetworkBehaviour
                 secondPlayerPick = true;
             }
         }*/
+    public void ChangeStat(int playerIndex, string stat, int change)
+    {
+        var mp = new PlayerStats();
+        mp = playerStatList[playerIndex];
+
+        mp.GetType().GetField(stat).SetValueDirect(__makeref(mp), (int)mp.GetType().GetField(stat).GetValue(mp) + change);
+
+        instance.playerStatList[0] = mp;
+    }
+    public void ChangeSharedStat(string stat, int change)
+    {
+
+    }
 }

@@ -42,6 +42,8 @@ public class DialougeDisplayer : MonoBehaviour
 
     public bool displayingChoice;
 
+    public int PrimaryPlayer;
+
     public static DialougeDisplayer instance;
 
     //maybe use for mouse wheel down do it doesnt go past stuff you haven't seen before.
@@ -145,6 +147,7 @@ public class DialougeDisplayer : MonoBehaviour
         {
             LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + RunManager.instance.ForceLoadConvo));
             RunManager.instance.ForceLoadConvo = "";        }
+        PrimaryPlayer = RunManager.instance.pickingPlayer;
 
         LoadConvo();
     }
@@ -688,26 +691,55 @@ public class DialougeDisplayer : MonoBehaviour
         }
         else if (Regex.IsMatch(command, @"^@INC"))
         {
-            //formatted LOVE CHARACTER AMOUNT
+            //formatted INC PlayerID(optional) Stat Increase
 
             var split = Regex.Split(command, @" ");
             //Debug.Log(split[1].ToString());
 
             var TargetPlayer = RunManager.instance.playerStatList[actorCharID];
-            var _targetStat = TargetPlayer.GetType().GetField(split[1].ToString());
-            var num = Int32.Parse(split[2]);
-            //var stat = _targetStat.GetType().GetField(split[1].ToString());
-            //stat.SetValueDirect(__makeref(TargetPlayer), (int)stat.GetValue(TargetPlayer) + num);
+            int num = 0;
+            if (split.Length == 4)
+            {
+                Debug.Log("increase command used playerID");
+                num = Int32.Parse(split[3]);
+                //var _targetStat = TargetPlayer.GetType().GetField(split[2].ToString());
+                //TargetPlayer.GetType().GetField(split[2].ToString()).SetValueDirect(__makeref(TargetPlayer), (int)TargetPlayer.GetType().GetField(split[2].ToString()).GetValue(TargetPlayer) + num);
+                //Debug.Log(split[2] + " modified to " + (int)TargetPlayer.GetType().GetField(split[2].ToString()).GetValue(TargetPlayer) + " with a change of " + num);
+                var usingSecondaryPlayer = Int32.Parse(split[1]);
+                if (usingSecondaryPlayer == 0)
+                {
+                    actorCharID = PrimaryPlayer;
+                }
+                else
+                {
+                    if (PrimaryPlayer == 0)
+                    {
+                        actorCharID = 1;
+                    }
+                    else
+                    {
+                        actorCharID = 0;
+                    }
+                }
 
-            //use this one
+                RunManager.instance.ChangeStat(actorCharID, split[2], num);
+            }
+            else if (split.Length == 3)
+            {
+                Debug.Log("increasing a shared stat");
+                num = Int32.Parse(split[2]);
+                var rm = RunManager.instance;
+                var _targetStat = rm.GetType().GetField(split[1].ToString());
+                rm.GetType().GetField(split[1].ToString()).SetValueDirect(__makeref(rm), (int)rm.GetType().GetField(split[1].ToString()).GetValue(rm) + num);
+                Debug.Log(split[1] + " modified to " + (int)rm.GetType().GetField(split[1].ToString()).GetValue(rm) + " with a change of " + num);
+            }
 
-            /*var stat = TargetPlayer.GetType().GetField(split[1].ToString());
-            object copy = _lifetimeStats;
-            stat.SetValue(copy, value);
-            TargetPlayer = (LifetimeStatistics)copy;*/
 
-            TargetPlayer.GetType().GetField(split[1].ToString()).SetValueDirect(__makeref(TargetPlayer), (int)TargetPlayer.GetType().GetField(split[1].ToString()).GetValue(TargetPlayer) + num);
-            Debug.Log(split[1] + " modified to " + (int)TargetPlayer.GetType().GetField(split[1].ToString()).GetValue(TargetPlayer) + " with a change of " + num);
+
+
+
+
+            
             //RunManager.instance.TryStartGame(split[1].ToString());
         }
         else if(Regex.IsMatch(command, "^@LOAD"))

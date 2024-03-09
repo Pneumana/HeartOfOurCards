@@ -26,7 +26,9 @@ MonoBehaviour:
     @POS
     0.33, 0, 1000
 
-    @STAT INT, 1
+    @INC 0 INT -5
+
+    @INC Health 10
 
     ;
 
@@ -34,17 +36,17 @@ MonoBehaviour:
 
     !1
 
-    @SAY And I''m
-    Joe! name0 ''s kinda a silly guy. pnd0 is just a goober.
+    @SAY
+    And I''m Joe! name0 ''s kinda a silly guy. pnd0 is just a goober.
 
-    @POS 0.66, 0, 1000
+    @POS 0.66,
+    0, 1000
 
     :
 
     !0
 
-    @POS
-    0, 0, 1000
+    @POS 0, 0, 1000
 
     ;
 
@@ -52,15 +54,16 @@ MonoBehaviour:
 
     !1
 
-    @POS 0.75, 0, 1000
+    @POS
+    0.75, 0, 1000
 
-    @SAY Worlds
-    of words can be put in these text boxes
+    @SAY Worlds of words can be put in these text boxes
 
     !0
 
-    @STAT10  INT  "Smart Choice" 
-    SmartPass  SmartFail  DMG  "Strong Choice"  StrongPass  StrongFail
+    @STAT10 
+    INT  "Smart Choice"  SmartPass  SmartFail  DMG  "Strong Choice"  StrongPass 
+    StrongFail
 
     ;
 
@@ -68,8 +71,8 @@ MonoBehaviour:
 
     !0
 
-    @SAY
-    For example, you can put several lines of text here!
+    @SAY For example, you can put several
+    lines of text here!
 
     ;
 
@@ -77,8 +80,8 @@ MonoBehaviour:
 
     !1
 
-    @SAY
-    Yessir, we can have a proper back and forth!
+    @SAY Yessir, we can have
+    a proper back and forth!
 
     ;
 
@@ -86,8 +89,8 @@ MonoBehaviour:
 
     !0
 
-    @SAY
-    What about you? You get the picture yet?
+    @SAY What about you?
+    You get the picture yet?
 
     @CHO @OP What?&&Ending% @OP Glorper.&&-1%
 
