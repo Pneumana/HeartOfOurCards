@@ -54,7 +54,8 @@ namespace Enums
         EnemyVulnerability,
         EnemyBleed,
         EnemyRegen,
-        EnemyFreeze
+        EnemyFreeze,
+        EnemyBurn
     }
 
     public enum CharacterType

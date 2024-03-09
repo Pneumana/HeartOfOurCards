@@ -400,4 +400,17 @@ namespace CardActions
             targetCharacter.ApplyStatus(StatusType.Frozen, Mathf.RoundToInt(actionParameters.Value));
         }
     }
+
+    public class EnemyBurnAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyBurn;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            var targetCharacter = actionParameters.HealthPool;
+
+            if (!targetCharacter) return;
+
+            targetCharacter.ApplyStatus(StatusType.Burn, Mathf.RoundToInt(actionParameters.Value));
+        }
+    }
 }
