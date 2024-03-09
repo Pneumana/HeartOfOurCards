@@ -1993,6 +1993,7 @@ MonoBehaviour:
   TurnEnded: 0
   deck: {fileID: 8003667175630459667}
   energydisplay: {fileID: 1802144301464593600}
+  started: 0
 --- !u!114 &8003667175630459667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,13 +2011,13 @@ MonoBehaviour:
   syncInterval: 0
   hand: []
   deck:
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
+  - {fileID: 11400000, guid: f10d1d1c63caed74591bf6bd28b24381, type: 2}
+  - {fileID: 11400000, guid: f10d1d1c63caed74591bf6bd28b24381, type: 2}
+  - {fileID: 11400000, guid: dbf91e18d52adbc41ac3b1c8035faaab, type: 2}
+  - {fileID: 11400000, guid: 6de812338adcd0d458f5404eadb72b70, type: 2}
+  - {fileID: 11400000, guid: 2612ce6f3c97ebd459e84294762a52d2, type: 2}
+  - {fileID: 11400000, guid: fede579f522e70c4eb109328a04d5202, type: 2}
+  - {fileID: 11400000, guid: 2be18c1216cb2e743a043ff25ca4c4c4, type: 2}
   - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
   - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
   - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
@@ -2227,6 +2228,7 @@ MonoBehaviour:
   TurnEnded: 0
   deck: {fileID: 5340194757500933440}
   energydisplay: {fileID: 2513965677760408011}
+  started: 0
 --- !u!114 &5340194757500933440
 MonoBehaviour:
   m_ObjectHideFlags: 0
