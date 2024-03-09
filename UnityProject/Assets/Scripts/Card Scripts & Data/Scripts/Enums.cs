@@ -46,13 +46,16 @@ namespace Enums
         FireAttack,
         FrostAttack,
         AttackTwice,
+        AttackScaleNothing,
+        AttackFive,
         EnemyAttack,
         EnemyBlock,
         EnemyHeal,
         EnemyVulnerability,
         EnemyBleed,
         EnemyRegen,
-        EnemyFreeze
+        EnemyFreeze,
+        EnemyBurn
     }
 
     public enum CharacterType
