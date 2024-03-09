@@ -46,6 +46,7 @@ namespace Enums
         FireAttack,
         FrostAttack,
         AttackTwice,
+        AttackScaleNothing,
         EnemyAttack,
         EnemyBlock,
         EnemyHeal,

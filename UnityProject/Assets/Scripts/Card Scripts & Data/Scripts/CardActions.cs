@@ -247,6 +247,28 @@ namespace CardActions
             targetCharacter.ApplyStatus(StatusType.Vulnerable, Mathf.RoundToInt(value));
         }
     }
+
+    public class AttackScaleNothing : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.AttackScaleNothing;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            if (!actionParameters.TargetCharacter) return;
+
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = actionParameters.Value;
+
+            if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
+
     public class EnemyAttackAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.EnemyAttack;
