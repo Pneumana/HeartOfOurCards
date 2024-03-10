@@ -602,9 +602,11 @@ public class DialougeDisplayer : MonoBehaviour
             //@STAT 
             //formatting is player ID, STAT, Number
             //@STAT @INT, Requirement, Label, Pass, Fail%
-            Regex regex = new Regex("^@STAT");
+            Debug.Log("depstat command");
+            Regex regex = new Regex("^@DepSTAT");
             Regex iHateSpaces = new Regex(@"\s");
             MatchCollection matches = Regex.Matches(command, @"(?<= @)(...)(.*?)(?=%)");
+            //Debug.Log();
             if (matches.Count > 0)
             {
                 List<StatCheckInfo> options = new List<StatCheckInfo>();
@@ -614,7 +616,7 @@ public class DialougeDisplayer : MonoBehaviour
                 {
                     var label = Regex.Match(match.ToString(), "(?<=\").*(?=\")");
                     var spaceless = iHateSpaces.Replace(match.ToString(), "");
-                    var split = Regex.Split(spaceless.ToString(), ",");
+                    var split = Regex.Split(spaceless.ToString(), @"\|");
                     //List<string> options = new List<StatCheckInfo>();
                     //options.Add();
                     int req = Int32.Parse(split[1]);
@@ -941,7 +943,7 @@ public class DialougeDisplayer : MonoBehaviour
         {
             //options[i].stat;
 
-            var button = Instantiate(mPStatCheckPrefab);
+            var button = Instantiate(statCheckPrefab);
             button.transform.Find("Label").GetComponent<TextMeshProUGUI>().text = options[i].label;
             button.transform.SetParent(GameObject.Find("MultipleChoice").transform);
 

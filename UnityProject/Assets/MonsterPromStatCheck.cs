@@ -40,9 +40,9 @@ public class MonsterPromStatCheck : MonoBehaviour
         Debug.Log(RunManager.instance.playerStatList.Count + " <- playerStats");
         var TargetPlayer = RunManager.instance.playerStatList[characterID];
         var _targetStat = (int)TargetPlayer.GetType().GetField(thisChoiceStat).GetValue(TargetPlayer);
-        var _targetStatREP = (int)RunManager.instance.GetType().GetField("Rep"+thisChoiceStat).GetValue(RunManager.instance);
+        var _targetStatREP = (int)TargetPlayer.GetType().GetField("Rep"+thisChoiceStat).GetValue(TargetPlayer);
         var _otherStat = (int)TargetPlayer.GetType().GetField(otherChoiceStat).GetValue(TargetPlayer);
-        var _otherStatREP = (int)RunManager.instance.GetType().GetField("Rep" + otherChoiceStat).GetValue(RunManager.instance);
+        var _otherStatREP = (int)TargetPlayer.GetType().GetField("Rep" + otherChoiceStat).GetValue(TargetPlayer);
 
         if (_targetStat >= _otherStat || _targetStat + _targetStatREP >= autoPass && _otherStat + _otherStatREP >= autoPass)
         {

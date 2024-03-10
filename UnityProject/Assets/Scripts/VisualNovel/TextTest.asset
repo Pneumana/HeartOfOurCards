@@ -30,6 +30,8 @@ MonoBehaviour:
 
     @INC Health 10
 
+    @SWAPPLAYER
+
     ;
 
     Action2
@@ -59,11 +61,8 @@ MonoBehaviour:
 
     @SAY Worlds of words can be put in these text boxes
 
-    !0
-
-    @STAT10 
-    INT  "Smart Choice"  SmartPass  SmartFail  DMG  "Strong Choice"  StrongPass 
-    StrongFail
+    @DepSTAT
+    @INT|10|"Smart Choice"|SmartPass|SmartFail% @DMG|10|"Strong Choice"|StrongPass|StrongFail%
 
     ;
 
@@ -71,8 +70,8 @@ MonoBehaviour:
 
     !0
 
-    @SAY For example, you can put several
-    lines of text here!
+    @SAY
+    For example, you can put several lines of text here!
 
     ;
 
@@ -80,8 +79,8 @@ MonoBehaviour:
 
     !1
 
-    @SAY Yessir, we can have
-    a proper back and forth!
+    @SAY
+    Yessir, we can have a proper back and forth!
 
     ;
 
@@ -89,8 +88,8 @@ MonoBehaviour:
 
     !0
 
-    @SAY What about you?
-    You get the picture yet?
+    @SAY
+    What about you? You get the picture yet?
 
     @CHO @OP What?&&Ending% @OP Glorper.&&-1%
 
