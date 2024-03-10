@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BreakButton : MonoBehaviour
 {
-    ConversationTable dungeonTable;
+    [SerializeField]ConversationTable dungeonTable;
+    [SerializeField] bool requiresBreak = true;
+    [SerializeField] bool sequential = false;
     // Start is called before the first frame update
     void Start()
     {
-        dungeonTable = Resources.Load<ConversationTable>("Conversations/EncounterEvents/Breakroom/Breakroom");
+        if(dungeonTable==null)
+            dungeonTable = Resources.Load<ConversationTable>("Conversations/EncounterEvents/Breakroom/Breakroom");
+
+        sequential = dungeonTable.sequential;
     }
 
     // Update is called once per frame
@@ -18,23 +23,32 @@ public class BreakButton : MonoBehaviour
     }
     public void Activated(int targetPlayer)
     {
+        if (targetPlayer == -1)
+            targetPlayer = RunManager.instance.pickingPlayer;
+
         if(targetPlayer == RunManager.instance.LocalPlayerID || AmbidexterousManager.Instance.PlayerList.Count == 1)
         {
-            if (RunManager.instance.playerStatList[0].usedBreak)
+            if (RunManager.instance.playerStatList[targetPlayer].usedBreak && requiresBreak)
                 return;
             var plr1 = RunManager.instance.playerStatList[targetPlayer];
             //var plr2 = RunManager.instance.playerStatList[1];
 
-            RunManager.instance.playerStatList[0] = new RunManager.PlayerStats(plr1.DMG, plr1.INT, plr1.NRG, plr1.CON,
-                plr1.Kitsune, plr1.Lich, plr1.Naga, plr1.Mermaid, plr1.Dragon, plr1.Vampire, plr1.Producer,
-                plr1.Gold, plr1.RepDMG, plr1.RepINT, plr1.RepNRG, plr1.RepCON, true);
+            if(requiresBreak)
+                RunManager.instance.playerStatList[0] = new RunManager.PlayerStats(plr1.DMG, plr1.INT, plr1.NRG, plr1.CON,
+                    plr1.Kitsune, plr1.Lich, plr1.Naga, plr1.Mermaid, plr1.Dragon, plr1.Vampire, plr1.Producer,
+                    plr1.Gold, plr1.RepDMG, plr1.RepINT, plr1.RepNRG, plr1.RepCON, true);
             //local player attempts to break
             var roll = Random.Range(0, dungeonTable.events.Count);
+            if (sequential)
+                roll = 0;
             var attempts = 1000;
             while (RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name))
             {
                 attempts--;
-                roll = Random.Range(0, dungeonTable.events.Count);
+                if (!sequential)
+                    roll = Random.Range(0, dungeonTable.events.Count);
+                else
+                    roll++;
                 if (attempts <= 0)
                 {
                     Debug.LogWarning("loading new event used up all re-roll attempts!");

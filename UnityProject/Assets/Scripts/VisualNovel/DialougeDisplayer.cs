@@ -1,3 +1,5 @@
+using DeckData;
+using Mirror;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -19,7 +21,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class DialougeDisplayer : MonoBehaviour
 {
     public Character[] player = new Character[2];
-    public List<Character> playerList = new List<Character>();
+    //public List<Character> playerList = new List<Character>();
 
     public TextMeshProUGUI speaker;
     public TextMeshProUGUI textBody;
@@ -583,7 +585,7 @@ public class DialougeDisplayer : MonoBehaviour
                     options.Add(match.ToString());
                 }
                 //An INT should be passed from the dialouge that skips the convoActionIndex
-                CreateChoiceOptions(options, actorCharID);
+                CreateChoiceOptions(options, PrimaryPlayer);
                 displayingChoice = true;
             }
 
@@ -646,7 +648,7 @@ public class DialougeDisplayer : MonoBehaviour
                     options.Add(match.ToString());*/
 
                 }
-                CreateStatOptions(options, actorCharID);
+                CreateStatOptions(options, PrimaryPlayer);
                 displayingChoice = true;
             }
 
@@ -696,7 +698,7 @@ public class DialougeDisplayer : MonoBehaviour
             var split = Regex.Split(command, @" ");
             //Debug.Log(split[1].ToString());
 
-            var TargetPlayer = RunManager.instance.playerStatList[actorCharID];
+            var TargetPlayer = RunManager.instance.playerStatList[PrimaryPlayer];
             int num = 0;
             if (split.Length == 4)
             {
@@ -720,6 +722,10 @@ public class DialougeDisplayer : MonoBehaviour
                     {
                         actorCharID = 0;
                     }
+                    var stor = player[0];
+
+                    player[0] = player[1];
+                    player[1] = stor;
                 }
 
                 RunManager.instance.ChangeStat(actorCharID, split[2], num);
@@ -832,7 +838,7 @@ public class DialougeDisplayer : MonoBehaviour
                 info = new MPStatCheckInfo(stat1, stat1Label, actionIDsParsed[0], actionIDsParsed[1], stat2, stat2Label, actionIDsParsed[2], actionIDsParsed[3]);
             }
             displayingChoice = true;
-            MonsterPromCreateStatOptions(info, actorCharID, autoPass);
+            MonsterPromCreateStatOptions(info, PrimaryPlayer, autoPass);
             //var split = Regex.Split(spaceless, ",");
             /*if (split.Contains(""))
             {
@@ -855,6 +861,27 @@ public class DialougeDisplayer : MonoBehaviour
                     return;
             }*/
             return;
+        }
+        else if (Regex.IsMatch(command, "(?<=^@SWAPPLAYER)"))
+        {
+            if (PrimaryPlayer == 1)
+                PrimaryPlayer = 0;
+            else
+                PrimaryPlayer = 1;
+        }
+        else if(Regex.IsMatch(command, "(?<=^@CARD)"))
+        {
+            var split = Regex.Split(command, @" ");
+            var load = Resources.Load<CardData>("CardData/" + split[1].ToString());
+            if(NetworkServer.connections.Count > 1)
+            {
+                AmbidexterousManager.Instance.PlayerList[PrimaryPlayer].decks[0].Add(load);
+            }
+            else
+            {
+                AmbidexterousManager.Instance.PlayerList[0].decks[PrimaryPlayer].Add(load);
+            }
+            
         }
         try
         {
