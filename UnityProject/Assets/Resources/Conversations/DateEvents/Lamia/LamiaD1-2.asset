@@ -15,18 +15,31 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: f93868bcdbf758d41a4c5f50ae4cec19, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStartPart2
-
-    !3
-
-    @SAY
-
-    :
+  commandScript: 'DateStart
 
     !2
 
-    @POS 0.5,
-    -0.1, 110
+    @SAY
+
+    @POS 0.5, -0.1, 110
+
+    ;
+
+
+    DateDialogue2
+
+    !2
+
+    @SAY
+
+    ;
+
+
+    DateDialogue3
+
+    !2
+
+    @SAY
 
     ;
 
@@ -35,9 +48,8 @@ MonoBehaviour:
 
     !0
 
-    @STAT @NRG, 10, "TEXT HERE",
-    DatePlayerChoice1Success, DatePlayerChoice1Fail% @CON, 10, "TEXT HERE", DatePlayerChoice2Success,
-    DatePlayerChoice2Fail%
+    @STAT10|INT|"TEXT
+    HERE"|DatePlayerChoice1Success|DatePlayerChoice1Fail|DMG|"TEXT HERE"|DatePlayerChoice2Success|DatePlayerChoice2Fail
 
     ;
 
@@ -60,12 +72,12 @@ MonoBehaviour:
     ;
 
 
-    DateEnd1
+    DatePart2Load1
 
     !0
 
-    @END
-    Map
+    @LOAD
+    DateEvents/Lamia/LamiaD1-3
 
     ;
 
@@ -88,12 +100,12 @@ MonoBehaviour:
     ;
 
 
-    DateEnd2
+    DatePart2Load2
 
     !0
 
-    @END
-    Map
+    @LOAD
+    DateEvents/Lamia/LamiaD1-3
 
     ;
 
@@ -116,12 +128,12 @@ MonoBehaviour:
     ;
 
 
-    DateEnd3
+    DatePart2Load3
 
     !0
 
-    @END
-    Map
+    @LOAD
+    DateEvents/Lamia/LamiaD1-3
 
     ;
 
@@ -144,11 +156,11 @@ MonoBehaviour:
     ;
 
 
-    DateEnd4
+    DatePart2Load4
 
     !0
 
-    @END
-    Map
+    @LOAD
+    DateEvents/Lamia/LamiaD1-3
 
     ;'

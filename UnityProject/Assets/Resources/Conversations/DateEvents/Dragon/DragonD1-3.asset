@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
-  m_Name: DatePart2Template
+  m_Name: DragonD1-3
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 11400000, guid: 1c25102661b91a34badf1800d4c368a8, type: 2}
+  - {fileID: 11400000, guid: 96f71882ee9d4634c8e90c4b9f6afe80, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: 'DateStartPart2
 
@@ -35,7 +35,7 @@ MonoBehaviour:
 
     !0
 
-    @STAT @NRG, 10, "TEXT HERE",
+    @STAT @NRG, 10, "TEXT HERE*",
     DatePlayerChoice1Success, DatePlayerChoice1Fail% @CON, 10, "TEXT HERE", DatePlayerChoice2Success,
     DatePlayerChoice2Fail%
 
@@ -128,7 +128,7 @@ MonoBehaviour:
 
     DatePlayerChoice2Fail
 
-    !3
+    !2
 
     @SAY
 

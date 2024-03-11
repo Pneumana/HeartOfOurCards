@@ -10,36 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
-  m_Name: DragonD1-2
+  m_Name: LamiaD1-3
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 11400000, guid: 96f71882ee9d4634c8e90c4b9f6afe80, type: 2}
+  - {fileID: 11400000, guid: f93868bcdbf758d41a4c5f50ae4cec19, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStart
+  commandScript: 'DateStartPart2
 
-    !2
-
-    @SAY
-
-    @POS 0.5, -0.1, 110
-
-    ;
-
-
-    DateDialogue2
-
-    !2
+    !3
 
     @SAY
 
-    ;
-
-
-    DateDialogue3
+    :
 
     !2
 
-    @SAY
+    @POS 0.5,
+    -0.1, 110
 
     ;
 
@@ -48,8 +35,8 @@ MonoBehaviour:
 
     !0
 
-    @STAT10|INT|"TEXT
-    HERE"|DatePlayerChoice1Success|DatePlayerChoice1Fail|DMG|"TEXT HERE"|DatePlayerChoice2Success|DatePlayerChoice2Fail%
+    @STAT10|NRG|"TEXT HERE"|DatePlayerChoice1Success|DatePlayerChoice1Fail|CON|"TEXT
+    HERE"|DatePlayerChoice2Success|DatePlayerChoice2Fail
 
     ;
 
@@ -72,12 +59,12 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load1
+    DateEnd1
 
     !0
 
-    @LOAD
-    DateEvents/Dragon/DragonD1-3
+    @END
+    Map
 
     ;
 
@@ -100,12 +87,12 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load2
+    DateEnd2
 
     !0
 
-    @LOAD
-    DateEvents/Dragon/DragonD1-3
+    @END
+    Map
 
     ;
 
@@ -128,12 +115,12 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load3
+    DateEnd3
 
     !0
 
-    @LOAD
-    DateEvents/Dragon/DragonD1-3
+    @END
+    Map
 
     ;
 
@@ -156,11 +143,11 @@ MonoBehaviour:
     ;
 
 
-    DatePart2Load4
+    DateEnd4
 
     !0
 
-    @LOAD
-    DateEvents/Dragon/DragonD1-3
+    @END
+    Map
 
     ;'

@@ -92,10 +92,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @INT, 10, "*Attempt to withstand his magical influence*", CrowdWorkPlayerChoice1Success,
-    CrowdWorkPlayerChoice1Fail% @CON, 10, "*Endure against the wave of never ending
-    undead*", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+    @STAT10|INT|*Attempt
+    to withstand his magical influence*|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|CON|*Endure
+    against the wave of never-ending undead*|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail
 
     ;
 

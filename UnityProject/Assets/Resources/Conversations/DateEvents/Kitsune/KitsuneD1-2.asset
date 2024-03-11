@@ -15,252 +15,41 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStartPart2
-
-    !3
-
-    @SAYHealing seems to hurt a lot more
-    than you thought it would... Like, a lot more!
-
-    :
-
-    !2
-
-    @POS 0.5,
-    -0.1, 110
-
-    ;
-
-
-    DatePlayerChoice
-
-    !0
-
-    @STAT @DMG, 10, "*Clench
-    your jaw and muscle your way through the pain! You survived the injury. You can
-    survive this.*", DatePlayerChoice1Success, DatePlayerChoice1Fail% @INT, 10, "*Let''s
-    just do something to keep your mind off of it. Maybe you can talk to Tsuki to
-    distract yourself.*", DatePlayerChoice2Success, DatePlayerChoice2Fail%
-
-    ;
-
-
-    DatePlayerChoice1Success
-
-    !2
-
-    @SAYWow!
-    I''ve never seen anyone handle healing so well before. Honestly, I''m impressed.
-
-    ;
-
-
-    DatePlayerChoice1Success2
-
-    !2
-
-    @SAYLooking
-    at you like this.
-
-    ;
-
-
-    DatePlayerChoice1Success3
-
-    !2
-
-    @SAYIt
-    seems like you won''t shy away from healing like the rest of those would-be adventurers
-    in the making.
-
-    ;
-
-
-    DatePlayerChoice1Success4
-
-    !2
-
-    @SAYSeems
-    like I''ll be seeing a lot of you after this, fufu.
-
-    ;
-
-
-    DateEnd1
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    DatePlayerChoice1Fail
-
-    !3
-
-    @SAYOr maybe you can''t.
-
-    ;
-
-
-    DatePlayerChoice1FailPlayerResponse
-
-    !0
-
-    @SAYAAAAAAAAAAAARRRRRRRGGGGGGGHHHHHHHH!!
-
-    ;
-
-
-    DatePlayerChoice1Fail2
-
-    !2
-
-    @SAY...Have
-    you been hanging out with that Merryreed recently?
-
-    ;
-
-
-    DatePlayerChoice1Fail3
-
-    !2
-
-    @SAYAnyway,
-    you seem to be struggling with this. You won''t get anosognosia from this will
-    you?
-
-    ;
-
-
-    DatePlayerChoice1Fail4
-
-    !2
-
-    @SAY...I''ve seen it happen
-    before.
-
-    ;
-
-
-    DateEnd2
-
-    !0
-
-    @END Map
-
-    ;
-
-
-    DatePlayerChoice2Success
-
-    !2
-
-    @SAYOh!
-    You can talk to me while getting healed? I''m impressed. Most people just scream
-    or cry.
-
-    ;
-
-
-    DatePlayerChoice2Success2
-
-    !2
-
-    @SAYWell, if talking
-    to little ol'' me will help you through this, I suppose I wouldn''t mind keeping
-    you company for a while.
-
-    ;
-
-
-    DatePlayerChoice2Success3
-
-    !2
-
-    @SAYGo
-    ahead and fire off all those burning questions you have for me.
-
-    ;
-
-
-    DatePlayerChoice2Success3
-
-    !2
-
-    @SAYAnything
-    that you''re just dying to know, fufu.
-
-    ;
-
-
-    DateEnd3
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    DatePlayerChoice2Fail
-
-    !2
-
-    @SAYUm... Maybe you should
-    unclench your jaw first.
-
-    ;
-
-
-    DatePlayerChoice2Fail2
-
-    !2
-
-    @SAYIt''s
-    really hard to understand you with that vice grip you''ve got there.
-
-    ;
-
-
-    DatePlayerChoice2Fail2
-
-    !2
-
-    @SAYWell,
-    I''ve seen people handle it worse, I suppose... And now you''re crying.
-
-    ;
-
-
-    DatePlayerChoice2Fail3
-
-    !2
-
-    @SAYAt
-    least you''re not as bad as this one person I treated. They actually cried...
-    blood.
-
-    ;
-
-
-    DatePlayerChoice2Fail4
-
-    !2
-
-    @SAYMaybe I should just
-    stop talking now.
-
-    ;
-
-
-    DateEnd4
-
-    !0
-
-    @END Map
-
-    ;'
+  commandScript: "DateStart\n!2\n@SAYI suppose I should show you to a room first,
+    for now. Maybe I could show you around while I\u2019m at it.\n@POS 0.5, -0.1,
+    110\n;\n\nDateDialogue2\n!2\n@SAYYou seem like someone interested in learning
+    about my culture, and I love to talk about it.\r\n;\n\nDateDialogue3\n!2\n@SAYLet\u2019s
+    walk and talk. Maybe next time you\u2019ll think of me when you need a little
+    exercise, fufufu.\r\n;\n\nDatePlayerChoice\n!0\n@STAT10|INT|*Tell Tsuki all of
+    the things that you already know about shrines like this.*|DatePlayerChoice1Success|DatePlayerChoice1Fail|NRG|*Keep
+    up with Tsuki while listening intently.*|DatePlayerChoice2Success|DatePlayerChoice2Fail\n;\n\nDatePlayerChoice1Success\n!2\n@SAYOh!
+    I didn\u2019t know you were so knowledgeable about all of this.\n;\n\nDatePlayerChoice1Success2\n!2\n@SAYWell,
+    alright then, smartypants. Since you seem to know so much, maybe I can just have
+    the pleasure of listening to that silky smooth voice of yours instead.\n;\n\nDatePart2Load1\n!0\n@LOAD
+    DateEvents/Kitsune/KitsuneD1-3\n;\n\nDatePlayerChoice1Fail\n!2\n@SAYOh\u2026
+    umm. Wow. It seems like you\u2019ve really done a lot of research\u2026\n;\n\nDatePlayerChoice1Fail2\n!2\n@SAYOn
+    the place where I live\u2026 and my family. Ummm. I don\u2019t even know where
+    you would find things like that.\n;\n\nDatePlayerChoice1Fail3\n!2\n@SAYMaybe
+    I should increase the security for a while\u2026 and buy better curtains.\n;\n\nDatePart2Load2\n!0\n@LOAD
+    DateEvents/Kitsune/KitsuneD1-3\n;\n\nDatePlayerChoice2Success\n!3\n@SAYTsuki
+    takes you all around the shrine to popular places to visit and some hidden spots
+    she recommends. You eventually arrive at a small courtyard with an older style
+    of shrine.\n;\n\nDatePlayerChoice2Success2\n!2\n@SAYFufu, I\u2019ve never had
+    such an active listener around to listen to my rambling.\n;\n\nDatePlayerChoice2Success3\n!2\n@SAYThis
+    is where I grew up with my parents, so I can tend to get a little long-winded
+    when it comes to this place.\n;\n\nDatePlayerChoice2Success4\n!2\n@SAYThis small
+    courtyard used to be all there was back then. I was able to expand a lot once
+    I took over the business, but I still like to visit this small shrine in the
+    back whenever I can.\n;\n\nDatePlayerChoice2Success5\n!2\n@SAYI\u2019m happy
+    I was able to share this with you this time, [Player].\n;\n\nDatePart2Load3\n!0\n@LOAD
+    DateEvents/Kitsune/KitsuneD1-3\n;\n\nDatePlayerChoice2Fail\n!3\n@SAYYou find
+    yourself drifting off often when Tsuki gets into particular detail about some
+    building or rock or fish or whatever there is around here.\n;\n\nDatePlayerChoice2Fail2\n!2\n@SAY-ey\u2026
+    Hey! Are you listening? *Sigh* Are you sure you're even interested in all this?
+    Make sure to pay attention when someone is telling you about themself. Now! To
+    continue\u2026\n;\n\nDatePlayerChoice2FailNarration2\n!3\n@SAYYou really try
+    to make an effort to listen this time, but you guys must have been walking around
+    for basically forever. Tsuki looks back to realize you\u2019ve fallen behind
+    for the nth time.\n;\n\nDatePlayerChoice2Fail3\n!2\n@SAY\u2026Is it that hard
+    to walk around for 10 minutes? Maybe your wounds are worse than I thought.\n;\n\nDatePlayerChoice2FailNarration3\n!3\n@SAYShe
+    is trying to save you face.\n;\n\nDatePart2Load4\n!0\n@LOAD DateEvents/Kitsune/KitsuneD1-3\n;"

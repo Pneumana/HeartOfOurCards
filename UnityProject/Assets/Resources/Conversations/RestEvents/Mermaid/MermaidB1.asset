@@ -26,11 +26,10 @@ MonoBehaviour:
     really bit off more than I can chew with this thing.\n;\n\nBreakDialogue8\n!2\n@SAYDo
     you ever get nervous on stage [PLAYER]?\n;\n\nBreakDialogue9\n!2\n@SAYOh, what
     am I asking, I'm sure you have at some point.\n;\n\nBreakDialogue10\n!2\n@SAYI
-    guess, I meant what do you do to be brave and fight through it?\n;\n\nBreakPlayerChoice\n!0\n@STAT
-    @INT, 10, \"Two words: Meditation and Breathing Excercises.\", BreakPlayerChoice1Success,
-    BreakPlayerChoice1Fail% @NRG, 10, \"The best way to get those butterflies to
-    stop fluttering is to tire them out! Do some jumping around or some light excercise!\",
-    BreakPlayerChoice2Success, BreakPlayerChoice2Fail%\n;\n\nBreakPlayerChoice1Success\n!2\n@SAYOh!
+    guess, I meant what do you do to be brave and fight through it?\n;\n\nBreakPlayerChoice\n!0\n@STAT10|INT|\"Two
+    words: Meditation and Breathing Excercises.\"|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|NRG|\"The
+    best way to get those butterflies to stop fluttering is to tire them out! Do
+    some jumping around or some light excercise!\"|BreakPlayerChoice2Success|BreakPlayerChoice2Fail\n;\n\nBreakPlayerChoice1Success\n!2\n@SAYOh!
     I see what you mean. I can't exactly do breathing excercises, but it's the principal
     right?\n;\n\nBreakPlayerChoice1Success2\n!2\n@SAYFind something you normally
     do without thinking and do it manually and ground yourself to focus your thoughts!\n;\n\nBreakPlayerChoice1Success3\n!2\n@SAYI

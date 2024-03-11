@@ -92,10 +92,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT @DMG, 10, "Next
-    we meet will be when you meet your end fox!", CrowdWorkPlayerChoice1Success,
-    CrowdWorkPlayerChoice1Fail% @NRG, 10, "We won''t keep you waiting. These monsters
-    can''t hold us back for long!", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+    @STAT10|DMG|"Next
+    we meet will be when you meet your end fox!"|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|NRG|"We
+    won''t keep you waiting. These monsters can''t hold us back for long!"|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail
 
     ;
 
@@ -105,7 +104,7 @@ MonoBehaviour:
     !2
 
     @SAYOh
-    my! Fufu, I do like it to be a bit... rough.
+    my! Fufu, I do like it to get a bit... rough.
 
     ;
 
@@ -145,7 +144,7 @@ MonoBehaviour:
     !2
 
     @SAYNext
-    time, try asking for the safeword first.
+    time, start by  asking for a safeword first.
 
     ;
 
@@ -180,7 +179,7 @@ MonoBehaviour:
     ;
 
 
-    CrowdWorkPlayerChoice2Success2
+    CrowdWorkPlayerChoice2Success3
 
     !2
 
@@ -190,7 +189,7 @@ MonoBehaviour:
     ;
 
 
-    CrowdWorkPlayerChoice2Success3
+    CrowdWorkPlayerChoice2Success4
 
     !2
 

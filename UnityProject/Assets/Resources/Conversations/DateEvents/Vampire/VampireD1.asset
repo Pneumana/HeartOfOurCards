@@ -48,9 +48,8 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @INT, 10, "TEXT HERE", DatePlayerChoice1Success, DatePlayerChoice1Fail% @DMG,
-    10, "TEXT HERE", DatePlayerChoice2Success, DatePlayerChoice2Fail%
+    @STAT10|INT|"TEXT
+    HERE"|DatePlayerChoice1Success|DatePlayerChoice1Fail|DMG|"TEXT HERE"|DatePlayerChoice2Success|DatePlayerChoice2Fail
 
     ;
 

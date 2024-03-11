@@ -52,8 +52,8 @@ MonoBehaviour:
     !2
 
     @SAYI
-    was sure you would since I gave personally gave you my glowing recommendation
-    and even offered a special discount.
+    was sure you would since I  personally gave you my glowing recommendation and
+    even offered a special discount.
 
     ;
 
@@ -83,10 +83,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @NRG, 10, "I made my way here as fast as I could though.", DatePlayerChoice1Success,
-    DatePlayerChoice1Fail% @CON, 10, "I couldn''t wait to see you anymore so here
-    I am!", DatePlayerChoice2Success, DatePlayerChoice2Fail%
+    @STAT10|NRG|"I
+    made my way here as fast as I could, though."|DatePlayerChoice1Success|DatePlayerChoice1Fail|CON|"I
+    couldn''t wait to see you anymore, so here I am!"|DatePlayerChoice2Success|DatePlayerChoice2Fail
 
     ;
 
@@ -225,7 +224,7 @@ MonoBehaviour:
     !2
 
     @SAYOh
-    my. You do look in dire need of me. You''re really on your last leg here.
+    my. You do look in dire need of my help. You''re really on your last leg here.
 
     ;
 
@@ -235,7 +234,7 @@ MonoBehaviour:
     !2
 
     @SAYWe
-    need to opperate right away, so I''ll hand you off to someone else now. See you
+    need to operate right away, so I''ll hand you off to someone else now. See you
     next time...
 
     ;

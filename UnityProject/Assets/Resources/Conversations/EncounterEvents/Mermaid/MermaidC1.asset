@@ -92,10 +92,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @DMG, 10, "*Do a little back and forth swashbuckling dueling.*", CrowdWorkPlayerChoice1Success,
-    CrowdWorkPlayerChoice1Fail% @CON, 10, "*Lets make this a chase! Unleash your
-    secret family technique and RUN FOR IT!*", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+    @STAT10|DMG|*Do
+    a little back and forth swashbuckling dueling.*|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|CON|*Lets
+    make this a chase! Unleash your secret family technique and RUN FOR IT!*|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail
 
     ;
 

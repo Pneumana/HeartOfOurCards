@@ -82,11 +82,10 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @NRG, 10, "Why don''t I go get him for you? I think I can make it back in time
-    if I hurry!", BreakPlayerChoice1Success, BreakPlayerChoice1Fail% @DMG, 10, "*Push
-    him out the door* Come on! You don''t need anyones help! Everything you need
-    was aways inside you all along!", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
+    @STAT10|NRG|"Why
+    don''t I go get him for you? I think I can make it back in time if I hurry!"|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|DMG|*Push
+    him out the door* "Come on! You don''t need anyones help! Everything you need
+    was aways inside you all along!"|BreakPlayerChoice2Success|BreakPlayerChoice2Fail
 
     ;
 

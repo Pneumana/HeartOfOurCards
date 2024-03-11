@@ -62,10 +62,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @INT, 999, "Are you marketing your business right now?", BreakPlayerChoice1Success,
-    BreakPlayerChoice1Fail% @CON, 999, "What do you mean "special care"?", BreakPlayerChoice2Success,
-    BreakPlayerChoice2Fail%
+    @STAT10|INT"Are
+    you marketing your business right now?"|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|CON|"What
+    do you mean "special care"?"|BreakPlayerChoice2Success|BreakPlayerChoice2Fail
 
     ;
 

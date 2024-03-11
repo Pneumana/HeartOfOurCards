@@ -48,9 +48,8 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @INT, 10, "TEXT HERE", BreakPlayerChoice1Success, BreakPlayerChoice1Fail% @CON,
-    10, "TEXT HERE", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
+    @STAT10|INT|"TEXT
+    HERE"|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|CON|"TEXT HERE"|BreakPlayerChoice2Success|BreakPlayerChoice2Fail
 
     ;
 

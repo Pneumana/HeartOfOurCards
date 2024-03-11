@@ -48,9 +48,8 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @DMG, 10, "TEXT HERE", CrowdWorkPlayerChoice1Success, CrowdWorkPlayerChoice1Fail%
-    @CON, 10, "TEXT HERE", CrowdWorkPlayerChoice2Success, CrowdWorkPlayerChoice2Fail%
+    @STAT10|DMG|"TEXT
+    HERE"|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|CON|"TEXT HERE"CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail
 
     ;
 

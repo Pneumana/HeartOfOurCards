@@ -61,9 +61,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT @INT, 10, "Would you
-    like me to move the furniture around for you?", BreakPlayerChoice1Success, BreakPlayerChoice1Fail%
-    @DMG, 10, "*Break the furnature in solidarity*", BreakPlayerChoice2Success, BreakPlayerChoice2Fail%
+    @STAT10|INT|"Would you like
+    me to move the furniture around for you?"|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|DMG|*Break
+    the furnature in solidarity*|BreakPlayerChoice2Success|BreakPlayerChoice2Fail
 
     ;
 
