@@ -17,7 +17,7 @@ MonoBehaviour:
   energyCost: 0
   cardSprite: {fileID: 0}
   cardType: 02000000
-  usableWithoutTarget: 1
+  usableWithoutTarget: 0
   exhaustAfterPlay: 1
   cardActionDataList:
   - cardActionType: 1

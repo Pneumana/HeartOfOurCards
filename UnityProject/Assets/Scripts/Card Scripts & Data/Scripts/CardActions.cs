@@ -270,9 +270,9 @@ namespace CardActions
         }
     }
 
-    public class AttackFiveAction : CardActionBase
+    public class AttackFive : CardActionBase
     {
-        public override CardActionType ActionType => CardActionType.Attack;
+        public override CardActionType ActionType => CardActionType.AttackFive;
         public override void DoAction(CardActionParameters actionParameters)
         {
             if (!actionParameters.TargetCharacter) return;
