@@ -15,152 +15,37 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'CrowdWorkStart
-
-    !2
-
-    @SAY
-
-    @POS 0.5, -0.1, 110
-
-    ;
-
-
-    CrowdWorkDialogue2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkDialogue3
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice
-
-    !0
-
-    @STAT10|DMG|"TEXT
-    HERE"|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|CON|"TEXT HERE"CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd1
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd2
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd3
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd4
-
-    !0
-
-    @END
-    Map
-
-    ;'
+  commandScript: "CrowdWorkStart\n!2\n@SAYOnce again you foolish heroes have come
+    to face me. Perhaps this too is part of my fate.\n@POS 0.5, -0.1, 110\n;\n\nCrowdWorkDialogue2\n!2\n@SAYIt
+    is not by my hand that I am to fight you.  It is through the love of my adoring
+    fans that I am once again brought to the stage.\n;\n\nCrowdWorkDialogue3\n!2\n@SAYWhat
+    is a fan? A miserable little pile of thirst. But enough talk, have at you!\r\nChoice:
+    Oh, right, this is Arc's fan favorite monologue, it's been memed to death. Well,
+    he needs a response to continue...\n;\n\nCrowdWorkPlayerChoice\n!0\n@STAT10|INT|*You've
+    had enough with the cheesy lines, it's time to improvise! *|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|DMG|\"Die
+    monster, you don't belong in this world!\"|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail\n;\n\nCrowdWorkPlayerChoice1Success\n!0\n@SAYYou
+    talk of thirst, yet here you stand, panting like a dog for me.\n;\n\nCrowdWorkPlayerChoice1Success2\n!2\n@SAYWhy
+    you little- we shall see who's panting at the end of this, you rake!\n;\n\nCrowdWorkPlayerChoice1SuccessNarration1\n!3\n@SAYA
+    heavy blush fills the vampire's face. Your LOGIC tells you that it would take
+    a lot of rizz to make a vampire turn that red!\n;\n\nCrowdWorkEnd1\n!0\n@END
+    Map\n;\n\nCrowdWorkPlayerChoice1Fail\n!0\n@SAYErm... uh... how about you have
+    at... deez nuts?\n;\n\nCrowdWorkPlayerChoice1Fail2\n!2\n@SAY... wow. I'm going
+    to leave now, and hope that the next time you meet you have your head about you.\n;\n\nCrowdWorkPlayerChoice1FailNarration1\n!3\n@SAYIncredible
+    showing, that\u2019ll get you the oscar for sure. All improv requires quick thinking,
+    you\u2019re gonna need to up your Logic to do any of that.\n;\n\nCrowdWorkEnd2\n!0\n@END
+    Map\n;\n\nCrowdWorkPlayerChoice2Success\n!2\n@SAYThe crowd erupts in cheers and
+    applause. An unusual response, but then it hits you- this isn\u2019t the first
+    time you\u2019ve spoken this line.\n;\n\nCrowdWorkPlayerChoice2Success2\n!2\n@SAYOutrageous,
+    [Player], were it from anyone else such a bold threat would be trite, tossed
+    aside. But I remember those words we once shared long ago. And today, I shall
+    make you EAT those words!\n;\n\nCrowdWorkPlayerChoice2SuccessNarration1\n!3\n@SAYArc
+    lunges at you with a sparkle of nostalgia in his eye. Your OVERKILLing line might
+    have grown old, but it grew old with a friend\u2026\n;\n\nCrowdWorkEnd3\n!0\n@END
+    Map\n;\n\nCrowdWorkPlayerChoice2Fail\n!3\n@SAYThe crowd freezes for a moment,
+    the calm before the storm of booing fans and a flurry of tomatoes, a seemingly
+    dispraportionate response even if your delivery was flat.\n;\n\nCrowdWorkPlayerChoice2Fail2\n!2\n@SAYTruly,
+    [Player], is that how little you care about our moments together? Fine, if you
+    have no care for the past, then I shall make you fear our perilous FUTURE.\n;\n\nCrowdWorkPlayerChoice2FailNarration2\n!3\n@SAYThe
+    grimace on Arc's face is real, the vampire seems hurt. Maybe if you had commited
+    to the bit with a little bit of OVERKILL, you could have won the favor of both
+    Arc and the crowd.\n;\n\nCrowdWorkEnd4\n!0\n@END Map\n;"

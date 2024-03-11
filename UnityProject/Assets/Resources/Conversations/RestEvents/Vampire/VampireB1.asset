@@ -15,152 +15,43 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'BreakStart
-
-    !2
-
-    @SAY
-
-    @POS 0.5, -0.1, 110
-
-    ;
-
-
-    BreakDialogue2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakDialogue3
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakPlayerChoice
-
-    !0
-
-    @STAT10|INT|"TEXT
-    HERE"|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|CON|"TEXT HERE"|BreakPlayerChoice2Success|BreakPlayerChoice2Fail
-
-    ;
-
-
-    BreakPlayerChoice1Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakPlayerChoice1Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakEnd1
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    BreakPlayerChoice1Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakPlayerChoice1Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakEnd2
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    BreakPlayerChoice2Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakPlayerChoice2Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakEnd3
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    BreakPlayerChoice2Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakPlayerChoice2Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    BreakEnd4
-
-    !0
-
-    @END
-    Map
-
-    ;'
+  commandScript: "BreakStart\n!2\n@SAYUgh, B-negative blood again? I swear, the Association
+    keeps cutting costs in the worst ways. I mean seriously, what would my fans think
+    if I was drinking basic blood like this?\n@POS 0.5, -0.1, 110\n;\n\nBreakDialogue2\n!2\n@SAYY'know,
+    I used to be able to drink fresh blood on stage, straight from the neck. But
+    apparently too much blood is a 'biohazard' and one too many stagehands slipped.\n;\n\nBreakDialogue3\n!2\n@SAYIt's
+    cheaper to just give me the cheap stuff than medical bills, apparently, they
+    care nothing for my complexion.\n;\n\nBreakDialogue4\n!2\n@SAYOh, if only I could
+    have a taste of fresh, pure blood from a noble hero who would help a damsel in
+    distress...\n;\n\nBreakNarration1\n!3\n@SAYArc is looking at you like a puppy
+    forced to take a bath\u2026 How will you get this twink something to quench their
+    thirst?\n;\n\nBreakPlayerChoice\n!0\n@STAT10|NRG|*Run to the shop as fast as
+    you can to get Arc some virgin blood.*|BreakPlayerChoice1Success|BreakPlayerChoice1Fail|CON|*Offer
+    up some of your blood.*|BreakPlayerChoice2Success|BreakPlayerChoice2Fail\n;\n\nBreakPlayerChoice1Success\n!2\n@SAYVirgin
+    blood isn't really my style, but I certainly want to see you run. Really get
+    your circulation going.\n;\n\nBreakPlayerChoice1Success2\n!2\n@SAYGo on, start
+    running, I want to hear you pant\u2026 I\u2019ll get you a head start before
+    I hunt you down.\n;\n\nBreakPlayerChoice1SuccessNarration1\n!3\n@SAYYou start
+    booking it, keeping good control of your Velocity to keep Arc always in sight.
+    By the time he catches up to you, break time is over, which leaves the vampire
+    eager for your next fight.\n;\n\nBreakEnd1\n!0\n@END Map\n;\n\nBreakPlayerChoice1Fail\n!2\n@SAYVirgin
+    blood? What am I, a pervert?\n;\n\nBreakPlayerChoice1Fail2\n!2\n@SAYGod, virgin
+    blood is such boomer vampire energy. Oh what's next, no gay blood, only blood
+    on the rocks, shaken not stirred?\n;\n\nBreakPlayerChoice1FailNarration\n!3\n@SAYArc
+    leaves, offended by your outdated views. Your lack of VELOCITY in regards to
+    undead social issues is really showing, hopefully you have the VELOCITY to run
+    away from this PR Scandal.\n;\n\nBreakEnd2\n!0\n@END Map\n;\n\nBreakPlayerChoice2Success\n!2\n@SAYY'know
+    it's been a while since I've had a taste of you. Too long, one might say. Sure,
+    I'll have a little taste again, for old times sake.\n;\n\nBreakPlayerChoice2Success2\n!2\n@SAY
+    Mmm, it's not as sweet as before. It's more aged, more complex, with a hint of...
+    longing. I have to say, I like this taste a lot more. Drinking blood really cuts
+    to the heart of a person, and I think I\u2019ve grown my appreciation for yours.\n;\n\nBreakPlayerChoice2SuccessNarration1\n!3\n@SAYIt
+    doesn\u2019t hurt that you\u2019ve changed your diet to lower your sugar intake,
+    thank goodness for taking care of yourself and your ENDURANCE\n;\n\nBreakEnd3\n!0\n@END
+    Map\n;\n\nBreakPlayerChoice2Fail\n!3\n@SAYArc tenderly bites your neck, then
+    suddenly bursts into flame, ruining any tender moment you had with them.\n;\n\nBreakPlayerChoice2Fail2\n!2\n@SAYOh
+    that\u2019s\u2026 that\u2019s very spicy. Have you, by chance, had any garlic
+    lately?\n;\n\nBreakPlayerChoice2FailNarration2\n!3\n@SAYYou gesture to the bottle
+    of garlic oil you've been chugging for the past hour. If only your frail ENDURANCE
+    didn\u2019t require an italian diet, you could have hot times with Arc.\n\nBreakEnd4\n!0\n@END
+    Map\n;"
