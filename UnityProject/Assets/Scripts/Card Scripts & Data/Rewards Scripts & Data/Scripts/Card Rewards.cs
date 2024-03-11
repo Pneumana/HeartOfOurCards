@@ -1,5 +1,6 @@
 using CardActions;
 using DeckData;
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -12,8 +13,7 @@ public class CardRewards : MonoBehaviour
     [SerializeField] private CardRarieties uncommonCards;
     [SerializeField] private CardRarieties rareCards;
 
-    [Header("Rarity Chances")]
-    [Header("Make sure numbers add to 100")]
+    [Header("Rarity Chances. Make sure numbers add to 100")]
     [SerializeField] private int commonChance;
     [SerializeField] private int uncommonChance;
     [SerializeField] private int rareChance;
@@ -21,7 +21,7 @@ public class CardRewards : MonoBehaviour
     [Header("Misc")]
     [SerializeField] private List<GameObject> spawnLocations;
     [SerializeField] private GameObject cardPrefab;
-    List<CardData> CardRewardList;
+    List<GameObject> CardRewardList = new List<GameObject>();
 
     void Start()
     {
@@ -33,36 +33,56 @@ public class CardRewards : MonoBehaviour
         
     }
 
-    public void CardGeneration()
+    //[Command(requiresAuthority = false)]
+    public void CMDCardGeneration()
     {
-        int amountOfCards = 0;
-
         for (int i = 0; i < 3; i++)
         {
-            var number = Random.Range(1, 101);
-
-            if (number < commonChance)
-            {
-                var Card = Random.Range(0, commonCards.Cards.Count - 1);
-                CardRewardList.Add(commonCards.Cards[Card]);
-            }
-            else if (number < commonChance + uncommonChance && number > commonChance)
-            {
-                var Card = Random.Range(0, uncommonCards.Cards.Count - 1);
-                CardRewardList.Add(uncommonCards.Cards[Card]);
-            }
-            else if (number > commonChance + uncommonChance)
-            {
-                var Card = Random.Range(0, rareCards.Cards.Count - 1);
-                CardRewardList.Add(rareCards.Cards[Card]);
-            }
+            var roll = Random.Range(1, 101);
+            var roll2 = Random.Range(0, commonCards.Cards.Count - 1);
+            var roll3 = Random.Range(0, uncommonCards.Cards.Count - 1);
+            var roll4 = Random.Range(0, rareCards.Cards.Count - 1);
+            CardGeneration(roll, roll2, roll3, roll4, i);
         }
+    }
 
-        foreach (var Card in CardRewardList)
+    private void CardGeneration(int roll, int roll2, int roll3, int roll4, int i)
+    {
+        var CardRewardListTemp = new List<CardData>();
+
+        if (roll <= commonChance)
         {
-            var n = Instantiate(cardPrefab, spawnLocations[amountOfCards].transform);
-            n.GetComponent<CardBase>().CardData = Card;
-            amountOfCards++;
+            CardRewardListTemp.Add(commonCards.Cards[roll2]);
         }
+        else if (roll <= commonChance + uncommonChance && roll > commonChance)
+        {
+            CardRewardListTemp.Add(uncommonCards.Cards[roll3]);
+        }
+        else if (roll > commonChance + uncommonChance)
+        {
+            CardRewardListTemp.Add(rareCards.Cards[roll4]);
+        }
+
+        foreach (var Card in CardRewardListTemp)
+        {
+            var n = Instantiate(cardPrefab, spawnLocations[i].transform);
+            CardRewardList.Add(n);
+            n.transform.forward = -n.transform.forward;
+            n.GetComponent<CardBase>().CardData = Card;
+        }
+    }
+
+    public void CMDCardDestroy()
+    {
+        CardDestroy();
+    }
+
+    private void CardDestroy()
+    {
+        foreach (GameObject card in CardRewardList)
+        {
+            Destroy(card);
+        }
+        CardRewardList.Clear();
     }
 }

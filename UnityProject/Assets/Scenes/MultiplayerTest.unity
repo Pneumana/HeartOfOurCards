@@ -2508,7 +2508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1282395024633579164, guid: b7e03ad76ae08aa468b66cefebeb5b93, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Taylor Test
+      value: TaylorTest
       objectReference: {fileID: 0}
     - target: {fileID: 2988769072817005202, guid: b7e03ad76ae08aa468b66cefebeb5b93, type: 3}
       propertyPath: m_Name
