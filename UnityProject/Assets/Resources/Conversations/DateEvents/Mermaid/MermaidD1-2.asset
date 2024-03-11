@@ -46,10 +46,9 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @NRG, 1, "*Put your accuracy to the test. Cut out the guts with your knife.*",
-    DatePlayerChoice1Success, DatePlayerChoice1Fail% @CON, 11, "*Eat it as is. Momma
-    didn''t raise a quitter.*", DatePlayerChoice2Success, DatePlayerChoice2Fail%
+    @STAT10|NRG|*Put
+    your accuracy to the test. Cut out the guts with your knife.*|DatePlayerChoice1Success|DatePlayerChoice2Fail|CON|*Eat
+    it as is. Momma didn''t raise a quitter.*|DatePlayerChoice2Success|DatePlayerChoice2Fail
 
     ;
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStartPart2
+  commandScript: 'DateStartPart3
 
     !3
 

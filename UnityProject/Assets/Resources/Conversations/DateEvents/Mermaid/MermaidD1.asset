@@ -104,11 +104,10 @@ MonoBehaviour:
 
     !0
 
-    @STAT
-    @INT, 1, "You''ve heard it''s customary for the lady to order in merfolk culture.
-    Best let her handle it.", DatePlayerChoice1Success, DatePlayerChoice1Fail% @DMG,
-    10, "You''re here to impress her. Order the most intimidating item on the menu.",
-    DatePlayerChoice2Success, DatePlayerChoice2Fail%
+    @STAT10|INT|"You''ve
+    heard it''s customary for the lady to order in merfolk culture. Best let her
+    handle it."|DatePlayerChoice1Success|DatePlayerChoice2Fail|DMG|"You''re here
+    to impress her. Order the most intimidating item on the menu."|DatePlayerChoice2Success|DatePlayerChoice2Fail
 
     ;
 
