@@ -125,7 +125,7 @@ public class RunManager : NetworkBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             if (Health == 0)
-                Health = (20 + (playerStatList[0].CON * 2) + (playerStatList[1].CON * 2));
+                Health = ((playerStatList[0].CON * 2) + (playerStatList[1].CON * 2));
             CardActionProcessor.Initialize();
         }
     }

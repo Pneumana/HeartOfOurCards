@@ -22,7 +22,7 @@ namespace Characters
         public void Start()
         {
             RM = RunManager.instance;
-            maxHealth = (20 + (RM.playerStatList[0].CON * 2) + (RM.playerStatList[1].CON * 2));
+            maxHealth = ((RM.playerStatList[0].CON * 2) + (RM.playerStatList[1].CON * 2));
             health = RM.Health;
             SetAllStatus();
             AllyCanvas.InitCanvas();
