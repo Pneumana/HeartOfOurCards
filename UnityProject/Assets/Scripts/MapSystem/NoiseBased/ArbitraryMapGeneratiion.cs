@@ -240,9 +240,9 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         
 
         //Vector3Int fp1Int = new Vector3Int(furthestPair1.x), Mathf.FloorToInt(furthestPair1.y));
-        world.SetTile(furthestPair1, startpoint);
+/*        world.SetTile(furthestPair1, startpoint);
         //Vector3Int fp2Int = new Vector3Int(Mathf.FloorToInt(furthestPair2.x), Mathf.FloorToInt(furthestPair2.y));
-        world.SetTile(furthestPair2, endpoint);
+        world.SetTile(furthestPair2, endpoint);*/
 
         foreach (Vector3Int pos in world.cellBounds.allPositionsWithin)
         {
@@ -292,7 +292,11 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         {
             fogOfWar.SetTile(pos, null);
         }
-        
+
+        world.SetTile(furthestPair1, startpoint);
+        //Vector3Int fp2Int = new Vector3Int(Mathf.FloorToInt(furthestPair2.x), Mathf.FloorToInt(furthestPair2.y));
+        world.SetTile(furthestPair2, endpoint);
+
     }
 
     //creates objects in a grid until it runs out of place attempts;

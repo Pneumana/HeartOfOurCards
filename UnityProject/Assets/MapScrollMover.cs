@@ -19,6 +19,7 @@ public class MapScrollMover : MonoBehaviour
             Debug.LogWarning("Cheating to skip combat");
             transform.position += transform.up * 6.5f;
             cheated = true;
+            RunManager.instance.Stamina += 1;
         }
     }
 }
