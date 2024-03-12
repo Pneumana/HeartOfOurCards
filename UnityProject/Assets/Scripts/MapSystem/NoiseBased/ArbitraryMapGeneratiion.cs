@@ -472,9 +472,10 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                 //get from DungeonEvents ConversationTable, try to 
                 var roll = Random.Range(0, dungeonTable.events.Count);
                 var attempts = 1000;
-                while(RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name))
+                while(RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name) && attempts > 0)
                 {
                     attempts--;
+                    Debug.Log(attempts);
                     roll = Random.Range(0, dungeonTable.events.Count);
                     if (attempts <= 0)
                     {
@@ -483,6 +484,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                         break;
                     }
                 }
+                Debug.Log("rolled " + roll);
                 RunManager.instance.ForceLoadConvoReference = dungeonTable.events[roll];
                 RunManager.instance.experiencedEvents.Add(dungeonTable.events[roll].name);
                 Debug.Log("loading event <color=#00FF00>" + RunManager.instance.ForceLoadConvoReference.name + "</color> with roll " + roll + " of " + (dungeonTable.events.Count - 1));

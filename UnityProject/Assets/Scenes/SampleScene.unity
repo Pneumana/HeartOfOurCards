@@ -338,7 +338,7 @@ MonoBehaviour:
   textBody: {fileID: 531180593}
   convoActionIndex: 0
   currentConvo: {fileID: 0}
-  textFieldConvo: {fileID: 11400000, guid: f82a7fe3b39447346b9f5a8b0869c535, type: 2}
+  textFieldConvo: {fileID: 11400000, guid: 3b888b14ee010c34084adc76f83d3d9e, type: 2}
   optionPrefab: {fileID: 5502359447542862431, guid: d33a566bd6ad99445be38e99b1dd0bba, type: 3}
   statCheckPrefab: {fileID: 5502359447542862431, guid: 5852c2cbd30acb340ac65f498b57c1ea, type: 3}
   mPStatCheckPrefab: {fileID: 5502359447542862431, guid: 3e8e412cd51c8394e9e835342514d999, type: 3}
