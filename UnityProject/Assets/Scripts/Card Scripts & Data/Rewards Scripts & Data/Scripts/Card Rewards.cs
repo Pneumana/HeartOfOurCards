@@ -4,6 +4,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class CardRewards : NetworkBehaviour
@@ -21,13 +22,16 @@ public class CardRewards : NetworkBehaviour
     [Header("Misc")]
     [SerializeField] private List<GameObject> spawnLocations;
     [SerializeField] private GameObject cardPrefab;
+    public TextMeshProUGUI text;
     List<GameObject> CardRewardList = new List<GameObject>();
     List<CardData> CardDataList = new List<CardData>();
     private int cardsPicked = 0;
+    private int picking;
 
     void Start()
     {
-        
+        picking = RunManager.instance.pickingPlayer;
+        text.text = "Player " + (RunManager.instance.pickingPlayer + 1) + " is picking";
     }
 
     void Update()
@@ -38,7 +42,7 @@ public class CardRewards : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMDCardGeneration()
     {
-        if (RunManager.instance.pickingPlayer == RunManager.instance.LocalPlayerID) return;
+        //if (RunManager.instance.pickingPlayer == RunManager.instance.LocalPlayerID) return;
         cardsPicked = 0;
         for (int i = 0; i < 3; i++)
         {
@@ -133,5 +137,38 @@ public class CardRewards : NetworkBehaviour
             CardDataList.Clear();
             cardsPicked = 0;
         }
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CMDChangePickingPlayer()
+    {
+        ChangePickingPlayer();
+    }
+
+    [ClientRpc]
+    void ChangePickingPlayer()
+    {
+        if (RunManager.instance.pickingPlayer == 0)
+        {
+            RunManager.instance.pickingPlayer = 1;
+        }
+        else
+        {
+            RunManager.instance.pickingPlayer = 0;
+        }
+
+        text.text = "Player " + (RunManager.instance.pickingPlayer + 1) + " is picking";
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CMDLeave()
+    {
+        Leave();
+    }
+
+    [ClientRpc]
+    private void Leave()
+    {
+        RunManager.instance.pickingPlayer = picking;
     }
 }
