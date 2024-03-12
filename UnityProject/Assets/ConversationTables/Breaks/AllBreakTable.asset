@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf11a333abf8db4785b9a2afa3b30cd, type: 3}
   m_Name: AllBreakTable
   m_EditorClassIdentifier: 
+  sequential: 0
   events:
   - {fileID: 11400000, guid: 464909ed891ce184297096b0ad274292, type: 2}
+  - {fileID: 11400000, guid: 764e37a1980174c44a93ef387243904f, type: 2}
+  - {fileID: 11400000, guid: 9905196c8285c0d469d5871d83be8eca, type: 2}
+  - {fileID: 11400000, guid: a58a699000e46ea42ab9a2510f952674, type: 2}
+  - {fileID: 11400000, guid: 4865386d0cd44164cbf359156996f1f1, type: 2}

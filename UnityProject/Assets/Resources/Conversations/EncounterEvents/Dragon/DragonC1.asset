@@ -15,152 +15,53 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: 96f71882ee9d4634c8e90c4b9f6afe80, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'CrowdWorkStart
-
-    !2
-
-    @SAY
-
-    @POS 0.5, 0, 110
-
-    ;
-
-
-    CrowdWorkDialogue2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkDialogue3
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice
-
-    !0
-
-    @STAT10|DMG|"TEXT
-    HERE"|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|CON|"TEXT HERE"|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd1
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice1Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd2
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd3
-
-    !0
-
-    @END
-    Map
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkPlayerChoice2Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    CrowdWorkEnd4
-
-    !0
-
-    @END
-    Map
-
-    ;'
+  commandScript: "CrowdWorkStart\n!2\n@SAYIt seems there is a new set of lesser beings
+    to fall in the labyrinth.... Or have you been here before?\n@POS 0.5, 0, 110\n;\n\nCrowdWorkDialogue2\n!2\n@SAYIt's
+    so difficult to tell all of you weaklings apart. The lack of importance deems
+    the effort required useless in the end. You usually fade into the anals of history
+    before accomplishing anything of note, after all.\n;\n\nCrowdWorkPlayerResponse1\n!0\n@SAYWe
+    won't fade into any anals, o' great dragon. You would do well to remember us,
+    as we may be the ones to end your reign.\n;\n\nCrowdWorkDialogue3\n!2\n@SAYJokes
+    usually require humor mortals... Your foundationless overconfidence almost matches
+    up to your insignificance. You will soon know the folly behind your actions.\n;\n\nCrowdWorkPlayerChoice\n!0\n@STAT10|CON|*Withstand
+    the might of the Dragon's presence.*|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|NRG|\"Now
+    isn't the time to fight you! We will see you at the end of this dungeons vast
+    halls!\"|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail\n;\n\nCrowdWorkPlayerChoice1Success\n!3\n@SAYA
+    coersive wave washes over you. You are awed by its might, but you refuse to fall
+    here. You must fight this great being. If this were enough to hold you down,
+    you wouldn't have come here in the first place.\n;\n\nCrowdWorkPlayerChoice1Success2\n!2\n@SAYInteresting.
+    You remain standing in the face of my great aura. Perhaps you aren't as pitiful
+    as those who have come before you...\n;\n\nCrowdWorkPlayerChoice1SuccessNarration1\n!3\n@SAYThe
+    Dragon looks deeply at you.\n;\n\nCrowdWorkPlayerChoice1Success3\n!2\n@SAYVery
+    well. I will remember you. I will await your presence at the end of this place.
+    Do not let down my expectations, however low they may be.\n;\n\nCrowdWorkEnd1\n!0\n@END
+    Map\n;\n\nCrowdWorkPlayerChoice1Fail\n!3\n@SAYA wall of powerful coercive might
+    washes over you... Or maybe it is just an actual wall. You feel like a buiding
+    has collapsed on top of you. \n;\n\nCrowdWorkPlayerChoice1FailNarration2\n!3\n@SAYBlood
+    leaks from your seven orifices as you lose all strength in your legs. The Dragon
+    towers over you like a looming shadow.\n;\n\nCrowdWorkPlayerChoice1Fail2\n!2\n@SAYThis
+    is your limit, yet you have the audacity to come to this place. Your weakness
+    surprises even the Great Black Fang, even when my expectaions of you were so
+    low to begin with.\n;\n\nCrowdWorkPlayerChoice1Fail3\n!2\n@SAYSkitter off and
+    pray you don't meet me again. Thank whichever gods you worship that a Dragon
+    doesn't concern himself with mice.\n;\n\nCrowdWorkEnd2\n!0\n@END Map\n;\n\nCrowdWorkPlayerChoice2Success\n!3\n@SAYThe
+    Dragon chases after you as you turn to escape. You take turns and duck obstacles
+    that the Dragon behind you plows right through. Eventually, you find a doorway
+    in a sturdy wall.\n;\n\nCrowdWorkPlayerChoice2SuccessNarration2\n!3\n@SAYAs you
+    jump through the door in the knick of time, the Dragon lunges, but it can only
+    manage to fit a mighty paw through the open doorway.\n;\n\nCrowdWorkPlayerChoice2Success2\n!2\n@SAYLesser
+    beings skittering around like the little mice they are. Your end shall be the
+    day you run into me once more... If you can survive to that point.\n;\n\nCrowdWorkPlayerChoice2SuccessNarration3\n!3\n@SAYThe
+    Dragon retreats the way you came into the darkness. You have narrowly escaped
+    this risky encounter.\n;\n\nCrowdWorkEnd3\n!0\n@END Map\n;\n\nCrowdWorkPlayerChoice2Fail\n!3\n@SAYYou
+    turn to escape, but, just a few steps later, your foot catches on a piece of
+    debris. You stumble before continuing.\n;\n\nCrowdWorkPlayerChoice2FailNarration2\n!3\n@SAYThe
+    hallway takes a turn, but you notice too late to slow down in time, slamming
+    into the wall before correcting your direction.\n;\n\nCrowdWorkPlayerChoice2FailNarration3\n!3\n@SAYA
+    pile of rubble blocks your way, and you sturggle to get over it, tear your clothes,
+    and scrape your skin. You turn around to see the Dragon slowly following you,
+    clearly not taking the chase seriously, and he stops abruptly.\n;\n\nCrowdWorkPlayerChoice2Fail2\n!2\n@SAYYour
+    escape is unbecoming. Finishing you personally would only be a stain to my repuation
+    and an honor you don't deserve.\n;\n\nCrowdWorkPlayerChoice2Fail3\n!2\n@SAYI
+    can only let you steep in your foolishness and meet your end at the hands of
+    the monsters native to this dungeon.\n;\n\nCrowdWorkEnd4\n!0\n@END Map\n;"
