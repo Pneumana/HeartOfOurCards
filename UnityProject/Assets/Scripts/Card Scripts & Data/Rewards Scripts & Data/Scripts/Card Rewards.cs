@@ -22,6 +22,7 @@ public class CardRewards : NetworkBehaviour
     [SerializeField] private List<GameObject> spawnLocations;
     [SerializeField] private GameObject cardPrefab;
     List<GameObject> CardRewardList = new List<GameObject>();
+    private int cardsPicked = 0;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class CardRewards : NetworkBehaviour
     public void CMDCardGeneration()
     {
         if (RunManager.instance.pickingPlayer == RunManager.instance.LocalPlayerID) return;
+        cardsPicked = 0;
         for (int i = 0; i < 3; i++)
         {
             var roll = Random.Range(1, 101);
@@ -96,44 +98,9 @@ public class CardRewards : NetworkBehaviour
         AddCard(number);
     }
 
-    //[ClientRpc]
-    //public void AddCard1()
-    //{
-    //    var card = CardRewardList[0];
-    //    string name = card.GetComponent<CardBase>().CardData.CardName;
-    //    AddCard(name);
-    //}
-
-    //[Command(requiresAuthority = false)]
-    //public void CMDAddCard2()
-    //{
-    //    AddCard2();
-    //}
-
-    //[ClientRpc]
-    //public void AddCard2()
-    //{
-    //    var card = CardRewardList[1];
-    //    string name = card.GetComponent<CardBase>().CardData.CardName;
-    //    AddCard(name);
-    //}
-
-    //[Command(requiresAuthority = false)]
-    //public void CMDAddCard3()
-    //{
-    //    AddCard3();
-    //}
-
-    //[ClientRpc]
-    //public void AddCard3()
-    //{
-    //    var card = CardRewardList[2];
-    //    string name = card.GetComponent<CardBase>().CardData.CardName;
-    //    AddCard(name);
-    //}
-
     public void AddCard(int number)
     {
+        cardsPicked++;
         var card = CardRewardList[number];
         string name = card.GetComponent<CardBase>().CardData.CardName;
         var load = Resources.Load<CardData>("CardData/" + name);
@@ -145,6 +112,19 @@ public class CardRewards : NetworkBehaviour
         else
         {
             AmbidexterousManager.Instance.PlayerList[0].decks[RunManager.instance.pickingPlayer].Add(load);
+        }
+
+        Destroy(card);
+        CardRewardList.Remove(card);
+
+        if (cardsPicked == 2)
+        {
+            foreach (var cards in CardRewardList)
+            {
+                Destroy(cards);
+            }
+            CardRewardList.Clear();
+            cardsPicked = 0;
         }
     }
 }
