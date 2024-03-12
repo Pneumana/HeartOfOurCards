@@ -22,6 +22,7 @@ public class CardRewards : NetworkBehaviour
     [SerializeField] private List<GameObject> spawnLocations;
     [SerializeField] private GameObject cardPrefab;
     List<GameObject> CardRewardList = new List<GameObject>();
+    List<CardData> CardDataList = new List<CardData>();
     private int cardsPicked = 0;
 
     void Start()
@@ -42,9 +43,9 @@ public class CardRewards : NetworkBehaviour
         for (int i = 0; i < 3; i++)
         {
             var roll = Random.Range(1, 101);
-            var roll2 = Random.Range(0, commonCards.Cards.Count + 1);
-            var roll3 = Random.Range(0, uncommonCards.Cards.Count + 1);
-            var roll4 = Random.Range(0, rareCards.Cards.Count + 1);
+            var roll2 = Random.Range(0, commonCards.Cards.Count);
+            var roll3 = Random.Range(0, uncommonCards.Cards.Count);
+            var roll4 = Random.Range(0, rareCards.Cards.Count);
             CardGeneration(roll, roll2, roll3, roll4, i);
         }
     }
@@ -73,6 +74,7 @@ public class CardRewards : NetworkBehaviour
             CardRewardList.Add(n);
             n.transform.forward = -n.transform.forward;
             n.GetComponent<CardBase>().CardData = Card;
+            CardDataList.Add(Card);
         }
     }
 
@@ -90,6 +92,7 @@ public class CardRewards : NetworkBehaviour
             Destroy(card);
         }
         CardRewardList.Clear();
+        CardDataList.Clear();
     }
 
     [Command(requiresAuthority = false)]
@@ -102,20 +105,23 @@ public class CardRewards : NetworkBehaviour
     {
         cardsPicked++;
         var card = CardRewardList[number];
-        string name = card.GetComponent<CardBase>().CardData.CardName;
-        var load = Resources.Load<CardData>("CardData/" + name);
+        var cardD = CardDataList[number];
+        //string name = card.GetComponent<CardBase>().CardData.CardName;
+        //var load = Resources.Load<CardData>("CardData/" + name);
+        var decks = AmbidexterousManager.Instance.PlayerList[0].combatScene.transform.Find("Player" + (RunManager.instance.pickingPlayer + 1)).GetComponent<CardDeck>();
+
 
         if (NetworkServer.connections.Count > 1)
         {
-            AmbidexterousManager.Instance.PlayerList[RunManager.instance.pickingPlayer].decks[0].Add(load);
+            decks.deck.Add(cardD);
         }
         else
         {
-            AmbidexterousManager.Instance.PlayerList[0].decks[RunManager.instance.pickingPlayer].Add(load);
+            decks.deck.Add(cardD);
         }
 
         Destroy(card);
-        CardRewardList.Remove(card);
+        //CardRewardList.Remove(card);
 
         if (cardsPicked == 2)
         {
@@ -124,6 +130,7 @@ public class CardRewards : NetworkBehaviour
                 Destroy(cards);
             }
             CardRewardList.Clear();
+            CardDataList.Clear();
             cardsPicked = 0;
         }
     }

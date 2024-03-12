@@ -109,17 +109,17 @@ namespace CardActions
                     break;
                 case ActionTargetType.RandomEnemy:
                     if (allEnemies.Count > 0)
-                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count + 1)]);
+                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count)]);
                     break;
                 case ActionTargetType.RandomAlly:
                     if (allAllies.Count > 0)
-                        targetList.Add(allAllies[Random.Range(0, allAllies.Count + 1)]);
+                        targetList.Add(allAllies[Random.Range(0, allAllies.Count)]);
                     break;
                 case ActionTargetType.TwoRandomEnemies:
                     if (allEnemies.Count > 0)
                     {
-                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count + 1)]);
-                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count + 1)]);
+                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count)]);
+                        targetList.Add(allEnemies[Random.Range(0, allEnemies.Count)]);
                     }
                     break;
                 case ActionTargetType.HealthPool:
