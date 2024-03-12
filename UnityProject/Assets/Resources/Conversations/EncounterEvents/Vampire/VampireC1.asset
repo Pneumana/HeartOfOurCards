@@ -40,7 +40,7 @@ MonoBehaviour:
     aside. But I remember those words we once shared long ago. And today, I shall
     make you EAT those words!\n;\n\nCrowdWorkPlayerChoice2SuccessNarration1\n!3\n@SAYArc
     lunges at you with a sparkle of nostalgia in his eye. Your OVERKILLing line might
-    have grown old, but it grew old with a friend\u2026\n;\n\nCrowdWorkEnd3\n!0\n@END
+    have grown old, but it grew old with a friend...\n;\n\nCrowdWorkEnd3\n!0\n@END
     Map\n;\n\nCrowdWorkPlayerChoice2Fail\n!3\n@SAYThe crowd freezes for a moment,
     the calm before the storm of booing fans and a flurry of tomatoes, a seemingly
     dispraportionate response even if your delivery was flat.\n;\n\nCrowdWorkPlayerChoice2Fail2\n!2\n@SAYTruly,
