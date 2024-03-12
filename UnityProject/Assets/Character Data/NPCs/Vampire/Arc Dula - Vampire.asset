@@ -16,7 +16,7 @@ MonoBehaviour:
   pss: Their
   pnd: Them
   Color: {r: 1, g: 0, b: 0, a: 0}
-  Default: {fileID: 0}
+  Default: {fileID: -6380315922375354605, guid: f48f08b3e4b2be44092bb160c1825a69, type: 3}
   DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}
