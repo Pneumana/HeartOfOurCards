@@ -492,7 +492,13 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             }
             else if (world.GetTile(cell) == crowdwork)
             {
-                //AmbidexterousManager.Instance.ChangeScene("SampleScene");
+                AmbidexterousManager.Instance.ChangeScene("ConnorTest");
+            }
+            else if (world.GetTile(cell) == world.GetTile(furthestPair2) || world.GetTile(cell) == world.GetTile(furthestPair1))
+            {
+                Debug.Log("Starting Boss Fight!!!");
+                RunManager.instance.fightingBoss = true;
+                AmbidexterousManager.Instance.ChangeScene("ConnorTest");
             }
             else if(world.GetTile(cell) == mysterEncounter)
             {

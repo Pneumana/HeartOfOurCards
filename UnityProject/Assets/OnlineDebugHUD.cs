@@ -14,6 +14,8 @@ public class OnlineDebugHUD : MonoBehaviour
     {
         if (activated!="")
         {
+            //activated = "";
+            
             RunManager.instance.TryStartGame(activated);
         }
     }
@@ -21,5 +23,12 @@ public class OnlineDebugHUD : MonoBehaviour
     {
         AmbidexterousManager.Instance.QuitToMenu();
     }
-
+    public void StartNewSeason()
+    {
+        AmbidexterousManager.Instance.ServerChangeSeed(Random.Range(int.MinValue, int.MaxValue));
+        RunManager.instance.completedRooms.Clear();
+        RunManager.instance.explorableRooms.Clear();
+        RunManager.instance.revealedRooms.Clear();
+        RunManager.instance.TryStartGame("ConnorTest");
+    }
 }

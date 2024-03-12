@@ -52,6 +52,7 @@ public class RunManager : NetworkBehaviour
 
     public int Ratings;
 
+    public bool fightingBoss;
     public interface IPlayerStats
     {
         int Gold { get;  set; }

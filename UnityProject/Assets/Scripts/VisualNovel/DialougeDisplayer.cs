@@ -301,6 +301,7 @@ public class DialougeDisplayer : MonoBehaviour
             charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*/
             sprites.Add(charTalkSprite);
             //positions.Add(new Vector2(-0.5f, 0));
+            ChangePosition(sprites.Count - 1, new Vector2(-1,0));
             speeds.Add(1000);
         }
 
@@ -318,6 +319,7 @@ public class DialougeDisplayer : MonoBehaviour
             charTalkSprite.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
             charTalkSprite.GetComponent<RectTransform>().localScale = new Vector2(5, 5);*/
             sprites.Add(charTalkSprite);
+            ChangePosition(sprites.Count - 1, new Vector2(-1, 0));
             //positions.Add(new Vector2(-0.5f, 0));
             speeds.Add(1000);
         }

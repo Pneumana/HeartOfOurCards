@@ -336,6 +336,13 @@ namespace Managers
                 plr2.Gold + gold, plr2.RepDMG, plr2.RepINT, plr2.RepNRG, plr2.RepCON, plr2.usedBreak);
             Debug.Log("player1 has " + RunManager.instance.playerStatList[0].Gold + " player2 has gold " + RunManager.instance.playerStatList[1].Gold);
             RunManager.instance.Ratings += 10;
+
+            if (RunManager.instance.fightingBoss)
+            {
+                RunManager.instance.fightingBoss = false;
+                AmbidexterousManager.Instance.ChangeScene("TownScene");
+            }
+
             //RunManager.instance.playerStatList[1].Gold = gold;
         }
 

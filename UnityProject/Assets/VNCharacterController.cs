@@ -51,6 +51,9 @@ public class VNCharacterController : MonoBehaviour
     {
         canvas = GameObject.Find("Canvas").GetComponent<CanvasScaler>().referenceResolution;
         changePose();
+        var LerpX = canvas.x * moveTarget.x;
+        var LerpY = canvas.y * moveTarget.y;
+        transform.localPosition = new Vector2(LerpX, LerpY);
     }
 
     // Update is called once per frame
