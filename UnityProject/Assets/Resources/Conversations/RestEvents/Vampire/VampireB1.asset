@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: "BreakStart\n!2\n@SAYUgh, B-negative blood again? I swear, the Association
     keeps cutting costs in the worst ways. I mean seriously, what would my fans think
-    if I was drinking basic blood like this?\n@POS 0.5, -0.1, 110\n;\n\nBreakDialogue2\n!2\n@SAYY'know,
+    if I was drinking basic blood like this?\n@POS 0.5, 0, 110\n;\n\nBreakDialogue2\n!2\n@SAYY'know,
     I used to be able to drink fresh blood on stage, straight from the neck. But
     apparently too much blood is a 'biohazard' and one too many stagehands slipped.\n;\n\nBreakDialogue3\n!2\n@SAYIt's
     cheaper to just give me the cheap stuff than medical bills, apparently, they

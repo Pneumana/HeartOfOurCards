@@ -16,12 +16,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: "DateStart\n!2\n@SAYI suppose I should show you to a room first,
-    for now. Maybe I could show you around while I\u2019m at it.\n@POS 0.5, -0.1,
-    110\n;\n\nDateDialogue2\n!2\n@SAYYou seem like someone interested in learning
-    about my culture, and I love to talk about it.\r\n;\n\nDateDialogue3\n!2\n@SAYLet\u2019s
-    walk and talk. Maybe next time you\u2019ll think of me when you need a little
-    exercise, fufufu.\r\n;\n\nDatePlayerChoice\n!0\n@STAT10|INT|*Tell Tsuki all of
-    the things that you already know about shrines like this.*|DatePlayerChoice1Success|DatePlayerChoice1Fail|NRG|*Keep
+    for now. Maybe I could show you around while I\u2019m at it.\n@POS 0.5, 0, 110\n;\n\nDateDialogue2\n!2\n@SAYYou
+    seem like someone interested in learning about my culture, and I love to talk
+    about it.\r\n;\n\nDateDialogue3\n!2\n@SAYLet\u2019s walk and talk. Maybe next
+    time you\u2019ll think of me when you need a little exercise, fufufu.\r\n;\n\nDatePlayerChoice\n!0\n@STAT10|INT|*Tell
+    Tsuki all of the things that you already know about shrines like this.*|DatePlayerChoice1Success|DatePlayerChoice1Fail|NRG|*Keep
     up with Tsuki while listening intently.*|DatePlayerChoice2Success|DatePlayerChoice2Fail\n;\n\nDatePlayerChoice1Success\n!2\n@SAYOh!
     I didn\u2019t know you were so knowledgeable about all of this.\n;\n\nDatePlayerChoice1Success2\n!2\n@SAYWell,
     alright then, smartypants. Since you seem to know so much, maybe I can just have

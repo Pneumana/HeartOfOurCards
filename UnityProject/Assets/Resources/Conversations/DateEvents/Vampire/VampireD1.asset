@@ -18,7 +18,7 @@ MonoBehaviour:
   commandScript: "DateStart\n!2\n@SAYWell well well, [Player], you\u2019re late.
     To be precise, you\u2019re 3 minutes early, but we all know 5 minutes early is
     on time, and really for a big date like this you should be 10 minutes ear-\n@POS
-    0.5, -0.1, 110\n;\n\nDateDialogue2\n!2\n@SAYWait, shut up. Do you see those vampires
+    0.5, 0, 110\n;\n\nDateDialogue2\n!2\n@SAYWait, shut up. Do you see those vampires
     behind you, the ones dressed like turn of last century navy admirals had a goth
     phase hiding behind that luxurious shrubbery?\n;\n\nDateDialogue3\n!3\n@SAY\"You
     turn to face them, looking so much like how Arc described them that it really

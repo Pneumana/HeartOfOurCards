@@ -22,8 +22,7 @@ MonoBehaviour:
     @SAYWelcome to Astarte''s Keep''s forerunning
     Kitsune Shrine where we heal you in both body and mind!
 
-    @POS 0.5, -0.1,
-    110
+    @POS 0.5, 0, 1
 
     ;
 
@@ -32,7 +31,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYHow may we help- Oh! It''s you!
+    @SAYHow
+    may we help- Oh! It''s you!
 
     ;
 
@@ -41,8 +41,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYI
-    was wondering when you would be stopping by!
+    @SAYI was
+    wondering when you would be stopping by!
 
     ;
 

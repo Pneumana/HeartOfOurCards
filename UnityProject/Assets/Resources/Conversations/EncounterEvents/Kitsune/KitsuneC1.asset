@@ -22,7 +22,7 @@ MonoBehaviour:
     @SAYWell what do we have here? It seems
     some little adventurers have stumbled their way in.
 
-    @POS 0.5, -0.1, 110
+    @POS 0.5, 0, 110
 
     ;
 

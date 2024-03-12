@@ -23,7 +23,7 @@ MonoBehaviour:
     wear. What will you do if you end up collapsing at this rate?
 
     @POS 0.5,
-    -0.1, 110
+    0, 110
 
     ;
 
@@ -32,8 +32,8 @@ MonoBehaviour:
 
     !2
 
-    @SAYWhy don''t you stop by
-    my shrine after this?
+    @SAYWhy don''t you stop by my
+    shrine after this?
 
     ;
 
