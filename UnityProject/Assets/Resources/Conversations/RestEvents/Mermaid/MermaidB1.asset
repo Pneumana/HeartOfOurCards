@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e282c5b9c669b84dbfea1c0d5c797c5, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: "BreakStart\n!2\n@SAYI caught my accent slipping the last warmup
-    match I did, I spent so long working on it...\n@POS 0.5, -0.1, 110\n;\n\nBreakDialogue2\n!2\n@SAYBut
+    match I did, I spent so long working on it...\n@POS 0.5, 0, 110\n;\n\nBreakDialogue2\n!2\n@SAYBut
     finding the right spot to cut a word short or throw in an ARRR just makes the
     mollusks in my stomachs tumble around.\n;\n\nBreakDialogue3\n!2\n@SAYOh, right,
     I guess you would call them butterflies in the stomach up here on the surface...\n;\n\nBreakDialogue4\n!2\n@SAYIt

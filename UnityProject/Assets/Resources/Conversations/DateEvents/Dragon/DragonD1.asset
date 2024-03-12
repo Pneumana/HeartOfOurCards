@@ -21,7 +21,7 @@ MonoBehaviour:
 
     @SAY
 
-    @POS 0.5, -0.1, 110
+    @POS 0.5, 0, 10000
 
     ;
 

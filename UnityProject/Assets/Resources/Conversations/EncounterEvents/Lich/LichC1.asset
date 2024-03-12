@@ -22,7 +22,7 @@ MonoBehaviour:
     @SAY*CLACKCLACKCLACKCLACK* What have
     we here? More soldiers for the legion?
 
-    @POS 0.5, -0.1, 110
+    @POS 0.5, 0, 110
 
     ;
 

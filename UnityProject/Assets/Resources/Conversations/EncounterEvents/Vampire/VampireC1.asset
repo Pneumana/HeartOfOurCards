@@ -16,11 +16,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: "CrowdWorkStart\n!2\n@SAYOnce again you foolish heroes have come
-    to face me. Perhaps this too is part of my fate.\n@POS 0.5, -0.1, 110\n;\n\nCrowdWorkDialogue2\n!2\n@SAYIt
+    to face me. Perhaps this too is part of my fate.\n@POS 0.5, 0, 110\n;\n\nCrowdWorkDialogue2\n!2\n@SAYIt
     is not by my hand that I am to fight you.  It is through the love of my adoring
     fans that I am once again brought to the stage.\n;\n\nCrowdWorkDialogue3\n!2\n@SAYWhat
-    is a fan? A miserable little pile of thirst. But enough talk, have at you!\r\nChoice:
-    Oh, right, this is Arc's fan favorite monologue, it's been memed to death. Well,
+    is a fan? A miserable little pile of thirst. But enough talk, have at you!\n;\n\nCrowdWorkNarration1\n!3\n@SAYOh,
+    right, this is Arc's fan favorite monologue, it's been memed to death. Well,
     he needs a response to continue...\n;\n\nCrowdWorkPlayerChoice\n!0\n@STAT10|INT|*You've
     had enough with the cheesy lines, it's time to improvise! *|CrowdWorkPlayerChoice1Success|CrowdWorkPlayerChoice1Fail|DMG|\"Die
     monster, you don't belong in this world!\"|CrowdWorkPlayerChoice2Success|CrowdWorkPlayerChoice2Fail\n;\n\nCrowdWorkPlayerChoice1Success\n!0\n@SAYYou

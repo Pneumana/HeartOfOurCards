@@ -16,9 +16,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b059199017cb05744bf7f73b65669ca9, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
   commandScript: "DateStartPart2\n!3\n@SAYLooks like this isn\u2019t over yet, and
-    Arc is still in serious danger! How are you protecting him?\n@POS 0.5, -0.1,
-    110\n;\n\nDatePlayerChoice\n!0\n@STAT10|CON|*Stand between Arc and the Vampires,
-    you\u2019ve taken plenty of Arc\u2019s bites before so these guys should be lightweights.*|DatePlayerChoice1Success|DatePlayerChoice1Fail|DMG|*Nothing
+    Arc is still in serious danger! How are you protecting him?\n@POS 0.5, 0, 110\n;\n\nDatePlayerChoice\n!0\n@STAT10|CON|*Stand
+    between Arc and the Vampires, you\u2019ve taken plenty of Arc\u2019s bites before
+    so these guys should be lightweights.*|DatePlayerChoice1Success|DatePlayerChoice1Fail|DMG|*Nothing
     like a good offense. Time to put these vampires in their place.*|DatePlayerChoice2Success|DatePlayerChoice2Fail\n;\n\nDatePlayerChoice1Success\n!3\n@SAYAs
     you stand between Arc and the vampires, the vampires take a glance at you, sensing
     no opening to strike.. Seeing they\u2019re outmatched, they flee.\r\n;\n\nDatePlayerChoice1Success2\n!2\n@SAYOh,
