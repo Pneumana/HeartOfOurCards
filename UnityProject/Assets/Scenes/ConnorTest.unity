@@ -265,6 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01258367eda41b4a88044be816d0022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonTable: {fileID: 11400000, guid: 0065a472ce8a16140a6702ddba7d4fb2, type: 2}
+  requiresBreak: 1
+  sequential: 0
 --- !u!1001 &148724117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5099,6 +5102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01258367eda41b4a88044be816d0022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonTable: {fileID: 11400000, guid: 0065a472ce8a16140a6702ddba7d4fb2, type: 2}
+  requiresBreak: 1
+  sequential: 0
 --- !u!1 &1680177049
 GameObject:
   m_ObjectHideFlags: 0

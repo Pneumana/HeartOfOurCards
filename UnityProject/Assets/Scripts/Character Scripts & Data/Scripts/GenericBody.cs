@@ -109,6 +109,7 @@ namespace Characters
             {
                 TurnManager.instance.CheckWinCondition();
                 Debug.Log("enemy died!");
+                GetComponent<Collider>().enabled = false;
             }
         }
 

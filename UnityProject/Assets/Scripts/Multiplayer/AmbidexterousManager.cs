@@ -234,7 +234,7 @@ public class AmbidexterousManager : NetworkManager
 
             //Debug.Log("server found enemy spawner");
             //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
-            var rand = Random.Range(1, 3);
+            var rand = Random.Range(1, 4);
             enemySpawner.gameObject.GetComponent<EnemySpawner>().SpawnEnemy(rand);
             Debug.Log(rand + " enemies to spawn");
         }

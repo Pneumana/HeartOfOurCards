@@ -16,6 +16,9 @@ public class EnemySpawner : NetworkBehaviour
     bool serverOk = false;
     bool setUp;
 
+    [SerializeField] float xStart = -5;
+    [SerializeField] float xEnd = 5;
+
     Vector3 spawnPosition = new Vector3(0, -1.8f, 4);
     // Start is called before the first frame update
     void Awake()
@@ -48,18 +51,17 @@ public class EnemySpawner : NetworkBehaviour
         EnemySpawns = _EnemySpawns;
         serverOk = true;
 
-        int spawns = 0;
 
         var initOffset = (EnemySpawns - 1) / 2 * Vector3.left;
 
 
-        while(EnemySpawns > 0)
+        for(int i = 0; i < EnemySpawns; i++)
         {
             var number = Random.Range(1, 3);
+            var percentSpawned = (i + 1) / (EnemySpawns + 1f);
             var enemy = Instantiate(AmbidexterousManager.Instance.spawnPrefabs[number]);
-            enemy.transform.position += Vector3.left * spawns;
-            spawns++;
-            EnemySpawns--;
+            spawnPosition.x = Mathf.Lerp(xStart, xEnd, percentSpawned);
+            enemy.transform.position += spawnPosition;
             NetworkServer.Spawn(enemy);
             //TurnManager.instance.enemyTeam.Add(enemy.GetComponent<CardEnemyController>());
         }
