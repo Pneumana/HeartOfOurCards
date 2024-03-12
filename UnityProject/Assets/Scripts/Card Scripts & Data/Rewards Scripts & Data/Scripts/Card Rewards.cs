@@ -43,6 +43,7 @@ public class CardRewards : NetworkBehaviour
     public void CMDCardGeneration()
     {
         //if (RunManager.instance.pickingPlayer == RunManager.instance.LocalPlayerID) return;
+        if (CardRewardList.Count > 0) return;
         cardsPicked = 0;
         for (int i = 0; i < 3; i++)
         {
