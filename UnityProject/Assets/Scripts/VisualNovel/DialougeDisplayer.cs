@@ -149,6 +149,8 @@ public class DialougeDisplayer : MonoBehaviour
         {
             LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + RunManager.instance.ForceLoadConvo));
             RunManager.instance.ForceLoadConvo = "";        }
+        Debug.Log("Loading a convo " + textFieldConvo.name);
+
         PrimaryPlayer = RunManager.instance.pickingPlayer;
 
         LoadConvo();
@@ -159,12 +161,15 @@ public class DialougeDisplayer : MonoBehaviour
 
         //check for 
         //MatchCollection actionLabels = Regex.Matches(textFieldConvo.commandScript, @"(?<=\w\s)(.|\w\s)*(?=;)");//find all actions
-        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?=..*\n)(:|.|\S\s)*(?<=;)");//find all actions
+        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?=..*\n)(:|\u2026|.|\S\s)*(?<=;)");//find all actions
         commandsFromConvo = textFieldConvo.commandScript;
+
+        Debug.Log("found " + actions.Count + " commands");
+
         if (actions.Count > 0)
         {
             
-            Debug.Log("found " + actions.Count + " commands");
+
             for(int i =0; i<actions.Count; i++ )
             {
                 var StepLabel = Regex.Match(actions[i].ToString(), @"^.*");
