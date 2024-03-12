@@ -1,0 +1,839 @@
+fileFormatVersion: 2
+guid: ac743ce96ff8e9e4cadfb18ae59a6737
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7802021528643621784
+    second: Credits_Scene_0
+  - first:
+      213: -1076905909157693079
+    second: Credits_Scene_1
+  - first:
+      213: -4109618910859390864
+    second: Credits_Scene_2
+  - first:
+      213: -3700852107549721429
+    second: Credits_Scene_3
+  - first:
+      213: -1338276155526897437
+    second: Credits_Scene_4
+  - first:
+      213: 7425883241213331320
+    second: Credits_Scene_5
+  - first:
+      213: 6294723973783517288
+    second: Credits_Scene_6
+  - first:
+      213: -4514817252052769175
+    second: Credits_Scene_7
+  - first:
+      213: 600313626621294124
+    second: Credits_Scene_8
+  - first:
+      213: -6809555101445894955
+    second: Credits_Scene_9
+  - first:
+      213: -7482060889327461619
+    second: Credits_Scene_10
+  - first:
+      213: -5355454966979712061
+    second: Credits_Scene_11
+  - first:
+      213: 6220571802210310082
+    second: Credits_Scene_12
+  - first:
+      213: 4869747479008286801
+    second: Credits_Scene_13
+  - first:
+      213: 3877371637420626095
+    second: Credits_Scene_14
+  - first:
+      213: 3170502246890990265
+    second: Credits_Scene_15
+  - first:
+      213: -1650373722371622231
+    second: Credits_Scene_16
+  - first:
+      213: -4602092404423149369
+    second: Credits_Scene_17
+  - first:
+      213: 362543368135034179
+    second: Credits_Scene_18
+  - first:
+      213: 6684292781408970278
+    second: Credits_Scene_19
+  - first:
+      213: -2712193849535235511
+    second: Credits_Scene_20
+  - first:
+      213: -5198965966511822880
+    second: Credits_Scene_21
+  - first:
+      213: -5775164070669793483
+    second: Credits_Scene_22
+  - first:
+      213: -5879886633102736061
+    second: Credits_Scene_23
+  - first:
+      213: -7021029488867525516
+    second: Credits_Scene_24
+  - first:
+      213: -926096562021975190
+    second: Credits_Scene_25
+  - first:
+      213: -8830403222273610015
+    second: Credits_Scene_26
+  - first:
+      213: -6110688261615894075
+    second: Credits_Scene_27
+  - first:
+      213: 1914331479377463338
+    second: Credits_Scene_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1080
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Credits_Scene_0
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 918
+        width: 126
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 893d0c05e39564c60800000000000000
+      internalID: 7802021528643621784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_1
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 918
+        width: 400
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 969f22408cf0e01f0800000000000000
+      internalID: -1076905909157693079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_2
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 899
+        width: 479
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0709fffcf53b7f6c0800000000000000
+      internalID: -4109618910859390864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_3
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 760
+        width: 111
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac3e3bbd9ee3acc0800000000000000
+      internalID: -3700852107549721429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_4
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 812
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e0a1725dec7d6de0800000000000000
+      internalID: -1338276155526897437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_5
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 730
+        width: 645
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8770c00c6790e0760800000000000000
+      internalID: 7425883241213331320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_6
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 759
+        width: 337
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86870807a1a5b5750800000000000000
+      internalID: 6294723973783517288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_7
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 747
+        width: 180
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 966e69931a52851c0800000000000000
+      internalID: -4514817252052769175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_8
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 727
+        width: 366
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26b694101eb45800800000000000000
+      internalID: 600313626621294124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_9
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 747
+        width: 312
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dc4edbb6b99f71a0800000000000000
+      internalID: -6809555101445894955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_10
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 613
+        width: 247
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b1bc743416a2890800000000000000
+      internalID: -7482060889327461619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_11
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 618
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cba29af41a9da5b0800000000000000
+      internalID: -5355454966979712061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_12
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 618
+        width: 203
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c79e8a9819e35650800000000000000
+      internalID: 6220571802210310082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_13
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 605
+        width: 180
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1589428f781d49340800000000000000
+      internalID: 4869747479008286801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_14
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 461
+        width: 63
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa091a606f03fc530800000000000000
+      internalID: 3877371637420626095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_15
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 461
+        width: 164
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bae389def2effb20800000000000000
+      internalID: 3170502246890990265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_16
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 462
+        width: 99
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa7663f7d1b819e0800000000000000
+      internalID: -1650373722371622231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_17
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 436
+        width: 194
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c8b5d257551220c0800000000000000
+      internalID: -4602092404423149369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_18
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 469
+        width: 77
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 345cc51c543080500800000000000000
+      internalID: 362543368135034179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_19
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 469
+        width: 134
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 626e69aaed063cc50800000000000000
+      internalID: 6684292781408970278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_20
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 308
+        width: 89
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94af37c401a5c5ad0800000000000000
+      internalID: -2712193849535235511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_21
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 350
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e7a7beafff89d7b0800000000000000
+      internalID: -5198965966511822880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_22
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 309
+        width: 89
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 537c02830ee7adfa0800000000000000
+      internalID: -5775164070669793483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_23
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 309
+        width: 188
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 345085a9242766ea0800000000000000
+      internalID: -5879886633102736061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_24
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 308
+        width: 160
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47c328ef0ea409e90800000000000000
+      internalID: -7021029488867525516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_25
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 73
+        width: 296
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b38f06518d523f0800000000000000
+      internalID: -926096562021975190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_26
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 158
+        width: 75
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eeaae80e0b147580800000000000000
+      internalID: -8830403222273610015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_27
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 133
+        width: 137
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c14c31e669723ba0800000000000000
+      internalID: -6110688261615894075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Credits_Scene_28
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 129
+        width: 217
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2844a28652119a10800000000000000
+      internalID: 1914331479377463338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Credits_Scene_0: 7802021528643621784
+      Credits_Scene_1: -1076905909157693079
+      Credits_Scene_10: -7482060889327461619
+      Credits_Scene_11: -5355454966979712061
+      Credits_Scene_12: 6220571802210310082
+      Credits_Scene_13: 4869747479008286801
+      Credits_Scene_14: 3877371637420626095
+      Credits_Scene_15: 3170502246890990265
+      Credits_Scene_16: -1650373722371622231
+      Credits_Scene_17: -4602092404423149369
+      Credits_Scene_18: 362543368135034179
+      Credits_Scene_19: 6684292781408970278
+      Credits_Scene_2: -4109618910859390864
+      Credits_Scene_20: -2712193849535235511
+      Credits_Scene_21: -5198965966511822880
+      Credits_Scene_22: -5775164070669793483
+      Credits_Scene_23: -5879886633102736061
+      Credits_Scene_24: -7021029488867525516
+      Credits_Scene_25: -926096562021975190
+      Credits_Scene_26: -8830403222273610015
+      Credits_Scene_27: -6110688261615894075
+      Credits_Scene_28: 1914331479377463338
+      Credits_Scene_3: -3700852107549721429
+      Credits_Scene_4: -1338276155526897437
+      Credits_Scene_5: 7425883241213331320
+      Credits_Scene_6: 6294723973783517288
+      Credits_Scene_7: -4514817252052769175
+      Credits_Scene_8: 600313626621294124
+      Credits_Scene_9: -6809555101445894955
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
