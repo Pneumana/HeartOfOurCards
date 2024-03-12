@@ -15,152 +15,50 @@ MonoBehaviour:
   characters:
   - {fileID: 11400000, guid: 1c25102661b91a34badf1800d4c368a8, type: 2}
   - {fileID: 11400000, guid: 9424dd95808f4e24792f58fe55b66d1a, type: 2}
-  commandScript: 'DateStart
-
-    !2
-
-    @SAY
-
-    @POS 0.5, -0.1, 110
-
-    ;
-
-
-    DateDialogue2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DateDialogue3
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePlayerChoice
-
-    !0
-
-    @STAT10|INT|"TEXT
-    HERE"|DatePlayerChoice1Success|DatePlayerChoice1Fail|DMG|"TEXT HERE"|DatePlayerChoice2Success|DatePlayerChoice2Fail
-
-    ;
-
-
-    DatePlayerChoice1Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePlayerChoice1Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePart2Load1
-
-    !0
-
-    @LOAD
-    DateEvents/Lich/LichD1-2
-
-    ;
-
-
-    DatePlayerChoice1Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePlayerChoice1Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePart2Load2
-
-    !0
-
-    @LOAD
-    DateEvents/Lich/LichD1-2
-
-    ;
-
-
-    DatePlayerChoice2Success
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePlayerChoice2Success2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePart2Load3
-
-    !0
-
-    @LOAD
-    DateEvents/Lich/LichD1-2
-
-    ;
-
-
-    DatePlayerChoice2Fail
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePlayerChoice2Fail2
-
-    !2
-
-    @SAY
-
-    ;
-
-
-    DatePart2Load4
-
-    !0
-
-    @LOAD
-    DateEvents/Lich/LichD1-2
-
-    ;'
+  commandScript: "DateStart\n!2\n@SAYWell well well, [Player], you\u2019re late.
+    To be precise, you\u2019re 3 minutes early, but we all know 5 minutes early is
+    on time, and really for a big date like this you should be 10 minutes ear-\n@POS
+    0.5, -0.1, 110\n;\n\nDateDialogue2\n!2\n@SAYWait, shut up. Do you see those vampires
+    behind you, the ones dressed like turn of last century navy admirals had a goth
+    phase hiding behind that luxurious shrubbery?\n;\n\nDateDialogue3\n!3\n@SAY\"You
+    turn to face them, looking so much like how Arc described them that it really
+    would be a waste to give them portraits. They bare their fangs and crouch down,
+    they still think they\u2019re hidden.\"\n;\n\nDateDialogue4\n!3\n@SAYThey\u2019re
+    some lackeys from my old master. He was a wicked vampire, a mastermind behind
+    countless cruel campaigns. He also wanted to rid the world of saltwater taffy.
+    Not necessarily as bad but it\u2019s still mean.\n;\n\nDateDialogue5\n!3\n@SAYShit,
+    where did those scoundrels go! I can't see them anywhere, and I\u2019m certainly
+    not keen to be attacked by them in a restaurant. I\u2026 I\u2019m scared, [Player].
+    What do we do?\n;\n\nDatePlayerChoice\n!0\n@STAT10|NRG|It\u2019s time I share
+    with you my secret technique. We\u2019re running.\"|DatePlayerChoice1Success|DatePlayerChoice1Fail|INT|\"You
+    pull out your Helsing Survival Kit (Patent Pending) and scatter around countless
+    grains of rice and fashion a snare.E\"|DatePlayerChoice2Success|DatePlayerChoice2Fail\n;\n\nDatePlayerChoice1Success\n!3\n@SAY\"You
+    take Arc hand in hand and hit the bricks. The winding city streets become a blur
+    as you both serpentine around the block, eventually finding yourselves hiding
+    behind a bush, looking at the same vampires from earlier.\"\n;\n\nDatePlayerChoice1Success2\n!2\n@SAYA
+    clever ploy! At first I thought we were just running around in circles for no
+    reason, knocking down pedestrians needlessly, but I see now how calculated those
+    three right turns were, trying to sneak behind them.\n;\n\nDatePlayerChoice1Success3\n!2\n@SAYAh
+    shit, me and my charming mouth, it seems they heard me. Well, I don\u2019t have
+    the ENDURANCE to do something like that again, looks like we\u2019ll confront
+    them after all.\n;\n\nDatePart2Load1\n!0\n@LOAD DateEvents/Vampire/VampireD1-2\n;\n\nDatePlayerChoice1Fail\n!2\n@SAYyou
+    run as fast as your combined legs can carry you\u2026 straight into a dead end.
+    The three vampires strut down the alley, baring their fangs and approaching you.\n;\n\nDatePlayerChoice1Fail2\n!2\n@SAYIt
+    seems your sense of direction works better below the surface darling, you\u2019ve
+    led us straight into a dead end.\n;\n\nDatePlayerChoice1Fail3\n!2\n@SAYI hope
+    you had some other plans than make it so we really can\u2019t flee\u2026\n;\n\nDatePart2Load2\n!0\n@LOAD
+    DateEvents/Vampire/VampireD1-2\n;\n\nDatePlayerChoice2Success\n!3\n@SAYThe Vampires
+    hunting Arc quickly scramble from outside of the shadows and begin counting the
+    rice. You tug on the snare, lifting them all up from the ground.\n;\n\nDatePlayerChoice2Success2\n!2\n@SAY
+    I\u2019ll ignore how you have a vampire murder kit handy and instead compliment
+    your quick thinking, [Player]. You\u2019ve bought us some time.\n;\n\nDatePlayerChoice2Success3\n!2\n@SAYWe
+    still need a way to deal with these freaks, these ropes won\u2019t bind them
+    forever, and I\u2019d like to prevent them from following me in the future.\n;\n\nDatePart2Load3\n!0\n@LOAD
+    DateEvents/Vampire/VampireD1-2\n;\n\nDatePlayerChoice2Fail\n!3\n@SAY\"The vampires
+    lunge from the shadows and begin counting the grains of rice. You spring the
+    trap, only realizing too late Arc also is a vampire compelled to count.\"\n;\n\nDatePlayerChoice2Fail2\n!2\n@SAY3\u2026
+    4\u2026 5- Wait, [Player], I can\u2019t count that fast! And there\u2019s three
+    of them! How exactly is this supposed to help us out?\n;\n\nDatePlayerChoice2Fail3\n!2\n@SAY6\u2026
+    7\u2026 8- wait, is that a grain of rice or is that just a clump of hair? I think
+    it\u2019s hair. Agh! Don\u2019t just stand there, you can tie me up later! Just
+    find a way to deal with these rapscallions!\n;\n\nDatePart2Load4\n!0\n@LOAD DateEvents/Vampire/VampireD1-2\n;"
