@@ -875,15 +875,25 @@ public class DialougeDisplayer : MonoBehaviour
         {
             var split = Regex.Split(command, @" ");
             var load = Resources.Load<CardData>("CardData/" + split[1].ToString());
+            Debug.Log("loaded" +  load.CardName);
             if(NetworkServer.connections.Count > 1)
             {
-                AmbidexterousManager.Instance.PlayerList[PrimaryPlayer].decks[0].Add(load);
+                var decks = AmbidexterousManager.Instance.PlayerList[0].combatScene.transform.GetComponentsInChildren<CardDeck>();
+                foreach (CardDeck deck in decks)
+                {
+                    deck.deck.Add(load);
+                }
             }
             else
             {
-                AmbidexterousManager.Instance.PlayerList[0].decks[PrimaryPlayer].Add(load);
+                var decks = AmbidexterousManager.Instance.PlayerList[0].combatScene.transform.GetComponentsInChildren<CardDeck>();
+                foreach(CardDeck deck in decks)
+                {
+                    deck.deck.Add(load);
+                }
+                //decks[PrimaryPlayer].Add(load);
             }
-            
+
         }
         try
         {

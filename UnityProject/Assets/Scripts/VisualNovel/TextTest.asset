@@ -30,6 +30,8 @@ MonoBehaviour:
 
     @INC Health 10
 
+    @CARD Dummy
+
     @SWAPPLAYER
 
     ;
