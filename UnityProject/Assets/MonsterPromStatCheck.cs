@@ -52,6 +52,7 @@ public class MonsterPromStatCheck : MonoBehaviour
         else
         {
             //fail
+            GameObject.Find("VNSyncer").GetComponent<VNSyncer>().CMDSkipTo(failID);
         }
         /*if (_targetStat >= passRequirement)
         {

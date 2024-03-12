@@ -23,6 +23,7 @@ public class MapControls : NetworkBehaviour
         {
             CMDChangePickingPlayer();
         }
+        staminaText.text = "Stamina: " + RunManager.instance.Stamina;
     }
     private void Update()
     {
