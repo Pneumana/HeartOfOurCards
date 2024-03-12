@@ -22,7 +22,7 @@ MonoBehaviour:
   cardActionDataList:
   - cardActionType: 4
     actionTargetType: 1
-    actionValue: 0
+    actionValue: 3
     actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: Draw 3 cards, Burn this card

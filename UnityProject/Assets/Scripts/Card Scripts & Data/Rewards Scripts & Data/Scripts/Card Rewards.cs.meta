@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 4329a004ea8bf8944aef8ec38d347dec
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - commonCards: {fileID: 11400000, guid: 71a5e4bfdbe8ef843b1d47762ebba14b, type: 2}
+  - uncommonCards: {fileID: 11400000, guid: f24dd44d5ee89904eb442a644f99d3f1, type: 2}
+  - rareCards: {fileID: 11400000, guid: c713e74bbf33fc34bb0f130f1425e5de, type: 2}
+  - cardPrefab: {fileID: 6640280803177796311, guid: d8d1714a1d8273344ae03eb9d7886fca, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
