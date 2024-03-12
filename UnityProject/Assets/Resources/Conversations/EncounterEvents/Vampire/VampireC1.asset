@@ -38,13 +38,14 @@ MonoBehaviour:
     time you\u2019ve spoken this line.\n;\n\nCrowdWorkPlayerChoice2Success2\n!2\n@SAYOutrageous,
     [Player], were it from anyone else such a bold threat would be trite, tossed
     aside. But I remember those words we once shared long ago. And today, I shall
-    make you EAT those words!\n;\n\nCrowdWorkPlayerChoice2SuccessNarration1\n!3\n@SAYGoobie
-    snoobert\n;\n\nCrowdWorkEnd3\n!0\n@END Map\n;\n\nCrowdWorkPlayerChoice2Fail\n!3\n@SAYThe
-    crowd freezes for a moment, the calm before the storm of booing fans and a flurry
-    of tomatoes, a seemingly dispraportionate response even if your delivery was
-    flat.\n;\n\nCrowdWorkPlayerChoice2Fail2\n!2\n@SAYTruly, [Player], is that how
-    little you care about our moments together? Fine, if you have no care for the
-    past, then I shall make you fear our perilous FUTURE.\n;\n\nCrowdWorkPlayerChoice2FailNarration2\n!3\n@SAYThe
+    make you EAT those words!\n;\n\nCrowdWorkPlayerChoice2SuccessNarration1\n!3\n@SAYArc
+    lunges at you with a sparkle of nostalgia in his eye. Your OVERKILLing line might
+    have grown old, but it grew old with a friend...\n;\n\nCrowdWorkEnd3\n!0\n@END
+    Map\n;\n\nCrowdWorkPlayerChoice2Fail\n!3\n@SAYThe crowd freezes for a moment,
+    the calm before the storm of booing fans and a flurry of tomatoes, a seemingly
+    dispraportionate response even if your delivery was flat.\n;\n\nCrowdWorkPlayerChoice2Fail2\n!2\n@SAYTruly,
+    [Player], is that how little you care about our moments together? Fine, if you
+    have no care for the past, then I shall make you fear our perilous FUTURE.\n;\n\nCrowdWorkPlayerChoice2FailNarration2\n!3\n@SAYThe
     grimace on Arc's face is real, the vampire seems hurt. Maybe if you had commited
     to the bit with a little bit of OVERKILL, you could have won the favor of both
     Arc and the crowd.\n;\n\nCrowdWorkEnd4\n!0\n@END Map\n;"
