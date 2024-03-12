@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
-using static UnityEditor.ShaderData;
+//using static UnityEditor.ShaderData;
 
 public class MonsterPromStatCheck : MonoBehaviour
 {
