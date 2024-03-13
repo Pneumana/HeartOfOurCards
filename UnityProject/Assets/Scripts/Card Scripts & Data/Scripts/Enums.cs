@@ -56,6 +56,7 @@ namespace Enums
         EnemyRegen,
         EnemyFreeze,
         EnemyBurn,
+        ApplyStatus
     }
 
     public enum CharacterType

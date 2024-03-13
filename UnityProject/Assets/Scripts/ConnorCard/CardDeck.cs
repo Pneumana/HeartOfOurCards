@@ -138,8 +138,9 @@ public class CardDeck : NetworkBehaviour
                     {
                         discardedCardID = hand.Count - 1;
                     }
-                    
-                discardPile.Add(hand[discardedCardID]);
+
+                if (!hand[discardedCardID].deleteAfterDiscard)
+                    discardPile.Add(hand[discardedCardID]);
                 Debug.Log(gameObject.name + "discarded " + hand[discardedCardID].CardName);
                 hand.Remove(hand[discardedCardID]);
                 //Debug.Log(deck.Count);
@@ -205,11 +206,12 @@ public class CardDeck : NetworkBehaviour
             catch
             {
                 //enemies don't have hands so yeah
-                GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                if(GetComponent<CardEnemyController>().currentDisplay!=null)
+                    GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
             }
-            
+
             //CardBase.
-            
+
             /*foreach (GameObject proj in hand[playedCard].attackPrefab)
             {
                 var attack = Instantiate(proj);
@@ -217,7 +219,8 @@ public class CardDeck : NetworkBehaviour
                 attack.transform.forward = new Vector3(target.x, attack.transform.position.y, target.z) - attack.transform.position;
                 attack.GetComponent<Rigidbody>().AddForce(attack.transform.forward * 10, ForceMode.Impulse);
             }*/
-            discardPile.Add(hand[playedCard]);
+            if (!hand[playedCard].deleteAfterPlay)
+                discardPile.Add(hand[playedCard]);
             Debug.Log("Played card " + hand[playedCard].CardName);
             hand.Remove(hand[playedCard]);
         }

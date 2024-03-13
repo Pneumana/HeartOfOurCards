@@ -89,6 +89,8 @@ public class CardEnemyController : NetworkBehaviour
         //await deck.ServerDrawCard(1);
         if (deck.hand.Count < 1)
             deck.DrawCard(1, 0);
+        if (deck.hand.Count == 0)
+            return;
         var pickedCard = Random.Range(0, deck.hand.Count - 1);
         //Debug.Log(deck.hand[0].CardName);
         PickCard(pickedCard);

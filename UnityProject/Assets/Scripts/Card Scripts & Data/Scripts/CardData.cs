@@ -14,18 +14,20 @@ namespace DeckData
     {
         [Header("Card Profile")]
         [SerializeField] private string id;
-        [SerializeField] private string cardName;
-        [SerializeField] private int energyCost;
-        [SerializeField] private Sprite cardSprite;
+        [SerializeField] public string cardName;
+        [SerializeField] public int energyCost;
+        [SerializeField] public Sprite cardSprite;
         [SerializeField] private List<CardType> cardType;
 
         [Header("Action Settings")]
         [SerializeField] private bool usableWithoutTarget;
-        [SerializeField] private bool exhaustAfterPlay;
-        [SerializeField] private List<CardActionData> cardActionDataList;
+        [SerializeField] public bool exhaustAfterPlay;
+        [SerializeField] public bool deleteAfterPlay;
+        [SerializeField] public bool deleteAfterDiscard;
+        [SerializeField] public List<CardActionData> cardActionDataList;
 
         [Header("Description")]
-        [SerializeField] private List<CardDescriptionData> cardDescriptionDataList;
+        [SerializeField] public List<CardDescriptionData> cardDescriptionDataList;
         [SerializeField] private List<SpecialKeywords> specialKeywordsList;
 
         public string Id => id;
@@ -61,14 +63,14 @@ namespace DeckData
     [Serializable]
     public class CardActionData
     {
-        [SerializeField] private CardActionType cardActionType;
-        [SerializeField] private ActionTargetType actionTargetType;
-        [SerializeField] private int actionValue;
+        [SerializeField] public CardActionType cardActionType;
+        [SerializeField] public ActionTargetType actionTargetType;
+        [SerializeField] private string actionValue;
         [SerializeField] private float actionDelay;
 
         public ActionTargetType ActionTargetType => actionTargetType;
         public CardActionType CardActionType => cardActionType;
-        public int ActionValue => actionValue;
+        public string ActionValue => actionValue;
         public float ActionDelay => actionDelay;
     }
 
@@ -124,7 +126,7 @@ namespace DeckData
                 modifiedActionValueIndex = 0;
 
             var str = new StringBuilder();
-            var value = cardData.CardActionDataList[ModifiedActionValueIndex].ActionValue;
+            var value = Int32.Parse(cardData.CardActionDataList[ModifiedActionValueIndex].ActionValue);
             var modifer = 0;
             //GenericBody GB = StatCheck.GetComponentInParent<GenericBody>();
 
