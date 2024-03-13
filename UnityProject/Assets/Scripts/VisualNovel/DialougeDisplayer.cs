@@ -161,17 +161,28 @@ public class DialougeDisplayer : MonoBehaviour
 
         //check for 
         //MatchCollection actionLabels = Regex.Matches(textFieldConvo.commandScript, @"(?<=\w\s)(.|\w\s)*(?=;)");//find all actions
-        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?=..*\n)(:|\u2026|.|\S\s)*(?<=;)");//find all actions
-        commandsFromConvo = textFieldConvo.commandScript;
+        if(!Regex.IsMatch(textFieldConvo.commandScript, @"(?=..*\n)(:|…|.|\S\s)*(?<=;)"))
+        {
+            Debug.LogError("Incorrect formatting of text field conversation " + textFieldConvo.name + "! Are you using a special character?", textFieldConvo);
+            return;
+
+        }
+        MatchCollection actions = Regex.Matches(textFieldConvo.commandScript, @"(?=..*\n)(:|…|.|\S\s)*(?<=;)");//find all actions
+
 
         Debug.Log("found " + actions.Count + " commands");
 
         if (actions.Count > 0)
         {
-            
+            commandsFromConvo = textFieldConvo.commandScript;
 
-            for(int i =0; i<actions.Count; i++ )
+            for (int i =0; i<actions.Count; i++ )
             {
+                if (!Regex.IsMatch(actions[i].ToString(), @"^.*"))
+                {
+                    Debug.LogError("Incorrect formatting of Actions in conversation " + textFieldConvo.name + "! Are you using a special character?", textFieldConvo);
+                    return;
+                }
                 var StepLabel = Regex.Match(actions[i].ToString(), @"^.*");
                 if (StepLabel.Success)
                 {
@@ -183,7 +194,12 @@ public class DialougeDisplayer : MonoBehaviour
                                     continue;*/
                 //convoActions.Add();
                 //(?= !.*\s)(.|\w\s)*(?=:|;)
-                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=^!.*\s)(.|\w\s|!\s|\?\s|\.\s|&&\s|%\s|\u2026)*(?=;|:)", RegexOptions.Multiline);
+                if(!Regex.IsMatch(actions[i].ToString(), @"(?=^!.*\s)(.|\w\s|!\s|\?\s|\.\s|&&\s|%\s|…)*(?=;|:)", RegexOptions.Multiline))
+                {
+                    Debug.LogError("Incorrect formatting of CharacterSteps in conversation " + textFieldConvo.name + "! Are you using a special character?", textFieldConvo);
+                    return;
+                }
+                MatchCollection ids = Regex.Matches(actions[i].ToString(), @"(?=^!.*\s)(.|\w\s|!\s|\?\s|\.\s|&&\s|%\s|…)*(?=;|:)", RegexOptions.Multiline);
                 Debug.Log("found " + ids.Count + " characterIDs in " + actions[i]);
                 if (ids.Count > 0)
                 {
@@ -267,6 +283,7 @@ public class DialougeDisplayer : MonoBehaviour
             player[1] = loadorder[0];
         }
         //split textFieldConvo
+        Debug.Log("trying to split the text field conversation " + textFieldConvo.name);
         SplitTextFieldConvo();
         Debug.LogWarning("screen size is " + Screen.width + ", " + Screen.height);
         //create player talk sprite
