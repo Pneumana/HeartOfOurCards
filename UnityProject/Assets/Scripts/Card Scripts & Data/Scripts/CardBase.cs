@@ -52,6 +52,8 @@ namespace CardActions
             //cardImage.sprite = CardData.CardSprite;
         }
 
+        
+
         public virtual void Use(GenericBody self, GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, RunManager.PlayerStats playerStats = new RunManager.PlayerStats())
         {
             //Debug.Log(CardData.CardName + " was played"); <---- fuck this one in particular

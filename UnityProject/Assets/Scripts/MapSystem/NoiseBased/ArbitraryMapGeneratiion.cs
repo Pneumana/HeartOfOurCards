@@ -467,7 +467,8 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
         }
         if (clicked)
         {
-            RunManager.instance.ChangeStam(-1);
+            Debug.Log("clicked on tile");
+            RunManager.instance.CMDChangeSharedStat("Stamina", -1);
             GameObject.FindFirstObjectByType<MapControls>().staminaText.text = "Stamina: " + RunManager.instance.Stamina;
             StartCoroutine(ExploreTile(clickedTile.x, clickedTile.y));
             var cell = clickedTile;

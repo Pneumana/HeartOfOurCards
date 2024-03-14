@@ -166,7 +166,8 @@ namespace Managers
                 }
                 CurrentMainAlly.OnPlayerTurnEnd();
                 Debug.Log("player turn ended");
-                ServerStartEnemyTurns();
+                if(isServer)
+                    ServerStartEnemyTurns();
             }
             /*if (isPlayerTurn)
             {
@@ -218,14 +219,17 @@ namespace Managers
         void ServerStartEnemyTurns()
         {
             //StartCoroutine(EnemyTurnLoop());
-            ClientStartEnemyTurns();
+
+            StartCoroutine(EnemyTurnLoop());
+
+            //ClientStartEnemyTurns();
         }
-        [ClientRpc]
+/*        [ClientRpc]
         void ClientStartEnemyTurns()
         {
             if(isServer)
                 StartCoroutine(EnemyTurnLoop());
-        }
+        }*/
         IEnumerator EnemyTurnLoop()
         {
             int enemyLoopIndex = 0;

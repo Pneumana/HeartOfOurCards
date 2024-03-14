@@ -68,13 +68,13 @@ namespace Characters
 
         }
 
-        [Command(requiresAuthority = false)]
+        //[Command(requiresAuthority = false)]
         public void TakeDamage(int damageRecieved)
         {
             TakeDamageRPC(damageRecieved);
         }
 
-        [ClientRpc]
+        //[ClientRpc]
         void TakeDamageRPC(int damageRecieved)
         {
             var damageToTake = damageRecieved;
@@ -113,13 +113,13 @@ namespace Characters
             }
         }
 
-        [Command(requiresAuthority = false)]
+        //[Command(requiresAuthority = false)]
         public void SetAllStatus()
         {
             SetAllStatusRPC();
         }
 
-        [ClientRpc]
+        //[ClientRpc]
         public void SetAllStatusRPC()
         {
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
@@ -147,13 +147,13 @@ namespace Characters
             StatusDict[StatusType.Regen].OnTriggerAction += RegenHeal;
         }
 
-        [Command(requiresAuthority = false)]
+        //[Command(requiresAuthority = false)]
         public void ApplyStatus(StatusType targetStatus, int value)
         {
             ApplyStatusRPC(targetStatus, value);
         }
 
-        [ClientRpc]
+        //[ClientRpc]
         public void ApplyStatusRPC(StatusType targetStatus, int value)
         {
             //if(targetStatus == StatusType.Block)
@@ -172,13 +172,13 @@ namespace Characters
             }
         }
 
-        [Command(requiresAuthority = false)]
+        //[Command(requiresAuthority = false)]
         public void HealDamage(int damageRecieved)
         {
             HealDamageRPC(damageRecieved);
         }
 
-        [ClientRpc]
+        //[ClientRpc]
         public void HealDamageRPC(int healRecieved)
         {
             health += healRecieved;

@@ -2009,20 +2009,18 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  hand:
-  - {fileID: 11400000, guid: 278bff0cdf432ae4799f1c86f97d3a82, type: 2}
-  - {fileID: 11400000, guid: fe6eab96c68e04844ac144ea449bc6b8, type: 2}
+  hand: []
   deck:
   - {fileID: 11400000, guid: fdb2e359fd61eb3438adb3c55a77e24e, type: 2}
   - {fileID: 11400000, guid: a3a22e6416ae5df49a082eaf1242da11, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
-  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
-  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
-  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
-  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
-  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
-  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   discardPile: []
 --- !u!114 &1776109210124928608
 MonoBehaviour:

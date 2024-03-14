@@ -68,6 +68,7 @@ public class CardEnemyController : NetworkBehaviour
             return;
         if (body.health > 0)
         {
+            Debug.Log("enemy playing card " + deck.hand[0].CardName);
             deck.ServerPlayCard(netId, transform.forward * 4, 0);
 
             deck.ServerDrawCard(1);

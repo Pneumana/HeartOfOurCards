@@ -7,6 +7,7 @@ using System.Linq;
 using UnityEngine;
 using Managers;
 using DeckData;
+using static UnityEngine.GraphicsBuffer;
 
 public class CardDeck : NetworkBehaviour
 {
@@ -14,6 +15,7 @@ public class CardDeck : NetworkBehaviour
     public List<CardData> deck = new List<CardData> ();
     public List<CardData> discardPile = new List<CardData>();
 
+    bool ownedByEnemy;
     //public List<CardBase> cardHand = new List<CardBase>();
 
     private HandManager hm;
@@ -22,6 +24,8 @@ public class CardDeck : NetworkBehaviour
     void Start()
     {
         hm = GetComponent<HandManager>();
+        if (GetComponent<CardEnemyController>() != null)
+            ownedByEnemy = true;
     }
 
     // Update is called once per frame
@@ -163,9 +167,39 @@ public class CardDeck : NetworkBehaviour
         Debug.Log("server recieved play request");
         if (playedCard == -1)
             playedCard = Random.Range(0, hand.Count - 1);
-        PlayCard(netID, target, playedCard);
+
+
+        //if(!ownedByEnemy)
+            PlayCard(netID, target, playedCard);
+/*        else
+        {
+            PlayEnemyCard(netID, target, playedCard);
+        }*/
         //run play card on all clients, checking for netID match so the same player uses them
     }
+
+    public void PlayEnemyCard(uint netID, Vector3 target, int playedCard)
+    {
+
+        if (netID == netId)
+        {
+            GameObject targetObj = null;
+            float dist = float.MaxValue;
+            foreach (GenericBody go in GameObject.FindObjectsByType<GenericBody>(FindObjectsSortMode.None))
+            {
+                var pos = go.gameObject.transform.position;
+                var comp = Vector3.Distance(target, pos);
+                if (comp < dist && go != gameObject)
+                {
+                    dist = comp;
+                    targetObj = go.gameObject;
+                }
+            }
+            if (GetComponent<CardEnemyController>().currentDisplay != null)
+                GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+        }
+    }
+
     [Command(requiresAuthority =false)]
     public void ServerSuggestCard(uint netID, Vector3 targetNetID, int playedCard)
     {
@@ -201,7 +235,8 @@ public class CardDeck : NetworkBehaviour
             try
             {
                 //player using a card
-                hm.cards[playedCard].GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                //if(isOwned)
+                    hm.cards[playedCard].GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
             }
             catch
             {

@@ -270,6 +270,7 @@ public class RunManager : NetworkBehaviour
                 secondPlayerPick = true;
             }
         }*/
+    [ClientRpc]
     public void ChangeStat(int playerIndex, string stat, int change)
     {
         var mp = new PlayerStats();
@@ -279,8 +280,21 @@ public class RunManager : NetworkBehaviour
 
         instance.playerStatList[0] = mp;
     }
+    [Command]
+    public void CMDChangeStat(int playerIndex, string stat, int change)
+    {
+        ChangeStat(playerIndex, stat, change);
+    }
+    [Command(requiresAuthority = false)]
+    public void CMDChangeSharedStat(string stat, int change)
+    {
+        ChangeSharedStat(stat, change);
+    }
+    [ClientRpc]
     public void ChangeSharedStat(string stat, int change)
     {
+        //mp = playerStatList[playerIndex];
 
+        instance.GetType().GetField(stat).SetValueDirect(__makeref(RunManager.instance), (int)instance.GetType().GetField(stat).GetValue(instance) + change);
     }
 }
