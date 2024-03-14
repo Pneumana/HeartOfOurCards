@@ -7,6 +7,8 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.VFX;
 using static UnityEngine.Rendering.DebugUI;
+using Managers;
+//Claire <3
 
 
 namespace CardActions
@@ -120,16 +122,36 @@ namespace CardActions
         }
     }
 
-    public class DrawAction : CardActionBase
+    public class SelfDrawAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.Draw;
         public override void DoAction(CardActionParameters actionParameters)
         {
+            var deck = actionParameters.SelfCharacter.GetComponent<CardDeck>();
 
-            //if (CollectionManager != null)
-            //    CollectionManager.DrawCards(Mathf.RoundToInt(actionParameters.Value));
-            //else
-            //    Debug.LogError("There is no CollectionManager");
+            deck.ServerDrawCard(Int32.Parse(actionParameters.Value));
+        }
+    }
+
+    public class AllyDrawAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.AllyDraw;
+        public override void DoAction(CardActionParameters actionParameters)
+        {      
+            foreach (var ally in TurnManager.instance.CurrentAlliesList)
+            {
+                if (ally.CharacterType == actionParameters.SelfCharacter.CharacterType)
+                {
+                    return;
+                }
+                Debug.Log("got passed character type check");
+                if (ally.CharacterType != actionParameters.SelfCharacter.CharacterType)
+                {
+                    var deck = ally.GetComponent<CardDeck>();
+
+                    deck.ServerDrawCard(Int32.Parse(actionParameters.Value));
+                }
+            }
         }
     }
 
@@ -138,10 +160,31 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.EarnEnergy;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            //if (CombatManager != null)
-            //    CombatManager.GainEnergy(Mathf.RoundToInt(actionParameters.Value));
-            //else
-            //    Debug.LogError("There is no CombatManager");
+            var deck = actionParameters.SelfCharacter.GetComponent<CardPlayerController>();
+
+            deck.currentEnergy += (Int32.Parse(actionParameters.Value));
+        }
+    }
+
+    public class AllyGainEnergyAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.AllyGainEnergy;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            foreach (var ally in TurnManager.instance.CurrentAlliesList)
+            {
+                if (ally.CharacterType == actionParameters.SelfCharacter.CharacterType)
+                {
+                    return;
+                }
+                Debug.Log("got passed character type check");
+                if (ally.CharacterType != actionParameters.SelfCharacter.CharacterType)
+                {
+                    var deck = ally.GetComponent<CardPlayerController>();
+
+                    deck.currentEnergy += (Int32.Parse(actionParameters.Value));
+                }
+            }
         }
     }
 

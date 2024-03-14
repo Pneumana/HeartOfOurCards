@@ -74,6 +74,8 @@ public class CardEnemyController : NetworkBehaviour
             ServerDisplayEnemyCard();
         }
 
+        var GB = GetComponent<EnemyGenericBody>();
+        GB.OnEnemyTurnEnd();
         EndTurn();
         //pick a new card to play. 
     }

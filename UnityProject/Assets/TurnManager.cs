@@ -164,6 +164,7 @@ namespace Managers
                 {
                     player.OnPlayerTurnEnd();
                 }
+                CurrentMainAlly.OnPlayerTurnEnd();
                 Debug.Log("player turn ended");
                 ServerStartEnemyTurns();
             }

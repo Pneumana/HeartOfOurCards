@@ -2,6 +2,7 @@ using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace Characters 
 {
@@ -56,14 +57,19 @@ namespace Characters
             
             //sync damage here
         }
+
         public void OnPlayerTurnStart()
         {
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
             TriggerStatus(StatusType.Burn);
             TriggerStatus(StatusType.Regen);
-            TriggerStatus(StatusType.Frozen);
             TriggerStatus(StatusType.Vulnerable);
+        }
+
+        public void OnPlayerTurnEnd()
+        {
+            TriggerStatus(StatusType.Frozen);
         }
 
         private void OnDestroy()

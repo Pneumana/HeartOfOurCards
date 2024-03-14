@@ -113,7 +113,14 @@ namespace Characters
             }
         }
 
+        [Command(requiresAuthority = false)]
         public void SetAllStatus()
+        {
+            SetAllStatusRPC();
+        }
+
+        [ClientRpc]
+        public void SetAllStatusRPC()
         {
             for (int i = 0; i < Enum.GetNames(typeof(StatusType)).Length; i++)
                 StatusDict.Add((StatusType)i, new StatusStats((StatusType)i, 0));
@@ -140,7 +147,14 @@ namespace Characters
             StatusDict[StatusType.Regen].OnTriggerAction += RegenHeal;
         }
 
+        [Command(requiresAuthority = false)]
         public void ApplyStatus(StatusType targetStatus, int value)
+        {
+            ApplyStatusRPC(targetStatus, value);
+        }
+
+        [ClientRpc]
+        public void ApplyStatusRPC(StatusType targetStatus, int value)
         {
             //if(targetStatus == StatusType.Block)
             if (StatusDict[targetStatus].IsActive)
@@ -157,6 +171,7 @@ namespace Characters
                 Debug.Log("Status Active: " + targetStatus);
             }
         }
+
         [Command(requiresAuthority = false)]
         public void HealDamage(int damageRecieved)
         {
@@ -173,12 +188,6 @@ namespace Characters
             }
             OnHealthChanged?.Invoke(health, maxHealth);
             GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
-        }
-
-        public void GainShield(int shieldRecieved)
-        {
-            StatusDict[StatusType.Block].StatusValue += shieldRecieved;
-            Debug.Log("Shield gained: " + shieldRecieved);
         }
 
         public void OnTurnStart()

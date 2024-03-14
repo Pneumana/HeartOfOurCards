@@ -1437,8 +1437,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2017,12 +2017,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3a22e6416ae5df49a082eaf1242da11, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
-  - {fileID: 11400000, guid: ca697b950cf605e4db80878eded4d948, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
-  - {fileID: 11400000, guid: e2af140b47594ae4a8c84e62fbd33699, type: 2}
+  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
+  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
+  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
+  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
+  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
+  - {fileID: 11400000, guid: 9dd35c023f523894186b654e95b012c8, type: 2}
   discardPile: []
 --- !u!114 &1776109210124928608
 MonoBehaviour:
@@ -2514,8 +2514,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

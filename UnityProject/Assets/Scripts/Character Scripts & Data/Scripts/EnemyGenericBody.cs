@@ -3,6 +3,7 @@ using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace Characters
 {
@@ -24,14 +25,33 @@ namespace Characters
 
             OnHealthChanged?.Invoke(health, maxHealth);
         }
+
+        [Command(requiresAuthority = false)]
         public void OnEnemyTurnStart()
+        {
+            OnEnemyTurnStartRPC();
+        }
+
+        [ClientRpc]
+        public void OnEnemyTurnStartRPC()
         {
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
             TriggerStatus(StatusType.Burn);
             TriggerStatus(StatusType.Regen);
-            TriggerStatus(StatusType.Frozen);
             TriggerStatus(StatusType.Vulnerable);
+        }
+
+        [Command(requiresAuthority = false)]
+        public void OnEnemyTurnEnd()
+        {
+            OnEnemyTurnEndRPC();
+        }
+
+        [ClientRpc]
+        public void OnEnemyTurnEndRPC()
+        {
+            TriggerStatus(StatusType.Frozen);
         }
     }
 }

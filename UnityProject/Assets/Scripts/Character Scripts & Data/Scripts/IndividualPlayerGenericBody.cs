@@ -2,7 +2,7 @@ using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 
 namespace Characters
 {
@@ -44,7 +44,8 @@ namespace Characters
 
         public void OnPlayerTurnEnd()
         {
-            TriggerStatus(StatusType.Frozen);
+
         }
+
     }
 }
