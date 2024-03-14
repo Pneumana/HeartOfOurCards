@@ -62,11 +62,11 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _Float: 0.06
-    - _Float_1: 181.07
-    - _Float_2: 0.2
-    - _Float_3: 0.26
-    - _Float_4: 2
+    - _Float: 0.03
+    - _Float_1: 140.61
+    - _Float_2: 0.3
+    - _Float_3: 0.2
+    - _Float_4: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 1

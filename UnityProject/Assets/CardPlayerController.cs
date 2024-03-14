@@ -73,7 +73,11 @@ public class CardPlayerController : NetworkBehaviour
         if (isOwned)
         {
             Debug.Log("started encounter and needs to draw " + (5 + Mathf.FloorToInt(RunManager.instance.playerStatList[0].INT / 3)) + " cards due to bonuses");
-            deck.ServerDrawCard(5 + Mathf.FloorToInt(RunManager.instance.playerStatList[0].INT/3));
+            if (GetComponent<GenericBody>().CharacterType == Enums.CharacterType.P1) 
+            {
+                deck.ServerDrawCard(5 + Mathf.FloorToInt(RunManager.instance.playerStatList[0].INT / 3));
+            }
+
         }
         
 
