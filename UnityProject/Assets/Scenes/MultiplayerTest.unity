@@ -289,7 +289,7 @@ MonoBehaviour:
   timeInterpolationGui: 0
   offline: {fileID: 1299732236}
   online: {fileID: 1822606868}
-  ignoreSteam: 0
+  ignoreSteam: 1
   PlayerList: []
   PlayerNetIDs: 
   PlayerLobby: []

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,9 +26,22 @@ public class VNCharacterController : MonoBehaviour
     public float scaleTarget;
     public float speed;
 
+    List<VNParticles> particles;
+
     bool speaking;
 
     bool eyeLoadErr;
+
+    [Serializable]
+    public struct VNParticles
+    {
+        Vector2 currentDir;
+        Vector2 startDir;
+        Vector2 accelleration;
+
+        Sprite image;
+        float lifeSpan;
+    }
 
     public enum EmotionState
     {
