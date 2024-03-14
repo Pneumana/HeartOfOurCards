@@ -202,7 +202,7 @@ public class RunManager : NetworkBehaviour
     public void TryStartGame(string map)
     {
         Debug.Log("trying to start game");
-        if (isServer)
+        if (isServer && !AmbidexterousManager.Instance.loadingScene)
         {
             var _seed = Random.Range(int.MinValue, int.MaxValue);
             Debug.Log("command to set seed to " + _seed);

@@ -15,7 +15,6 @@ public class OnlineDebugHUD : MonoBehaviour
         if (activated!="")
         {
             //activated = "";
-            
             RunManager.instance.TryStartGame(activated);
         }
     }

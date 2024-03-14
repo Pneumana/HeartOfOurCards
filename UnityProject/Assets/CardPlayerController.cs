@@ -18,7 +18,7 @@ public class CardPlayerController : NetworkBehaviour
 
     public bool started = false;
     //network stuff
-
+    [SyncVar] int loadedPlayers;
     private void Start()
     {
         currentEnergy = maxEnergy;
@@ -31,8 +31,35 @@ public class CardPlayerController : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMDStartEncounter()
     {
+        /*if (connectionToClient.isReady)
+        {
+            StartEncounter();
+        }
+        else
+        {
+            StartCoroutine(StartEncounterCoroutine());
+        }*/
+        //StartEncounter();
+        loadedPlayers++;
+        if (loadedPlayers == NetworkServer.connections.Count)
+        {
+            //if(isServer)
+            StartEncounter();
+            Debug.Log("all players loaded");
+            
+        }
+            
+    }
+
+    IEnumerator StartEncounterCoroutine()
+    {
+        while (!connectionToServer.isReady)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
         StartEncounter();
     }
+
     [ClientRpc]
     public void StartEncounter()
     {
@@ -57,15 +84,21 @@ public class CardPlayerController : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMDStartTurn()
     {
-        
-        StartTurn();
+        //if(TurnEnded)
+            StartTurn();
 
     }
     [ClientRpc]
     public void StartTurn()
     {
+        if (TurnEnded == false)
+            return;
         //body.OnPlayerTurnStart();
-        deck.ServerDrawCard(5);
+        if (isOwned)
+        {
+            deck.ServerDrawCard(5);
+
+        }
         TurnEnded = false;
         currentEnergy = maxEnergy;
         GetComponent<HandManager>().RefreshHand();
@@ -81,11 +114,18 @@ public class CardPlayerController : NetworkBehaviour
         }
         
     }
+
+    void TryStartEncounter()
+    {
+
+    }
+
     private void Update()
     {
         //if(!TurnEnded&&body.health > 0)
         //{
-                //StartEncounter();
+/*        if(!started && SceneManager.GetActiveScene().name == "ConnorTest")
+            StartEncounter();*/
             //this is things the player can do while alive and it's their turn.
             //this needs to be a local player check
 /*            if (Input.GetKeyDown(KeyCode.Space))

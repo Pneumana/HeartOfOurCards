@@ -26,6 +26,14 @@ MonoBehaviour:
     actionTargetType: 1
     actionValue: Dummy
     actionDelay: 0
+  - cardActionType: 13
+    actionTargetType: 1
+    actionValue: Dummy
+    actionDelay: 0
+  - cardActionType: 13
+    actionTargetType: 1
+    actionValue: Dummy
+    actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: Add one token card to your hand.
     enableOverrideColor: 0

@@ -43,7 +43,7 @@ namespace Managers
             if (instance == null)
                 instance = this;
             //SceneManager.sceneLoaded += this.OnLoadCallback;
-            Invoke("OnLoadCallback", 0.1f);
+            Invoke("OnLoadCallback", 0.5f);
             mapStartPos = mapScroll.transform.position;
 
             victoryUI = GameObject.Find("VictoryUI");
@@ -60,13 +60,15 @@ namespace Managers
             foreach (CardPlayerController player in FindObjectsByType<CardPlayerController>(FindObjectsSortMode.None))
             {
                 Debug.Log(player.gameObject);
+                player.CMDStartEncounter();
                 if (player != null)
                 {
                     playerTeam.Add(player);
                     CurrentAlliesList.Add(player.GetComponent<GenericBody>());
                     try
                     {
-                        //player.CMDStartEncounter();
+                        //if(!isServerOnly)
+                        
                         player.gameObject.GetComponent<HandManager>().RefreshHand();
                     }
                     catch { }
@@ -206,7 +208,8 @@ namespace Managers
             CurrentMainAlly.OnPlayerTurnStart();
             foreach (CardPlayerController plr in playerTeam)
             {
-                plr.CMDStartTurn();
+                //if(isClient)
+                    plr.CMDStartTurn();
             }
         }
 

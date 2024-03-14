@@ -259,6 +259,8 @@ public class GetPlayerID : NetworkBehaviour
             {
                 Debug.Log("player 2");
                 combatScene.transform.position = (Vector3.right * 4) + (Vector3.down * 1.89f);
+                combatScene.transform.Find("Player1").GetComponent<HandManager>().HandPosition = new Vector3(4, -1, -2.82f);
+                combatScene.transform.Find("Player1").GetComponent<HandManager>().cardSpread = -3;
                 combatSceneUI.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
                 combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             }
@@ -274,13 +276,15 @@ public class GetPlayerID : NetworkBehaviour
             //combatscene CardPlayerController.handmanager.UpdateHand pos
             var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
             Debug.Log("issuing draw requests for " + playerControllers.Length + " player controllers on scene start");
-            if (isServerOnly && NetworkServer.connections.Count > 1)
-                return;
-            foreach (CardPlayerController cpc in playerControllers)
-            {
-                if(cpc.gameObject.activeSelf)
-                    cpc.CMDStartEncounter();
-            }
+            //if (isServerOnly && NetworkServer.connections.Count > 1)
+                //return;
+            //if()
+            //if(isOwned)
+                foreach (CardPlayerController cpc in playerControllers)
+                {
+                    if(cpc.gameObject.activeSelf)
+                        cpc.CMDStartEncounter();
+                }
         }
     }
 }

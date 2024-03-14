@@ -131,6 +131,7 @@ public class SteamManager : MonoBehaviour
         // [*] Your App ID is not completely set up, i.e. in Release State: Unavailable, or it's missing default packages.
         // Valve's documentation for this is located here:
         // https://partner.steamgames.com/doc/sdk/api#initialization_and_shutdown
+        //if(Initialized)
         m_bInitialized = SteamAPI.Init();
         if (!m_bInitialized)
         {

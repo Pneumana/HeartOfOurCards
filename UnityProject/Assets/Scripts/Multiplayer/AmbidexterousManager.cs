@@ -48,7 +48,7 @@ public class AmbidexterousManager : NetworkManager
     int loadedPlayers;
 
     public RunManager rm;
-
+    public bool loadingScene;
     public int seed;
 
     //public List<PlayerObjectController> GamePlayers { get; } = new List<PlayerObjectController> { };
@@ -85,6 +85,7 @@ public class AmbidexterousManager : NetworkManager
         }
         else
         {
+            //SteamAPI.Shutdown();
             Debug.Log("offline as DefaultName");
             transport = offline;
         }
@@ -182,8 +183,11 @@ public class AmbidexterousManager : NetworkManager
     {
 
         //RunManager.instance.CMDGetSeed();
-        if(SceneManager.GetActiveScene().isLoaded)
+        if (!loadingScene)
+        {
+            loadingScene = true;
             ServerChangeScene(scene);
+        }
     }
     public void ServerChangeSeed(int newseed)
     {
@@ -215,6 +219,7 @@ public class AmbidexterousManager : NetworkManager
     }
     public override void OnServerSceneChanged(string newSceneName)
     {
+        loadingScene = false;
         base.OnServerSceneChanged(newSceneName);
         Debug.Log("server loaded");
         for (int i = 0; i < NetworkServer.connections.Count; i++)
@@ -234,6 +239,8 @@ public class AmbidexterousManager : NetworkManager
 
             //Debug.Log("server found enemy spawner");
             //enemySpawner.GetComponent<EnemySpawner>().EnemySpawns = Random.Range(1, 3);
+
+
             var rand = Random.Range(1, 4);
             enemySpawner.gameObject.GetComponent<EnemySpawner>().SpawnEnemy(rand);
             Debug.Log(rand + " enemies to spawn");
