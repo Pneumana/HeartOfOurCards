@@ -261,13 +261,16 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 7085487310239617887, guid: 061c0ad919303fb42870444b6006da5b, type: 3}
+  playerPrefab: {fileID: 2847218521113019400, guid: f5c86a62f2f16e44295fe3d2bcf9aa45, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 1115048136592082124, guid: f3fb331b830b1d94cb95dbe1d734a247, type: 3}
   - {fileID: 6102217815632708100, guid: 00529e2199940384aa3cb478efb27aa1, type: 3}
   - {fileID: 5006751889763522343, guid: f5a3be8970218fd45aa47c8701baa4a9, type: 3}
+  - {fileID: 5006751889763522343, guid: a9d3334b3266fa84495194444b65858c, type: 3}
+  - {fileID: 5006751889763522343, guid: 891226714506d4d4bbd7a32c1446a1d9, type: 3}
+  - {fileID: 5130907772930195866, guid: c5f781e7e60486f41a080177971eb679, type: 3}
+  - {fileID: 1115048136592082124, guid: f3fb331b830b1d94cb95dbe1d734a247, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -285,7 +288,7 @@ MonoBehaviour:
   timeInterpolationGui: 0
   offline: {fileID: 1299732236}
   online: {fileID: 1822606868}
-  ignoreSteam: 1
+  ignoreSteam: 0
   PlayerList: []
   PlayerNetIDs: 
   PlayerLobby: []
