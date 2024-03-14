@@ -72,7 +72,7 @@ namespace CardActions
                     actionTime += Time.deltaTime;
                     //Debug.Log("player action " + playerAction.CardActionType);
                     
-                    var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction);
+                    var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, healthPool, playerAction, self);
 
                     foreach (var target in targetList)
                     {
@@ -88,7 +88,7 @@ namespace CardActions
             /* Add something here to check for exhaust*/
         }
 
-        private static List<GenericBody> DetermineTargets(GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, CardActionData playerAction)
+        private static List<GenericBody> DetermineTargets(GenericBody targetCharacter, List<EnemyGenericBody> allEnemies, List<GenericBody> allAllies, GenericBody healthPool, CardActionData playerAction, GenericBody self)
         {
             List<GenericBody> targetList = new List<GenericBody>();
             switch (playerAction.ActionTargetType)
@@ -124,6 +124,9 @@ namespace CardActions
                     break;
                 case ActionTargetType.HealthPool:
                         targetList.Add(healthPool);
+                    break;
+                case ActionTargetType.Self:
+                        targetList.Add(self);
                     break;
                 default:
                     Debug.LogError("womp womp");
