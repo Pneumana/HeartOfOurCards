@@ -134,8 +134,8 @@ public class AmbidexterousManager : NetworkManager
     {
         CurrentLobbyID = callback.m_ulSteamIDLobby;
         if (NetworkServer.active) { return; }
-        manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
-        manager.StartClient();
+        networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
+        StartClient();
     }
 
     public void RenameLobby()
