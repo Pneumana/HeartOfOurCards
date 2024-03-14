@@ -26,14 +26,7 @@ namespace Characters
             OnHealthChanged?.Invoke(health, maxHealth);
         }
 
-        [Command(requiresAuthority = false)]
         public void OnEnemyTurnStart()
-        {
-            OnEnemyTurnStartRPC();
-        }
-
-        [ClientRpc]
-        public void OnEnemyTurnStartRPC()
         {
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
@@ -42,14 +35,7 @@ namespace Characters
             TriggerStatus(StatusType.Vulnerable);
         }
 
-        [Command(requiresAuthority = false)]
         public void OnEnemyTurnEnd()
-        {
-            OnEnemyTurnEndRPC();
-        }
-
-        [ClientRpc]
-        public void OnEnemyTurnEndRPC()
         {
             TriggerStatus(StatusType.Frozen);
         }

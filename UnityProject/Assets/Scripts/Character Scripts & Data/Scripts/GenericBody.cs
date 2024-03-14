@@ -200,7 +200,6 @@ namespace Characters
             TriggerStatus(StatusType.Vulnerable);
         }
 
-
         public void TriggerStatus(StatusType targetStatus)
         {
             StatusDict[targetStatus].OnTriggerAction?.Invoke();
@@ -238,6 +237,7 @@ namespace Characters
 
             OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
         }
+
         public void DamageBleed()
         {
             if (StatusDict[StatusType.Bleed].StatusValue <= 0) return;

@@ -9,7 +9,8 @@ namespace Enums
         HealthPool,
         RandomEnemy,
         RandomAlly,
-        TwoRandomEnemies
+        TwoRandomEnemies,
+        Self
     }
 
     public enum SpecialKeywords
