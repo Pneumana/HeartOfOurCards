@@ -19,18 +19,21 @@ public class MapControls : NetworkBehaviour
     private void Start()
     {
         mapGen = GameObject.Find("ArbitraryMap").GetComponent<ArbitraryMapGeneratiion>();
-        if (isServer)
-        {
+        if(isServer)
             CMDChangePickingPlayer();
-        }
         staminaText.text = "Stamina: " + RunManager.instance.Stamina;
+        ForceUpdatePickingPlayerUI();
     }
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (RunManager.instance.pickingPlayer != RunManager.instance.LocalPlayerID && AmbidexterousManager.Instance.PlayerList.Count > 1)
+            {
+                Debug.Log("Local player isnt the picking player, so they can't pick where to go on the map");
                 return;
+
+            }
 
 
             //RunManager.instance.Stamina--;
@@ -166,22 +169,41 @@ public class MapControls : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void CMDChangePickingPlayer()
     {
-        ChangePickingPlayer();
-    }
-    [ClientRpc]
-    void ChangePickingPlayer()
-    {
         var rm = RunManager.instance;
 
         if (rm.pickingPlayer == 0)
         {
             rm.pickingPlayer = 1;
+            Debug.Log("player 2 is now picking");
         }
         else
         {
             rm.pickingPlayer = 0;
+            Debug.Log("player 1 is now picking");
         }
+        ChangePickingPlayerUI();
+    }
+    [Command(requiresAuthority = false)]
+    void ForceUpdatePickingPlayerUI()
+    {
+        ChangePickingPlayerUI();
+    }
 
+    [ClientRpc]
+    void ChangePickingPlayerUI()
+    {
+       var rm = RunManager.instance;
+
+        /*        if (rm.pickingPlayer == 0)
+                {
+                    rm.pickingPlayer = 1;
+                }
+                else
+                {
+                    rm.pickingPlayer = 0;
+                }
+        */
+        Debug.Log("client rpc to update picking player text");
         text.text = "Player " + rm.pickingPlayer + " is picking";
     }
 

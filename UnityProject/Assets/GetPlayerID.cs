@@ -226,6 +226,16 @@ public class GetPlayerID : NetworkBehaviour
         }
         else
         {
+            if (SteamManager.Initialized)
+            {
+                if (PlayerSteamID == 0)
+                    PlayerSteamID = 76561198272619590;
+                combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = SteamFriends.GetFriendPersonaName((CSteamID)PlayerSteamID);
+            }
+            else
+            {
+                combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player" + (1 + RunManager.instance.LocalPlayerID);
+            }
             //disable
             player2combatScene.SetActive(false);
             player2combatSceneUI.SetActive(false);

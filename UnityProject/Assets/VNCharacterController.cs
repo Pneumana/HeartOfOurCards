@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Jobs;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
@@ -26,22 +27,10 @@ public class VNCharacterController : MonoBehaviour
     public float scaleTarget;
     public float speed;
 
-    List<VNParticles> particles;
-
     bool speaking;
 
     bool eyeLoadErr;
 
-    [Serializable]
-    public struct VNParticles
-    {
-        Vector2 currentDir;
-        Vector2 startDir;
-        Vector2 accelleration;
-
-        Sprite image;
-        float lifeSpan;
-    }
 
     public enum EmotionState
     {
@@ -120,33 +109,6 @@ public class VNCharacterController : MonoBehaviour
             Debug.Log("start eye roll");
             StartCoroutine(RollEyes());
         }
-    }
-    void LateUpdate()
-    {
-        //check for sprites being null, if null fallback to the producer sprites
-        //or hide them i guess lol
-        /*if (Body.sprite == null)
-            Body.enabled = false;
-        else
-            Body.enabled = true;
-
-        if (EyeLines.sprite == null)
-            EyeLines.enabled = false;
-        else
-            EyeLines.enabled = true;
-
-        if (EyeMask.sprite == null)
-            EyeMask.enabled = false;
-        else
-            EyeMask.enabled = true;
-
-        if(Iris.sprite==null)
-            Iris.enabled = false;
-        else
-            Iris.enabled = true;*/
-
-        //if speaking, set mouth sprite to open
-        //if not set mouth to closed by ChangeEmote(currentEmote)
     }
     IEnumerator RollEyes()
     {

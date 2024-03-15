@@ -30,7 +30,7 @@ public class RunManager : NetworkBehaviour
 
     public int seed;
     //This is the player that can click on the map and is the main character for dialouge.
-    public int pickingPlayer;
+    [SyncVar]public int pickingPlayer;
 
     public int LocalPlayerID;
 

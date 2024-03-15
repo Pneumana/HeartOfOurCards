@@ -4,53 +4,44 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-public class ParticleJob : IJob
+public struct ParticleJob : IJob
 {
     private Vector3 _targetDirection;
-    float _cooldown;
-    float _speed;
-    float _rotationSpeed;
+
 
     float _deltaTime;
 
-    private uint _seed;
+    private NativeArray<uint> _seed;
 
-    private float _rotation;
-    private Vector3 _position;
+    private NativeArray<Vector2> _positionInput;
+    private NativeArray<Vector2> _directionInput;
 
-    private NativeArray<float> _coolDownResult;
-    private NativeArray<Vector3> _directionResult;
-    private NativeArray<Vector3> _positionResult;
-    private NativeArray<Quaternion> _rotationResult;
+    private NativeArray<Vector2> _directionResult;
+    private NativeArray<Vector2> _positionResult;
 
     public ParticleJob(
         Vector3 targetDirection,
-        float cooldown,
-        float speed,
-        float rotationSpeed,
+        //float rotationSpeed,
         float deltaTime,
-        uint seed,
-        Quaternion rotation,
-        Vector3 position,
-        NativeArray<float> coolDownResult,
-        NativeArray<Vector3> directionResult,
-        NativeArray<Vector3> positionResult,
-        NativeArray<Quaternion> rotationResult
+        NativeArray<uint> seed,
+        NativeArray<Vector2> positionInput,
+        NativeArray<Vector2> directionResult,
+        NativeArray<Vector2> positionResult,
+        NativeArray<Vector2> directionInput
         )
     {
         _targetDirection = targetDirection;
-        _cooldown = cooldown;
-        _speed = speed;
-        _rotationSpeed = rotationSpeed;
+        //_rotationSpeed = rotationSpeed;
         _deltaTime = deltaTime;
         _seed = seed;
         //_rotation = rotation;
-        _position = position;
+        _positionInput = positionInput;
 
-        _coolDownResult = coolDownResult;
+        //_coolDownResult = coolDownResult;
         _directionResult = directionResult;
         _positionResult = positionResult;
-        _rotationResult = rotationResult;
+        _directionInput = directionInput;
+        //_rotationResult = rotationResult;
     }
 
 
@@ -59,44 +50,68 @@ public class ParticleJob : IJob
     // Update is called once per frame
     public void Execute()
     {
-        UpdateTargetDirection();
-        RotateTowardsTarget();
-        SetPosition();
+        Loop();
     }
-    void UpdateTargetDirection()
+    void Loop()
     {
-        HandleRandomDirection();
 
 
-
-    }
-    void HandleRandomDirection()
-    {
-        _cooldown -= _deltaTime;
-        if (_cooldown <= 0)
+        for (int i = 0; i < _positionInput.Length; i++)
         {
-            var random = new Unity.Mathematics.Random(_seed);
-            float angleChange = random.NextFloat(-90, 90);
-            Quaternion rot = Quaternion.AngleAxis(angleChange, Vector3.forward);
-            _targetDirection = rot * _targetDirection;
-            _directionResult[0] = _targetDirection;
-            Debug.LogWarning("cooldown expired, new direction is " + _targetDirection);
-            _cooldown = random.NextFloat(1f, 5f);
-        }
-        _coolDownResult[0] = _cooldown;
-    }
-    void RotateTowardsTarget()
-    {
-        Quaternion targetRot = Quaternion.LookRotation(Vector3.forward, _targetDirection);
-        //_rotation = Quaternion.RotateTowards(_rotation, targetRot, _rotationSpeed * _deltaTime);
-        Debug.Log("new rotation of " + _rotation);
-        //_rotationResult[0] = _rotation;
-    }
-    void SetPosition()
-    {
-        Vector3 positionChange = _rotation * Vector3.up * _speed * _deltaTime;
-        _position = _position + positionChange;
 
-        _positionResult[0] = _position;
+            //_position = _matrixInput[i].GetRow(0);
+            HandleRandomDirection(i);
+            RotateTowardsTarget(i);
+            //_rotation = Quaternion.Euler(_matrixInput[i].GetRow(1));
+            //Debug.LogWarning("position is " + _position);
+            //UpdateTargetDirection();
+            //RotateTowardsTarget();
+
+
+            //Debug.LogWarning("position is now " + _position);
+            // Build matrix.
+            SetPosition(i);
+
+/*            var rot = Quaternion.Euler(Vector3.zero);
+            var mat = Matrix4x4.TRS(_positionResult[i], rot, Vector3.one);*/
+            //_matrixResult[i] = mat;
+            //_rotationResult[0] = _rotation;
+
+        }
+    }
+    void HandleRandomDirection(int i)
+    {
+                /*var random = new Unity.Mathematics.Random(_seed[i]);
+                float angleChange = random.NextFloat(-90, 90);
+                float rot = random.NextFloat(-180, 180);
+                _targetDirection[i] = rot * _targetDirection[i];
+                //look at disruptor
+                Vector3 direction = pos - _position[i];
+                _velocity[i] = Vector3.Lerp(_velocity[i], (Vector3.up) - (new Vector3(direction.x, 0, direction.z) * 3), 5 * _deltaTime);
+                _directionResult[i] = _targetDirection[i];
+                _speed[i] = 1;*/
+
+    }
+    void RotateTowardsTarget(int i)
+    {
+        var velocity = _directionInput[i] + Vector2.down;
+
+        //Debug.Log(realTarget + " is lerped between " + _gravity + " and " + _targetDirection[i]);
+        //_targetDirection[i] = rot * _targetDirection[1];
+        //Debug.DrawLine(_position[i], _position[i] + realTarget[i], Color.green, Time.deltaTime);
+        //Quaternion targetRot = Quaternion.LookRotation(Vector3.forward, _targetDirection[i]);
+        _directionResult[i] = velocity;
+        //var Rot = Quaternion.LookRotation(targetRot * Vector3.forward, _gravity);
+        //_rotation[i] = Quaternion.RotateTowards(_rotation[i], targetRot, _rotationSpeed * _deltaTime);
+
+        //Debug.Log("new rotation of " + _rotation);
+        //_rotationResult[i] = _rotation[i];
+    }
+    void SetPosition(int i)
+    {
+        Vector2 positionChange = _directionResult[i] * _deltaTime;
+        //_position[i] = _position[i] + positionChange;
+        //Debug.Log("position changed by " + positionChange);
+        _positionResult[i] = _positionInput[i] + positionChange;
     }
 }
