@@ -24,7 +24,7 @@ namespace Characters
         {
             RM = RunManager.instance;
             maxHealth = (20 + (RM.playerStatList[0].CON * 2) + (RM.playerStatList[1].CON * 2));
-            _health = RM.Health;
+            health = RM.Health;
             SetAllStatus();
             AllyCanvas.InitCanvas();
 
@@ -34,7 +34,7 @@ namespace Characters
             OnStatusApplied += AllyCanvas.ApplyStatus;
             OnStatusCleared += AllyCanvas.ClearStatus;
 
-            OnHealthChanged?.Invoke(_health, maxHealth);
+            OnHealthChanged?.Invoke(health, maxHealth);
         }
 
         public void PlayerTakeDamage(int damageRecieved)
@@ -52,8 +52,8 @@ namespace Characters
                 shieldThisTurn--;
                 damageToTake--;
             }
-            _health -= damageToTake;
-            OnHealthChanged?.Invoke(_health, maxHealth);
+            health -= damageToTake;
+            OnHealthChanged?.Invoke(health, maxHealth);
             
             //sync damage here
         }

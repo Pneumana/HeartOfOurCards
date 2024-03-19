@@ -209,6 +209,12 @@ public class GetPlayerID : NetworkBehaviour
     }
     public void StartedScene(string SceneName)
     {
+        if(RunManager.instance.Health > RunManager.instance.MaxHealth)
+        {
+            RunManager.instance.Health = RunManager.instance.MaxHealth;
+        }
+        //40 
+
         Debug.Log("started scene " + SceneManager.GetActiveScene().name + " on player " + ConnID);
         //disable player 2
         /*if (RunManager.instance.playerStatList.Count < NetworkServer.connections.Count)

@@ -46,6 +46,7 @@ public class RunManager : NetworkBehaviour
     public List<string> experiencedEvents = new List<string>();
 
     public int Health;
+    public int MaxHealth;
 
     public int Stamina = 8;
     //used to move between dungeon tiles
@@ -125,8 +126,13 @@ public class RunManager : NetworkBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            if (Health == 0)
-                Health = (20 + (playerStatList[0].CON * 2) + (playerStatList[1].CON * 2));
+            if (MaxHealth == 0)
+            {
+                MaxHealth = (20 + (playerStatList[0].CON * 2) + (playerStatList[1].CON * 2));
+                Health = MaxHealth;
+                //if
+            }
+
             CardActionProcessor.Initialize();
         }
     }
@@ -149,7 +155,10 @@ public class RunManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+/*        if(Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }*/
     }
     private void OnGUI()
     {

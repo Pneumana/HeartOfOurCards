@@ -31,8 +31,17 @@ public class CardEnemyController : NetworkBehaviour
         body = GetComponent<GenericBody>();
         deck = GetComponent<CardDeck>();
         //pick a card to play
-        ServerDisplayEnemyCard();
+        StartCoroutine(Wait());
+        
     }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ServerDisplayEnemyCard();
+        yield return null;
+    }
+
     public void StartTurn()
     {
         TurnEnded = false;
@@ -83,18 +92,24 @@ public class CardEnemyController : NetworkBehaviour
     [Command(requiresAuthority =false)]
     public void ServerDisplayEnemyCard()
     {
-        Debug.Log("server display enemy card");
+
         if (deck == null)
         {
             body = GetComponent<GenericBody>();
             deck = GetComponent<CardDeck>();
         }
         //await deck.ServerDrawCard(1);
-        if (deck.hand.Count < 1)
-            deck.DrawCard(1, 0);
+        if (deck.hand.Count < 1 && isServer)
+            deck.DrawCard(1, deck.deck.Count);
         if (deck.hand.Count == 0)
+        {
+            
             return;
-        var pickedCard = Random.Range(0, deck.hand.Count - 1);
+        }
+        //list 1 []lisst0
+
+        var pickedCard = Random.Range(0, deck.hand.Count);
+        Debug.Log("server display card " + deck.hand[pickedCard].CardName);
         //Debug.Log(deck.hand[0].CardName);
         PickCard(pickedCard);
     }

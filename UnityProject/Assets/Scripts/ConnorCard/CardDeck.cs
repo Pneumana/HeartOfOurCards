@@ -31,28 +31,23 @@ public class CardDeck : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            DrawCard();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PlayCard(transform.forward);
-        }*/
+
     }
     [Command(requiresAuthority =false)]
     public void ServerDrawCard(int drawcount)
     {
-        Debug.Log("drawing " + drawcount + " cards");
-        int drawnCard = Random.Range(0, deck.Count - 1);
+        Debug.Log(gameObject.name  + " drawing " + drawcount + " cards");
+        int drawnCard = Random.Range(0, deck.Count);
         Debug.Log(gameObject.name + " " + drawnCard + " was drawn from deck of " + (deck.Count-1));
         //deck.Remove(deck[drawnCard]);
-        DrawCard(drawcount, drawnCard);
+        //if(isServer)
+            DrawCard(drawcount, drawnCard);
     }
     [ClientRpc]
     public void DrawCard(int drawcount, int drawnCard)
     {
-        while(drawcount > 0)
+        Debug.Log("CLIENT RPC " + gameObject.name + " drawing " + drawcount + " cards");
+        while (drawcount > 0)
         {
             if (deck.Count == 0)
             {
@@ -241,8 +236,11 @@ public class CardDeck : NetworkBehaviour
             catch
             {
                 //enemies don't have hands so yeah
-                if(GetComponent<CardEnemyController>().currentDisplay!=null)
+                if (GetComponent<CardEnemyController>().currentDisplay != null)
+                {
+
                     GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                }
             }
 
             //CardBase.
@@ -256,7 +254,7 @@ public class CardDeck : NetworkBehaviour
             }*/
             if (!hand[playedCard].deleteAfterPlay)
                 discardPile.Add(hand[playedCard]);
-            Debug.Log("Played card " + hand[playedCard].CardName);
+            Debug.Log(gameObject.name + " Played card " + hand[playedCard].CardName);
             hand.Remove(hand[playedCard]);
         }
         try

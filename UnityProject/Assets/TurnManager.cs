@@ -55,7 +55,11 @@ namespace Managers
         }
         void OnLoadCallback()
         {
+
             CurrentMainAlly = GameObject.Find("Health Pool").GetComponent<PlayerGenericBody>();
+/*            RunManager.instance.Health = (20 + (RunManager.instance.playerStatList[0].CON * 2) + (RunManager.instance.playerStatList[1].CON * 2));
+            CurrentMainAlly.health = RunManager.instance.Health;
+            CurrentMainAlly.OnHealthChanged?.Invoke(CurrentMainAlly.health, CurrentMainAlly.maxHealth);*/
             Debug.Log("scene load callback");
             foreach (CardPlayerController player in FindObjectsByType<CardPlayerController>(FindObjectsSortMode.None))
             {
