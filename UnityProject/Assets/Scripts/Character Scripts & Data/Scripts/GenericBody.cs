@@ -31,7 +31,7 @@ namespace Characters
         }
     }
 
-    public class GenericBody : NetworkBehaviour
+    public abstract class GenericBody : NetworkBehaviour
     {
         [Header("Info")]
         [SerializeField] private CharacterType characterType;
@@ -75,7 +75,7 @@ namespace Characters
         }
 
         //[ClientRpc]
-        void TakeDamageRPC(int damageRecieved)
+        public void TakeDamageRPC(int damageRecieved)
         {
             var damageToTake = damageRecieved;
             if (StatusDict[StatusType.Vulnerable].StatusValue > 0)
@@ -110,6 +110,10 @@ namespace Characters
                 TurnManager.instance.CheckWinCondition();
                 Debug.Log("enemy died!");
                 GetComponent<Collider>().enabled = false;
+                TurnManager.instance.CurrentEnemiesList.Remove(GetComponent<EnemyGenericBody>());
+                TurnManager.instance.enemyTeam.Remove(GetComponent<CardEnemyController>());
+                var GB = GetComponent<EnemyGenericBody>();
+                GB.gameObject.SetActive(false);
             }
         }
 
@@ -187,7 +191,8 @@ namespace Characters
                 health = maxHealth;
             }
             OnHealthChanged?.Invoke(health, maxHealth);
-            GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
+            if (gameObject.name == "Health Pool")
+                GameObject.FindFirstObjectByType<HealthBar>().GetHealthChange(health, maxHealth);
         }
 
         public void OnTurnStart()
