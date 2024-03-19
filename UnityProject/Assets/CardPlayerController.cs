@@ -130,7 +130,7 @@ public class CardPlayerController : NetworkBehaviour
             {
                 TurnEnded = true;
                 Debug.Log("ended turn on client");
-                GameObject.Find("TurnManager").GetComponent<TurnManager>().ServerPlayerEndTurn(netId);
+                GameObject.Find("TurnManager").GetComponent<TurnManager>().ServerPlayerEndTurn(netId, false);
             }
             else
             {
@@ -139,7 +139,7 @@ public class CardPlayerController : NetworkBehaviour
                 foreach (CardPlayerController plr in plrTeam)
                 {
                     plr.TurnEnded = true;
-                    tm.ServerPlayerEndTurn(plr.netId);
+                    tm.ServerPlayerEndTurn(plr.netId, false);
                 }
             }
         }

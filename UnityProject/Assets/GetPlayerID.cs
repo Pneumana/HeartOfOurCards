@@ -234,13 +234,53 @@ public class GetPlayerID : NetworkBehaviour
         {
             if (SteamManager.Initialized)
             {
+
                 if (PlayerSteamID == 0)
                     PlayerSteamID = 76561198272619590;
-                combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = SteamFriends.GetFriendPersonaName((CSteamID)PlayerSteamID);
+                
+                var isLocal = (this == AmbidexterousManager.Instance.PlayerList[RunManager.instance.LocalPlayerID]);
+
+                var loc = RunManager.instance.LocalPlayerID;
+                var col = RunManager.instance.LocalPlayerID;
+                if (col == 0)
+                    col = 1;
+                else
+                    col = 0;
+
+                if (isLocal)
+                {
+                    var steamID = AmbidexterousManager.Instance.PlayerList[loc].PlayerSteamID;
+                    var username = SteamFriends.GetFriendPersonaName((CSteamID)steamID);
+                    if (username == "") username = "Player " + (loc + 1);
+                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = username;
+                    //combatSceneUI.transform.Find("LastPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player 2";
+                }
+                else
+                {
+                    var steamID = AmbidexterousManager.Instance.PlayerList[col].PlayerSteamID;
+                    var username = SteamFriends.GetFriendPersonaName((CSteamID)steamID);
+                    if (username == "") username = "Player " + (col + 1);
+                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = username;
+                }
             }
             else
             {
-                combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player" + (1 + RunManager.instance.LocalPlayerID);
+                var isLocal = (this == AmbidexterousManager.Instance.PlayerList[RunManager.instance.LocalPlayerID]);
+
+                var loc = RunManager.instance.LocalPlayerID;
+                var col = RunManager.instance.LocalPlayerID;
+                if (col == 0)
+                    col = 1;
+                else
+                    col = 0;
+
+                if (isLocal)
+                {
+                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player " + (loc + 1);
+                    //combatSceneUI.transform.Find("LastPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player 2";
+                }
+                else
+                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player " + (col + 1);
             }
             //disable
             player2combatScene.SetActive(false);

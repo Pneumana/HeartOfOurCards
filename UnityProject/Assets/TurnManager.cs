@@ -124,13 +124,13 @@ namespace Managers
             }*/
         }
         [Command(requiresAuthority = false)]
-        public void ServerPlayerEndTurn(uint netID)
+        public void ServerPlayerEndTurn(uint netID, bool endEncounter)
         {
             Debug.Log("ended turn on server");
-            PlayerEndTurn(netID);
+            PlayerEndTurn(netID, endEncounter);
         }
         [ClientRpc]
-        public void PlayerEndTurn(uint netID)
+        public void PlayerEndTurn(uint netID, bool endEncounter)
         {
             Debug.Log("ended turn on client rpc");
             //CardPlayerController turnEnder = null;
@@ -170,7 +170,7 @@ namespace Managers
                 }
                 CurrentMainAlly.OnPlayerTurnEnd();
                 Debug.Log("player turn ended");
-                if(isServer)
+                if(isServer && !endEncounter)
                     ServerStartEnemyTurns();
             }
             /*if (isPlayerTurn)
@@ -318,7 +318,7 @@ namespace Managers
         {
             foreach (CardPlayerController plr in playerTeam)
             {
-                ServerPlayerEndTurn(plr.netId);
+                ServerPlayerEndTurn(plr.netId, true);
             }
 
             GameObject.FindFirstObjectByType<MapCamera>().CenterCamera();
