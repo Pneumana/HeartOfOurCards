@@ -292,8 +292,12 @@ public class GetPlayerID : NetworkBehaviour
             //if(isOwned)
                 foreach (CardPlayerController cpc in playerControllers)
                 {
-                    if(cpc.gameObject.activeSelf)
-                        cpc.CMDStartEncounter();
+                if (cpc.gameObject.activeSelf)
+                {
+                    Debug.Log(cpc.gameObject.name + " issued command to start encounter");
+                    cpc.CMDStartEncounter();
+                }
+
                 }
         }
     }

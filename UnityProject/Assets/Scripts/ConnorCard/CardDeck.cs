@@ -45,7 +45,7 @@ public class CardDeck : NetworkBehaviour
     {
         Debug.Log("drawing " + drawcount + " cards");
         int drawnCard = Random.Range(0, deck.Count - 1);
-        Debug.Log(drawnCard + " was drawn from deck of " + (deck.Count-1));
+        Debug.Log(gameObject.name + " " + drawnCard + " was drawn from deck of " + (deck.Count-1));
         //deck.Remove(deck[drawnCard]);
         DrawCard(drawcount, drawnCard);
     }

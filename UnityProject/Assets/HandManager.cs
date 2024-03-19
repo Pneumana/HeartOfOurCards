@@ -132,7 +132,8 @@ public class HandManager : NetworkBehaviour
                             //local player check  here
                             if (isLocalPlayer)
                             {
-                                player.currentEnergy -= renderedHand[playedCardIndex].EnergyCost;
+                                //
+                                CMDChangeStam(playedCardIndex);
                                 Debug.Log("played card with ID " + playedCardIndex);
                                 player.deck.ServerPlayCard(netId, hit.collider.gameObject.transform.position, playedCardIndex);
                                 RefreshHand();
@@ -160,6 +161,18 @@ public class HandManager : NetworkBehaviour
         }
         
     }
+
+    [Command(requiresAuthority = false)]
+    void CMDChangeStam(int i)
+    {
+        ChangeStam(i);
+    }
+    [ClientRpc]
+    void ChangeStam(int i)
+    {
+        player.currentEnergy -= renderedHand[i].EnergyCost;
+    }
+
     void CheckMouseOverCard()
     {
         Ray ray;

@@ -9,8 +9,8 @@ namespace Characters
     public class PlayerGenericBody : GenericBody
     {
         [Header("Health")]
-/*        public int health;
-        public int maxHealth;*/
+        public int _health;
+        //public int maxHealth;
 
         [SerializeField] private AllyCanvas allyCanvas;
 
@@ -24,7 +24,7 @@ namespace Characters
         {
             RM = RunManager.instance;
             maxHealth = (20 + (RM.playerStatList[0].CON * 2) + (RM.playerStatList[1].CON * 2));
-            health = RM.Health;
+            _health = RM.Health;
             SetAllStatus();
             AllyCanvas.InitCanvas();
 
@@ -34,7 +34,7 @@ namespace Characters
             OnStatusApplied += AllyCanvas.ApplyStatus;
             OnStatusCleared += AllyCanvas.ClearStatus;
 
-            OnHealthChanged?.Invoke(health, maxHealth);
+            OnHealthChanged?.Invoke(_health, maxHealth);
         }
 
         public void PlayerTakeDamage(int damageRecieved)
@@ -52,8 +52,8 @@ namespace Characters
                 shieldThisTurn--;
                 damageToTake--;
             }
-            health -= damageToTake;
-            OnHealthChanged?.Invoke(health, maxHealth);
+            _health -= damageToTake;
+            OnHealthChanged?.Invoke(_health, maxHealth);
             
             //sync damage here
         }

@@ -178,7 +178,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      textfield conversation_0: 2342584819291291559
+      textfield conversation_1: -98478578668865516
+      textfield conversation_2: -2481817180454835779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

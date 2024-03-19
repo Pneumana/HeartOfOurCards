@@ -28,11 +28,12 @@ public class ReadEnergyFromPlayer : MonoBehaviour
     IEnumerator FlashRed()
     {
         animating = true;
+        Color start = tmp.color;
         float gb = 0;
         do
         {
             gb += Time.deltaTime;
-            tmp.color = new Color(1, gb, gb);
+            tmp.color = Color.Lerp(Color.red, start, gb);
             yield return new WaitForSeconds(0);
         }
         while (gb<=1);
