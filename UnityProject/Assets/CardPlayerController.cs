@@ -74,6 +74,7 @@ public class CardPlayerController : NetworkBehaviour
 
             return;
         }
+        loadedPlayers = 0;
         Debug.Log("drawing cards at start");
         currentEnergy = maxEnergy;
         body = GetComponent<IndividualPlayerGenericBody>();
@@ -108,7 +109,7 @@ public class CardPlayerController : NetworkBehaviour
     [ClientRpc]
     public void StartTurn()
     {
-        Debug.Log("starting turn on " + gameObject.name);
+        Debug.Log("starting turn on " + gameObject.name, gameObject);
         if (TurnEnded == false)
             return;
         //body.OnPlayerTurnStart();
@@ -136,11 +137,11 @@ public class CardPlayerController : NetworkBehaviour
             {
                 var tm = GameObject.Find("TurnManager").GetComponent<TurnManager>();
                 var plrTeam = tm.playerTeam;
-                foreach (CardPlayerController plr in plrTeam)
-                {
-                    plr.TurnEnded = true;
-                    tm.ServerPlayerEndTurn(plr.netId, false);
-                }
+/*                foreach (CardPlayerController plr in plrTeam)
+                {*/
+                    this.TurnEnded = true;
+                    tm.ServerPlayerEndTurn(netId, false);
+                //}
             }
         }
         
