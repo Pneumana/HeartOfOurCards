@@ -33,11 +33,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FoilColors:
-        m_Texture: {fileID: 2800000, guid: 8f28a32c746df154ab04ccf353d3b95a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FoilNoise:
-        m_Texture: {fileID: 2800000, guid: 08d186ed904deb94faba2657ffff8bf2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 99269be5c8398434fa43c49449ad70a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_75531a0d79df47bb8f7d65f9d050a913_Texture_1_Texture2D:
@@ -58,8 +58,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HighlightThreshold: 1.34
-    - _NoiseIntensity: 0.1
+    - _HighlightThreshold: 0.58
+    - _NoiseIntensity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

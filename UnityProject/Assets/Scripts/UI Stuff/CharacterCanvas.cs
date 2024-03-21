@@ -60,6 +60,7 @@ namespace Characters
 
         public void ClearStatus(StatusType targetStatus)
         {
+            Debug.Log("clearing status " + targetStatus.ToString());
             if (StatusDict[targetStatus])
             {
                 Destroy(StatusDict[targetStatus].gameObject);

@@ -57,8 +57,13 @@ namespace Characters
             
             //sync damage here
         }
-
+        [Command(requiresAuthority = false)]
         public void OnPlayerTurnStart()
+        {
+            RPCPlayerTurnStart();
+        }
+        [ClientRpc]
+        void RPCPlayerTurnStart()
         {
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
