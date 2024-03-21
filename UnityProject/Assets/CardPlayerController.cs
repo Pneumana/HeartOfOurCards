@@ -142,11 +142,11 @@ public class CardPlayerController : NetworkBehaviour
             {
                 var tm = GameObject.Find("TurnManager").GetComponent<TurnManager>();
                 var plrTeam = tm.playerTeam;
-/*                foreach (CardPlayerController plr in plrTeam)
-                {*/
-                    this.TurnEnded = true;
-                    tm.ServerPlayerEndTurn(netId, false);
-                //}
+               foreach (CardPlayerController plr in plrTeam)
+                {
+                    plr.TurnEnded = true;
+                    tm.ServerPlayerEndTurn(plr.netId, false);
+                }
             }
         }
         
