@@ -136,6 +136,8 @@ namespace Characters
             StatusDict[StatusType.Burn].OnTriggerAction += DamageBurn;
 
             StatusDict[StatusType.Block].ClearAtNextTurn = true;
+            StatusDict[StatusType.TempStr].ClearAtNextTurn = true;
+            StatusDict[StatusType.TempDex].ClearAtNextTurn = true;
 
             StatusDict[StatusType.Strength].CanNegativeStack = true;
             StatusDict[StatusType.Dexterity].CanNegativeStack = true;
@@ -149,6 +151,9 @@ namespace Characters
 
             StatusDict[StatusType.Regen].DecreaseOverTurn = true;
             StatusDict[StatusType.Regen].OnTriggerAction += RegenHeal;
+
+            StatusDict[StatusType.TempDex].OnTriggerAction += TempDex;
+            StatusDict[StatusType.TempStr].OnTriggerAction += TempStr;
         }
 
         //[Command(requiresAuthority = false)]
@@ -165,7 +170,7 @@ namespace Characters
             {
                 StatusDict[targetStatus].StatusValue += value;
                 OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
-                Debug.Log("Status Increased" + targetStatus);
+                Debug.Log("Status Increased " + targetStatus);
             }
             else
             {
@@ -173,6 +178,11 @@ namespace Characters
                 StatusDict[targetStatus].IsActive = true;
                 OnStatusApplied?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
                 Debug.Log("Status Active: " + targetStatus);
+            }
+
+            if (StatusDict[targetStatus].StatusValue == 0)
+            {
+                ClearStatus(targetStatus);
             }
         }
 
@@ -197,6 +207,8 @@ namespace Characters
 
         public void OnTurnStart()
         {
+            TriggerStatus(StatusType.TempDex);
+            TriggerStatus(StatusType.TempStr);
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
             TriggerStatus(StatusType.Burn);
@@ -259,6 +271,18 @@ namespace Characters
         {
             if (StatusDict[StatusType.Regen].StatusValue <= 0) return;
             HealDamage(StatusDict[StatusType.Regen].StatusValue);
+        }
+
+        public void TempDex()
+        {
+            if (StatusDict[StatusType.TempDex].StatusValue <= 0) return;
+            ApplyStatus(StatusType.Dexterity, -StatusDict[StatusType.TempDex].StatusValue);
+        }
+
+        public void TempStr()
+        {
+            if (StatusDict[StatusType.TempStr].StatusValue <= 0) return;
+            ApplyStatus(StatusType.Strength, -StatusDict[StatusType.TempStr].StatusValue);
         }
 
         public void CheckStunStatus()

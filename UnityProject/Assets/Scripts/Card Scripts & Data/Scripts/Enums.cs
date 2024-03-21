@@ -112,7 +112,9 @@ namespace Enums
         Stun,
         Vulnerable,
         Bleed,
-        Regen
+        Regen,
+        TempStr,
+        TempDex
     }
 
     public enum CardType

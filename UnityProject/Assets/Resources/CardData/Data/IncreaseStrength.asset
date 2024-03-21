@@ -12,15 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
   m_Name: IncreaseStrength
   m_EditorClassIdentifier: 
-  id: 
-  cardName: 
+  id: Increase_Strength
+  cardName: Increase Strength
   energyCost: 0
   cardSprite: {fileID: 0}
-  cardType: 
+  cardType: 00000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
-  cardActionDataList: []
-  cardDescriptionDataList: []
+  cardActionDataList:
+  - cardActionType: 29
+    actionTargetType: 8
+    actionValue: Dexterity 3
+    actionDelay: 0
+  cardDescriptionDataList:
+  - descriptionText: Increase Str by 3
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
   specialKeywordsList: 

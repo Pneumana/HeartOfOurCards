@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
-  m_Name: AllyDrawCards
+  m_Name: TempStr
   m_EditorClassIdentifier: 
-  id: Ally_Draw_Cards
-  cardName: Ally Draw Cards
+  id: TempStr
+  cardName: Temp Str
   energyCost: 0
   cardSprite: {fileID: 0}
   cardType: 00000000
-  usableWithoutTarget: 1
+  usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 4
+  - cardActionType: 29
     actionTargetType: 8
-    actionValue: 3
+    actionValue: TempStr 3
+    actionDelay: 0
+  - cardActionType: 29
+    actionTargetType: 8
+    actionValue: Strength 3
     actionDelay: 0
   cardDescriptionDataList:
-  - descriptionText: Your ally draws 3 cards
+  - descriptionText: Apply 3 temp damage until end of turn
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0

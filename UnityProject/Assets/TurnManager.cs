@@ -232,6 +232,11 @@ namespace Managers
                 Debug.Log(plr.gameObject.name + " turn started");
                 plr.CMDStartTurn();
             }
+
+            foreach (GenericBody plr in CurrentAlliesList)
+            {
+                plr.OnTurnStart();
+            }
         }
 
         [Command(requiresAuthority = false)]
