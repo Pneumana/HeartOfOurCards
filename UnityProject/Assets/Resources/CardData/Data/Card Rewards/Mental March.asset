@@ -12,15 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
   m_Name: Mental March
   m_EditorClassIdentifier: 
-  id: 
-  cardName: 
+  id: Mental_March
+  cardName: Mental March
   energyCost: 0
   cardSprite: {fileID: 0}
-  cardType: 
+  cardType: 01000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
-  cardActionDataList: []
-  cardDescriptionDataList: []
+  cardActionDataList:
+  - cardActionType: 19
+    actionTargetType: 4
+    actionValue: 1
+    actionDelay: 0
+  - cardActionType: 4
+    actionTargetType: 8
+    actionValue: 2
+    actionDelay: 0
+  cardDescriptionDataList:
+  - descriptionText: Deal 1 damage to self and draw 2 cards
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
   specialKeywordsList: 
