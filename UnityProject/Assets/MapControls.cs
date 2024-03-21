@@ -127,12 +127,29 @@ public class MapControls : NetworkBehaviour
     void CMDExplorePosition(Vector3 pos)
     {
 
-        ClientExplorePosition(pos);
+
+        var dungeonTable = FindFirstObjectByType<ArbitraryMapGeneratiion>().dungeonTable;
+        var roll = Random.Range(0, dungeonTable.events.Count);
+        var attempts = 1000;
+        while (RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name) && attempts > 0)
+        {
+            attempts--;
+            Debug.Log(attempts);
+            roll = Random.Range(0, dungeonTable.events.Count);
+            if (attempts <= 0)
+            {
+                Debug.LogWarning("loading new event used up all re-roll attempts!");
+                RunManager.instance.experiencedEvents.Clear();
+                break;
+            }
+        }
+        ClientExplorePosition(pos, roll);
     }
     [ClientRpc]
-    void ClientExplorePosition(Vector3 pos)
+    void ClientExplorePosition(Vector3 pos, int roll)
     {
-        mapGen.ClickToExplore(pos);
+
+        mapGen.ClickToExplore(pos, roll);
 
         /*if(AmbidexterousManager.Instance.PlayerList.Count > 1)
         {

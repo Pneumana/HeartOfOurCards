@@ -430,7 +430,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
 
         yield return null;
     }
-    public void ClickToExplore(Vector3 mouse)
+    public void ClickToExplore(Vector3 mouse, int roll)
     {
         Debug.DrawLine(mouse + new Vector3(1, 1, 0) * 0.5f, mouse - new Vector3(1, 1, 0) * 0.5f, Color.red, 10);
         Debug.DrawLine(mouse + new Vector3(1, -1, 0) * 0.5f, mouse - new Vector3(1, -1, 0) * 0.5f, Color.red, 10);
@@ -475,20 +475,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             if (romanceTiles.Contains(world.GetTile(cell)))
             {
                 //get from DungeonEvents ConversationTable, try to 
-                var roll = Random.Range(0, dungeonTable.events.Count);
-                var attempts = 1000;
-                while(RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name) && attempts > 0)
-                {
-                    attempts--;
-                    Debug.Log(attempts);
-                    roll = Random.Range(0, dungeonTable.events.Count);
-                    if (attempts <= 0)
-                    {
-                        Debug.LogWarning("loading new event used up all re-roll attempts!");
-                        RunManager.instance.experiencedEvents.Clear();
-                        break;
-                    }
-                }
+
                 Debug.Log("rolled " + roll);
                 RunManager.instance.ForceLoadConvoReference = dungeonTable.events[roll];
                 RunManager.instance.experiencedEvents.Add(dungeonTable.events[roll].name);
@@ -508,7 +495,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
             else if(world.GetTile(cell) == mysterEncounter)
             {
                 //should be a 1/3 chance for this, because it's the generic event list
-                var roll = Random.Range(0, dungeonTable.events.Count);
+                /*var roll = Random.Range(0, dungeonTable.events.Count);
                 var attempts = 1000;
                 while (RunManager.instance.experiencedEvents.Contains(dungeonTable.events[roll].name))
                 {
@@ -520,7 +507,7 @@ public class ArbitraryMapGeneratiion : MonoBehaviour
                         RunManager.instance.experiencedEvents.Clear();
                         break;
                     }
-                }
+                }*/
                 RunManager.instance.ForceLoadConvoReference = dungeonTable.events[roll];
                 RunManager.instance.experiencedEvents.Add(dungeonTable.events[roll].name);
                 Debug.Log("loading event <color=#00FF00>" + RunManager.instance.ForceLoadConvoReference.name + "</color> with roll " + roll + " of " + (dungeonTable.events.Count - 1));

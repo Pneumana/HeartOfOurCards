@@ -287,7 +287,7 @@ public class RunManager : NetworkBehaviour
 
         mp.GetType().GetField(stat).SetValueDirect(__makeref(mp), (int)mp.GetType().GetField(stat).GetValue(mp) + change);
 
-        instance.playerStatList[0] = mp;
+        instance.playerStatList[playerIndex] = mp;
     }
     [Command]
     public void CMDChangeStat(int playerIndex, string stat, int change)
@@ -303,7 +303,7 @@ public class RunManager : NetworkBehaviour
     public void ChangeSharedStat(string stat, int change)
     {
         //mp = playerStatList[playerIndex];
-
-        instance.GetType().GetField(stat).SetValueDirect(__makeref(RunManager.instance), (int)instance.GetType().GetField(stat).GetValue(instance) + change);
+        Debug.Log("stat " + stat + " has a value of " + instance.GetType().GetField(stat).GetValue(instance));
+        instance.GetType().GetField(stat).SetValueDirect(__makeref(instance), (int)instance.GetType().GetField(stat).GetValue(instance) + change);
     }
 }

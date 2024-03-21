@@ -18,7 +18,7 @@ public class CardPlayerController : NetworkBehaviour
 
     public bool started = false;
     //network stuff
-    [SyncVar] int loadedPlayers;
+    [SyncVar]public int loadedPlayers;
     private void Start()
     {
         currentEnergy = maxEnergy;
@@ -48,26 +48,30 @@ public class CardPlayerController : NetworkBehaviour
             Debug.Log("all players loaded");
 
         }
-        else if(NetworkServer.connections.Count == 1)
+        else
+        {
+            Debug.Log("only " + loadedPlayers + "/" + NetworkServer.connections.Count + " have loaded");
+        }
+        if(NetworkServer.connections.Count == 1)
         {
             StartEncounter();
         }
             
     }
 
-    IEnumerator StartEncounterCoroutine()
+/*    IEnumerator StartEncounterCoroutine()
     {
         while (!connectionToServer.isReady)
         {
             yield return new WaitForSeconds(0.1f);
         }
         StartEncounter();
-    }
+    }*/
 
     [ClientRpc]
     public void StartEncounter()
     {
-
+        Debug.Log("starting encounter on client");
         if (started)
         {
             Debug.Log("unable to draw cards at start, already started encounter on " + gameObject.name);
@@ -110,6 +114,7 @@ public class CardPlayerController : NetworkBehaviour
     public void StartTurn()
     {
         Debug.Log("starting turn on " + gameObject.name, gameObject);
+        currentEnergy = maxEnergy;
         if (TurnEnded == false)
             return;
         //body.OnPlayerTurnStart();
@@ -118,7 +123,7 @@ public class CardPlayerController : NetworkBehaviour
             deck.ServerDrawCard(5);
         }
         TurnEnded = false;
-        currentEnergy = maxEnergy;
+
         GetComponent<HandManager>().RefreshHand();
         //have some script read the hand and create the cards
     }

@@ -127,6 +127,15 @@ namespace Managers
         public void ServerPlayerEndTurn(uint netID, bool endEncounter)
         {
             Debug.Log(netID + " ended turn on server");
+
+            if (endEncounter)
+            {
+                foreach (CardPlayerController cpc in playerTeam)
+                {
+                    cpc.loadedPlayers = 0;
+                }
+            }
+
             PlayerEndTurn(netID, endEncounter);
         }
         [ClientRpc]
@@ -176,6 +185,7 @@ namespace Managers
                     ServerStartEnemyTurns();
                 }
             }
+
             /*if (isPlayerTurn)
             {
                 if (playerTeam.Contains(turnEnder) && !turnEnded.Contains(turnEnder))
@@ -319,6 +329,7 @@ namespace Managers
             while (anim < 1);
             yield return null;
         }
+        [Command(requiresAuthority = false)]
         void WinEncounter()
         {
             foreach (CardPlayerController plr in playerTeam)
@@ -329,8 +340,7 @@ namespace Managers
             GameObject.FindFirstObjectByType<MapCamera>().CenterCamera();
             Random.InitState(RunManager.instance.seed + RunManager.instance.completedRooms.Count);
             var gold = Random.Range(25, 50);
-            victoryUI.SetActive(true);
-            victoryUI.transform.Find("GoldEarned").gameObject.GetComponent<TextMeshProUGUI>().text = "+" + gold + " gold to both players!";
+            
             //show a gold counter on each side
             //var plr1 = RunManager.instance.playerStatList[0];
             if (!isServer)
@@ -342,7 +352,7 @@ namespace Managers
             //plr2.Gold += gold;
 
 
-            var plr1 = RunManager.instance.playerStatList[0];
+            /*var plr1 = RunManager.instance.playerStatList[0];
             var plr2 = RunManager.instance.playerStatList[1];
             Debug.Log("player1 has " + RunManager.instance.playerStatList[0].Gold + " player2 has gold " + RunManager.instance.playerStatList[1].Gold);
             RunManager.instance.playerStatList[0] = new RunManager.PlayerStats(plr1.DMG, plr1.INT, plr1.NRG, plr1.CON,
@@ -352,8 +362,8 @@ namespace Managers
                 plr2.Kitsune, plr2.Lich, plr2.Naga, plr2.Mermaid, plr2.Dragon, plr2.Vampire, plr2.Producer,
                 plr2.Gold + gold, plr2.RepDMG, plr2.RepINT, plr2.RepNRG, plr2.RepCON, plr2.usedBreak);
             Debug.Log("player1 has " + RunManager.instance.playerStatList[0].Gold + " player2 has gold " + RunManager.instance.playerStatList[1].Gold);
-            RunManager.instance.Ratings += 10;
-
+            RunManager.instance.Ratings += 10;*/
+            WinRPC(gold, 10);
             if (RunManager.instance.fightingBoss)
             {
                 RunManager.instance.fightingBoss = false;
@@ -361,6 +371,19 @@ namespace Managers
             }
 
             //RunManager.instance.playerStatList[1].Gold = gold;
+        }
+        [ClientRpc]
+        void WinRPC(int gold, int ratings)
+        {
+            var rm = RunManager.instance;
+            rm.ChangeStat(0, "Gold", gold);
+            rm.ChangeStat(1, "Gold", gold);
+            rm.ChangeSharedStat("Ratings", ratings);
+
+            victoryUI.SetActive(true);
+            victoryUI.transform.Find("GoldEarned").gameObject.GetComponent<TextMeshProUGUI>().text = "+" + gold + " gold to both players!";
+
+
         }
 
         [ClientRpc]
