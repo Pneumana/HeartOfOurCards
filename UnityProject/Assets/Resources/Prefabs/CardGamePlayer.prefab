@@ -701,7 +701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: 100}
+  m_AnchoredPosition: {x: -22, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9125588971360990634
@@ -721,11 +721,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 5, y: 5}
-  m_Spacing: {x: 7.5, y: 0}
+  m_CellSize: {x: 20, y: 20}
+  m_Spacing: {x: 15, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &2067287863351116611
@@ -1335,7 +1335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 100}
+  m_AnchoredPosition: {x: 15, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5022315926544262762
@@ -1355,11 +1355,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 2
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 5, y: 5}
-  m_Spacing: {x: 7.5, y: 0}
+  m_CellSize: {x: 20, y: 20}
+  m_Spacing: {x: 15, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &5742177567403345506
@@ -1994,6 +1994,7 @@ MonoBehaviour:
   deck: {fileID: 8003667175630459667}
   energydisplay: {fileID: 1802144301464593600}
   started: 0
+  loadedPlayers: 0
 --- !u!114 &8003667175630459667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,12 +2012,12 @@ MonoBehaviour:
   syncInterval: 0
   hand: []
   deck:
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
+  - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
+  - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
+  - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
+  - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
+  - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
@@ -2229,6 +2230,7 @@ MonoBehaviour:
   deck: {fileID: 5340194757500933440}
   energydisplay: {fileID: 2513965677760408011}
   started: 0
+  loadedPlayers: 0
 --- !u!114 &5340194757500933440
 MonoBehaviour:
   m_ObjectHideFlags: 0
