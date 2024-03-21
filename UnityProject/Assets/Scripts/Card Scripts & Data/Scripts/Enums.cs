@@ -68,31 +68,6 @@ namespace Enums
         Enemy
     }
 
-    public enum EnemyActionType
-    {
-        Attack,
-        Heal,
-        Debuff,
-        Block
-    }
-
-    public enum EnemyIntentionType
-    {
-        Attack,
-        Defend,
-        Heal,
-        Debuff,
-        Special
-    }
-
-    public enum CardPiles
-    {
-        CurrentDeck,
-        DrawPile,
-        DiscardPile,
-        ExhaustPile
-    }
-
     public enum CombatStateType
     {
         PrepareCombat,

@@ -257,7 +257,7 @@ namespace CardActions
                 foreach (CardActionData actionData in stolenCard.cardActionDataList)
                 {
                     //action target type
-                    if(actionData.ActionTargetType == ActionTargetType.Enemy || actionData.ActionTargetType == ActionTargetType.AllAllies)
+                    if(actionData.ActionTargetType == ActionTargetType.Enemy || actionData.ActionTargetType == ActionTargetType.AllEnemies)
                         actionData.actionTargetType = ActionTargetType.HealthPool;
                     if (actionData.ActionTargetType == ActionTargetType.HealthPool)
                         actionData.actionTargetType = ActionTargetType.Enemy;

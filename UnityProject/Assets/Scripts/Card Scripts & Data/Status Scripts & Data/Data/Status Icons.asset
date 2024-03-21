@@ -32,3 +32,7 @@ MonoBehaviour:
     iconSprite: {fileID: -5005990984189769374, guid: e290031a5a1e36e439e5228b870f380f, type: 3}
   - iconStatus: 9
     iconSprite: {fileID: -4751123163905818129, guid: 4ec74bbc4e8569f4bb831c05b4e27da3, type: 3}
+  - iconStatus: 10
+    iconSprite: {fileID: 1728526077591247136, guid: aa60efa8157f145489f49adad7bbf035, type: 3}
+  - iconStatus: 11
+    iconSprite: {fileID: -1422868305549830651, guid: 4ba41e1c3c87ea54d9477f4b2603aae2, type: 3}
