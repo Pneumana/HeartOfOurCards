@@ -126,13 +126,13 @@ namespace Managers
         [Command(requiresAuthority = false)]
         public void ServerPlayerEndTurn(uint netID, bool endEncounter)
         {
-            Debug.Log("ended turn on server");
+            Debug.Log(netID + " ended turn on server");
             PlayerEndTurn(netID, endEncounter);
         }
         [ClientRpc]
         public void PlayerEndTurn(uint netID, bool endEncounter)
         {
-            Debug.Log("ended turn on client rpc");
+            //Debug.Log("ended turn on client rpc");
             //CardPlayerController turnEnder = null;
             //find object with netID
             foreach (NetworkIdentity netid in FindObjectsByType<NetworkIdentity>(FindObjectsSortMode.None))
@@ -140,7 +140,7 @@ namespace Managers
                 if (netid.netId == netID)
                 {
 
-                    Debug.Log("found netID " + netid.name);
+                    Debug.Log("found netID " + netid.name + " (" + netid.netId+")");
                     //turnEnder = netid.gameObject.GetComponent<CardPlayerController>();
                     var localPlayerControllers = netid.gameObject.GetComponentsInChildren<CardPlayerController>();
                     Debug.Log("matched player has " + localPlayerControllers.Length + " player controllers");
@@ -149,7 +149,7 @@ namespace Managers
                         Debug.Log("looping though controllers");
                         if (isPlayerTurn)
                         {
-                            if (playerTeam.Contains(turnEnder) && !turnEnded.Contains(turnEnder))
+                            if (playerTeam.Contains(turnEnder) && !turnEnded.Contains(turnEnder) && turnEnder.isActiveAndEnabled)
                             {
                                 //Debug.Log(turnEnder.gameObject.name + " ended turn");
                                 turnEnder.deck.ServerDiscard(turnEnder.deck.hand.Count, new int[0]);
@@ -157,6 +157,7 @@ namespace Managers
                             }
                         }
                     }
+                    break;
                     //Debug.Log(netid.gameObject.name + " is DONE");
                 }
             }
@@ -171,7 +172,9 @@ namespace Managers
                 CurrentMainAlly.OnPlayerTurnEnd();
                 Debug.Log("player turn ended");
                 if(isServer && !endEncounter)
+                {
                     ServerStartEnemyTurns();
+                }
             }
             /*if (isPlayerTurn)
             {
@@ -210,12 +213,14 @@ namespace Managers
         {
             isPlayerTurn = true;
             enemyTurnEnded.Clear();
+
             Debug.Log("enemy turn ended");
             CurrentMainAlly.OnPlayerTurnStart();
             foreach (CardPlayerController plr in playerTeam)
             {
                 //if(isClient)
-                    plr.CMDStartTurn();
+                Debug.Log(plr.gameObject.name + " turn started");
+                plr.CMDStartTurn();
             }
         }
 
