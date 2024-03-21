@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
+  m_Name: Wand of Astarte Turorial
+  m_EditorClassIdentifier: 
+  id: Wand_of_Astarte_Turorial
+  cardName: Wand of Astarte
+  energyCost: 4
+  cardSprite: {fileID: 0}
+  cardType: 02000000
+  usableWithoutTarget: 0
+  exhaustAfterPlay: 0
+  deleteAfterPlay: 0
+  deleteAfterDiscard: 0
+  cardActionDataList: []
+  cardDescriptionDataList:
+  - descriptionText: Next turn Heal to full, If you and your partner have all Astartes
+      cards you win when your turn ends
+    enableOverrideColor: 0
+    overrideColor: {r: 0, g: 0, b: 0, a: 0}
+    useModifier: 0
+    modifiedActionValueIndex: 0
+    modiferStats: 0
+    usePrefixOnModifiedValue: 0
+    modifiedValuePrefix: 
+    overrideColorOnValueScaled: 0
+  specialKeywordsList: 

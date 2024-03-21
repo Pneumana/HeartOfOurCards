@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
-  m_Name: Berserk
+  m_Name: Chilling Air Tutorial
   m_EditorClassIdentifier: 
-  id: Berserk
-  cardName: Berserk
-  energyCost: 3
+  id: Chilling_Air_Tutorial
+  cardName: Chilling Air
+  energyCost: 1
   cardSprite: {fileID: 0}
-  cardType: 00000000
+  cardType: 01000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 15
+  - cardActionType: 17
     actionTargetType: 4
-    actionValue: 1
+    actionValue: 2
     actionDelay: 0
-  - cardActionType: 20
-    actionTargetType: 2
-    actionValue: 1
+  - cardActionType: 27
+    actionTargetType: 4
+    actionValue: 2
     actionDelay: 0
   cardDescriptionDataList:
-  - descriptionText: 'Infict '
+  - descriptionText: 'Deal '
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
@@ -45,11 +45,11 @@ MonoBehaviour:
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 1
     modifiedActionValueIndex: 0
-    modiferStats: 0
+    modiferStats: 2
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
-  - descriptionText: ' Vulnerable to self. Deal '
+  - descriptionText: ' Damage and apply '
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
@@ -63,11 +63,11 @@ MonoBehaviour:
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 1
     modifiedActionValueIndex: 1
-    modiferStats: 2
+    modiferStats: 0
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: 
     overrideColorOnValueScaled: 1
-  - descriptionText: ' Damage 5 times to all enemys'
+  - descriptionText: ' Freeze to target enemy'
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
