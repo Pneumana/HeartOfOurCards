@@ -21,11 +21,7 @@ namespace Characters
             Controller = GetComponent<CardPlayerController>();
             
             SetAllStatus();
-            try
-            {
-                AllyCanvas.InitCanvas();
-            }
-            catch { };
+            AllyCanvas.InitCanvas();
 
 
             if (CharacterType == CharacterType.P1)

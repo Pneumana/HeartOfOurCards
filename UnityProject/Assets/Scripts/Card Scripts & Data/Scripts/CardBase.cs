@@ -99,7 +99,16 @@ namespace CardActions
                     targetList.Add(targetCharacter);
                     break;
                 case ActionTargetType.Ally:
-                    targetList.Add(targetCharacter);
+                    foreach (var ally in TurnManager.instance.CurrentAlliesList)
+                    {
+                        if (ally.CharacterType == self.CharacterType)
+                        {
+                        }
+                        if (ally.CharacterType != self.CharacterType)
+                        {
+                            targetList.Add(ally);
+                        }
+                    }
                     break;
                 case ActionTargetType.AllEnemies:
                     foreach (var enemyBase in allEnemies)

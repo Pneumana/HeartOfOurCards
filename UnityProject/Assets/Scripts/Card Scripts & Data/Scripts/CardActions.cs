@@ -98,7 +98,6 @@ namespace CardActions
                 value = Mathf.CeilToInt(value * 2);
                 targetCharacter.ClearStatus(StatusType.Burn);
             }
-
             if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
             {
                 value = Mathf.CeilToInt(value / 2);
@@ -122,36 +121,14 @@ namespace CardActions
         }
     }
 
-    public class SelfDrawAction : CardActionBase
+    public class DrawAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.Draw;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            var deck = actionParameters.SelfCharacter.GetComponent<CardDeck>();
+            var deck = actionParameters.TargetCharacter.GetComponent<CardDeck>();
 
             deck.ServerDrawCard(Int32.Parse(actionParameters.Value));
-        }
-    }
-
-    public class AllyDrawAction : CardActionBase
-    {
-        public override CardActionType ActionType => CardActionType.AllyDraw;
-        public override void DoAction(CardActionParameters actionParameters)
-        {      
-            foreach (var ally in TurnManager.instance.CurrentAlliesList)
-            {
-                if (ally.CharacterType == actionParameters.SelfCharacter.CharacterType)
-                {
-                    return;
-                }
-                Debug.Log("got passed character type check");
-                if (ally.CharacterType != actionParameters.SelfCharacter.CharacterType)
-                {
-                    var deck = ally.GetComponent<CardDeck>();
-
-                    deck.ServerDrawCard(Int32.Parse(actionParameters.Value));
-                }
-            }
         }
     }
 
@@ -160,33 +137,12 @@ namespace CardActions
         public override CardActionType ActionType => CardActionType.EarnEnergy;
         public override void DoAction(CardActionParameters actionParameters)
         {
-            var deck = actionParameters.SelfCharacter.GetComponent<CardPlayerController>();
+            var deck = actionParameters.TargetCharacter.GetComponent<CardPlayerController>();
 
             deck.currentEnergy += (Int32.Parse(actionParameters.Value));
         }
     }
 
-    public class AllyGainEnergyAction : CardActionBase
-    {
-        public override CardActionType ActionType => CardActionType.AllyGainEnergy;
-        public override void DoAction(CardActionParameters actionParameters)
-        {
-            foreach (var ally in TurnManager.instance.CurrentAlliesList)
-            {
-                if (ally.CharacterType == actionParameters.SelfCharacter.CharacterType)
-                {
-                    return;
-                }
-                Debug.Log("got passed character type check");
-                if (ally.CharacterType != actionParameters.SelfCharacter.CharacterType)
-                {
-                    var deck = ally.GetComponent<CardPlayerController>();
-
-                    deck.currentEnergy += (Int32.Parse(actionParameters.Value));
-                }
-            }
-        }
-    }
 
     public class HealAction : CardActionBase
     {
