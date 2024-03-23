@@ -49,6 +49,10 @@ public class RunManager : NetworkBehaviour
     public int MaxHealth;
 
     public int Stamina = 8;
+
+    public List<HeldItem> player1Items = new List<HeldItem>();
+    public List<HeldItem> player2Items = new List<HeldItem>();
+
     //used to move between dungeon tiles
 
     public int Ratings;
@@ -306,4 +310,32 @@ public class RunManager : NetworkBehaviour
         Debug.Log("stat " + stat + " has a value of " + instance.GetType().GetField(stat).GetValue(instance));
         instance.GetType().GetField(stat).SetValueDirect(__makeref(instance), (int)instance.GetType().GetField(stat).GetValue(instance) + change);
     }
+
+
+    [Command(requiresAuthority = false)]
+    public void CMDAddItem(string item, int player)
+    {
+        AddItem(item, player);
+    }
+    [ClientRpc]
+    public void AddItem(string item, int player)
+    {
+        var n = new GameObject();
+        n.name = item;
+        n.AddComponent<HeldItem>();
+        n.GetComponent<HeldItem>().itemData = Resources.Load<ItemBase>("Items/" + item);
+
+        n.transform.SetParent(transform);
+
+        if (player == 0)
+            player1Items.Add(n.GetComponent<HeldItem>());
+        else
+            player2Items.Add(n.GetComponent<HeldItem>());
+    }
+    [ContextMenu("Add Item Rage")]
+    public void AddItem()
+    {
+        CMDAddItem("Rage", 0);
+    }
+
 }

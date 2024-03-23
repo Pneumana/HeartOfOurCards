@@ -30,7 +30,9 @@ public class FieldCardData : ScriptableObject
         OnAllyAttack,
         OnEnemyAttack,
         OnAllyKilled,
-        OnEnemyKilled
+        OnEnemyKilled,
+        OnAllyDamaged,
+        OnEnemyDamaged,
     }
 
 }

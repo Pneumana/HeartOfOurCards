@@ -238,7 +238,41 @@ public class CardDeck : NetworkBehaviour
 
                 if (data.CardType.Contains(CardType.Offensive))
                 {
-                    FieldCardHolder.instance.Proc(FieldCardData.ProcType.OnAllyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                    FieldCardHolder.instance.Proc(FieldCardData.ProcType.OnAllyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly, true);
+                    FieldCardHolder.instance.Proc(FieldCardData.ProcType.OnEnemyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly, false);
+                    //proc items
+
+                    //the reason it's here is because it's already an RPC and i didnt wanna make one in RunManager
+                    Debug.Log("proc event for " + GetComponent<GenericBody>().CharacterType);
+                    //ok well it should be in run manager so this brick of code doesnt have to be everywhere we want to proc an item
+                    if (GetComponent<GenericBody>().CharacterType == CharacterType.P1)
+                    {
+                        Debug.Log("procing for player 1 event");
+                        foreach (HeldItem item in RunManager.instance.player1Items)
+                        {
+                            item.Proc(FieldCardData.ProcType.OnAllyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                        }
+                        foreach (HeldItem item in RunManager.instance.player2Items)
+                        {
+                            if (!item.itemData.procedByBothPlayers)
+                                continue;
+
+                        }
+                    }
+                    else if (GetComponent<GenericBody>().CharacterType == CharacterType.P2)
+                    {
+                        Debug.Log("procing for player 2 event");
+                        foreach (HeldItem item in RunManager.instance.player2Items)
+                        {
+                            item.Proc(FieldCardData.ProcType.OnAllyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                        }
+
+                        foreach (HeldItem item in RunManager.instance.player1Items)
+                        {
+                            if (!item.itemData.procedByBothPlayers)
+                                continue;
+                        }
+                    }
                 }
 
                 //This method is probably just silly la-la mode
@@ -258,6 +292,16 @@ public class CardDeck : NetworkBehaviour
                 {
 
                     GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                    
+                    var data = GetComponent<CardEnemyController>().currentDisplay.GetComponent<CardBase>().CardData;
+
+                    if (data.CardType.Contains(CardType.Offensive))
+                    {
+                        FieldCardHolder.instance.Proc(FieldCardData.ProcType.OnAllyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly, true);
+                        FieldCardHolder.instance.Proc(FieldCardData.ProcType.OnEnemyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly, false);
+
+                        
+                    }
                 }
             }
 

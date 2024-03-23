@@ -312,6 +312,8 @@ namespace CardActions
         }
     }
 
+
+
     public class VulnerableAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.Vulnerable;
@@ -490,4 +492,50 @@ namespace CardActions
             targetCharacter.ApplyStatus(StatusType.Burn, Mathf.RoundToInt(Int32.Parse(actionParameters.Value)));
         }
     }
+
+
+    #region Actions that are really more for items rather than cards
+    public class ModifySharedStat : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.ChangeSharedStat;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //use regex split to use String Number for applying a status
+            var split = Regex.Split(actionParameters.Value, " ");
+            if (split.Length < 2)
+            {
+                Debug.LogError("No value supplied for ModifySharedStat Action on card " + actionParameters.CardData.name + "!");
+                return;
+            }
+            RunManager.instance.ChangeSharedStat(split[0], Int32.Parse(split[1]));
+        }
+    }
+
+    public class ModifyIndividualStat : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.ChangeIndividualStat;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //use regex split to use String Number for applying a status
+            var split = Regex.Split(actionParameters.Value, " ");
+            if (split.Length < 2)
+            {
+                Debug.LogError("No value supplied for ModifyIndividualStat Action on card " + actionParameters.CardData.name + "!");
+                return;
+            }
+
+            if (actionParameters.TargetCharacter.CharacterType == CharacterType.P1)
+                RunManager.instance.ChangeStat(0, split[0], Int32.Parse(split[1]));
+            else if (actionParameters.TargetCharacter.CharacterType == CharacterType.P2)
+                RunManager.instance.ChangeStat(1, split[0], Int32.Parse(split[1]));
+            else if (actionParameters.TargetCharacter.CharacterType == CharacterType.Ally)
+            {
+                RunManager.instance.ChangeStat(0, split[0], Int32.Parse(split[1]));
+                RunManager.instance.ChangeStat(1, split[0], Int32.Parse(split[1]));
+            }
+            else
+                Debug.LogError("Card action ModifyIndividualStat can only be used on cards that target players!");
+        }
+    }
+    #endregion
 }
