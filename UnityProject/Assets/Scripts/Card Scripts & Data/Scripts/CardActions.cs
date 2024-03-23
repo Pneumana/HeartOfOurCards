@@ -296,6 +296,22 @@ namespace CardActions
         }
     }
 
+    public class CreateFieldCard : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.CreateFieldCard;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            //tell the FieldCardHolder add a card to its display list.
+            FieldCardData fieldCard = Resources.Load<FieldCardData>("FieldCardData/" + actionParameters.Value);
+            bool playerOwned = false;
+            if(actionParameters.SelfCharacter.CharacterType == CharacterType.P1 || actionParameters.SelfCharacter.CharacterType == CharacterType.P2)
+                playerOwned = true;
+    
+            //field card owner team is set to actionParameters.SelfCharacter.CharacterType
+            FieldCardHolder.instance.AddFieldCard(fieldCard, playerOwned);
+        }
+    }
+
     public class VulnerableAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.Vulnerable;

@@ -8,6 +8,7 @@ using UnityEngine;
 using Managers;
 using DeckData;
 using static UnityEngine.GraphicsBuffer;
+using Enums;
 
 public class CardDeck : NetworkBehaviour
 {
@@ -232,6 +233,23 @@ public class CardDeck : NetworkBehaviour
                 //player using a card
                 //if(isOwned)
                     hm.cards[playedCard].GetComponent<CardBase>().Use(GetComponent<GenericBody>(), targetObj.GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                //all of the actions in the played card
+                var data = hm.cards[playedCard].GetComponent<CardBase>().CardData;
+
+                if (data.CardType.Contains(CardType.Offensive))
+                {
+                    FieldCardHolder.instance.Proc(FieldCardData.ProcType.OnAllyAttack, data, targetObj.GetComponent<GenericBody>(), GetComponent<GenericBody>(), TurnManager.instance.CurrentEnemiesList, TurnManager.instance.CurrentAlliesList, TurnManager.instance.CurrentMainAlly);
+                }
+
+                //This method is probably just silly la-la mode
+/*                foreach(CardActionData actionData in data.cardActionDataList)
+                {
+                    //if the card has an attack? or should we check the card type instead?
+                    if (actionData.CardActionType.Equals(CardActionType.Attack))
+                    {
+                        
+                    }
+                }*/
             }
             catch
             {

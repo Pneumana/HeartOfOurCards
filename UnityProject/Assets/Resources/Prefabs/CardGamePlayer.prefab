@@ -2010,7 +2010,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  hand: []
+  hand:
+  - {fileID: 11400000, guid: aa98841028bd5f345bbf622aaf0c25b2, type: 2}
+  - {fileID: 11400000, guid: aa98841028bd5f345bbf622aaf0c25b2, type: 2}
   deck:
   - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
   - {fileID: 11400000, guid: b101712154c97e545a514bd51ab7d8c8, type: 2}
@@ -2246,7 +2248,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  hand: []
+  hand:
+  - {fileID: 11400000, guid: aa98841028bd5f345bbf622aaf0c25b2, type: 2}
+  - {fileID: 11400000, guid: aa98841028bd5f345bbf622aaf0c25b2, type: 2}
   deck:
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}

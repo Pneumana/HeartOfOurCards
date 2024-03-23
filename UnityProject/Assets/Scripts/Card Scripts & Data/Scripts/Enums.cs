@@ -57,7 +57,8 @@ namespace Enums
         EnemyRegen,
         EnemyFreeze,
         EnemyBurn,
-        ApplyStatus
+        ApplyStatus,
+        CreateFieldCard
     }
 
     public enum CharacterType
@@ -96,6 +97,8 @@ namespace Enums
     {
         Physical,
         Magical,
-        Neutral
+        Neutral,
+        Offensive,
+        Defensive
     }
 }
