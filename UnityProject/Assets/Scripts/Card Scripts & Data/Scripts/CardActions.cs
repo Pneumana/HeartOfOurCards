@@ -34,27 +34,6 @@ namespace CardActions
         }
     }
 
-    public class AttackTwiceAction : CardActionBase
-    {
-        public override CardActionType ActionType => CardActionType.AttackTwice;
-        public override void DoAction(CardActionParameters actionParameters)
-        {
-            if (!actionParameters.TargetCharacter) return;
-
-            var targetCharacter = actionParameters.TargetCharacter;
-            var selfCharacter = actionParameters.SelfCharacter;
-
-            var value = Int32.Parse(actionParameters.Value) + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
-
-            if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
-            {
-                value = Mathf.CeilToInt(value / 2);
-            }
-
-            targetCharacter.TakeDamage(value);
-        }
-    }
-
     public class FireAttackAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.FireAttack;

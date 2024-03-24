@@ -46,7 +46,7 @@ namespace Enums
         Vulnerable,
         FireAttack,
         FrostAttack,
-        AttackTwice,
+        UselessEnum,
         AttackScaleNothing,
         AttackFive,
         EnemyAttack,

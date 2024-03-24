@@ -15,6 +15,7 @@ public class CardDeck : NetworkBehaviour
     public List<CardData> hand = new List<CardData>();
     public List<CardData> deck = new List<CardData> ();
     public List<CardData> discardPile = new List<CardData>();
+    public List<CardData> exhaustPile = new List<CardData>();
 
     bool ownedByEnemy;
     //public List<CardBase> cardHand = new List<CardBase>();
@@ -315,7 +316,16 @@ public class CardDeck : NetworkBehaviour
                 attack.GetComponent<Rigidbody>().AddForce(attack.transform.forward * 10, ForceMode.Impulse);
             }*/
             if (!hand[playedCard].deleteAfterPlay)
-                discardPile.Add(hand[playedCard]);
+            {
+                if (hand[playedCard].exhaustAfterPlay)
+                {
+                    exhaustPile.Add(hand[playedCard]);
+                }
+                else
+                {
+                    discardPile.Add(hand[playedCard]);
+                }
+            }
             Debug.Log(gameObject.name + " Played card " + hand[playedCard].CardName);
             hand.Remove(hand[playedCard]);
         }
@@ -337,6 +347,11 @@ public class CardDeck : NetworkBehaviour
             deck.Add(dat);
         }
         hand.Clear();
+        foreach (CardData dat in exhaustPile)
+        {
+            deck.Add(dat);
+        }
+        exhaustPile.Clear();
     }
     //Resources.Load<CardData>("CardData/" + cardName)
 }
