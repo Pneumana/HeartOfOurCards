@@ -22,7 +22,7 @@ MonoBehaviour:
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 13
+  - cardActionType: 11
     actionTargetType: 1
     actionValue: Steal
     actionDelay: 0

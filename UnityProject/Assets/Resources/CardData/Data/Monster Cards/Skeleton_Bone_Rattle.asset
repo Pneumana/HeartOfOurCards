@@ -19,10 +19,12 @@ MonoBehaviour:
   cardType: 02000000
   usableWithoutTarget: 1
   exhaustAfterPlay: 0
+  deleteAfterPlay: 0
+  deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 8
-    actionTargetType: 0
-    actionValue: 2
+  - cardActionType: 25
+    actionTargetType: 8
+    actionValue: Strength 2
     actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: 'Gains '

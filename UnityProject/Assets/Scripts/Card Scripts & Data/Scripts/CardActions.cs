@@ -151,21 +151,6 @@ namespace CardActions
         }
     }
 
-    public class IncreaseStrengthAction : CardActionBase
-    {
-        public override CardActionType ActionType => CardActionType.IncreaseStrength;
-        public override void DoAction(CardActionParameters actionParameters)
-        {
-            var newtarget = actionParameters.TargetCharacter
-                ? actionParameters.TargetCharacter
-                : actionParameters.SelfCharacter;
-
-            if (!newtarget) return;
-
-            newtarget.ApplyStatus(StatusType.Strength, Mathf.RoundToInt(Int32.Parse(actionParameters.Value)));
-        }
-    }
-
     public class StunAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.Stun;

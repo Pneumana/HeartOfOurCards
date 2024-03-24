@@ -22,7 +22,7 @@ MonoBehaviour:
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 29
+  - cardActionType: 25
     actionTargetType: 8
     actionValue: Dexterity 3
     actionDelay: 0
