@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   procActionSets:
   - procActions:
-    - cardActionType: 10
+    - cardActionType: 8
       actionTargetType: 0
       actionValue: 2
       actionDelay: 0

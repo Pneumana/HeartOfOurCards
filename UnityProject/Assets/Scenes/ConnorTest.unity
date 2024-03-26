@@ -4988,9 +4988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0c91564f81ec748848af7f05ce87e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFieldCards:
-  - {fileID: 11400000, guid: d2ad9bc494e7c9b4d829980f87de1f44, type: 2}
-  isFieldCardOwnedByPlayers: 01
+  currentFieldCards: []
+  isFieldCardOwnedByPlayers: 
   fieldCardLimit: 1
 --- !u!224 &1657273808
 RectTransform:
