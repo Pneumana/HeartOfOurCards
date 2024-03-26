@@ -131,8 +131,8 @@ public class CardPlayerController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            
-            if(NetworkServer.connections.Count > 1)
+            Debug.Log("client is trying to end turn");
+            if(NetworkServer.connections.Count > 1 || isClientOnly)
             {
                 TurnEnded = true;
                 Debug.Log("ended turn on client");
@@ -140,6 +140,7 @@ public class CardPlayerController : NetworkBehaviour
             }
             else
             {
+                Debug.Log("playing in singleplayer, we dont care that other player ended their turn or not");
                 var tm = GameObject.Find("TurnManager").GetComponent<TurnManager>();
                 var plrTeam = tm.playerTeam;
                foreach (CardPlayerController plr in plrTeam)

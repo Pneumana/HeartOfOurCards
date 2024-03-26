@@ -131,7 +131,7 @@ public class DialougeDisplayer : MonoBehaviour
     */
     // Start is called before the first frame update
 
-
+    List<string> targetDisplayText = new List<string>();
 
     void Start()
     {
@@ -155,6 +155,25 @@ public class DialougeDisplayer : MonoBehaviour
 
         LoadConvo();
     }
+
+    IEnumerator TypeOutText()
+    {
+        textBody.text = "";
+        do
+        {
+            //add text to display text
+
+            textBody.text += targetDisplayText[0];
+            targetDisplayText.RemoveAt(0);
+
+            yield return new WaitForSeconds(0.01f);
+            //wait a bit
+        }
+        while (targetDisplayText.Count > 0);
+        yield return null;
+    }
+
+
     void SplitTextFieldConvo()
     {
 
@@ -508,7 +527,13 @@ public class DialougeDisplayer : MonoBehaviour
                     Debug.Log(textFieldConvo.characters[real - 1].pnd);
                 }
             }
-                textBody.text = commandRemoved.ToString();
+            var array = Regex.Split(commandRemoved.ToString(), @"(.)");
+            foreach(string s in array)
+            {
+                targetDisplayText.Add(s);
+            }
+            StartCoroutine(TypeOutText());
+                
             //replace pronoun second person pnd1 with he and pronoun possessive pss1 with the pronoun fetched from the character with id X's pronouns
 
             if (actorCharID <= 1)

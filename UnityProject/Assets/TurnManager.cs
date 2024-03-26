@@ -163,6 +163,7 @@ namespace Managers
                                 //Debug.Log(turnEnder.gameObject.name + " ended turn");
                                 turnEnder.deck.ServerDiscard(turnEnder.deck.hand.Count, new int[0]);
                                 turnEnded.Add(turnEnder);
+                                Debug.Log(netid.name + " ended their turn");
                             }
                         }
                     }
@@ -172,6 +173,7 @@ namespace Managers
             }
             if (turnEnded.Count == playerTeam.Count)
             {
+                Debug.Log("all " + turnEnded.Count + " players have ended their turn");
                 isPlayerTurn = false;
                 turnEnded.Clear();
                 foreach (IndividualPlayerGenericBody player in CurrentAlliesList)

@@ -25,6 +25,9 @@ public class GetPlayerID : NetworkBehaviour
     public GameObject player2combatSceneUI;
     public GameObject player2combatScene;
 
+    public GameObject firstUsername;
+    public GameObject lastUsername;
+
     bool avatarRecieved;
 
     //decks controlled by this player
@@ -185,11 +188,17 @@ public class GetPlayerID : NetworkBehaviour
     {
         //reparents all objects to this
         player2combatSceneUI.transform.SetParent(combatSceneUI.transform);
+
+        firstUsername.transform.SetParent(combatSceneUI.transform);
+        lastUsername.transform.SetParent(combatSceneUI.transform);
         combatSceneUI.transform.SetParent(transform);
         player2combatScene.transform.SetParent(combatScene.transform);
         healthBar.transform.SetParent(combatSceneUI.transform);
         healthBar.gameObject.SetActive(false);
         combatScene.transform.SetParent(transform);
+
+
+
         var playerControllers = combatScene.GetComponentsInChildren<CardPlayerController>();
         
         foreach (CardPlayerController cpc in playerControllers)
@@ -252,7 +261,7 @@ public class GetPlayerID : NetworkBehaviour
                     var steamID = AmbidexterousManager.Instance.PlayerList[loc].PlayerSteamID;
                     var username = SteamFriends.GetFriendPersonaName((CSteamID)steamID);
                     if (username == "") username = "Player " + (loc + 1);
-                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = username;
+                    GameObject.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = username;
                     //combatSceneUI.transform.Find("LastPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player 2";
                 }
                 else
@@ -260,7 +269,7 @@ public class GetPlayerID : NetworkBehaviour
                     var steamID = AmbidexterousManager.Instance.PlayerList[col].PlayerSteamID;
                     var username = SteamFriends.GetFriendPersonaName((CSteamID)steamID);
                     if (username == "") username = "Player " + (col + 1);
-                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = username;
+                    GameObject.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = username;
                 }
             }
             else
@@ -276,11 +285,11 @@ public class GetPlayerID : NetworkBehaviour
 
                 if (isLocal)
                 {
-                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player " + (loc + 1);
+                    GameObject.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player " + (loc + 1);
                     //combatSceneUI.transform.Find("LastPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player 2";
                 }
                 else
-                    combatSceneUI.transform.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player " + (col + 1);
+                    GameObject.Find("FirstPlayerUsername").GetComponent<TextMeshProUGUI>().text = "Player " + (col + 1);
             }
             //disable
             player2combatScene.SetActive(false);
@@ -301,14 +310,26 @@ public class GetPlayerID : NetworkBehaviour
             healthBar.gameObject.SetActive(true);
             healthBar.transform.SetParent(GameObject.Find("Canvas").transform);
             healthBar.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 50);
+
+
+
+
+
             if (AmbidexterousManager.Instance.PlayerList[0] == this)
             {
                 //this is p1
                 Debug.Log("player1");
                 combatScene.transform.position = (Vector3.zero) + (Vector3.down * 1.89f);
-                combatSceneUI.transform.SetParent(GameObject.Find("Player1TurnUI").transform);
 
-                combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+                firstUsername.transform.SetParent(GameObject.Find("Player1TurnUI").transform);
+                firstUsername.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                //set first name to Player1TurnUI
+                /*GameObject.Find("FirstPlayerUsername").transform.SetParent(GameObject.Find("Player1TurnUI").transform);
+
+                GameObject.Find("FirstPlayerUsername").GetComponent<RectTransform>().anchoredPosition = Vector3.zero;*/
+
+
 
             }
             else
@@ -317,8 +338,10 @@ public class GetPlayerID : NetworkBehaviour
                 combatScene.transform.position = (Vector3.right * 4) + (Vector3.down * 1.89f);
                 combatScene.transform.Find("Player1").GetComponent<HandManager>().HandPosition = new Vector3(4, -1, -2.82f);
                 combatScene.transform.Find("Player1").GetComponent<HandManager>().cardSpread = -3;
-                combatSceneUI.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
-                combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+                firstUsername.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
+
+                firstUsername.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             }
             //combatScene.transform.position = Vector3.zero + (Vector3.down * 1.89f);
 
@@ -326,6 +349,10 @@ public class GetPlayerID : NetworkBehaviour
 
             player2combatSceneUI.transform.SetParent(GameObject.Find("Player2TurnUI").transform);
             player2combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+
+            combatSceneUI.transform.SetParent(GameObject.Find("Canvas").transform);
+            combatSceneUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
             PlayerIcon.transform.SetParent(GameObject.Find("PlayerIconAnchor").transform);
             PlayerIcon.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;

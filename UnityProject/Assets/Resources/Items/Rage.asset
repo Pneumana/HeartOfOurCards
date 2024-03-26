@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae60d1818a5c89f439d4c4b6822fea44, type: 3}
   m_Name: Rage
   m_EditorClassIdentifier: 
+  description: Increases damage of consecutive attacks.
   procedByBothPlayers: 0
   procCountForActions: 0
   procActionSets:
   - procActions:
-    - cardActionType: 8
+    - cardActionType: 25
       actionTargetType: 8
-      actionValue: 1
+      actionValue: Strength 2
+      actionDelay: 0
+    - cardActionType: 25
+      actionTargetType: 8
+      actionValue: TempStr 2
       actionDelay: 0
   procTypeSets: 04000000
+  sprite: {fileID: -680009673720034499, guid: 7b3bf9214625de843b48cc8cdaddd66b, type: 3}
