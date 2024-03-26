@@ -60,6 +60,7 @@ namespace CardActions
             targetCharacter.TakeDamage(value);
         }
     }
+
     public class FrostAttackAction : CardActionBase
     {
         public override CardActionType ActionType => CardActionType.FrostAttack;
@@ -78,6 +79,59 @@ namespace CardActions
                 targetCharacter.ClearStatus(StatusType.Burn);
             }
             if (actionParameters.HealthPool.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
+
+    public class EnemyFireAttackAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyFireAttack;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            if (!actionParameters.TargetCharacter) return;
+
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = Int32.Parse(actionParameters.Value) + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            if (targetCharacter.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value * 2);
+                targetCharacter.ClearStatus(StatusType.Frozen);
+            }
+
+            if (actionParameters.SelfCharacter.StatusDict[StatusType.Frozen].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value / 2);
+            }
+
+            targetCharacter.TakeDamage(value);
+        }
+    }
+
+    public class EnemyFrostAttackAction : CardActionBase
+    {
+        public override CardActionType ActionType => CardActionType.EnemyFrostAttack;
+        public override void DoAction(CardActionParameters actionParameters)
+        {
+            if (!actionParameters.TargetCharacter) return;
+
+            var targetCharacter = actionParameters.TargetCharacter;
+            var selfCharacter = actionParameters.SelfCharacter;
+
+            var value = Int32.Parse(actionParameters.Value) + selfCharacter.StatusDict[StatusType.Strength].StatusValue;
+
+            if (targetCharacter.StatusDict[StatusType.Burn].StatusValue >= 1)
+            {
+                value = Mathf.CeilToInt(value * 2);
+                targetCharacter.ClearStatus(StatusType.Burn);
+            }
+            if (actionParameters.SelfCharacter.StatusDict[StatusType.Frozen].StatusValue >= 1)
             {
                 value = Mathf.CeilToInt(value / 2);
             }

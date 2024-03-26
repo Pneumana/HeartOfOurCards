@@ -56,7 +56,9 @@ namespace Enums
         ApplyStatus,
         CreateFieldCard,
         ChangeSharedStat,
-        ChangeIndividualStat
+        ChangeIndividualStat,
+        EnemyFrostAttack,
+        EnemyFireAttack
     }
 
     public enum CharacterType
