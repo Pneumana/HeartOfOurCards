@@ -15,6 +15,15 @@ public class Character : ScriptableObject
     public Color Color;
     [Header("Character Poses")]
     public Sprite Default;
+    public List<CharacterSprite> Sprites = new List<CharacterSprite>();
+
+    [System.Serializable]
+    public struct CharacterSprite
+    {
+        public string Name;
+        public Sprite sprites;
+    }
+
     //upon changing to this pose, the character controller will set it's position to this value
     public Vector2 DefaultPoseOffset;
     [Header("Character Eyes")]

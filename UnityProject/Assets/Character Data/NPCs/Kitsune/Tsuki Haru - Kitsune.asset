@@ -17,6 +17,15 @@ MonoBehaviour:
   pnd: She
   Color: {r: 0.3503272, g: 0, b: 0.9245283, a: 0}
   Default: {fileID: 21300000, guid: 8d4bd773ead7f7d47b6d5a8b320ec2f7, type: 3}
+  Sprites:
+  - Name: Default
+    sprites: {fileID: 21300000, guid: 8d4bd773ead7f7d47b6d5a8b320ec2f7, type: 3}
+  - Name: Happy
+    sprites: {fileID: 0}
+  - Name: Angry
+    sprites: {fileID: 0}
+  - Name: Sad
+    sprites: {fileID: 0}
   DefaultPoseOffset: {x: -100, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}
