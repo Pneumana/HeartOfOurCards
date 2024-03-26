@@ -172,14 +172,20 @@ namespace Characters
             if (StatusDict[targetStatus].IsActive)
             {
                 StatusDict[targetStatus].StatusValue += value;
-                OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
+                if (targetStatus != StatusType.NagaPoison)
+                {
+                    OnStatusChanged?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
+                }
                 Debug.Log("Status Increased " + targetStatus);
             }
             else
             {
                 StatusDict[targetStatus].StatusValue = value;
                 StatusDict[targetStatus].IsActive = true;
-                OnStatusApplied?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
+                if (targetStatus != StatusType.NagaPoison)
+                {
+                    OnStatusApplied?.Invoke(targetStatus, StatusDict[targetStatus].StatusValue);
+                }
                 Debug.Log("Status Active: " + targetStatus);
             }
 
