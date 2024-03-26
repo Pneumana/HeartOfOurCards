@@ -19,8 +19,10 @@ MonoBehaviour:
   cardType: 00000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
+  deleteAfterPlay: 0
+  deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 25
+  - cardActionType: 21
     actionTargetType: 4
     actionValue: 4
     actionDelay: 0

@@ -19,10 +19,16 @@ MonoBehaviour:
   cardType: 01000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
+  deleteAfterPlay: 0
+  deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 27
+  - cardActionType: 29
     actionTargetType: 4
-    actionValue: 5
+    actionValue: 10
+    actionDelay: 0
+  - cardActionType: 23
+    actionTargetType: 4
+    actionValue: 2
     actionDelay: 0
   cardDescriptionDataList:
   - descriptionText: 5 Freeze Temp description
