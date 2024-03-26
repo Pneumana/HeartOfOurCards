@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using System.Globalization;
 using CardActions;
-
+using UnityEngine.UI;
 
 public class RunManager : NetworkBehaviour
 {
@@ -321,9 +321,19 @@ public class RunManager : NetworkBehaviour
     public void AddItem(string item, int player)
     {
         var n = new GameObject();
-        n.name = item;
+        n.name = "Player " + player + "'s " + item;
         n.AddComponent<HeldItem>();
-        n.GetComponent<HeldItem>().itemData = Resources.Load<ItemBase>("Items/" + item);
+        var load = Resources.Load<ItemBase>("Items/" + item);
+        n.GetComponent<HeldItem>().itemData = load;
+
+        //add a UI element item to target player
+
+        var uiParent = GameObject.Find("Player" + (player + 1) + "Items").transform;
+
+        var u = new GameObject();
+        u.AddComponent<Image>();
+        u.GetComponent<Image>().sprite = load.sprite;
+        u.transform.SetParent(uiParent);
 
         n.transform.SetParent(transform);
 
@@ -336,6 +346,12 @@ public class RunManager : NetworkBehaviour
     public void AddItem()
     {
         CMDAddItem("Rage", 0);
+    }
+
+    [ContextMenu("Add Item Rage to Player 2")]
+    public void AddItem2()
+    {
+        CMDAddItem("Rage", 1);
     }
 
 }

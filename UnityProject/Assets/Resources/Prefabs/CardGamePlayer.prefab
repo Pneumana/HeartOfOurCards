@@ -812,6 +812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8202147253423602517}
+  - component: {fileID: 7286880375244877272}
   m_Layer: 5
   m_Name: CombatSceneUI
   m_TagString: Untagged
@@ -831,6 +832,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3283681717074000095}
+  - {fileID: 1085932666480460481}
   - {fileID: 4244917950350994045}
   - {fileID: 872403888589808172}
   m_Father: {fileID: 4616670576386012582}
@@ -838,8 +841,31 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &7286880375244877272
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287547199566500984}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &2748730010054324990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1291,66 @@ MonoBehaviour:
   statusIconRoot: {fileID: 2817287899106386643}
   statusIconData: {fileID: 11400000, guid: 85cacf104684bb84699bd95a24e94487, type: 2}
   currentHealthText: {fileID: 2151675537134275267}
+--- !u!1 &4258043836423142307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085932666480460481}
+  - component: {fileID: 3782325616424626132}
+  m_Layer: 5
+  m_Name: Player2Items
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1085932666480460481
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258043836423142307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8202147253423602517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -32, y: -32}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &3782325616424626132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258043836423142307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 2
+  m_StartCorner: 1
+  m_StartAxis: 0
+  m_CellSize: {x: 64, y: 64}
+  m_Spacing: {x: 4, y: 4}
+  m_Constraint: 1
+  m_ConstraintCount: 8
 --- !u!1 &4463982195880245668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,6 +1692,66 @@ MonoBehaviour:
   damageRecieved: {fileID: 5926762177641113899}
   endInstances: 0
   currentDamageRecievedObj: {fileID: 0}
+--- !u!1 &6519094569084745367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3283681717074000095}
+  - component: {fileID: 3707190398459066875}
+  m_Layer: 5
+  m_Name: Player1Items
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3283681717074000095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519094569084745367}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8202147253423602517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32, y: -32}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &3707190398459066875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519094569084745367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 64, y: 64}
+  m_Spacing: {x: 4, y: 4}
+  m_Constraint: 1
+  m_ConstraintCount: 8
 --- !u!1 &6677256260283594110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,6 +1980,8 @@ MonoBehaviour:
   combatScene: {fileID: 4463982195880245668}
   player2combatSceneUI: {fileID: 462788338741407848}
   player2combatScene: {fileID: 7959074646553227032}
+  firstUsername: {fileID: 3599031547943680825}
+  lastUsername: {fileID: 462788338741407848}
   healthBar: {fileID: 2129720700449512715}
 --- !u!114 &5009281109705496916
 MonoBehaviour:
@@ -2023,6 +2171,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   discardPile: []
+  exhaustPile: []
 --- !u!114 &1776109210124928608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2259,6 +2408,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   discardPile: []
+  exhaustPile: []
 --- !u!114 &8457046981138908731
 MonoBehaviour:
   m_ObjectHideFlags: 0
