@@ -9,6 +9,10 @@ using UnityEngine;
 
 public class CardRewards : NetworkBehaviour
 {
+    [Header("Pack Info")]
+    [SerializeField] private int Cost;
+    [SerializeField] private int costDeviation;
+
     [Header("Rarity Pools")]
     [SerializeField] private CardRarieties commonCards;
     [SerializeField] private CardRarieties uncommonCards;
@@ -28,15 +32,23 @@ public class CardRewards : NetworkBehaviour
     private int cardsPicked = 0;
     private int picking;
 
-    void Start()
+    private void Awake()
     {
-        picking = RunManager.instance.pickingPlayer;
-        text.text = "Player " + (RunManager.instance.pickingPlayer + 1) + " is picking";
+        CMDCostGeneration();
     }
 
-    void Update()
+    [Command(requiresAuthority = false)]
+    public void CMDCostGeneration()
     {
-        
+        int change = Random.Range(-costDeviation, costDeviation + 1);
+        CostGeneration(change);
+    }
+
+    [ClientRpc]
+    void CostGeneration(int change)
+    {
+        Cost += change;
+        text.text = Cost + "";
     }
 
     [Command(requiresAuthority = false)]
@@ -140,36 +152,4 @@ public class CardRewards : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = false)]
-    public void CMDChangePickingPlayer()
-    {
-        ChangePickingPlayer();
-    }
-
-    [ClientRpc]
-    void ChangePickingPlayer()
-    {
-        if (RunManager.instance.pickingPlayer == 0)
-        {
-            RunManager.instance.pickingPlayer = 1;
-        }
-        else
-        {
-            RunManager.instance.pickingPlayer = 0;
-        }
-
-        text.text = "Player " + (RunManager.instance.pickingPlayer + 1) + " is picking";
-    }
-
-    [Command(requiresAuthority = false)]
-    public void CMDLeave()
-    {
-        Leave();
-    }
-
-    [ClientRpc]
-    private void Leave()
-    {
-        RunManager.instance.pickingPlayer = picking;
-    }
 }

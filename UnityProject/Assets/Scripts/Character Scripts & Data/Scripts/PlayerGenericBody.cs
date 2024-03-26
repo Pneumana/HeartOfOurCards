@@ -67,6 +67,7 @@ namespace Characters
         {
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
+            TriggerStatus(StatusType.NagaPoison);
             TriggerStatus(StatusType.Burn);
             TriggerStatus(StatusType.Regen);
             TriggerStatus(StatusType.Vulnerable);

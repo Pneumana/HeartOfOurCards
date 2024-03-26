@@ -132,6 +132,9 @@ namespace Characters
             StatusDict[StatusType.Bleed].DecreaseOverTurn = true;
             StatusDict[StatusType.Bleed].OnTriggerAction += DamageBleed;
 
+            StatusDict[StatusType.NagaPoison].DecreaseOverTurn = false;
+            StatusDict[StatusType.NagaPoison].OnTriggerAction += NagaPoison;
+
             StatusDict[StatusType.Burn].DecreaseOverTurn = true;
             StatusDict[StatusType.Burn].OnTriggerAction += DamageBurn;
 
@@ -211,6 +214,7 @@ namespace Characters
             TriggerStatus(StatusType.TempStr);
             TriggerStatus(StatusType.Block);
             TriggerStatus(StatusType.Bleed);
+            TriggerStatus(StatusType.NagaPoison);
             TriggerStatus(StatusType.Burn);
             TriggerStatus(StatusType.Regen);
             TriggerStatus(StatusType.Frozen);
@@ -283,6 +287,14 @@ namespace Characters
         {
             if (StatusDict[StatusType.TempStr].StatusValue <= 0) return;
             ApplyStatus(StatusType.Strength, -StatusDict[StatusType.TempStr].StatusValue);
+        }
+
+        public void NagaPoison()
+        {
+            if (StatusDict[StatusType.NagaPoison].StatusValue <= 0) return;
+            if (StatusDict[StatusType.NagaPoison].StatusValue < StatusDict[StatusType.Bleed].StatusValue) return;
+            int difference = StatusDict[StatusType.NagaPoison].StatusValue - StatusDict[StatusType.Bleed].StatusValue;
+            ApplyStatus(StatusType.Bleed, difference);
         }
 
         public void CheckStunStatus()

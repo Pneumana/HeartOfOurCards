@@ -90,7 +90,8 @@ namespace Enums
         Bleed,
         Regen,
         TempStr,
-        TempDex
+        TempDex,
+        NagaPoison
     }
 
     public enum CardType
@@ -99,6 +100,15 @@ namespace Enums
         Magical,
         Neutral,
         Offensive,
-        Defensive
+        Defensive,        
+        Healing,
+        ApplyStatus,
+        Burn,
+        Freeze,
+        Poison,
+        Vulnerable,
+        Draw,
+        Energy,
+        Exhaust
     }
 }
