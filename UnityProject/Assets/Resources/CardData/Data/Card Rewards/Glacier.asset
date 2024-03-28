@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Glacier
   energyCost: 3
   cardSprite: {fileID: 0}
-  cardType: 01000000
+  cardType: 010000000600000008000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0

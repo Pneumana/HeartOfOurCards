@@ -16,9 +16,11 @@ MonoBehaviour:
   cardName: Block
   energyCost: 1
   cardSprite: {fileID: 0}
-  cardType: 02000000
+  cardType: 0200000004000000
   usableWithoutTarget: 1
   exhaustAfterPlay: 0
+  deleteAfterPlay: 0
+  deleteAfterDiscard: 0
   cardActionDataList:
   - cardActionType: 3
     actionTargetType: 4

@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Bandage
   energyCost: 0
   cardSprite: {fileID: 0}
-  cardType: 02000000
+  cardType: 02000000050000000d000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 1
   deleteAfterPlay: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Shield
   energyCost: 2
   cardSprite: {fileID: 0}
-  cardType: 02000000
+  cardType: 0200000004000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0

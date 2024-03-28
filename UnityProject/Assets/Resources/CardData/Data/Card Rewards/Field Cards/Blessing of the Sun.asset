@@ -10,42 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
-  m_Name: Ray of Light
+  m_Name: Blessing of the Sun
   m_EditorClassIdentifier: 
-  id: Ray_of_Light
-  cardName: Ray of Light
-  energyCost: 1
+  id: Blessing_of_the_Sun
+  cardName: Blessing of the Sun
+  energyCost: 2
   cardSprite: {fileID: 0}
-  cardType: 0100000003000000
-  usableWithoutTarget: 0
+  cardType: 01000000
+  usableWithoutTarget: 1
   exhaustAfterPlay: 0
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 0
+  - cardActionType: 26
     actionTargetType: 0
-    actionValue: 6
+    actionValue: Blessing of the Sun Field
     actionDelay: 0
   cardDescriptionDataList:
-  - descriptionText: 'Deal '
-    enableOverrideColor: 0
-    overrideColor: {r: 0, g: 0, b: 0, a: 0}
-    useModifier: 0
-    modifiedActionValueIndex: 0
-    modiferStats: 0
-    usePrefixOnModifiedValue: 0
-    modifiedValuePrefix: 
-    overrideColorOnValueScaled: 0
-  - descriptionText: 
-    enableOverrideColor: 0
-    overrideColor: {r: 0, g: 0, b: 0, a: 0}
-    useModifier: 1
-    modifiedActionValueIndex: 0
-    modiferStats: 2
-    usePrefixOnModifiedValue: 1
-    modifiedValuePrefix: '*'
-    overrideColorOnValueScaled: 1
-  - descriptionText: ' damage to target enemy'
+  - descriptionText: While this Field is in play, All ally attacks add 2 burn
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0

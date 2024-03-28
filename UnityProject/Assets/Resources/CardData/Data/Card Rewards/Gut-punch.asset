@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Gut-punch
   energyCost: 2
   cardSprite: {fileID: 0}
-  cardType: 00000000
+  cardType: 00000000030000000b000000
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
   deleteAfterPlay: 0

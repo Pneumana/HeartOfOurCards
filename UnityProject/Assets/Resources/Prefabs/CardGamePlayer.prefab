@@ -2161,7 +2161,7 @@ MonoBehaviour:
   hand: []
   deck:
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
-  - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
+  - {fileID: 11400000, guid: 81e8b39f234209f41919b32078033166, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
