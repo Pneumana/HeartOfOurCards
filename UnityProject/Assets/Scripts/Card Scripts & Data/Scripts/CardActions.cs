@@ -253,7 +253,7 @@ namespace CardActions
         {
             if(actionParameters.Value != "Steal")
             {
-                actionParameters.SelfCharacter.GetComponent<CardPlayerController>().deck.hand.Add(Resources.Load<CardData>("CardData/" + actionParameters.Value));
+                actionParameters.SelfCharacter.GetComponent<CardPlayerController>().deck.hand.Add(Resources.Load<CardData>("CardData/Data/Token Cards/" + actionParameters.Value));
             }
             else
             {

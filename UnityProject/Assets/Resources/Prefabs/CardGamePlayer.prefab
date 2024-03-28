@@ -2162,11 +2162,11 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
   - {fileID: 11400000, guid: 81e8b39f234209f41919b32078033166, type: 2}
+  - {fileID: 11400000, guid: 85d84d7ed2bfefa49bc7551c66f1f02e, type: 2}
+  - {fileID: 11400000, guid: b34c94ba4dd6b8543a33ebe62a171b1e, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
   - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
-  - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
-  - {fileID: 11400000, guid: 439247584b2caac4988f83b976881ca8, type: 2}
-  - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
+  - {fileID: 11400000, guid: 6de812338adcd0d458f5404eadb72b70, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}
   - {fileID: 11400000, guid: 80e604987867a3f4a9093066dbd03e15, type: 2}

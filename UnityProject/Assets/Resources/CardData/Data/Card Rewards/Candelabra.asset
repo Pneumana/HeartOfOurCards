@@ -10,24 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a92d8dabb2abe72408886c3de15171ff, type: 3}
-  m_Name: Prime Inspration
+  m_Name: Candelabra
   m_EditorClassIdentifier: 
-  id: Prime_Inspration
-  cardName: Prime Inspration
-  energyCost: 0
+  id: Candelabra
+  cardName: Candelabra
+  energyCost: 2
   cardSprite: {fileID: 0}
-  cardType: 020000000b0000000d000000
-  usableWithoutTarget: 0
-  exhaustAfterPlay: 1
+  cardType: 01000000
+  usableWithoutTarget: 1
+  exhaustAfterPlay: 0
   deleteAfterPlay: 0
   deleteAfterDiscard: 0
   cardActionDataList:
-  - cardActionType: 4
+  - cardActionType: 11
     actionTargetType: 8
-    actionValue: 3
+    actionValue: Spark
+    actionDelay: 0
+  - cardActionType: 11
+    actionTargetType: 8
+    actionValue: Spark
+    actionDelay: 0
+  - cardActionType: 11
+    actionTargetType: 8
+    actionValue: Spark
     actionDelay: 0
   cardDescriptionDataList:
-  - descriptionText: Draw 3 cards, Burn this card
+  - descriptionText: 'Add 3 Spark''s to hand. (Spark: Deal 1 Damage and apply 1 Burn
+      to target enemy.'
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
     useModifier: 0
