@@ -37,17 +37,18 @@ public class ShopScript : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMDPackSpawning()
     {
-        foreach (GameObject location in packSpawnLocations)
+        for (int i = 0; i < packSpawnLocations.Count; i++)
         {
             int pack = Random.Range(0, availablePacks.Count);
-            PackSpawning(pack, location);
+            PackSpawning(pack, i);
         }
     }
 
     [ClientRpc]
-    public void PackSpawning(int pack, GameObject location)
+    public void PackSpawning(int pack, int i)
     {
-
+        var spawn = availablePacks[pack];
+        
     }
 
     [Command(requiresAuthority = false)]
