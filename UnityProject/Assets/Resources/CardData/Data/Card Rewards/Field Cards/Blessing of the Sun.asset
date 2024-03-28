@@ -23,7 +23,7 @@ MonoBehaviour:
   deleteAfterDiscard: 0
   cardActionDataList:
   - cardActionType: 26
-    actionTargetType: 0
+    actionTargetType: 8
     actionValue: Blessing of the Sun Field
     actionDelay: 0
   cardDescriptionDataList:

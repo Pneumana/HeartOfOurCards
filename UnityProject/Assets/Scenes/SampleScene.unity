@@ -338,7 +338,7 @@ MonoBehaviour:
   textBody: {fileID: 531180593}
   convoActionIndex: 0
   currentConvo: {fileID: 0}
-  textFieldConvo: {fileID: 11400000, guid: 706084f655e0569429869372faf17e36, type: 2}
+  textFieldConvo: {fileID: 11400000, guid: a58a699000e46ea42ab9a2510f952674, type: 2}
   optionPrefab: {fileID: 5502359447542862431, guid: d33a566bd6ad99445be38e99b1dd0bba, type: 3}
   statCheckPrefab: {fileID: 5502359447542862431, guid: 5852c2cbd30acb340ac65f498b57c1ea, type: 3}
   mPStatCheckPrefab: {fileID: 5502359447542862431, guid: 3e8e412cd51c8394e9e835342514d999, type: 3}
@@ -1161,7 +1161,10 @@ MonoBehaviour:
   forceLoadCombatEncounter: {fileID: 0}
   experiencedEvents: []
   Health: 0
+  MaxHealth: 0
   Stamina: 8
+  player1Items: []
+  player2Items: []
   Ratings: 0
   fightingBoss: 0
 --- !u!4 &1384316822

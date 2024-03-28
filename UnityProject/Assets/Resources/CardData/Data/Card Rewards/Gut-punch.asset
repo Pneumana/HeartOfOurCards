@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Gut-punch
   cardName: Gut-punch
-  energyCost: 2
+  energyCost: 1
   cardSprite: {fileID: 0}
   cardType: 00000000030000000b000000
   usableWithoutTarget: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   cardActionDataList:
   - cardActionType: 0
     actionTargetType: 0
-    actionValue: 5
+    actionValue: 4
     actionDelay: 0
   - cardActionType: 4
     actionTargetType: 8
@@ -43,7 +43,7 @@ MonoBehaviour:
   - descriptionText: 
     enableOverrideColor: 0
     overrideColor: {r: 0, g: 0, b: 0, a: 0}
-    useModifier: 0
+    useModifier: 1
     modifiedActionValueIndex: 0
     modiferStats: 2
     usePrefixOnModifiedValue: 1
