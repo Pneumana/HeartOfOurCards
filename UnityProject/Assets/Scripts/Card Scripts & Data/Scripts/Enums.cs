@@ -109,6 +109,7 @@ namespace Enums
         Vulnerable,
         Draw,
         Energy,
-        Exhaust
+        Exhaust,
+        Block
     }
 }
