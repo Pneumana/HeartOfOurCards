@@ -150,7 +150,8 @@ public class DialougeDisplayer : MonoBehaviour
             LoadNew(Resources.Load<TextFieldConversation>("Conversations/" + RunManager.instance.ForceLoadConvo));
             RunManager.instance.ForceLoadConvo = "";        }
         Debug.Log("Loading a convo " + textFieldConvo.name);
-
+        StopCoroutine(TypeOutText());
+        targetDisplayText.Clear();
         PrimaryPlayer = RunManager.instance.pickingPlayer;
 
         LoadConvo();
@@ -159,14 +160,22 @@ public class DialougeDisplayer : MonoBehaviour
     IEnumerator TypeOutText()
     {
         textBody.text = "";
+        var array = targetDisplayText;
+/*        foreach (string str in array)
+        {
+            textBody.text += str;
+            //targetDisplayText.RemoveAt(0);
+
+            yield return new WaitForSeconds(0.01f);
+        }*/
         do
         {
             //add text to display text
-
             textBody.text += targetDisplayText[0];
             targetDisplayText.RemoveAt(0);
 
             yield return new WaitForSeconds(0.01f);
+
             //wait a bit
         }
         while (targetDisplayText.Count > 0);
@@ -457,6 +466,7 @@ public class DialougeDisplayer : MonoBehaviour
         //SAY
         if (Regex.IsMatch(command, "^@SAY"))
         {
+            targetDisplayText.Clear();
             //Debug.Log("command is SAY");
             var regex = new Regex("^@SAY");
             var commandRemoved = regex.Replace(command, "");
@@ -532,6 +542,7 @@ public class DialougeDisplayer : MonoBehaviour
             {
                 targetDisplayText.Add(s);
             }
+            StopCoroutine(TypeOutText());
             StartCoroutine(TypeOutText());
                 
             //replace pronoun second person pnd1 with he and pronoun possessive pss1 with the pronoun fetched from the character with id X's pronouns
@@ -562,12 +573,15 @@ public class DialougeDisplayer : MonoBehaviour
             var commandSettings = regex.Replace(command, "");
             var spaceless = iHateSpaces.Replace(commandSettings, "");
             var split = Regex.Split(spaceless, ",");
-            Debug.Log(commandSettings);
-            Debug.Log(split[0]);
-            Debug.Log(split[1]);
-            Debug.Log(split[2]);
             var charID = actorCharID;
-            ChangePosition(charID, new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture)), float.Parse(split[2], CultureInfo.InvariantCulture));
+            if (split.Count() == 3)
+            {
+                ChangePosition(charID, new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture)), int.Parse(split[2], CultureInfo.InvariantCulture), true);
+            }
+            else
+            {
+                ChangePosition(charID, new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture)), -1, true);
+            }
             targetPos = new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture));
             Debug.Log("@POS character id " + charID + " has new targetpos: " + targetPos + "\nrecieved from command " + command);
             return;
@@ -582,6 +596,33 @@ public class DialougeDisplayer : MonoBehaviour
         else if (Regex.IsMatch(command, "^@SCA"))
         {
             Debug.Log("command is Scale");
+            return;
+        }
+        else if (Regex.IsMatch(command, "^@SET"))
+        {
+            Debug.Log("command is SET");
+            Vector2 targetPos;
+            //targetPos = new Vector2();
+            Regex regex = new Regex("^@SET");
+            Regex iHateSpaces = new Regex(@"\s");
+            var commandSettings = regex.Replace(command, "");
+            var spaceless = iHateSpaces.Replace(commandSettings, "");
+            var split = Regex.Split(spaceless, ",");
+            var charID = actorCharID;
+
+
+            if(split.Count() == 3)
+            {
+                ChangePosition(charID, new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture)), int.Parse(split[2], CultureInfo.InvariantCulture), true);
+            }
+            else
+            {
+                ChangePosition(charID, new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture)), -1, true);
+            }
+            
+            targetPos = new Vector2(float.Parse(split[0], CultureInfo.InvariantCulture), float.Parse(split[1], CultureInfo.InvariantCulture));
+
+            Debug.Log("@SET character id " + charID + " has new targetpos: " + targetPos + "\nrecieved from command " + command);
             return;
         }
         else if (Regex.IsMatch(command, "^@ORD"))
@@ -606,9 +647,18 @@ public class DialougeDisplayer : MonoBehaviour
             var commandSettings = regex.Replace(command, "");
             Regex ihateSpaces = new Regex(" ");
             var trimSpaces = ihateSpaces.Replace(commandSettings, "");
+
+            //var split = Regex.Split(command, " ");
+
+            /*if(split.Length != 2)
+            {
+                Debug.LogError("Display command lacks formatting!");
+                return;
+            }*/
+
             var charID = actorCharID;
-            Debug.Log("trying to display " + trimSpaces);
-            //sprites[charID].GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/" + trimSpaces);
+            //Debug.Log("trying to display " + trimSpaces);
+            sprites[charID].GetComponent<VNCharacterController>().ChangeEmote(trimSpaces);
 
             //this needs to change the sprites[charID].DisplayEmote?
 
@@ -1052,6 +1102,7 @@ public class DialougeDisplayer : MonoBehaviour
 
     public void SkipTo(int index, bool triggeredByChoice)
     {
+        StopCoroutine(TypeOutText());
         Debug.Log("skipping to " + index);
         if (triggeredByChoice)
         {
@@ -1084,9 +1135,21 @@ public class DialougeDisplayer : MonoBehaviour
         //DestroyAllButtons
         DisplayConvoAction();
     }
-    public void ChangePosition(int index, Vector2 pos, float speed = 5)
+    public void ChangePosition(int index, Vector2 pos, int order = -1, bool warp = false)
     {
         sprites[index].GetComponent<VNCharacterController>().moveTarget = pos;
+
+        if(order != -1)
+        {
+            order = Mathf.Clamp(order, 0, GameObject.Find("CharacterScene").transform.childCount);
+            sprites[index].transform.SetSiblingIndex(order);
+        }
+
+        if (warp)
+        {
+            sprites[index].GetComponent<VNCharacterController>().WarpToEnd();
+        }
+
         //positions[index] = pos;
         //speeds[index] = speed;
         //positions.Values.ElementAt(index) = pos;
