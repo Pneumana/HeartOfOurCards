@@ -14,18 +14,14 @@ public class ShopScript : NetworkBehaviour
 
     public TextMeshProUGUI text;
     private int picking;
+    private int connections;
 
     void Start()
     {
         picking = RunManager.instance.pickingPlayer;
         text.text = "Player " + (RunManager.instance.pickingPlayer + 1) + " is picking";
 
-        
-        foreach (GameObject spawn in packSpawnLocations)
-        {
-            int pack = Random.Range(0, availablePacks.Count);
-        }
-
+        connection();
     }
 
     // Update is called once per frame
@@ -35,19 +31,30 @@ public class ShopScript : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)]
+    private void connection()
+    {
+        connections++;
+        if (NetworkServer.connections.Count == connections)
+        {
+            CMDPackSpawning();
+        }
+    }
+
+    [Command(requiresAuthority = false)]
     public void CMDPackSpawning()
     {
-        foreach (GameObject location in packSpawnLocations)
+        for (int i = 0; i < packSpawnLocations.Count; i++)
         {
             int pack = Random.Range(0, availablePacks.Count);
-            PackSpawning(pack, location);
+            PackSpawning(pack, i);
         }
     }
 
     [ClientRpc]
-    public void PackSpawning(int pack, GameObject location)
+    public void PackSpawning(int pack, int i)
     {
-
+        var spawn = availablePacks[pack];
+        
     }
 
     [Command(requiresAuthority = false)]

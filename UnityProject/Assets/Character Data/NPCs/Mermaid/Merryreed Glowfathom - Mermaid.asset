@@ -17,10 +17,11 @@ MonoBehaviour:
   pnd: She
   Color: {r: 0, g: 0.5713501, b: 1, a: 0}
   Default: {fileID: 21300000, guid: 62194227509f8db44bb96d1607406c56, type: 3}
+  Sprites: []
   DefaultPoseOffset: {x: 0, y: 0}
-  Iris: {fileID: 0}
-  OpenLines: {fileID: 0}
-  OpenMask: {fileID: 0}
-  SquintLines: {fileID: 0}
-  SquintMask: {fileID: 0}
+  Iris: {fileID: 21300000, guid: f8af5428e7e95ec488e3cd24ca1a4de5, type: 3}
+  OpenLines: {fileID: 21300000, guid: 1f2fed3cb5023e94fb48e51580ceb474, type: 3}
+  OpenMask: {fileID: 21300000, guid: 1378e6d98edcbd345aac2926ac4f84dc, type: 3}
+  SquintLines: {fileID: 21300000, guid: d31c1ded7690dbb47a913cabb1320979, type: 3}
+  SquintMask: {fileID: 21300000, guid: 93ef87c1feede86428380e6e61220dc8, type: 3}
   ClosedLines: {fileID: 0}

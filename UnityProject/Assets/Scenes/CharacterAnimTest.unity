@@ -498,6 +498,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterController
       objectReference: {fileID: 0}
+    - target: {fileID: 4409766093081652479, guid: 55c422b7b622ad64a91bee8fbbcc26ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 62194227509f8db44bb96d1607406c56, type: 3}
+    - target: {fileID: 4844589248832008584, guid: 55c422b7b622ad64a91bee8fbbcc26ce, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e282c5b9c669b84dbfea1c0d5c797c5, type: 2}
     - target: {fileID: 4844589248832008584, guid: 55c422b7b622ad64a91bee8fbbcc26ce, type: 3}
       propertyPath: moveTarget.x
       value: 0.5
