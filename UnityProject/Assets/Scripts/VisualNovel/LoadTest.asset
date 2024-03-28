@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da61fb919e2ca8a4c8dd699e1c6ac86d, type: 3}
   m_Name: LoadTest
   m_EditorClassIdentifier: 
-  characters: []
+  characters:
+  - {fileID: 11400000, guid: b5adf61ab752b554c92f443fb791f393, type: 2}
   commandScript: 'LoadText
 
     !0
@@ -20,13 +21,49 @@ MonoBehaviour:
     @SAY This is a test to see if the dialouge
     system can load conversations. name0 is my name!
 
+    @DIS Neutral
+
+    @SET
+    0.5, 0
+
+    :
+
+    !1
+
+    @SET 0.55, 0, 1
+
+    :
+
+    !2
+
+    @SET 0.25, 0
+
+    ;
+
+    LoadFakeExpression
+
+    !0
+
+    @DIS
+    FakeExpression
+
+    @SAY Loading a fake expression
+
+    @SET 0.5, 0, 1
+
+    :
+
+    !2
+
+    @DIS
+    Happy
+
     ;
 
     End
 
     !0
 
-    @LOAD
-    DateEvents/Vampire/VampireD1-2
+    @LOAD Test/LoadedConversation
 
     ;'

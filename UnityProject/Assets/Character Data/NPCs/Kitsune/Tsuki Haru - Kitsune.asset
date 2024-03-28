@@ -19,14 +19,14 @@ MonoBehaviour:
   Default: {fileID: 21300000, guid: 8d4bd773ead7f7d47b6d5a8b320ec2f7, type: 3}
   Sprites:
   - Name: Default
-    sprites: {fileID: 21300000, guid: 8d4bd773ead7f7d47b6d5a8b320ec2f7, type: 3}
+    sprites: {fileID: 21300000, guid: 093b25e553563454b835193eb174d033, type: 3}
   - Name: Happy
-    sprites: {fileID: 0}
+    sprites: {fileID: 21300000, guid: 8f072d70902840e478d0e46c3839c98b, type: 3}
   - Name: Angry
-    sprites: {fileID: 0}
+    sprites: {fileID: 21300000, guid: 093b25e553563454b835193eb174d033, type: 3}
   - Name: Sad
     sprites: {fileID: 0}
-  DefaultPoseOffset: {x: -100, y: 0}
+  DefaultPoseOffset: {x: 0, y: 0}
   Iris: {fileID: 0}
   OpenLines: {fileID: 0}
   OpenMask: {fileID: 0}

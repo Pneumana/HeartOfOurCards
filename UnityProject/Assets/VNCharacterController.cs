@@ -34,7 +34,7 @@ public class VNCharacterController : MonoBehaviour
 
     public enum EmotionState
     {
-        Neutral,
+        Neutral = default,
         Happy,
         Sad,
         Mad
@@ -100,7 +100,7 @@ public class VNCharacterController : MonoBehaviour
             if (blinkTime > 2.87f)
             {
                 blinkTime = 0;
-                ChangeEmote(currentEmotion);
+                ChangeEmote(currentEmotion.ToString());
             }
         }
         
@@ -125,35 +125,37 @@ public class VNCharacterController : MonoBehaviour
         lookTarget = Vector3.zero;
         yield return null;
     }
-    public void ChangeEmote(EmotionState emotion)
+    public void WarpToEnd()
     {
-        switch (emotion)
+        var LerpX = canvas.x * moveTarget.x;
+        var LerpY = canvas.y * moveTarget.y;
+        transform.localPosition = new Vector2(LerpX, LerpY);
+    }
+
+    public void ChangeEmote(string input)
+    {
+        EmotionState emotion;
+        if (!Enum.TryParse<EmotionState>(input, true, out emotion))
         {
-            case EmotionState.Neutral:
-                //neutral face
-                //neutral eyes
-                    EyeLines.sprite = character.OpenLines;
-                    EyeMask.sprite = character.OpenMask;
-                //EyeMask.GetComponent<SpriteMask>().sprite = character.OpenMask;
-                break;
-            case EmotionState.Happy:
-                //happy face
-
-                //happy eyes
-                break;
-            case EmotionState.Sad:
-                //frown
-
-                //sad eyes
-                break;
-            case EmotionState.Mad:
-                //frown
-
-                //angry eyes
-
-
-                break;
+            emotion = EmotionState.Neutral;
+            Debug.Log("unable to load emotion " + input);
         }
+
+        //try to find the emotion in the character.sprites.Name
+
+        foreach (Character.CharacterSprite cs in character.Sprites)
+        {
+            if(cs.Name == input)
+            {
+                EyeLines.sprite = character.OpenLines;
+                EyeMask.sprite = character.OpenMask;
+
+                Body.sprite = cs.sprites;
+                break;
+            }
+        }
+
+        
     }
     public void changePose()
     {
